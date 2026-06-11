@@ -1,43 +1,108 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🏦 Banking & Finance — Navigate Germany</title>
-<style>
-:root{--bg:#0a0d14;--surface:#111520;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
-nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
-.nb span{color:var(--accent);}
-.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
-.hero{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
-.box{max-width:560px;}
-.icon{font-size:3.5rem;margin-bottom:16px;}
-h1{font-size:1.8rem;font-weight:800;margin-bottom:10px;}
-p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:20px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .15s;}
-.bp{background:var(--accent);color:#000;}
-.bp:hover{background:#e6b800;}
-.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);margin-left:8px;}
-.bo:hover{border-color:var(--accent);color:var(--accent);}
-</style>
-</head><body>
-<nav>
-  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
-  <a class="bl" href="../index.html">← All modules</a>
-</nav>
-<div class="hero">
-  <div class="box">
-    <div class="icon" style="color:#06b6d4">🏦</div>
-    <h1>🏦 Banking & Finance</h1>
-    <p>Open German bank account, Wise, Schufa, credit explained</p>
-    <p style="font-size:.82rem;background:rgba(255,204,2,.08);border:1px solid rgba(255,204,2,.2);border-radius:10px;padding:12px;color:#fde68a">
-      This module is available as a standalone app with full features.
-    </p>
-    <div style="margin-top:20px">
-      <a class="btn bp" href="https://ShaistaShabbir-prog.github.io/germany-german-tutor" target="_blank">Open Full Module →</a>
-      <a class="btn bo" href="../index.html">← Back to hub</a>
-    </div>
+<title>Banking & Finance — Navigate Germany</title>
+<style>:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--purple:#7c3aed;}
+*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}.bl:hover{color:var(--accent);}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:24px;}
+.ph h1{font-size:1.4rem;font-weight:800;margin-bottom:4px;}.ph p{font-size:.82rem;color:var(--muted);}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+label:first-child{margin-top:0;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+.btn{padding:9px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s;}
+.bg{background:var(--accent);color:#000;}.bg:hover{background:#e6b800;}
+.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}.bo:hover{border-color:var(--accent);color:var(--accent);}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+.sb{background:#14532d;border:1px solid #22c55e;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#86efac;line-height:1.7;margin:8px 0;}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bgreen{background:rgba(34,197,94,.12);color:#22c55e;}
+.bamber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bred{background:rgba(239,68,68,.12);color:#f87171;}
+
+.bank-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:10px;}
+.bank-card h3{font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.bank-card p{font-size:.82rem;color:var(--muted);line-height:1.7;}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.pros{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px;font-size:.78rem;line-height:1.8;}
+.cons{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:10px;font-size:.78rem;line-height:1.8;}
+</style></head><body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html">&#8592; All modules</a></nav>
+<div class="ph"><h1>🏦 Banking &amp; Finance Germany</h1><p>Open a German bank account · Wise transfers · Understanding Schufa · Monthly costs</p></div>
+<div class="con">
+<div class="ib">💡 As a newcomer with no Schufa history, start with <strong>N26 or DKB</strong> — they don't require a credit score. Then build Schufa over time for traditional banks.</div>
+
+<h2 style="font-size:.9rem;font-weight:700;margin:16px 0 10px;color:var(--accent)">🏦 Best banks for newcomers</h2>
+
+<div class="bank-card">
+  <h3>N26 — Best for expats &amp; quick opening</h3>
+  <p>Online bank, open in 10 minutes. English app. No salary required. Free basic account.</p>
+  <div class="pros-cons">
+    <div class="pros">✅ Open in 10 min<br>✅ English app<br>✅ No Schufa check<br>✅ Free basic account</div>
+    <div class="cons">❌ No branches<br>❌ Limited cash deposits<br>❌ Premium features cost €4.90-16.90/month</div>
+  </div>
+  <a href="https://n26.com" target="_blank" style="display:inline-block;margin-top:10px;font-size:.78rem;color:#93c5fd">→ n26.com</a>
+</div>
+
+<div class="bank-card">
+  <h3>DKB — Best free account with salary</h3>
+  <p>Free account if salary is deposited. Good for long-term use. Less English support.</p>
+  <div class="pros-cons">
+    <div class="pros">✅ Free with salary<br>✅ €0 ATM worldwide<br>✅ No Schufa issues</div>
+    <div class="cons">❌ German-only app<br>❌ No branches</div>
+  </div>
+  <a href="https://www.dkb.de" target="_blank" style="display:inline-block;margin-top:10px;font-size:.78rem;color:#93c5fd">→ dkb.de</a>
+</div>
+
+<div class="bank-card">
+  <h3>Commerzbank — Best traditional bank + bonus</h3>
+  <p>€50-100 bonus for new customers (referral). Branches everywhere. Free with salary.</p>
+  <div class="pros-cons">
+    <div class="pros">✅ €50-100 new customer bonus<br>✅ Branches in every city<br>✅ Free with salary deposit</div>
+    <div class="cons">❌ Schufa check required<br>❌ Need Meldebescheinigung</div>
+  </div>
+  <a href="https://www.commerzbank.de" target="_blank" style="display:inline-block;margin-top:10px;font-size:.78rem;color:#93c5fd">→ commerzbank.de</a>
+</div>
+
+<div class="bank-card">
+  <h3>Wise (Formerly TransferWise) — Best for sending money home</h3>
+  <p>Not a German bank but essential for international transfers. Mid-market exchange rate, minimal fees.</p>
+  <div class="pros-cons">
+    <div class="pros">✅ Real exchange rate<br>✅ Much cheaper than banks<br>✅ Multi-currency account<br>✅ Debit card</div>
+    <div class="cons">❌ Not a full bank<br>❌ No Schufa history building</div>
+  </div>
+  <a href="https://wise.com" target="_blank" style="display:inline-block;margin-top:10px;font-size:.78rem;color:#93c5fd">→ wise.com</a>
+</div>
+
+<h2 style="font-size:.9rem;font-weight:700;margin:20px 0 10px;color:var(--accent)">📊 Understanding Schufa</h2>
+<div class="card">
+  <p style="font-size:.85rem;line-height:1.8">
+    Schufa is Germany's credit bureau. A <strong>good score</strong> (95%+) is needed for renting apartments, getting contracts, and traditional bank accounts.<br><br>
+    <strong>As a newcomer:</strong> You start with a neutral score (not bad, but no history). Build it by:<br>
+    ✅ Opening a German bank account and using it regularly<br>
+    ✅ Registering mobile phone contracts in your name<br>
+    ✅ Paying all bills on time<br>
+    ✅ Getting a credit card (even a secured one)<br><br>
+    <strong>Free Schufa report:</strong> Once per year at <a href="https://www.meineschufa.de" target="_blank" style="color:#93c5fd">meineschufa.de</a>
+  </p>
+</div>
+
+<h2 style="font-size:.9rem;font-weight:700;margin:16px 0 10px;color:var(--accent)">💶 Monthly financial checklist</h2>
+<div class="card">
+  <div style="font-size:.85rem;line-height:2">
+    <div>📱 Mobile plan: €10-20/month (Aldi Talk, Lidl Connect for budget)</div>
+    <div>🔒 Haftpflichtversicherung: €5-15/month (ESSENTIAL — liability insurance)</div>
+    <div>📺 Rundfunkbeitrag (GEZ): €18.36/month (mandatory if you have any internet device)</div>
+    <div>🌐 Internet: €25-40/month (Vodafone, Telekom, O2)</div>
+    <div>🚆 Deutschlandticket: €29/month (unlimited local transport across all Germany)</div>
+    <div>💊 Krankenkasse: employer pays ~50%, you pay ~7.3% of salary</div>
   </div>
 </div>
-</body></html>
+</div></body></html>
