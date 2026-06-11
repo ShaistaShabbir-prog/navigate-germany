@@ -1,43 +1,235 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🇩🇪 German for Daily Life — Navigate Germany</title>
-<style>
-:root{--bg:#0a0d14;--surface:#111520;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
-nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
-.nb span{color:var(--accent);}
-.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
-.hero{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
-.box{max-width:560px;}
-.icon{font-size:3.5rem;margin-bottom:16px;}
-h1{font-size:1.8rem;font-weight:800;margin-bottom:10px;}
-p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:20px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .15s;}
-.bp{background:var(--accent);color:#000;}
-.bp:hover{background:#e6b800;}
-.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);margin-left:8px;}
-.bo:hover{border-color:var(--accent);color:var(--accent);}
-</style>
-</head><body>
-<nav>
-  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
-  <a class="bl" href="../index.html">← All modules</a>
-</nav>
-<div class="hero">
-  <div class="box">
-    <div class="icon" style="color:#a78bfa">🇩🇪</div>
-    <h1>🇩🇪 German for Daily Life</h1>
-    <p>Phrases for Amt, doctors, work, transport, emergencies</p>
-    <p style="font-size:.82rem;background:rgba(255,204,2,.08);border:1px solid rgba(255,204,2,.2);border-radius:10px;padding:12px;color:#fde68a">
-      This module is available as a standalone app with full features.
-    </p>
-    <div style="margin-top:20px">
-      <a class="btn bp" href="https://ShaistaShabbir-prog.github.io/germany-german-daily" target="_blank">Open Full Module →</a>
-      <a class="btn bo" href="../index.html">← Back to hub</a>
-    </div>
-  </div>
+<title>German Language — Navigate Germany</title>
+<style>:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--purple:#7c3aed;}
+*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}.bl:hover{color:var(--accent);}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:24px;}
+.ph h1{font-size:1.4rem;font-weight:800;margin-bottom:4px;}.ph p{font-size:.82rem;color:var(--muted);}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+label:first-child{margin-top:0;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+.btn{padding:9px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s;}
+.bg{background:var(--accent);color:#000;}.bg:hover{background:#e6b800;}
+.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}.bo:hover{border-color:var(--accent);color:var(--accent);}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+.sb{background:#14532d;border:1px solid #22c55e;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#86efac;line-height:1.7;margin:8px 0;}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bgreen{background:rgba(34,197,94,.12);color:#22c55e;}
+.bamber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bred{background:rgba(239,68,68,.12);color:#f87171;}
+
+.tab{padding:10px 16px;border:none;background:transparent;color:var(--muted);font-weight:600;font-size:.82rem;cursor:pointer;border-bottom:2px solid transparent;flex-shrink:0;}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.phrase-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;position:relative;transition:all .15s;}
+.phrase-card:hover{box-shadow:0 3px 14px rgba(255,204,2,.1);transform:translateY(-1px);}
+.phrase-de{font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:3px;}
+.phrase-en{font-size:.82rem;color:var(--text);margin-bottom:3px;}
+.phrase-pron{font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:6px;}
+.say-btn{position:absolute;top:10px;right:10px;background:var(--accent);color:#000;border:none;border-radius:7px;padding:4px 9px;font-size:.72rem;font-weight:700;cursor:pointer;}
+.ctx-tag{font-size:.68rem;background:rgba(255,204,2,.1);color:var(--accent);padding:2px 7px;border-radius:5px;}
+.qopt{padding:12px;border-radius:12px;border:2px solid var(--border);background:#fff1;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .15s;width:100%;text-align:left;color:var(--text);}
+.qopt:hover{border-color:var(--accent);}
+.qopt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#22c55e;}
+.qopt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#ef4444;}
+.letter-card{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .15s;}
+.letter-card:hover{border-color:var(--accent);background:rgba(255,204,2,.05);}
+</style></head><body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html">&#8592; All modules</a></nav>
+<div class="ph"><h1>🇩🇪 German for Daily Life</h1><p>Real phrases for Amt visits · doctor appointments · workplace · transport · emergencies · with pronunciation &amp; TTS</p></div>
+<div style="display:flex;gap:0;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--surface)">
+  <button class="tab active" onclick="showTab('basics',this)">🏠 Basics</button>
+  <button class="tab" onclick="showTab('amt',this)">🏛️ At the Amt</button>
+  <button class="tab" onclick="showTab('doctor',this)">🏥 Doctor</button>
+  <button class="tab" onclick="showTab('work',this)">💼 Work</button>
+  <button class="tab" onclick="showTab('shop',this)">🛒 Shopping</button>
+  <button class="tab" onclick="showTab('transport',this)">🚆 Transport</button>
+  <button class="tab" onclick="showTab('emg',this)">🚨 Emergency</button>
+  <button class="tab" onclick="showTab('quiz',this)">🧠 Quiz</button>
+  <button class="tab" onclick="showTab('alpha',this)">🔤 Alphabet</button>
 </div>
-</body></html>
+<div style="background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;gap:14px;align-items:center">
+  <div style="font-size:.82rem;color:var(--muted)">⭐ <span id="xp-total">0</span> XP &nbsp;|&nbsp; 🔥 <span id="streak">3</span> day streak</div>
+</div>
+<div class="con" id="content"></div>
+<script>
+const CATS={
+  basics:[
+    {de:"Guten Morgen!",en:"Good morning!",p:"goo-ten MOR-gen",ctx:"Morning greeting"},
+    {de:"Guten Tag!",en:"Good day / Hello!",p:"goo-ten TAHK",ctx:"General greeting"},
+    {de:"Auf Wiedersehen!",en:"Goodbye!",p:"owf VEE-der-zayn",ctx:"Formal farewell"},
+    {de:"Bitte.",en:"Please / You're welcome.",p:"BIT-teh",ctx:"Essential politeness"},
+    {de:"Danke schön!",en:"Thank you very much!",p:"DAN-keh shurn",ctx:"Gratitude"},
+    {de:"Es tut mir leid.",en:"I'm sorry.",p:"es toot meer lied",ctx:"Apology"},
+    {de:"Ich verstehe nicht.",en:"I don't understand.",p:"ikh fer-SHTAY-eh nikht",ctx:"Very useful!"},
+    {de:"Sprechen Sie Englisch?",en:"Do you speak English?",p:"SHPREH-khen zee ENG-lish",ctx:"Ask for help"},
+    {de:"Wie viel kostet das?",en:"How much does this cost?",p:"vee feel KOS-tet das",ctx:"Shopping"},
+    {de:"Wo ist die Toilette?",en:"Where is the toilet?",p:"vo ist dee toy-LET-teh",ctx:"Essential!"},
+    {de:"Können Sie das wiederholen?",en:"Can you repeat that?",p:"KUR-nen zee das VEE-der-ho-len",ctx:"Didn't understand"},
+    {de:"Ich brauche Hilfe.",en:"I need help.",p:"ikh BROW-kheh HIL-feh",ctx:"General help"},
+  ],
+  amt:[
+    {de:"Ich habe einen Termin.",en:"I have an appointment.",p:"ikh HAH-beh EYE-nen ter-MEEN",ctx:"At Bürgeramt"},
+    {de:"Ich möchte mich anmelden.",en:"I want to register my address.",p:"ikh MUKH-teh mikh AN-mel-den",ctx:"Anmeldung"},
+    {de:"Welche Dokumente brauche ich?",en:"Which documents do I need?",p:"VEL-kheh do-koo-MEN-teh BROW-kheh ikh",ctx:"Before Amt visit"},
+    {de:"Ich brauche eine Meldebestätigung.",en:"I need a registration certificate.",p:"ikh BROW-kheh EYE-neh MEL-deh-beh-SHTAY-ti-gung",ctx:"Meldebescheinigung"},
+    {de:"Bis wann muss ich das einreichen?",en:"By when do I need to submit this?",p:"bis van mus ikh das EYN-ry-khen",ctx:"Deadlines"},
+    {de:"Haben Sie einen Dolmetscher?",en:"Do you have an interpreter?",p:"HAH-ben zee EYE-nen DOL-met-sher",ctx:"Ask for interpreter"},
+    {de:"Können Sie das bitte aufschreiben?",en:"Can you please write that down?",p:"KUR-nen zee das BIT-teh OWF-shry-ben",ctx:"Important info"},
+    {de:"Kann ich das online erledigen?",en:"Can I do this online?",p:"kan ikh das on-LEE-neh er-LEH-di-gen",ctx:"Digital option"},
+  ],
+  doctor:[
+    {de:"Ich bin krank.",en:"I am sick.",p:"ikh bin krank",ctx:"Tell doctor"},
+    {de:"Ich habe Schmerzen.",en:"I have pain.",p:"ikh HAH-beh SHMER-tsen",ctx:"Report pain"},
+    {de:"Seit wann haben Sie diese Beschwerden?",en:"How long have you had these symptoms?",p:"zeyt van HAH-ben zee dee-zeh beh-SHVER-den",ctx:"Doctor asks"},
+    {de:"Ich brauche ein Rezept.",en:"I need a prescription.",p:"ikh BROW-kheh eyn reh-TSEPT",ctx:"At doctor"},
+    {de:"Ich bin allergisch gegen...",en:"I am allergic to...",p:"ikh bin al-ER-gish GAY-gen",ctx:"Important info"},
+    {de:"Ich habe eine gesetzliche Krankenversicherung.",en:"I have public health insurance.",p:"ikh HAH-beh EYE-neh geh-ZETS-li-kheh KRAN-ken-fer-zi-kheh-rung",ctx:"At reception"},
+    {de:"Können Sie mich überweisen?",en:"Can you give me a referral?",p:"KUR-nen zee mikh Ü-ber-vy-zen",ctx:"Get referral"},
+    {de:"Wo tut es weh?",en:"Where does it hurt?",p:"vo toot es VAY",ctx:"Doctor asks you"},
+  ],
+  work:[
+    {de:"Ich bin im Homeoffice.",en:"I'm working from home.",p:"ikh bin im HOME-o-fis",ctx:"Remote work"},
+    {de:"Ich habe eine Frage.",en:"I have a question.",p:"ikh HAH-beh EYE-neh FRAH-geh",ctx:"In meetings"},
+    {de:"Können wir das Meeting verschieben?",en:"Can we reschedule the meeting?",p:"KUR-nen veer das MEE-ting fer-SHE-ben",ctx:"Professional"},
+    {de:"Bis wann brauchen Sie das?",en:"By when do you need it?",p:"bis van BROW-khen zee das",ctx:"Clarify deadlines"},
+    {de:"Ich bin im Urlaub vom … bis …",en:"I'm on holiday from … to …",p:"ikh bin im OOR-lowp fom … bis",ctx:"Out of office"},
+    {de:"Könnten Sie das bitte schriftlich schicken?",en:"Could you please send that in writing?",p:"KUR-nten zee das BIT-teh SHRIFT-likh SHIK-ken",ctx:"Important requests"},
+    {de:"Ich beantrage Überstunden.",en:"I am claiming overtime.",p:"ikh beh-AN-trah-geh Ü-ber-shtun-den",ctx:"HR matters"},
+  ],
+  shop:[
+    {de:"Wo finde ich...?",en:"Where can I find...?",p:"vo FIN-deh ikh",ctx:"Supermarket"},
+    {de:"Haben Sie das in einer anderen Größe?",en:"Do you have this in a different size?",p:"HAH-ben zee das in EYE-ner AN-de-ren GRUR-seh",ctx:"Clothes"},
+    {de:"Kann ich das umtauschen?",en:"Can I exchange this?",p:"kan ikh das UM-tow-shen",ctx:"Returns"},
+    {de:"Ich zahle mit Karte.",en:"I'll pay by card.",p:"ikh TSAH-leh mit KAR-teh",ctx:"Payment"},
+    {de:"Haben Sie eine Tüte?",en:"Do you have a bag?",p:"HAH-ben zee EYE-neh TÜ-teh",ctx:"Checkout"},
+    {de:"Das ist zu teuer.",en:"That's too expensive.",p:"das ist tsoo TOY-er",ctx:"Price"},
+    {de:"Gibt es einen Rabatt?",en:"Is there a discount?",p:"gipt es EYE-nen rah-BAT",ctx:"Sale"},
+  ],
+  transport:[
+    {de:"Eine Fahrkarte nach ... bitte.",en:"One ticket to ... please.",p:"EYE-neh FAR-kar-teh nach … BIT-teh",ctx:"Train/bus"},
+    {de:"Wann fährt der nächste Zug?",en:"When does the next train leave?",p:"van fert der NEKH-steh tsoog",ctx:"Train station"},
+    {de:"Ist dieser Sitz frei?",en:"Is this seat free?",p:"ist DEE-zer zits fry",ctx:"Train/bus"},
+    {de:"Wo muss ich umsteigen?",en:"Where do I need to change?",p:"vo mus ikh UM-shty-gen",ctx:"Connections"},
+    {de:"Der Zug hat Verspätung.",en:"The train is delayed.",p:"der tsoog hat fer-SHPAY-tung",ctx:"Delays"},
+    {de:"Bitte halten Sie hier an.",en:"Please stop here.",p:"BIT-teh HAL-ten zee heer an",ctx:"Taxi"},
+  ],
+  emg:[
+    {de:"Hilfe!",en:"Help!",p:"HIL-feh",ctx:"EMERGENCY"},
+    {de:"Rufen Sie die Polizei!",en:"Call the police!",p:"ROO-fen zee dee po-li-TSAY",ctx:"Police needed"},
+    {de:"Rufen Sie einen Krankenwagen!",en:"Call an ambulance!",p:"ROO-fen zee EYE-nen KRAN-ken-VAH-gen",ctx:"Medical emergency"},
+    {de:"Ich brauche sofort einen Arzt.",en:"I need a doctor immediately.",p:"ikh BROW-kheh zo-FORT EYE-nen artst",ctx:"Medical urgent"},
+    {de:"Es brennt!",en:"It's on fire!",p:"es brent",ctx:"Fire"},
+    {de:"Ich wurde bestohlen.",en:"I was robbed.",p:"ikh VOOR-deh beh-SHTOH-len",ctx:"Theft"},
+    {de:"Notruf: 112",en:"Emergency: 112",p:"noot-roof eyn-eyn-tsvay",ctx:"Most important!"},
+  ],
+};
+
+const ALPHA=[
+  {l:"A",s:"ah",ex:"Auto"},{l:"B",s:"beh",ex:"Buch"},{l:"C",s:"tseh",ex:"Computer"},
+  {l:"D",s:"deh",ex:"Deutsch"},{l:"E",s:"eh",ex:"Essen"},{l:"F",s:"ef",ex:"Frau"},
+  {l:"G",s:"geh",ex:"Gut"},{l:"H",s:"hah",ex:"Haus"},{l:"I",s:"ee",ex:"Ich"},
+  {l:"J",s:"yot",ex:"Jahr"},{l:"K",s:"kah",ex:"Karte"},{l:"L",s:"el",ex:"Leben"},
+  {l:"M",s:"em",ex:"Mann"},{l:"N",s:"en",ex:"Nein"},{l:"O",s:"oh",ex:"Ort"},
+  {l:"P",s:"peh",ex:"Pass"},{l:"Q",s:"koo",ex:"Quelle"},{l:"R",s:"er",ex:"Rezept"},
+  {l:"S",s:"es",ex:"Schule"},{l:"T",s:"teh",ex:"Termin"},{l:"U",s:"oo",ex:"Uhr"},
+  {l:"V",s:"fow",ex:"Visum"},{l:"W",s:"veh",ex:"Wohnung"},{l:"X",s:"iks",ex:"extra"},
+  {l:"Y",s:"üpsilon",ex:"System"},{l:"Z",s:"tset",ex:"Zeit"},
+  {l:"Ä",s:"eh (air)",ex:"Ärzte"},{l:"Ö",s:"ur (rounded)",ex:"öffentlich"},
+  {l:"Ü",s:"ü (pursed)",ex:"über"},{l:"ß",s:"ss",ex:"Straße"},
+];
+
+let xp=parseInt(localStorage.getItem('ng_xp')||'0');
+function addXP(n){xp+=n;localStorage.setItem('ng_xp',xp);document.getElementById('xp-total').textContent=xp;}
+function speak(t){const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u);}
+
+function showTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderTab(name);
+}
+
+function renderTab(tab){
+  const el=document.getElementById('content');
+  if(tab==='quiz'){renderQuiz(el);return;}
+  if(tab==='alpha'){renderAlpha(el);return;}
+  const phrases=CATS[tab]||[];
+  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔊 Tap "Say" to hear native pronunciation. Clicking the card earns +5 XP!</div>'+
+  '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">'+
+  phrases.map(p=>
+    '<div class="phrase-card" onclick="addXP(5)">'+
+    '<button class="say-btn" onclick="event.stopPropagation();speak(''+p.de.replace(/'/g,'\'')+'')">🔊 Say</button>'+
+    '<div class="phrase-de">'+p.de+'</div>'+
+    '<div class="phrase-en">'+p.en+'</div>'+
+    '<div class="phrase-pron">📢 '+p.pron+'</div>'+
+    '<span class="ctx-tag">'+p.ctx+'</span>'+
+    '</div>'
+  ).join('')+'</div>';
+  el.querySelectorAll('.phrase-card').forEach(c=>{
+    const p=phrases[Array.from(c.parentElement.children).indexOf(c)];
+    if(!p)return;
+    c.querySelector('.phrase-pron').textContent='📢 '+p.p;
+  });
+}
+
+function renderAlpha(el){
+  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔤 German special letters: <strong>Ä (ah-umlaut)</strong>, <strong>Ö (oh-umlaut)</strong>, <strong>Ü (oo-umlaut)</strong>, <strong>ß (ss)</strong>. Click any letter to hear it!</div>'+
+  '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px">'+
+  ALPHA.map(a=>
+    '<div class="letter-card" onclick="speak(''+a.l+'');addXP(2)">'+
+    '<div style="font-size:2rem;font-weight:800;color:var(--accent)">'+a.l+'</div>'+
+    '<div style="font-size:.72rem;color:var(--muted);margin-top:2px">'+a.s+'</div>'+
+    '<div style="font-size:.65rem;color:#475569;margin-top:2px">'+a.ex+'</div>'+
+    '</div>'
+  ).join('')+'</div>';
+}
+
+const QS=[
+  {q:"How do you say 'I don't understand'?",a:"Ich verstehe nicht.",w:["Ich spreche nicht.","Ich bin krank.","Ich habe keine Zeit."]},
+  {q:"What does 'Bitte' mean?",a:"Please / You're welcome",w:["Thank you","Goodbye","Sorry"]},
+  {q:"You need a doctor urgently. What do you say?",a:"Ich brauche sofort einen Arzt.",w:["Hilfe!","Wo ist die Toilette?","Ich habe Schmerzen."]},
+  {q:"What does 'Anmeldung' mean?",a:"Address registration",w:["Health insurance","Tax office","Bank account"]},
+  {q:"How do you ask 'Do you speak English?'",a:"Sprechen Sie Englisch?",w:["Haben Sie Englisch?","Können Sie Englisch?","Wissen Sie Englisch?"]},
+  {q:"Emergency number in Germany?",a:"112",w:["110","999","118"]},
+  {q:"How do you say 'I have an appointment'?",a:"Ich habe einen Termin.",w:["Ich brauche Hilfe.","Ich bin krank.","Ich zahle mit Karte."]},
+  {q:"What does 'Krankenversicherung' mean?",a:"Health insurance",w:["Health card","Doctor's office","Prescription"]},
+  {q:"'Auf Wiedersehen' means:",a:"Goodbye (formal)",w:["Good morning","Good evening","See you tomorrow"]},
+  {q:"How do you say 'Where do I need to change trains?'",a:"Wo muss ich umsteigen?",w:["Wo ist der Bahnhof?","Wann fährt der Zug?","Welches Gleis?"]},
+];
+let qi=0,qs=0;
+function renderQuiz(el){
+  if(qi>=QS.length){
+    el.innerHTML='<div class="card" style="text-align:center;padding:32px">'+
+      '<div style="font-size:3rem;margin-bottom:10px">🎉</div>'+
+      '<h2 style="font-size:1.3rem;margin-bottom:8px">Quiz Complete!</h2>'+
+      '<p>Score: <strong style="color:var(--accent);font-size:1.3rem">'+qs+'/'+QS.length+'</strong></p>'+
+      '<button class="btn bg" style="margin-top:16px" onclick="qi=0;qs=0;renderQuiz(document.getElementById('content'))">Play again</button></div>';
+    return;
+  }
+  const q=QS[qi];
+  const opts=[q.a,...q.w].sort(()=>Math.random()-.5);
+  el.innerHTML='<div class="card">'+
+    '<div style="font-size:.78rem;color:var(--muted);margin-bottom:10px">Question '+(qi+1)+' of '+QS.length+' &nbsp;·&nbsp; Score: '+qs+'</div>'+
+    '<div style="font-size:1.1rem;font-weight:700;margin-bottom:18px">'+q.q+'</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'+
+    opts.map(o=>'<button class="qopt" onclick="checkQ(this,''+o.replace(/'/g,'\'')+'',''+q.a.replace(/'/g,'\'')+'')">'+o+'</button>').join('')+
+    '</div><div id="qfb" style="min-height:28px;margin-top:14px;font-size:1rem;text-align:center"></div></div>';
+}
+function checkQ(btn,c,a){
+  document.querySelectorAll('.qopt').forEach(b=>b.onclick=null);
+  if(c===a){btn.classList.add('correct');document.getElementById('qfb').innerHTML='✅ Correct! +15 XP';qs++;addXP(15);}
+  else{btn.classList.add('wrong');document.querySelectorAll('.qopt').forEach(b=>{if(b.textContent.trim()===a)b.classList.add('correct');});document.getElementById('qfb').innerHTML='❌ Answer: <strong>'+a+'</strong>';}
+  setTimeout(()=>{qi++;renderQuiz(document.getElementById('content'));},1500);
+}
+
+document.getElementById('xp-total').textContent=xp;
+renderTab('basics');
+</script></body></html>
