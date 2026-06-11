@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Emergency — Navigate Germany</title>
+<style>
+:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
+.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:28px 24px;}
+.ph h1{font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+.ph p{font-size:.875rem;color:var(--muted);max-width:700px;}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--text);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:600px){.grid2{grid-template-columns:1fr;}}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus{outline:none;border-color:var(--accent);}
+.btn{padding:10px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.875rem;display:inline-flex;align-items:center;gap:5px;}
+.bg{background:var(--accent);color:#000;}.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bg-green{background:rgba(34,197,94,.12);color:#22c55e;}
+.bg-amber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bg-red{background:rgba(239,68,68,.12);color:#f87171;}
+.bg-blue{background:rgba(59,130,246,.12);color:#93c5fd;}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+.result-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:14px;display:none;}
+.result-ok{border-color:#22c55e;background:rgba(34,197,94,.06);}
+.result-warn{border-color:#f59e0b;background:rgba(245,158,11,.06);}
+.result-no{border-color:#ef4444;background:rgba(239,68,68,.06);}
+input[type=range]{accent-color:var(--accent);}
+
+.emg-num{font-size:2rem;font-weight:900;color:#f87171;display:block;}
+.emg-card{background:#7f1d1d;border:1px solid #dc2626;border-radius:14px;padding:20px;}
+.emg-card h2{color:#fca5a5;margin-bottom:10px;}
+.emg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:20px;}
+.emg-item{background:#fff1;border-radius:10px;padding:14px;text-align:center;}
+.urg-card{border-radius:0 12px 12px 0;padding:16px;margin-bottom:12px;border-left:4px solid;}
+.deadline-badge{background:#dc262640;color:#f87171;padding:3px 10px;border-radius:5px;font-size:.75rem;font-weight:700;display:inline-block;margin-top:4px;}
+</style></head><body>
+<nav>
+  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
+  <a class="bl" href="../index.html">← All modules</a>
+</nav>
+<div class="ph"><h1>🚨 Emergency Guide — Germany</h1><p>Emergency numbers · Urgent legal deadlines · Crisis lines · Nearest help</p></div>
+<div class="con">
+
+<div class="emg-card" style="margin-bottom:20px">
+  <h2>🚨 Emergency Numbers</h2>
+  <div class="emg-grid">
+    <div class="emg-item"><span class="emg-num">112</span><div style="font-size:.9rem;color:#fecaca;font-weight:700">Ambulance / Fire</div><div style="font-size:.75rem;color:#fca5a5">Free · 24/7</div></div>
+    <div class="emg-item"><span class="emg-num">110</span><div style="font-size:.9rem;color:#fecaca;font-weight:700">Police</div><div style="font-size:.75rem;color:#fca5a5">Free · 24/7</div></div>
+    <div class="emg-item"><span class="emg-num">116 117</span><div style="font-size:.9rem;color:#fecaca;font-weight:700">Out-of-hours GP</div><div style="font-size:.75rem;color:#fca5a5">Medical advice</div></div>
+    <div class="emg-item"><span class="emg-num" style="font-size:1.3rem">0800 111 0 111</span><div style="font-size:.9rem;color:#fecaca;font-weight:700">Crisis line</div><div style="font-size:.75rem;color:#fca5a5">Free · 24/7</div></div>
+    <div class="emg-item"><span class="emg-num" style="font-size:1.1rem">030 18555-1855</span><div style="font-size:.9rem;color:#fecaca;font-weight:700">Anti-discrimination</div><div style="font-size:.75rem;color:#fca5a5">ADS Hotline</div></div>
+    <div class="emg-item"><span class="emg-num" style="font-size:1.1rem">0800 700 1234</span><div style="font-size:.9rem;color:#fecaca;font-weight:700">Migration advice</div><div style="font-size:.75rem;color:#fca5a5">BAMF helpline</div></div>
+  </div>
+</div>
+
+<h2 style="font-size:.95rem;font-weight:700;margin-bottom:12px;color:var(--accent)">Urgent Legal Situations — Act Immediately</h2>
+<div id="urg-cards"></div>
+
+<div class="card" style="margin-top:20px">
+  <h2>Free Legal Help Resources</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
+    <div style="background:var(--surface2);border-radius:10px;padding:12px">
+      <div style="font-weight:700;font-size:.85rem;color:var(--accent)">Beratungshilfe</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.6">€15 legal advice at any Rechtsanwalt. Get Schein from Amtsgericht first.</div>
+      <span class="badge bg-green" style="margin-top:6px">Any legal issue</span>
+    </div>
+    <div style="background:var(--surface2);border-radius:10px;padding:12px">
+      <div style="font-weight:700;font-size:.85rem;color:var(--accent)">DGB (Trade Union)</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.6">Free employment law advice for members.</div>
+      <span class="badge bg-blue" style="margin-top:6px">Employment disputes</span>
+    </div>
+    <div style="background:var(--surface2);border-radius:10px;padding:12px">
+      <div style="font-weight:700;font-size:.85rem;color:var(--accent)">Mieterverein</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.6">Tenant association, ~€80/year. Expert rental law advice.</div>
+      <span class="badge bg-amber" style="margin-top:6px">Tenancy issues</span>
+    </div>
+    <div style="background:var(--surface2);border-radius:10px;padding:12px">
+      <div style="font-weight:700;font-size:.85rem;color:var(--accent)">Caritas / Diakonie / AWO</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.6">Free social counselling in many languages nationwide.</div>
+      <span class="badge bg-green" style="margin-top:6px">Social / migration</span>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+const URG=[
+  {c:'#dc2626',t:'Received a Kündigung (dismissal)',dl:'3 WEEKS from notice date',
+   steps:['Read the letter — note the exact date','Calculate 3 weeks from that date','Go to Arbeitsgericht IN PERSON — filing is FREE for employees','Bring the dismissal letter','File Kündigungsschutzklage — §4 KSchG','DO NOT WAIT — missing deadline = claim lost permanently','Contact DGB or Rechtsanwalt immediately']},
+  {c:'#dc2626',t:'Visa / permit about to expire or rejected',dl:'BEFORE expiry',
+   steps:['Apply for extension BEFORE expiry — §81 AufenthG','You receive Fiktionsbescheinigung — legal to work during processing','If rejected: file Widerspruch within 1 month','Do not travel internationally with expired permit','Contact Ausländerbehörde and Migrationsberatung immediately']},
+  {c:'#d97706',t:'Received eviction notice (Kündigung Mietvertrag)',dl:'1 MONTH to respond',
+   steps:['Do NOT move out without legal advice — many eviction notices are invalid','Check if landlord has valid justification (§573 BGB)','Join Mieterverein immediately (~€80/year)','File objection if notice appears invalid','Never accept eviction without court order']},
+  {c:'#d97706',t:'Benefits stopped or reduced (Bescheid)',dl:'1 MONTH to appeal',
+   steps:['Note exact date on Bescheid — 1 month to file Widerspruch','File Widerspruch in writing to the issuing authority','Request Akteneinsicht to see your file (§29 VwVfG)','Free advice: Caritas, Diakonie, VdK, SoVD','For Jobcenter: can also file directly at Sozialgericht']},
+  {c:'#3b82f6',t:'Received court summons (Ladung)',dl:'Respond by deadline',
+   steps:['Read the summons carefully — identify court and matter','Note exact deadline for response','DO NOT IGNORE — default judgment can be entered against you','Get Beratungshilfe (€15) or legal aid immediately','Criminal matters: right to remain silent and have a lawyer']},
+];
+document.getElementById('urg-cards').innerHTML=URG.map(u=>
+  '<div class="urg-card" style="border-left-color:'+u.c+';background:'+u.c+'12">'+
+  '<div style="font-weight:700;font-size:.9rem;margin-bottom:6px">'+u.t+'</div>'+
+  '<span class="deadline-badge">Deadline: '+u.dl+'</span>'+
+  '<ol style="padding-left:16px;font-size:.82rem;line-height:1.9;margin-top:10px">'+u.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol>'+
+  '</div>'
+).join('');
+</script>
+</body></html>
