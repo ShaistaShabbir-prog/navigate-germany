@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jobs & Visa — Navigate Germany</title>
+<style>
+:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
+.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:28px 24px;}
+.ph h1{font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+.ph p{font-size:.875rem;color:var(--muted);max-width:700px;}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--text);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:600px){.grid2{grid-template-columns:1fr;}}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus{outline:none;border-color:var(--accent);}
+.btn{padding:10px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.875rem;display:inline-flex;align-items:center;gap:5px;}
+.bg{background:var(--accent);color:#000;}.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bg-green{background:rgba(34,197,94,.12);color:#22c55e;}
+.bg-amber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bg-red{background:rgba(239,68,68,.12);color:#f87171;}
+.bg-blue{background:rgba(59,130,246,.12);color:#93c5fd;}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+.result-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:14px;display:none;}
+.result-ok{border-color:#22c55e;background:rgba(34,197,94,.06);}
+.result-warn{border-color:#f59e0b;background:rgba(245,158,11,.06);}
+.result-no{border-color:#ef4444;background:rgba(239,68,68,.06);}
+input[type=range]{accent-color:var(--accent);}
+</style>
+</head><body>
+<nav>
+  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
+  <a class="bl" href="../index.html">← All modules</a>
+</nav>
+<div class="ph"><h1>💼 Jobs & Visa Germany</h1><p>EU Blue Card checker · 2026 salary thresholds · Chancenkarte points · Visa pathways · Qualification recognition</p></div>
+<div style="display:flex;gap:0;border-bottom:1px solid var(--border);overflow-x:auto">
+  <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid var(--accent);color:var(--accent);font-size:.82rem" onclick="showTab('bc',this)">💳 Blue Card</button>
+  <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid transparent;font-size:.82rem" onclick="showTab('sal',this)">💶 Salaries 2026</button>
+  <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid transparent;font-size:.82rem" onclick="showTab('cc',this)">🃏 Chancenkarte</button>
+  <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid transparent;font-size:.82rem" onclick="showTab('paths',this)">🛣️ Visa Paths</button>
+  <button class="btn bo" style="border-radius:0;border-top:none;border-right:none;border-bottom:2px solid transparent;font-size:.82rem" onclick="showTab('recog',this)">🎓 Recognition</button>
+</div>
+<div class="con">
+  <div id="tc-bc">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="card">
+        <h2>Check Blue Card eligibility</h2>
+        <label>Annual gross salary (€)</label>
+        <input type="number" id="bc-sal" placeholder="e.g. 52000" oninput="checkBC()">
+        <label>Field</label>
+        <select id="bc-field" onchange="checkBC()">
+          <option value="">Select your field</option>
+          <option value="IT">IT / Software Engineering</option>
+          <option value="STEM">Engineering / STEM</option>
+          <option value="Healthcare">Medicine / Healthcare</option>
+          <option value="Construction">Architecture / Construction</option>
+          <option value="Education">Teaching / Education</option>
+          <option value="Finance">Finance / Banking</option>
+          <option value="Management">Management</option>
+          <option value="Other">Other</option>
+        </select>
+        <label>Degree</label>
+        <select id="bc-deg" onchange="checkBC()">
+          <option value="">Select</option>
+          <option value="eu">EU/recognised university degree</option>
+          <option value="foreign">Foreign degree (needs recognition)</option>
+          <option value="it_exp">IT — 2+ years experience (no degree)</option>
+        </select>
+        <div id="bc-result" class="result-box"></div>
+      </div>
+      <div class="card">
+        <h2>Blue Card Quick Facts 2026</h2>
+        <div style="font-size:.85rem;line-height:2">
+          <div>✅ Standard salary: <strong style="color:var(--accent)">€50,700/year</strong></div>
+          <div>✅ Shortage occupations: <strong style="color:var(--accent)">€45,934/year</strong></div>
+          <div style="font-size:.75rem;color:var(--muted);padding-left:16px">IT, STEM, Healthcare, Construction, Education, Maths</div>
+          <div>✅ IT specialists: no degree if 2+ years exp</div>
+          <div>✅ Validity: <strong>4 years</strong></div>
+          <div>✅ PR after: <strong>21 months</strong> (B1 German) or <strong>33 months</strong></div>
+          <div>✅ Family: immediate reunification</div>
+          <div>✅ EU mobility: work in other EU states after 12 months</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tc-sal" style="display:none">
+    <div class="card">
+      <h2>2026 EU Blue Card Salary Thresholds</h2>
+      <table>
+        <tr><th>Role</th><th>Min. Annual</th><th>Min. Monthly</th><th>Type</th></tr>
+        <tr><td>Software Engineer / IT</td><td style="color:var(--accent);font-weight:700">€45,934</td><td>€3,828</td><td><span class="badge bg-green">Shortage</span></td></tr>
+        <tr><td>Data Scientist / ML Engineer</td><td style="color:var(--accent);font-weight:700">€45,934</td><td>€3,828</td><td><span class="badge bg-green">Shortage</span></td></tr>
+        <tr><td>Medical Doctor</td><td style="color:var(--accent);font-weight:700">€45,934</td><td>€3,828</td><td><span class="badge bg-green">Shortage</span></td></tr>
+        <tr><td>Civil / Mechanical Engineer</td><td style="color:var(--accent);font-weight:700">€45,934</td><td>€3,828</td><td><span class="badge bg-green">Shortage</span></td></tr>
+        <tr><td>Nurse / Healthcare Worker</td><td style="color:var(--accent);font-weight:700">€45,934</td><td>€3,828</td><td><span class="badge bg-green">Shortage</span></td></tr>
+        <tr><td>Finance / Analyst</td><td>€50,700</td><td>€4,225</td><td><span class="badge bg-blue">Standard</span></td></tr>
+        <tr><td>Marketing Manager</td><td>€50,700</td><td>€4,225</td><td><span class="badge bg-blue">Standard</span></td></tr>
+        <tr><td>Lawyer / Legal</td><td>€50,700</td><td>€4,225</td><td><span class="badge bg-blue">Standard</span></td></tr>
+        <tr><td>HR Manager</td><td>€50,700</td><td>€4,225</td><td><span class="badge bg-blue">Standard</span></td></tr>
+      </table>
+      <div class="ib" style="margin-top:12px">Shortage occupations pay 10% less threshold. Offer letter must state minimum annual gross salary. Salary thresholds updated 1 January 2026 (+5% from 2025).</div>
+    </div>
+  </div>
+
+  <div id="tc-cc" style="display:none">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="card">
+        <h2>Chancenkarte Points Calculator</h2>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px">Need at least 6 points to qualify. Calculate yours:</p>
+        <label>Qualified worker / degree? (+3)</label>
+        <select id="cc-deg" onchange="calcCC()"><option value="0">No</option><option value="3">Yes — university or vocational qualification</option></select>
+        <label>German language level?</label>
+        <select id="cc-de" onchange="calcCC()"><option value="0">None / A1</option><option value="1">A2 (+1)</option><option value="2">B2 or higher (+2)</option></select>
+        <label>English B2 or higher? (+1)</label>
+        <select id="cc-en" onchange="calcCC()"><option value="0">No</option><option value="1">Yes (+1)</option></select>
+        <label>2+ years work experience? (+1)</label>
+        <select id="cc-exp" onchange="calcCC()"><option value="0">No</option><option value="1">Yes (+1)</option></select>
+        <label>Under 35 years old? (+1)</label>
+        <select id="cc-age" onchange="calcCC()"><option value="0">No</option><option value="1">Yes (+1)</option></select>
+        <label>Shortage occupation? (+1)</label>
+        <select id="cc-sh" onchange="calcCC()"><option value="0">No</option><option value="1">Yes — IT, STEM, Healthcare (+1)</option></select>
+        <label>Germany connection (study/work/family)? (+1)</label>
+        <select id="cc-con" onchange="calcCC()"><option value="0">No</option><option value="1">Yes (+1)</option></select>
+        <div id="cc-result" class="result-box" style="margin-top:12px"></div>
+      </div>
+      <div class="card">
+        <h2>Chancenkarte Facts</h2>
+        <div style="font-size:.85rem;line-height:2">
+          <div>✅ Come without job offer</div>
+          <div>✅ Valid: <strong>1 year</strong> job search</div>
+          <div>✅ Part-time work: up to 20 hrs/week</div>
+          <div>✅ Trial work: 2 weeks allowed</div>
+          <div>✅ Finances required: <strong>€1,027/month</strong></div>
+          <div>✅ Blocked account: <strong>€12,324</strong> recommended</div>
+          <div>✅ After job: switch to Blue Card or Fachkräftevisum</div>
+          <div style="color:#f87171">⚠️ Not for EU citizens (already have work rights)</div>
+          <div style="color:#f87171">⚠️ No permanent residence from Chancenkarte alone</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tc-paths" style="display:none">
+    <div id="paths-list"></div>
+  </div>
+
+  <div id="tc-recog" style="display:none">
+    <div class="card">
+      <h2>Qualification Recognition — Key Resources</h2>
+      <table>
+        <tr><th>Resource</th><th>What it does</th><th>Link</th></tr>
+        <tr><td><strong>Anabin Database</strong></td><td>Check if your university/degree is recognised</td><td><a href="https://anabin.kmk.org" target="_blank" style="color:#93c5fd">anabin.kmk.org</a></td></tr>
+        <tr><td><strong>ZAB</strong></td><td>Official evaluation of foreign degrees for non-EU citizens</td><td><a href="https://www.kmk.org/zab" target="_blank" style="color:#93c5fd">kmk.org/zab</a></td></tr>
+        <tr><td><strong>Anerkennung in Deutschland</strong></td><td>Find which authority handles your profession</td><td><a href="https://www.anerkennung-in-deutschland.de" target="_blank" style="color:#93c5fd">anerkennung-in-deutschland.de</a></td></tr>
+        <tr><td><strong>IQ Network</strong></td><td>Free counselling in every Bundesland</td><td><a href="https://www.netzwerk-iq.de" target="_blank" style="color:#93c5fd">netzwerk-iq.de</a></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>By Profession</h2>
+      <table>
+        <tr><th>Profession</th><th>Authority</th><th>Process</th><th>Time</th></tr>
+        <tr><td>Doctor (Arzt)</td><td>Landesgesundheitsamt</td><td>Language exam + Approbation</td><td>6-18 months</td></tr>
+        <tr><td>Nurse (Krankenpfleger)</td><td>Regierungspräsidium</td><td>Language + practical assessment</td><td>3-12 months</td></tr>
+        <tr><td>Engineer</td><td>Ingenieurkammer (state)</td><td>Technical documentation review</td><td>3-6 months</td></tr>
+        <tr><td>Teacher</td><td>State Ministry of Education</td><td>Qualification comparison</td><td>6-12 months</td></tr>
+        <tr><td>IT Professional</td><td>Employment Agency (informal)</td><td>No formal recognition — employer decides</td><td>Immediate</td></tr>
+        <tr><td>Architect</td><td>Architektenkammer</td><td>Portfolio + qualification review</td><td>3-6 months</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const SHORTAGE = ['IT','STEM','Healthcare','Construction','Education'];
+function showTab(name, btn) {
+  ['bc','sal','cc','paths','recog'].forEach(t=>document.getElementById('tc-'+t).style.display='none');
+  document.getElementById('tc-'+name).style.display='block';
+  document.querySelectorAll('nav + div + div button').forEach(b=>{b.style.borderBottomColor='transparent';b.style.color='var(--muted)';});
+  if(btn){btn.style.borderBottomColor='var(--accent)';btn.style.color='var(--accent)';}
+  if(name==='paths') renderPaths();
+}
+
+function checkBC() {
+  const sal=parseFloat(document.getElementById('bc-sal').value)||0;
+  const field=document.getElementById('bc-field').value;
+  const deg=document.getElementById('bc-deg').value;
+  const res=document.getElementById('bc-result');
+  if(!sal||!field||!deg){res.style.display='none';return;}
+  const isShortage=SHORTAGE.includes(field);
+  const threshold=isShortage?45934:50700;
+  const eligible=sal>=threshold && deg!=='';
+  res.style.display='block';
+  res.className='result-box '+(eligible?'result-ok':'result-no');
+  res.innerHTML='<div style="font-weight:800;font-size:.95rem;color:'+(eligible?'#22c55e':'#f87171')+'">'+(eligible?'✅ Likely eligible for EU Blue Card':'❌ Not yet eligible')+'</div>'+
+    '<div style="font-size:.85rem;margin-top:8px">Salary: €'+sal.toLocaleString()+' vs threshold: €'+threshold.toLocaleString()+' ('+(isShortage?'shortage occupation':'standard')+')</div>'+
+    (eligible?'<div style="font-size:.82rem;margin-top:6px;color:#86efac">Next step: Get job offer letter. Apply at German embassy with passport, degree, and contract. Processing: 1-3 months.</div>':
+    '<div style="font-size:.82rem;margin-top:6px;color:#fca5a5">Gap: €'+(threshold-sal).toLocaleString()+' — try negotiating a higher salary, or check if field qualifies for shortage occupation threshold.</div>');
+}
+
+function calcCC() {
+  const vals=['cc-deg','cc-de','cc-en','cc-exp','cc-age','cc-sh','cc-con'].map(id=>parseInt(document.getElementById(id).value)||0);
+  const total=vals.reduce((a,b)=>a+b,0);
+  const res=document.getElementById('cc-result');
+  res.style.display='block';
+  res.className='result-box '+(total>=6?'result-ok':'result-warn');
+  res.innerHTML='<div style="font-weight:800;font-size:1.1rem;color:'+(total>=6?'#22c55e':'#f59e0b')+'">'+total+'/10 points — '+(total>=6?'✅ Eligible!':'⚠️ Need '+(6-total)+' more')+'</div>'+
+    (total>=6?'<div style="font-size:.82rem;margin-top:8px;color:#86efac">You qualify! Apply at German embassy. Bring: degree, language certificates, CV, blocked account proof (€12,324), health insurance proof.</div>':
+    '<div style="font-size:.82rem;margin-top:8px;color:#fde68a">Improve: get German language certificate (+1-2 pts), additional experience (+1 pt).</div>');
+}
+
+function renderPaths() {
+  const paths=[
+    {t:'EU Blue Card',c:'#FFCC02',time:'3-4 months',sal:'€45,934-50,700/year',steps:['Get job offer meeting salary threshold','University degree or IT experience 2+ years','Apply at German embassy or Ausländerbehörde','Valid 4 years → PR after 21-33 months']},
+    {t:'Fachkräftevisum',c:'#3b82f6',time:'3-6 months',sal:'No minimum',steps:['Recognised vocational qualification (check Anabin)','Job offer from German employer','Apply at German embassy','Valid 4 years, renewable']},
+    {t:'Chancenkarte',c:'#f59e0b',time:'2-3 months',sal:'Own funds €1,027/month',steps:['Score 6+ points on points system','Blocked account €12,324','Apply at German embassy','Job search for 1 year in Germany, then switch to work permit']},
+    {t:'Ausbildung',c:'#a78bfa',time:'2-3 years',sal:'€800-1,200/month training pay',steps:['Find training position (Ausbildungsplatz)','Apply for Ausbildungsvisum','Complete 2-3 year German vocational training','Get German qualification + permanent job offer']},
+    {t:'Study → Work',c:'#22c55e',time:'Study 1-3 years',sal:'Part-time during studies',steps:['Apply to German public university (free tuition)','Study and graduate','18-month job seeker visa after graduation','Find job → Blue Card or work permit']},
+  ];
+  document.getElementById('paths-list').innerHTML=paths.map(p=>
+    '<div style="background:var(--surface);border-left:4px solid '+p.c+';border-radius:0 12px 12px 0;padding:16px;margin-bottom:12px">'+
+    '<div style="font-weight:700;color:'+p.c+';font-size:.95rem;margin-bottom:4px">'+p.t+'</div>'+
+    '<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+    '<span class="badge" style="background:'+p.c+'20;color:'+p.c+'">⏱ '+p.time+'</span>'+
+    '<span class="badge bg-green">💶 '+p.sal+'</span></div>'+
+    '<ol style="padding-left:16px;font-size:.82rem;line-height:1.9">'+p.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol>'+
+    '</div>'
+  ).join('');
+}
+
+calcCC();
+</script>
+</body></html>
