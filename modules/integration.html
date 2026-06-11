@@ -1,43 +1,65 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>📚 Integration & Community — Navigate Germany</title>
-<style>
-:root{--bg:#0a0d14;--surface:#111520;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
-nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
-.nb span{color:var(--accent);}
-.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
-.hero{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
-.box{max-width:560px;}
-.icon{font-size:3.5rem;margin-bottom:16px;}
-h1{font-size:1.8rem;font-weight:800;margin-bottom:10px;}
-p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:20px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .15s;}
-.bp{background:var(--accent);color:#000;}
-.bp:hover{background:#e6b800;}
-.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);margin-left:8px;}
-.bo:hover{border-color:var(--accent);color:var(--accent);}
-</style>
-</head><body>
-<nav>
-  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
-  <a class="bl" href="../index.html">← All modules</a>
-</nav>
-<div class="hero">
-  <div class="box">
-    <div class="icon" style="color:#ec4899">📚</div>
-    <h1>📚 Integration & Community</h1>
-    <p>Integration courses, language schools, community groups</p>
-    <p style="font-size:.82rem;background:rgba(255,204,2,.08);border:1px solid rgba(255,204,2,.2);border-radius:10px;padding:12px;color:#fde68a">
-      This module is available as a standalone app with full features.
-    </p>
-    <div style="margin-top:20px">
-      <a class="btn bp" href="https://ShaistaShabbir-prog.github.io/germany-bureaucracy-navigator" target="_blank">Open Full Module →</a>
-      <a class="btn bo" href="../index.html">← Back to hub</a>
-    </div>
-  </div>
+<title>Integration — Navigate Germany</title>
+<style>:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--purple:#7c3aed;}
+*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}.bl:hover{color:var(--accent);}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:24px;}
+.ph h1{font-size:1.4rem;font-weight:800;margin-bottom:4px;}.ph p{font-size:.82rem;color:var(--muted);}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+label:first-child{margin-top:0;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+.btn{padding:9px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s;}
+.bg{background:var(--accent);color:#000;}.bg:hover{background:#e6b800;}
+.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}.bo:hover{border-color:var(--accent);color:var(--accent);}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+.sb{background:#14532d;border:1px solid #22c55e;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#86efac;line-height:1.7;margin:8px 0;}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bgreen{background:rgba(34,197,94,.12);color:#22c55e;}
+.bamber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bred{background:rgba(239,68,68,.12);color:#f87171;}
+
+.resource-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;}
+.resource-card h3{font-size:.875rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.resource-card p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+</style></head><body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html">&#8592; All modules</a></nav>
+<div class="ph"><h1>📚 Integration &amp; Community</h1><p>Integration courses · Language schools · Free counselling · Community resources · Volunteer opportunities</p></div>
+<div class="con">
+<h2 style="font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--accent)">🎓 Integration courses (Integrationskurs)</h2>
+<div class="card">
+  <p style="font-size:.85rem;line-height:1.8">
+    Official BAMF integration courses combine <strong>German language (A1-B1)</strong> with an <strong>orientation course</strong> (German values, law, history, culture).<br><br>
+    <strong>Who is eligible:</strong> Immigrants with certain permit types, refugees, late resettlers.<br>
+    <strong>Cost:</strong> Usually heavily subsidised (~€1.95/lesson). Free for eligible asylum seekers.<br>
+    <strong>Duration:</strong> 700 hours language + 100 hours orientation.<br>
+    <strong>Find a course:</strong> <a href="https://www.bamf.de/kurssuche" target="_blank" style="color:#93c5fd">bamf.de/kurssuche</a>
+  </p>
 </div>
-</body></html>
+
+<h2 style="font-size:.9rem;font-weight:700;margin:16px 0 10px;color:var(--accent)">🏫 Language learning resources</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:20px">
+  <div class="resource-card"><h3>Volkshochschule (VHS)</h3><p>Adult education centres in every city. Affordable German courses at all levels. Search by postcode.</p><a href="https://www.vhs.de" target="_blank" style="font-size:.78rem;color:#93c5fd">→ vhs.de</a></div>
+  <div class="resource-card"><h3>Deutsche Welle German Courses</h3><p>Free online German courses from A1 to B1. Available in many languages including Arabic, Urdu, Russian.</p><a href="https://learngerman.dw.com" target="_blank" style="font-size:.78rem;color:#93c5fd">→ learngerman.dw.com</a></div>
+  <div class="resource-card"><h3>Goethe-Institut</h3><p>Premium German courses and internationally recognised certificates (A1-C2).</p><a href="https://www.goethe.de" target="_blank" style="font-size:.78rem;color:#93c5fd">→ goethe.de</a></div>
+  <div class="resource-card"><h3>Duolingo / Babbel</h3><p>App-based learning for daily practice. Good supplement to formal courses.</p><a href="https://www.duolingo.com" target="_blank" style="font-size:.78rem;color:#93c5fd">→ duolingo.com</a></div>
+</div>
+
+<h2 style="font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--accent)">🤝 Free counselling &amp; support</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
+  <div class="resource-card"><h3>Migrationsberatung (MBE)</h3><p>Free migration counselling for adults from third countries. BAMF-funded. In your language.</p><a href="https://www.bamf.de/mbe" target="_blank" style="font-size:.78rem;color:#93c5fd">→ bamf.de/mbe</a></div>
+  <div class="resource-card"><h3>Caritas</h3><p>Catholic welfare organisation. Free social, migration and legal counselling. Nationwide.</p><a href="https://www.caritas.de" target="_blank" style="font-size:.78rem;color:#93c5fd">→ caritas.de</a></div>
+  <div class="resource-card"><h3>AWO — Arbeiterwohlfahrt</h3><p>Workers welfare association. Integration services, counselling, community programs.</p><a href="https://www.awo.org" target="_blank" style="font-size:.78rem;color:#93c5fd">→ awo.org</a></div>
+  <div class="resource-card"><h3>Diakonie</h3><p>Protestant welfare organisation. Migration counselling and social support in many languages.</p><a href="https://www.diakonie.de" target="_blank" style="font-size:.78rem;color:#93c5fd">→ diakonie.de</a></div>
+  <div class="resource-card"><h3>IQ Network</h3><p>Free counselling on qualification recognition for skilled migrants. Offices in all 16 states.</p><a href="https://www.netzwerk-iq.de" target="_blank" style="font-size:.78rem;color:#93c5fd">→ netzwerk-iq.de</a></div>
+  <div class="resource-card"><h3>Antidiskriminierungsstelle</h3><p>Federal anti-discrimination agency. Free advice if you experience discrimination.</p><a style="font-size:.78rem;color:#93c5fd">📞 030 18555-1855</a></div>
+</div>
+</div></body></html>
