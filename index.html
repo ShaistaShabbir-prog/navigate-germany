@@ -147,6 +147,8 @@ footer a{color:var(--accent);text-decoration:none;}
       <option value="ru">🇷🇺 Русский</option>
       <option value="fr">🇫🇷 Français</option>
       <option value="fa">🇮🇷 فارسی</option>
+      <option value="it">🇮🇹 Italiano</option>
+      <option value="uk">🇺🇦 Українська</option>
     </select>
     <a class="emergency-btn" href="modules/emergency.html">🚨 Emergency</a>
   </div>
@@ -162,12 +164,14 @@ footer a{color:var(--accent);text-decoration:none;}
   <button class="lang-chip" onclick="setLang('ru')">🇷🇺 Русский</button>
   <button class="lang-chip" onclick="setLang('fr')">🇫🇷 Français</button>
   <button class="lang-chip" onclick="setLang('fa')">🇮🇷 فارسی</button>
+  <button class="lang-chip" onclick="setLang('it')">🇮🇹 Italiano</button>
+  <button class="lang-chip" onclick="setLang('uk')">🇺🇦 Українська</button>
 </div>
 
 <!-- Stats -->
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-num">16</div><div class="stat-lbl" data-i18n="states">Bundesländer</div></div>
-  <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl" data-i18n="languages">Languages</div></div>
+  <div class="stat-item"><div class="stat-num">10</div><div class="stat-lbl" data-i18n="languages">Languages</div></div>
   <div class="stat-item"><div class="stat-num">12</div><div class="stat-lbl" data-i18n="modules">Modules</div></div>
   <div class="stat-item"><div class="stat-num">400+</div><div class="stat-lbl" data-i18n="offlinks">Official Links</div></div>
   <div class="stat-item"><div class="stat-num">Free</div><div class="stat-lbl" data-i18n="cost">Always Free</div></div>
@@ -285,6 +289,24 @@ const LANGS = {
     modules_title:"🧭 TOUS LES MODULES",
     emg_gp:"Médecin de garde",
     emg_crisis:"Ligne de crise (gratuite, 24h/24)",
+    dir:"ltr",
+  },
+  it: {
+    hero_main:"Navigare in Germania",
+    hero_sub:"La tua guida completa alla vita in Germania — dal primo giorno al permesso di soggiorno permanente. Tutti i 16 Länder, link ufficiali, assistenza legale, lavoro, alloggio, sanità e supporto linguistico in 10 lingue.",
+    state_title:"📍 SELEZIONA IL TUO LAND (BUNDESLAND)",
+    modules_title:"🧭 TUTTI I MODULI",
+    emg_gp:"Medico di guardia fuori orario",
+    emg_crisis:"Linea di crisi (gratuita, 24/7)",
+    dir:"ltr",
+  },
+  uk: {
+    hero_main:"Навігатор Германією",
+    hero_sub:"Ваш повний посібник з життя в Німеччині — від першого дня до постійного місця проживання. Усі 16 земель, офіційні посилання, юридична допомога, робота, житло та охорона здоров'я.",
+    state_title:"📍 ВИБЕРІТЬ ФЕДЕРАЛЬНУ ЗЕМЛЮ",
+    modules_title:"🧭 УСІ МОДУЛІ",
+    emg_gp:"Лікар поза робочим часом",
+    emg_crisis:"Лінія кризи (безкоштовно, 24/7)",
     dir:"ltr",
   },
   fa: {
@@ -457,7 +479,7 @@ function applyLang(lang) {
   document.getElementById('emg-crisis').textContent = t.emg_crisis;
   document.querySelector('html').dir = t.dir || 'ltr';
   document.querySelectorAll('.lang-chip').forEach((c,i) => {
-    const langs = ['en','de','ar','tr','ur','ru','fr','fa'];
+    const langs = ['en','de','ar','tr','ur','ru','fr','fa','it','uk'];
     c.classList.toggle('active', langs[i] === lang);
   });
   renderModules(); // re-render to update titles
