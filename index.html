@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Navigate Germany — Complete life guide for immigrants, expats, and new arrivals. 16 states, 8 languages, official links, legal help, jobs, housing.">
+<title>🇩🇪 Navigate Germany</title>
+<style>
+:root{
+  --bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;
+  --border:rgba(255,255,255,.07);--accent:#FFCC02;--accent2:#DD0000;
+  --text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+
+/* NAV */
+nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+    padding:12px 24px;display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-flag{font-size:1.5rem;}
+.nav-title{font-weight:800;font-size:1.1rem;color:var(--text);}
+.nav-title span{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.lang-select{padding:6px 12px;border-radius:8px;border:1px solid var(--border);
+             background:var(--surface);color:var(--text);font-size:.82rem;cursor:pointer;}
+.emergency-btn{background:#dc2626;color:#fff;border:none;border-radius:8px;
+               padding:6px 14px;font-weight:700;font-size:.78rem;cursor:pointer;
+               text-decoration:none;display:inline-block;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a0d14 0%,#1a0533 40%,#0a1628 100%);
+      padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(255,204,2,.08),transparent);}
+.hero-flag{font-size:3rem;margin-bottom:16px;}
+.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:12px;line-height:1.1;}
+.hero-title .de{color:var(--accent);}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:600px;margin:0 auto 28px;line-height:1.7;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}
+.hbadge{background:rgba(255,255,255,.07);border:1px solid var(--border);
+        border-radius:20px;padding:5px 14px;font-size:.78rem;color:var(--muted);}
+.hbadge.active{background:rgba(255,204,2,.12);border-color:rgba(255,204,2,.3);color:var(--accent);}
+
+/* STATE SELECTOR */
+.state-section{max-width:900px;margin:0 auto 40px;padding:0 16px;}
+.section-title{font-size:.75rem;font-weight:700;text-transform:uppercase;
+               letter-spacing:.08em;color:var(--muted);margin-bottom:12px;text-align:center;}
+.state-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;}
+.state-btn{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+           padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s;
+           font-size:.78rem;font-weight:600;color:var(--muted);}
+.state-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,204,2,.05);}
+.state-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(255,204,2,.08);}
+.state-icon{font-size:1.2rem;display:block;margin-bottom:4px;}
+.state-info{background:var(--surface);border:1px solid rgba(255,204,2,.2);border-radius:12px;
+            padding:16px 20px;margin-top:12px;display:none;}
+.state-info.show{display:block;}
+.state-info h3{font-size:.95rem;font-weight:700;color:var(--accent);margin-bottom:10px;}
+.state-links{display:flex;gap:8px;flex-wrap:wrap;}
+.state-link{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;
+            padding:6px 12px;font-size:.75rem;color:#93c5fd;text-decoration:none;transition:all .15s;}
+.state-link:hover{background:rgba(59,130,246,.15);border-color:#3b82f6;}
+.state-link.official{color:var(--accent);border-color:rgba(255,204,2,.3);background:rgba(255,204,2,.05);}
+
+/* MODULES GRID */
+.modules-section{max-width:1100px;margin:0 auto;padding:0 16px 60px;}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.module-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+             padding:22px;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text);}
+.module-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15);
+                   box-shadow:0 8px 30px rgba(0,0,0,.4);}
+.module-card.featured{border-color:rgba(255,204,2,.25);background:linear-gradient(135deg,var(--surface),rgba(255,204,2,.03));}
+.module-icon{font-size:2rem;margin-bottom:12px;}
+.module-title{font-weight:700;font-size:.95rem;margin-bottom:6px;}
+.module-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:12px;}
+.module-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.mtag{font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:5px;
+      background:rgba(255,255,255,.06);color:var(--muted);}
+.mtag.new{background:rgba(34,197,94,.12);color:#22c55e;}
+.mtag.hot{background:rgba(239,68,68,.12);color:#f87171;}
+
+/* LANG STRIP */
+.lang-strip{background:var(--surface);border-top:1px solid var(--border);
+            border-bottom:1px solid var(--border);padding:12px 24px;
+            display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;justify-content:center;flex-wrap:wrap;}
+.lang-chip{padding:6px 16px;border-radius:20px;border:1px solid var(--border);
+           font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;
+           background:transparent;color:var(--muted);}
+.lang-chip.active{background:rgba(255,204,2,.12);border-color:rgba(255,204,2,.4);color:var(--accent);}
+.lang-chip:hover{border-color:rgba(255,255,255,.2);color:var(--text);}
+
+/* EMERGENCY */
+.emergency-bar{background:#7f1d1d;border-bottom:1px solid #991b1b;
+               padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.emg-num{font-weight:900;font-size:1.1rem;color:#fca5a5;}
+.emg-lbl{font-size:.8rem;color:#fecaca;}
+.emg-sep{color:#991b1b;font-size:1.2rem;}
+
+/* STATS BAR */
+.stats-bar{display:flex;gap:0;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;}
+.stat-item{padding:16px 28px;text-align:center;border-right:1px solid var(--border);flex-shrink:0;}
+.stat-num{font-size:1.4rem;font-weight:800;color:var(--accent);}
+.stat-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:24px;
+       text-align:center;font-size:.8rem;color:var(--muted);}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media(max-width:600px){
+  .hero-title{font-size:1.8rem;}
+  .stat-item{padding:12px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Emergency bar -->
+<div class="emergency-bar">
+  <span class="emg-num">112</span><span class="emg-lbl">Ambulance / Fire</span>
+  <span class="emg-sep">|</span>
+  <span class="emg-num">110</span><span class="emg-lbl">Police</span>
+  <span class="emg-sep">|</span>
+  <span class="emg-num">116 117</span><span class="emg-lbl" id="emg-gp">Out-of-hours GP</span>
+  <span class="emg-sep">|</span>
+  <span class="emg-num">0800 111 0 111</span><span class="emg-lbl" id="emg-crisis">Crisis line (free, 24/7)</span>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-flag">🇩🇪</span>
+    <div>
+      <div class="nav-title">Navigate <span>Germany</span></div>
+      <div style="font-size:.68rem;color:var(--muted)">Your complete guide to life in Germany</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <select class="lang-select" id="lang-select" onchange="setLang(this.value)">
+      <option value="en">🇬🇧 English</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="ar">🇸🇦 العربية</option>
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="ur">🇵🇰 اردو</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="fa">🇮🇷 فارسی</option>
+    </select>
+    <a class="emergency-btn" href="modules/emergency.html">🚨 Emergency</a>
+  </div>
+</nav>
+
+<!-- Language strip -->
+<div class="lang-strip" id="lang-strip">
+  <button class="lang-chip active" onclick="setLang('en')">🇬🇧 English</button>
+  <button class="lang-chip" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <button class="lang-chip" onclick="setLang('ar')">🇸🇦 العربية</button>
+  <button class="lang-chip" onclick="setLang('tr')">🇹🇷 Türkçe</button>
+  <button class="lang-chip" onclick="setLang('ur')">🇵🇰 اردو</button>
+  <button class="lang-chip" onclick="setLang('ru')">🇷🇺 Русский</button>
+  <button class="lang-chip" onclick="setLang('fr')">🇫🇷 Français</button>
+  <button class="lang-chip" onclick="setLang('fa')">🇮🇷 فارسی</button>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">16</div><div class="stat-lbl" data-i18n="states">Bundesländer</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl" data-i18n="languages">Languages</div></div>
+  <div class="stat-item"><div class="stat-num">12</div><div class="stat-lbl" data-i18n="modules">Modules</div></div>
+  <div class="stat-item"><div class="stat-num">400+</div><div class="stat-lbl" data-i18n="offlinks">Official Links</div></div>
+  <div class="stat-item"><div class="stat-num">Free</div><div class="stat-lbl" data-i18n="cost">Always Free</div></div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-flag">🇩🇪</div>
+  <h1 class="hero-title"><span class="de" id="hero-main">Navigate Germany</span></h1>
+  <p class="hero-sub" id="hero-sub">Your complete guide to life in Germany — from the first day to permanent residence. All 16 states, official links, legal help, jobs, housing, healthcare, and language support in 8 languages.</p>
+  <div class="hero-badges">
+    <span class="hbadge active">🏠 Housing</span>
+    <span class="hbadge active">🏥 Healthcare</span>
+    <span class="hbadge active">💼 Jobs & Visa</span>
+    <span class="hbadge active">⚖️ Legal Help</span>
+    <span class="hbadge active">🇩🇪 Language</span>
+    <span class="hbadge active">💶 Cost of Living</span>
+  </div>
+</div>
+
+<!-- State Selector -->
+<div style="background:var(--surface2);border-bottom:1px solid var(--border);padding:28px 16px;">
+<div class="state-section">
+  <div class="section-title" id="state-title">📍 SELECT YOUR STATE (BUNDESLAND)</div>
+  <div class="state-grid" id="state-grid"></div>
+  <div class="state-info" id="state-info"></div>
+</div>
+</div>
+
+<!-- Modules -->
+<div style="padding:40px 0 0;">
+<div class="modules-section">
+  <div class="section-title" id="modules-title">🧭 ALL MODULES</div>
+  <div class="modules-grid" id="modules-grid"></div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p style="margin-bottom:8px;font-size:.95rem;font-weight:700;color:var(--text)">🇩🇪 Navigate Germany</p>
+  <p>Free platform for immigrants, expats, and new arrivals in Germany.</p>
+  <p style="margin-top:8px">
+    Built by <a href="https://shaistashabbir-prog.github.io">Shaista Shabbir</a> ·
+    <a href="modules/legal.html">Legal Help</a> ·
+    <a href="modules/emergency.html">Emergency</a> ·
+    <a href="modules/language.html">German Language</a>
+  </p>
+  <p style="margin-top:8px;font-size:.72rem;color:#475569">
+    This platform provides information only, not legal advice.
+    For urgent legal matters, consult a licensed Rechtsanwalt or Beratungsstelle.
+  </p>
+</footer>
+
+<script>
+// ══ I18N ══════════════════════════════════════════════════════
+const LANGS = {
+  en: {
+    hero_main:"Navigate Germany",
+    hero_sub:"Your complete guide to life in Germany — from the first day to permanent residence. All 16 states, official links, legal help, jobs, housing, healthcare, and language support in 8 languages.",
+    state_title:"📍 SELECT YOUR STATE (BUNDESLAND)",
+    modules_title:"🧭 ALL MODULES",
+    emg_gp:"Out-of-hours GP",
+    emg_crisis:"Crisis line (free, 24/7)",
+    dir:"ltr",
+  },
+  de: {
+    hero_main:"Deutschland Navigator",
+    hero_sub:"Ihr vollständiger Leitfaden für das Leben in Deutschland — von den ersten Tagen bis zur Niederlassungserlaubnis. Alle 16 Bundesländer, offizielle Links, Rechthilfe, Jobs, Wohnen und Gesundheitsversorgung.",
+    state_title:"📍 BUNDESLAND AUSWÄHLEN",
+    modules_title:"🧭 ALLE MODULE",
+    emg_gp:"Ärztlicher Bereitschaftsdienst",
+    emg_crisis:"Krisenhotline (kostenlos, 24/7)",
+    dir:"ltr",
+  },
+  ar: {
+    hero_main:"دليل ألمانيا",
+    hero_sub:"دليلك الشامل للحياة في ألمانيا — من اليوم الأول حتى الإقامة الدائمة. جميع الولايات الـ16، روابط رسمية، مساعدة قانونية، وظائف، سكن ورعاية صحية بـ8 لغات.",
+    state_title:"📍 اختر ولايتك",
+    modules_title:"🧭 جميع الأقسام",
+    emg_gp:"خدمة الطوارئ الطبية خارج أوقات العمل",
+    emg_crisis:"خط أزمات (مجاني، 24/7)",
+    dir:"rtl",
+  },
+  tr: {
+    hero_main:"Almanya Rehberi",
+    hero_sub:"Almanya'daki yaşamınız için kapsamlı rehberiniz — ilk günden kalıcı oturma iznine kadar. Tüm 16 eyalet, resmi bağlantılar, hukuki yardım, iş, konut ve sağlık hizmetleri 8 dilde.",
+    state_title:"📍 EYALETİNİZİ SEÇİN",
+    modules_title:"🧭 TÜM MODÜLLER",
+    emg_gp:"Mesai saatleri dışı doktor hizmeti",
+    emg_crisis:"Kriz hattı (ücretsiz, 7/24)",
+    dir:"ltr",
+  },
+  ur: {
+    hero_main:"جرمنی نیویگیٹر",
+    hero_sub:"جرمنی میں زندگی کے لیے آپ کی مکمل گائیڈ — پہلے دن سے مستقل رہائش تک۔ تمام 16 ریاستیں، سرکاری لنکس، قانونی مدد، ملازمتیں، مکان اور صحت کی سہولیات 8 زبانوں میں۔",
+    state_title:"📍 اپنی ریاست منتخب کریں",
+    modules_title:"🧭 تمام ماڈیولز",
+    emg_gp:"آفس اوقات کے باہر ڈاکٹر سروس",
+    emg_crisis:"بحران ہیلپ لائن (مفت، 24/7)",
+    dir:"rtl",
+  },
+  ru: {
+    hero_main:"Навигатор по Германии",
+    hero_sub:"Ваш полный путеводитель по жизни в Германии — с первого дня до постоянного вида на жительство. Все 16 земель, официальные ссылки, юридическая помощь, работа, жильё и здравоохранение на 8 языках.",
+    state_title:"📍 ВЫБЕРИТЕ ФЕДЕРАЛЬНУЮ ЗЕМЛЮ",
+    modules_title:"🧭 ВСЕ МОДУЛИ",
+    emg_gp:"Врач вне рабочего времени",
+    emg_crisis:"Горячая линия кризиса (бесплатно, 24/7)",
+    dir:"ltr",
+  },
+  fr: {
+    hero_main:"Naviguer en Allemagne",
+    hero_sub:"Votre guide complet de la vie en Allemagne — du premier jour jusqu'au titre de séjour permanent. Les 16 États fédéraux, liens officiels, aide juridique, emploi, logement et soins de santé en 8 langues.",
+    state_title:"📍 SÉLECTIONNEZ VOTRE LAND",
+    modules_title:"🧭 TOUS LES MODULES",
+    emg_gp:"Médecin de garde",
+    emg_crisis:"Ligne de crise (gratuite, 24h/24)",
+    dir:"ltr",
+  },
+  fa: {
+    hero_main:"راهنمای آلمان",
+    hero_sub:"راهنمای جامع زندگی در آلمان — از روز اول تا اقامت دائم. تمام ۱۶ ایالت، لینک‌های رسمی، کمک حقوقی، مشاغل، مسکن و خدمات بهداشتی در ۸ زبان.",
+    state_title:"📍 ایالت خود را انتخاب کنید",
+    modules_title:"🧭 همه ماژول‌ها",
+    emg_gp:"پزشک خارج از ساعت کاری",
+    emg_crisis:"خط بحران (رایگان، ۲۴/۷)",
+    dir:"rtl",
+  },
+};
+
+// ══ STATES DATA ══════════════════════════════════════════════
+const STATES = [
+  {id:"BW",name:"Baden-Württemberg",icon:"🦁",capital:"Stuttgart",pop:"11.1M",
+   links:[
+    {t:"Official Portal",u:"https://www.baden-wuerttemberg.de",official:true},
+    {t:"Ausländerbehörde Stuttgart",u:"https://www.stuttgart.de/auslaenderbehoerde"},
+    {t:"Bürgerservice",u:"https://www.service-bw.de"},
+    {t:"Job Agency",u:"https://www.arbeitsagentur.de/vor-ort/raa/regionaldirektion-bw"},
+  ]},
+  {id:"BY",name:"Bayern",icon:"🍺",capital:"Munich",pop:"13.4M",
+   links:[
+    {t:"Official Portal",u:"https://www.bayern.de",official:true},
+    {t:"Ausländerbehörde München",u:"https://www.muenchen.de/rathaus/kvu"},
+    {t:"BayernPortal",u:"https://www.bayernportal.de"},
+    {t:"Migrate to Bavaria",u:"https://www.make-it-in-bavaria.com"},
+  ]},
+  {id:"BE",name:"Berlin",icon:"🐻",capital:"Berlin",pop:"3.7M",
+   links:[
+    {t:"Official Portal",u:"https://www.berlin.de",official:true},
+    {t:"Ausländerbehörde Berlin",u:"https://www.berlin.de/labo/willkommen-in-berlin"},
+    {t:"Service Berlin",u:"https://service.berlin.de"},
+    {t:"Welcome to Berlin",u:"https://www.berlin.de/willkommen"},
+    {t:"LEA Residents Registration",u:"https://www.berlin.de/buergeraemter"},
+  ]},
+  {id:"BB",name:"Brandenburg",icon:"🦅",capital:"Potsdam",pop:"2.6M",
+   links:[
+    {t:"Official Portal",u:"https://www.brandenburg.de",official:true},
+    {t:"Ausländerbehörde Potsdam",u:"https://www.potsdam.de/auslaenderbehoerde"},
+    {t:"BRB Portal",u:"https://www.service.brandenburg.de"},
+  ]},
+  {id:"HB",name:"Bremen",icon:"⚓",capital:"Bremen",pop:"0.68M",
+   links:[
+    {t:"Official Portal",u:"https://www.bremen.de",official:true},
+    {t:"Ausländerbehörde Bremen",u:"https://www.bremen.de/auslaenderbehoerde"},
+    {t:"Service Portal",u:"https://www.service.bremen.de"},
+  ]},
+  {id:"HH",name:"Hamburg",icon:"🌊",capital:"Hamburg",pop:"1.9M",
+   links:[
+    {t:"Official Portal",u:"https://www.hamburg.de",official:true},
+    {t:"Ausländerbehörde",u:"https://www.hamburg.de/auslaenderbehoerde"},
+    {t:"Behörden-Finder",u:"https://www.hamburg.de/behoerdenfinder"},
+    {t:"Welcome to Hamburg",u:"https://www.welcome.hamburg"},
+  ]},
+  {id:"HE",name:"Hessen",icon:"🌲",capital:"Wiesbaden",pop:"6.4M",
+   links:[
+    {t:"Official Portal",u:"https://www.hessen.de",official:true},
+    {t:"Ausländerbehörde Frankfurt",u:"https://frankfurt.de/auslaenderbehoerde"},
+    {t:"Hessen Service",u:"https://www.service.hessen.de"},
+    {t:"Welcome to Hesse",u:"https://www.welcome.hessen.de"},
+  ]},
+  {id:"MV",name:"Mecklenburg-Vorpommern",icon:"🌊",capital:"Schwerin",pop:"1.6M",
+   links:[
+    {t:"Official Portal",u:"https://www.regierung-mv.de",official:true},
+    {t:"Service Portal MV",u:"https://www.service.mvnet.de"},
+  ]},
+  {id:"NI",name:"Niedersachsen",icon:"🐎",capital:"Hannover",pop:"8.1M",
+   links:[
+    {t:"Official Portal",u:"https://www.niedersachsen.de",official:true},
+    {t:"Service Niedersachsen",u:"https://www.service.niedersachsen.de"},
+    {t:"Ausländerbehörde Hannover",u:"https://www.hannover.de/auslaenderbehoerde"},
+  ]},
+  {id:"NW",name:"Nordrhein-Westfalen",icon:"🏭",capital:"Düsseldorf",pop:"18.1M",
+   links:[
+    {t:"Official Portal",u:"https://www.nrw.de",official:true},
+    {t:"Ausländerbehörde Cologne",u:"https://www.stadt-koeln.de/auslaenderbehoerde"},
+    {t:"NRW Service",u:"https://www.service.nrw.de"},
+    {t:"Make it in NRW",u:"https://www.make-it-in-nrw.de"},
+  ]},
+  {id:"RP",name:"Rheinland-Pfalz",icon:"🍇",capital:"Mainz",pop:"4.1M",
+   links:[
+    {t:"Official Portal",u:"https://www.rlp.de",official:true},
+    {t:"Service Portal",u:"https://www.service.rlp.de"},
+    {t:"Ausländerbehörde Mainz",u:"https://www.mainz.de/auslaenderbehoerde"},
+  ]},
+  {id:"SL",name:"Saarland",icon:"⚙️",capital:"Saarbrücken",pop:"0.99M",
+   links:[
+    {t:"Official Portal",u:"https://www.saarland.de",official:true},
+    {t:"Service Portal",u:"https://www.saarland.de/service"},
+  ]},
+  {id:"SN",name:"Sachsen",icon:"🏰",capital:"Dresden",pop:"4.1M",
+   links:[
+    {t:"Official Portal",u:"https://www.sachsen.de",official:true},
+    {t:"Service Portal",u:"https://www.service.sachsen.de"},
+    {t:"Ausländerbehörde Dresden",u:"https://www.dresden.de/auslaenderbehoerde"},
+  ]},
+  {id:"ST",name:"Sachsen-Anhalt",icon:"🌾",capital:"Magdeburg",pop:"2.2M",
+   links:[
+    {t:"Official Portal",u:"https://www.sachsen-anhalt.de",official:true},
+    {t:"Service Portal",u:"https://www.service.sachsen-anhalt.de"},
+  ]},
+  {id:"SH",name:"Schleswig-Holstein",icon:"🌊",capital:"Kiel",pop:"2.9M",
+   links:[
+    {t:"Official Portal",u:"https://www.schleswig-holstein.de",official:true},
+    {t:"Service Portal",u:"https://www.schleswig-holstein.de/service"},
+  ]},
+  {id:"TH",name:"Thüringen",icon:"🌳",capital:"Erfurt",pop:"2.1M",
+   links:[
+    {t:"Official Portal",u:"https://www.thueringen.de",official:true},
+    {t:"Service Portal",u:"https://www.thueringen.de/service"},
+    {t:"Ausländerbehörde Erfurt",u:"https://www.erfurt.de/auslaenderbehoerde"},
+  ]},
+];
+
+// ══ MODULES DATA ══════════════════════════════════════════════
+const MODULES = [
+  {icon:"⚖️",title:"Legal Navigator & Letter Reader",desc:"Read German letters with AI, understand your rights, get legal help in plain English",url:"modules/legal.html",featured:true,tags:["AI Powered","New"],
+   titles:{de:"Rechtsnavigator & Briefleser",ar:"المساعد القانوني وقارئ الرسائل",tr:"Hukuk Kılavuzu ve Mektup Okuyucu",ur:"قانونی مددگار اور خط پڑھنے والا",ru:"Правовой навигатор и читатель писем",fr:"Navigateur juridique et lecteur de lettres",fa:"راهنمای حقوقی و خواننده نامه"}},
+  {icon:"🏠",title:"Bureaucracy Step-by-Step",desc:"Anmeldung, Krankenkasse, Steuer-ID, bank account, driving licence — guided with phrases",url:"modules/bureaucracy.html",featured:true,tags:["Essential","First week"],
+   titles:{de:"Bürokratie Schritt für Schritt",ar:"خطوات البيروقراطية",tr:"Adım Adım Bürokratik İşlemler",ur:"سرکاری کاموں کی گائیڈ",ru:"Бюрократия шаг за шагом",fr:"Bureaucratie étape par étape",fa:"بروکراسی گام به گام"}},
+  {icon:"🏥",title:"Doctor Finder",desc:"Find English/Arabic/Turkish/Urdu-speaking doctors near you, with wait times and contacts",url:"modules/doctors.html",tags:["Healthcare"],
+   titles:{de:"Arztsuche",ar:"البحث عن طبيب",tr:"Doktor Bul",ur:"ڈاکٹر تلاش کریں",ru:"Поиск врача",fr:"Trouver un médecin",fa:"یافتن پزشک"}},
+  {icon:"💼",title:"Jobs & Visa",desc:"Blue Card checker, 2026 salary thresholds, Chancenkarte, qualification recognition",url:"modules/jobs.html",featured:true,tags:["Blue Card","2026"],
+   titles:{de:"Arbeit & Visum",ar:"العمل والتأشيرة",tr:"İş ve Vize",ur:"ملازمت اور ویزہ",ru:"Работа и виза",fr:"Emploi et visa",fa:"کار و ویزا"}},
+  {icon:"🏘️",title:"Housing & Tenants Rights",desc:"Find apartments, understand your Mietvertrag, fight unfair rent increases, tenant rights",url:"modules/housing.html",tags:["Tenant rights","BGB"],
+   titles:{de:"Wohnen & Mieterrechte",ar:"السكن وحقوق المستأجر",tr:"Konut ve Kiracı Hakları",ur:"رہائش اور کرایہ دار کے حقوق",ru:"Жильё и права арендатора",fr:"Logement et droits des locataires",fa:"مسکن و حقوق مستاجر"}},
+  {icon:"💶",title:"Cost of Living Calculator",desc:"Realistic monthly budget by city — rent, food, transport, insurance, salary check",url:"modules/costs.html",tags:["8 cities","2026 data"],
+   titles:{de:"Lebenshaltungskosten-Rechner",ar:"حاسبة تكلفة المعيشة",tr:"Yaşam Maliyeti Hesaplayıcı",ur:"زندگی کی لاگت کا حساب",ru:"Калькулятор стоимости жизни",fr:"Calculateur du coût de la vie",fa:"ماشین حساب هزینه زندگی"}},
+  {icon:"🇩🇪",title:"German Language for Daily Life",desc:"Phrases for Amt, doctors, work, transport, emergencies — pronunciation + TTS + quiz",url:"modules/language.html",featured:true,tags:["TTS","Quiz","XP"],
+   titles:{de:"Deutsch für den Alltag",ar:"اللغة الألمانية للحياة اليومية",tr:"Günlük Hayat İçin Almanca",ur:"روزمرہ زندگی کے لیے جرمن",ru:"Немецкий для повседневной жизни",fr:"Allemand pour la vie quotidienne",fa:"آلمانی برای زندگی روزمره"}},
+  {icon:"🚨",title:"Emergency Guide",desc:"All emergency numbers, nearest hospitals, crisis lines, legal urgent deadlines",url:"modules/emergency.html",tags:["112","Urgent"],
+   titles:{de:"Notfallführer",ar:"دليل الطوارئ",tr:"Acil Durum Rehberi",ur:"ہنگامی گائیڈ",ru:"Экстренный справочник",fr:"Guide d'urgence",fa:"راهنمای اضطراری"}},
+  {icon:"✉️",title:"Letter Translator",desc:"Paste any German official letter — AI translates and explains it in your language",url:"modules/legal.html#letter",tags:["AI","8 languages"],
+   titles:{de:"Briefübersetzer",ar:"مترجم الرسائل",tr:"Mektup Çevirici",ur:"خط ترجمہ کار",ru:"Переводчик писем",fr:"Traducteur de lettres",fa:"مترجم نامه"}},
+  {icon:"🏦",title:"Banking & Finance",desc:"Open German bank account, Wise transfers, credit, Schufa — explained simply",url:"modules/banking.html",tags:["N26","Commerzbank"],
+   titles:{de:"Banking & Finanzen",ar:"الخدمات المصرفية والمالية",tr:"Bankacılık ve Finans",ur:"بینکنگ اور مالیات",ru:"Банкинг и финансы",fr:"Banque et finances",fa:"بانکداری و مالی"}},
+  {icon:"📚",title:"Integration & Community",desc:"Integration courses, language schools, community groups, volunteer opportunities",url:"modules/integration.html",tags:["B1 course","VHS"],
+   titles:{de:"Integration & Gemeinschaft",ar:"الاندماج والمجتمع",tr:"Entegrasyon ve Topluluk",ur:"انضمام اور کمیونٹی",ru:"Интеграция и сообщество",fr:"Intégration et communauté",fa:"یکپارچگی و جامعه"}},
+  {icon:"👶",title:"Family & Children",desc:"Kindergeld, Kita, schools, family reunification, maternity leave",url:"modules/family.html",tags:["Kindergeld","€255/month"],
+   titles:{de:"Familie & Kinder",ar:"الأسرة والأطفال",tr:"Aile ve Çocuklar",ur:"خاندان اور بچے",ru:"Семья и дети",fr:"Famille et enfants",fa:"خانواده و کودکان"}},
+];
+
+// ══ APP STATE ══════════════════════════════════════════════════
+let currentLang = localStorage.getItem('ng_lang') || 'en';
+let currentState = null;
+
+// ══ INIT ══════════════════════════════════════════════════════
+function init() {
+  renderStateGrid();
+  renderModules();
+  applyLang(currentLang);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ng_lang', lang);
+  applyLang(lang);
+}
+
+function applyLang(lang) {
+  const t = LANGS[lang] || LANGS.en;
+  document.getElementById('lang-select').value = lang;
+  document.getElementById('hero-main').textContent = t.hero_main;
+  document.getElementById('hero-sub').textContent = t.hero_sub;
+  document.getElementById('state-title').textContent = t.state_title;
+  document.getElementById('modules-title').textContent = t.modules_title;
+  document.getElementById('emg-gp').textContent = t.emg_gp;
+  document.getElementById('emg-crisis').textContent = t.emg_crisis;
+  document.querySelector('html').dir = t.dir || 'ltr';
+  document.querySelectorAll('.lang-chip').forEach((c,i) => {
+    const langs = ['en','de','ar','tr','ur','ru','fr','fa'];
+    c.classList.toggle('active', langs[i] === lang);
+  });
+  renderModules(); // re-render to update titles
+}
+
+function renderStateGrid() {
+  const grid = document.getElementById('state-grid');
+  grid.innerHTML = STATES.map(s => `
+    <div class="state-btn ${currentState===s.id?'active':''}" onclick="selectState('${s.id}')">
+      <span class="state-icon">${s.icon}</span>
+      ${s.name.length>18?s.name.split('-')[0]:s.name}
+    </div>`).join('');
+}
+
+function selectState(id) {
+  const s = STATES.find(x=>x.id===id);
+  currentState = currentState===id ? null : id;
+  renderStateGrid();
+  const info = document.getElementById('state-info');
+  if(!currentState) { info.className='state-info'; return; }
+  info.className = 'state-info show';
+  info.innerHTML = `
+    <h3>${s.icon} ${s.name} — Capital: ${s.capital} · Population: ${s.pop}</h3>
+    <div class="state-links">
+      ${s.links.map(l=>`<a href="${l.u}" target="_blank" rel="noopener" class="state-link ${l.official?'official':''}">${l.official?'🏛️ ':''} ${l.t}</a>`).join('')}
+    </div>`;
+}
+
+function renderModules() {
+  const grid = document.getElementById('modules-grid');
+  grid.innerHTML = MODULES.map(m => {
+    const title = (LANGS[currentLang] && m.titles?.[currentLang]) || m.title;
+    return `
+    <a href="${m.url}" class="module-card ${m.featured?'featured':''}">
+      <div class="module-icon">${m.icon}</div>
+      <div class="module-title">${title}</div>
+      <div class="module-desc">${m.desc}</div>
+      <div class="module-tags">
+        ${m.tags.map(t=>`<span class="mtag ${t==='AI Powered'||t==='New'?'new':t==='Urgent'?'hot':''}">${t}</span>`).join('')}
+      </div>
+    </a>`;
+  }).join('');
+}
+
+init();
+</script>
+</body>
+</html>
