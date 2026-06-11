@@ -1,43 +1,130 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>📋 Bureaucracy Step-by-Step — Navigate Germany</title>
-<style>
-:root{--bg:#0a0d14;--surface:#111520;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
-nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
-.nb span{color:var(--accent);}
-.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
-.hero{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
-.box{max-width:560px;}
-.icon{font-size:3.5rem;margin-bottom:16px;}
-h1{font-size:1.8rem;font-weight:800;margin-bottom:10px;}
-p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:20px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .15s;}
-.bp{background:var(--accent);color:#000;}
-.bp:hover{background:#e6b800;}
-.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);margin-left:8px;}
-.bo:hover{border-color:var(--accent);color:var(--accent);}
-</style>
-</head><body>
-<nav>
-  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
-  <a class="bl" href="../index.html">← All modules</a>
-</nav>
-<div class="hero">
-  <div class="box">
-    <div class="icon" style="color:#7c3aed">📋</div>
-    <h1>📋 Bureaucracy Step-by-Step</h1>
-    <p>Anmeldung, Krankenkasse, Steuer-ID, Bankkonto, Führerschein</p>
-    <p style="font-size:.82rem;background:rgba(255,204,2,.08);border:1px solid rgba(255,204,2,.2);border-radius:10px;padding:12px;color:#fde68a">
-      This module is available as a standalone app with full features.
-    </p>
-    <div style="margin-top:20px">
-      <a class="btn bp" href="https://ShaistaShabbir-prog.github.io/germany-bureaucracy-guide" target="_blank">Open Full Module →</a>
-      <a class="btn bo" href="../index.html">← Back to hub</a>
+<title>Bureaucracy Guide — Navigate Germany</title>
+<style>:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--purple:#7c3aed;}
+*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}.bl:hover{color:var(--accent);}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:24px;}
+.ph h1{font-size:1.4rem;font-weight:800;margin-bottom:4px;}.ph p{font-size:.82rem;color:var(--muted);}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+label:first-child{margin-top:0;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+.btn{padding:9px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s;}
+.bg{background:var(--accent);color:#000;}.bg:hover{background:#e6b800;}
+.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}.bo:hover{border-color:var(--accent);color:var(--accent);}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+.sb{background:#14532d;border:1px solid #22c55e;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#86efac;line-height:1.7;margin:8px 0;}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bgreen{background:rgba(34,197,94,.12);color:#22c55e;}
+.bamber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bred{background:rgba(239,68,68,.12);color:#f87171;}
+
+.proc-btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;}
+.proc-btn.active{background:rgba(255,204,2,.12);color:var(--accent);border-color:rgba(255,204,2,.4);}
+.step{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:10px;cursor:pointer;transition:background .15s;}
+.step:hover{background:var(--surface2);}
+.sn{width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.st{font-weight:600;font-size:.875rem;margin-bottom:2px;}
+.sd{font-size:.78rem;color:var(--muted);line-height:1.5;}
+.sl{font-size:.68rem;background:rgba(124,58,237,.15);color:#a78bfa;padding:2px 7px;border-radius:5px;margin-top:4px;display:inline-block;}
+.sw{font-size:.68rem;background:rgba(239,68,68,.12);color:#f87171;padding:2px 7px;border-radius:5px;margin-top:4px;display:inline-block;margin-left:4px;}
+.phrase{padding:7px 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.phrase-de{font-weight:700;color:var(--accent);}
+.phrase-en{color:var(--muted);font-size:.75rem;margin-top:1px;}
+</style></head><body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html">&#8592; All modules</a></nav>
+<div class="ph"><h1>📋 Bureaucracy Step-by-Step</h1><p>Anmeldung · Krankenkasse · Steuer-ID · Bankkonto · Führerschein · Ausländerbehörde — all in plain English</p></div>
+<div class="con">
+<div id="proc-btns" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px"></div>
+<div style="display:grid;grid-template-columns:1fr 300px;gap:14px">
+  <div class="card" style="padding:0;overflow:hidden">
+    <div id="ph" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);padding:14px 18px;color:#fff">
+      <div style="font-size:.95rem;font-weight:700" id="pt">Select a process above</div>
+      <div style="font-size:.75rem;opacity:.75" id="pd"></div>
     </div>
+    <div id="ps"></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div class="card"><h2>📄 Documents</h2><div id="docs" style="font-size:.82rem;color:var(--muted)">Select a process.</div></div>
+    <div class="card"><h2>🗣️ Phrases</h2><div id="phrases"></div></div>
   </div>
 </div>
-</body></html>
+</div>
+<script>
+const PROCS=[
+  {id:"anmeldung",name:"🏠 Anmeldung",dl:"Within 2 weeks of moving",
+   docs:["Passport or national ID","Wohnungsgeberbestätigung (landlord form)","Anmeldeformular (from website)"],
+   phrases:[["Ich möchte mich anmelden.","I want to register my address."],["Ich habe einen Termin um ...","I have an appointment at ..."],["Wo ist das Bürgeramt?","Where is the registration office?"]],
+   steps:[
+    {n:1,t:"Get WGB from landlord",d:"Landlord must provide Wohnungsgeberbestätigung by law (§19 BMG). If they refuse: fine up to €1,000.",law:"§19 BMG",warn:"Landlord refusal = illegal"},
+    {n:2,t:"Book Bürgeramt appointment",d:"Book online (service.berlin.de, muenchen.de, hamburg.de etc). Early morning slots. Email Bürgeramt if no slot within 2 weeks.",law:"§17 BMG",warn:""},
+    {n:3,t:"Attend — 15-20 minutes",d:"Bring passport + WGB + Anmeldeformular. Receive Meldebescheinigung same day.",law:"§23 BMG",warn:""},
+    {n:4,t:"Use your Meldebescheinigung",d:"Opens: bank account, Krankenkasse, tax ID, residence permit, Kita/school registration.",law:"",warn:""},
+  ]},
+  {id:"krankenkasse",name:"🏥 Krankenkasse",dl:"Immediately on employment",
+   docs:["Passport","Meldebescheinigung","Employment contract"],
+   phrases:[["Ich brauche eine Krankenversicherung.","I need health insurance."],["Ich habe eine gesetzliche Krankenversicherung.","I have public health insurance."]],
+   steps:[
+    {n:1,t:"GKV vs PKV",d:"GKV mandatory ≤€69,300/year. TK, DAK, Barmer have English support. Free choice per §175 SGB V.",law:"SGB V §5",warn:""},
+    {n:2,t:"Apply online",d:"Visit insurer website. Takes 30 min. You need: passport, Meldebescheinigung, employment contract.",law:"SGB V §175",warn:""},
+    {n:3,t:"Get your card",d:"Card arrives in 1-2 weeks. Until then, get Vorläufige Bescheinigung for doctor visits.",law:"SGB V §291",warn:""},
+  ]},
+  {id:"steuer",name:"💰 Steuer-ID",dl:"Automatic — wait 2-4 weeks",
+   docs:["Meldebescheinigung (no application needed)"],
+   phrases:[["Ich habe meine Steuer-ID noch nicht erhalten.","I haven't received my tax ID yet."],["Ich brauche meine Steuer-ID für meinen Arbeitgeber.","I need my tax ID for my employer."]],
+   steps:[
+    {n:1,t:"Wait — sent automatically",d:"Steuer-ID posted to registered address within 2-4 weeks of Anmeldung. No application needed.",law:"§139b AO",warn:""},
+    {n:2,t:"Give to employer",d:"HR needs it for payroll. Without it you're taxed at highest rate (Steuerklasse 6).",law:"§39 EStG",warn:"Give immediately on receipt"},
+    {n:3,t:"File Steuererklärung (tax return)",d:"Optional for employees but usually gives €500-1,500 refund. ELSTER (free), Wundertax, Taxfix.",law:"§25 EStG",warn:""},
+  ]},
+  {id:"bankkonto",name:"🏦 Bankkonto",dl:"After Anmeldung",
+   docs:["Passport","Meldebescheinigung","For traditional banks: proof of income"],
+   phrases:[["Ich möchte ein Konto eröffnen.","I want to open an account."]],
+   steps:[
+    {n:1,t:"Choose bank type",d:"Newcomers: start with N26 (10 min, no Schufa) or DKB (free with salary). Commerzbank: €50-100 bonus.",law:"",warn:""},
+    {n:2,t:"Apply online + VideoIdent",d:"Most banks verify via video call. Show passport to camera. Card arrives in 5-10 days.",law:"",warn:""},
+  ]},
+  {id:"fuehrerschein",name:"🚗 Führerschein",dl:"Within 6 months (EU) / 3 years (non-EU)",
+   docs:["Foreign licence (original + translation)","Biometric passport photo","Eye test (Sehtest) certificate","First aid certificate (Erste-Hilfe-Kurs)","Meldebescheinigung","Application fee €30-50"],
+   phrases:[["Ich möchte meinen Führerschein umschreiben lassen.","I want to convert my driving licence."],["Muss ich eine Prüfung ablegen?","Do I have to take an exam?"]],
+   steps:[
+    {n:1,t:"Check reciprocal agreement",d:"EU/EEA: automatic exchange (no exam). USA, Canada, Japan, Korea, Australia: simplified. Most other countries: full exam required (written + practical, costs €1,500-2,500).",law:"",warn:""},
+    {n:2,t:"Get documents",d:"Certified translation (ADAC, Dekra), eye test at optician (~€15-20, 10 min), Erste-Hilfe Kurs (9 hrs, €20-40).",law:"",warn:""},
+    {n:3,t:"Apply at Fahrerlaubnisbehörde",d:"Submit application with all documents. Fee €30-50. Allow 3-8 weeks for processing.",law:"",warn:"⚠️ Driving with expired foreign licence = €1,000 fine"},
+  ]},
+];
+
+let cur=null;
+function renderBtns(){
+  document.getElementById('proc-btns').innerHTML=PROCS.map(p=>
+    '<button class="proc-btn'+(cur===p.id?' active':'')+'" onclick="selProc(''+p.id+'')">'+p.name+'</button>'
+  ).join('');
+}
+function selProc(id){
+  cur=id; const p=PROCS.find(x=>x.id===id);
+  document.getElementById('pt').textContent=p.name;
+  document.getElementById('pd').textContent='Deadline: '+p.dl;
+  document.getElementById('ps').innerHTML=p.steps.map(s=>
+    '<div class="step"><div class="sn">'+s.n+'</div>'+
+    '<div><div class="st">'+s.t+'</div><div class="sd">'+s.d+'</div>'+
+    (s.law?'<span class="sl">'+s.law+'</span>':'')+
+    (s.warn?'<span class="sw">⚠️ '+s.warn+'</span>':'')+
+    '</div></div>'
+  ).join('');
+  document.getElementById('docs').innerHTML=p.docs.map(d=>'<div style="padding:5px 0;border-bottom:1px solid var(--border)">📄 '+d+'</div>').join('');
+  document.getElementById('phrases').innerHTML=p.phrases.map(([de,en])=>
+    '<div class="phrase"><div class="phrase-de">'+de+'</div><div class="phrase-en">'+en+'</div></div>'
+  ).join('');
+  renderBtns();
+}
+renderBtns();
+selProc('anmeldung');
+</script></body></html>
