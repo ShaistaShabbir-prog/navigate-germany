@@ -1,43 +1,153 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🏥 Doctor Finder — Navigate Germany</title>
+<title>Doctor Finder — Navigate Germany</title>
 <style>
-:root{--bg:#0a0d14;--surface:#111520;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;}
+:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--purple:#7c3aed;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;}
-nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
-.nb span{color:var(--accent);}
-.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
-.hero{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
-.box{max-width:560px;}
-.icon{font-size:3.5rem;margin-bottom:16px;}
-h1{font-size:1.8rem;font-weight:800;margin-bottom:10px;}
-p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:20px;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .15s;}
-.bp{background:var(--accent);color:#000;}
-.bp:hover{background:#e6b800;}
-.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);margin-left:8px;}
-.bo:hover{border-color:var(--accent);color:var(--accent);}
-</style>
-</head><body>
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+nav{background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
+.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}.nb span{color:var(--accent);}
+.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}.bl:hover{color:var(--accent);}
+.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:24px;}
+.ph h1{font-size:1.4rem;font-weight:800;margin-bottom:4px;}.ph p{font-size:.82rem;color:var(--muted);}
+.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
+.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;}
+label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
+label:first-child{margin-top:0;}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+.btn{padding:9px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s;}
+.bg{background:var(--accent);color:#000;}.bg:hover{background:#e6b800;}
+.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}.bo:hover{border-color:var(--accent);color:var(--accent);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+@media(max-width:600px){.g2{grid-template-columns:1fr;}}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
+.bgreen{background:rgba(34,197,94,.12);color:#22c55e;}
+.bamber{background:rgba(245,158,11,.12);color:#f59e0b;}
+.bred{background:rgba(239,68,68,.12);color:#f87171;}
+.bblue{background:rgba(59,130,246,.12);color:#93c5fd;}
+.bpurple{background:rgba(124,58,237,.12);color:#a78bfa;}
+.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
+.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
+.sb{background:#14532d;border:1px solid #22c55e;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#86efac;line-height:1.7;margin:8px 0;}
+.rbox{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:12px;display:none;}
+.rgreen{border-color:#22c55e;background:rgba(34,197,94,.06);}
+.ramber{border-color:#f59e0b;background:rgba(245,158,11,.06);}
+.rred{border-color:#ef4444;background:rgba(239,68,68,.06);}
+
+.doc-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;transition:all .2s;}
+.doc-card:hover{box-shadow:0 4px 20px rgba(59,130,246,.15);transform:translateY(-1px);}
+.wait-track{height:7px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-top:4px;}
+.wait-fill{height:100%;border-radius:99px;transition:width .4s;}
+.avail-y{background:rgba(34,197,94,.12);color:#22c55e;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;}
+.avail-n{background:rgba(239,68,68,.12);color:#f87171;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;}
+.lang-tag{background:rgba(59,130,246,.12);color:#93c5fd;font-size:.68rem;padding:2px 6px;border-radius:4px;font-weight:600;}
+.chip{padding:5px 12px;border-radius:20px;border:1px solid var(--border);font-size:.75rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .15s;}
+.chip.active{background:var(--accent);color:#000;border-color:var(--accent);}
+</style></head><body>
 <nav>
   <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
-  <a class="bl" href="../index.html">← All modules</a>
+  <a class="bl" href="../index.html">&#8592; All modules</a>
 </nav>
-<div class="hero">
-  <div class="box">
-    <div class="icon" style="color:#3b82f6">🏥</div>
-    <h1>🏥 Doctor Finder</h1>
-    <p>Find English-speaking doctors, compare wait times</p>
-    <p style="font-size:.82rem;background:rgba(255,204,2,.08);border:1px solid rgba(255,204,2,.2);border-radius:10px;padding:12px;color:#fde68a">
-      This module is available as a standalone app with full features.
-    </p>
-    <div style="margin-top:20px">
-      <a class="btn bp" href="https://ShaistaShabbir-prog.github.io/germany-doctor-finder" target="_blank">Open Full Module →</a>
-      <a class="btn bo" href="../index.html">← Back to hub</a>
-    </div>
+<div class="ph"><h1>🏥 Doctor Finder Germany</h1><p>Find English · Arabic · Turkish · Urdu · Russian speaking doctors — with wait times and contacts</p></div>
+<div class="con">
+<div class="wb" style="margin-bottom:14px">🚨 Emergency: <strong>112</strong> Ambulance &nbsp;|&nbsp; <strong>116 117</strong> Out-of-hours GP (off-hours medical advice, free)</div>
+<div class="ib"><strong>💡 Beat the 42-day wait:</strong> Call <strong>116 117</strong> — by law, Kassenärztliche Vereinigung must provide specialist appointments. Mention your symptoms clearly for urgent priority slots.</div>
+<div class="card" style="margin-top:12px">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end">
+    <div><label>City</label>
+      <select id="f-city" onchange="filter()">
+        <option value="">All cities</option>
+        <option>Berlin</option><option>Hamburg</option><option>Munich</option>
+        <option>Frankfurt</option><option>Cologne</option><option>Dortmund</option>
+        <option>Stuttgart</option><option>Leipzig</option><option>Düsseldorf</option><option>Nuremberg</option>
+      </select></div>
+    <div><label>Specialty</label>
+      <select id="f-spec" onchange="filter()">
+        <option value="">All specialties</option>
+        <option>General Practitioner (Hausarzt)</option><option>Cardiologist</option>
+        <option>Dermatologist</option><option>Gynecologist</option><option>Psychiatrist</option>
+        <option>Orthopedist</option><option>Pediatrician</option><option>Neurologist</option>
+      </select></div>
+    <div><label>Language</label>
+      <select id="f-lang" onchange="filter()">
+        <option value="">Any language</option>
+        <option value="en">English</option><option value="ar">Arabic</option>
+        <option value="tr">Turkish</option><option value="ur">Urdu/Hindi</option>
+        <option value="ru">Russian</option><option value="fr">French</option>
+      </select></div>
+    <button class="btn bg" onclick="filter()">Search</button>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px" id="chips">
+    <button class="chip active" onclick="setChip(this,'all')">All</button>
+    <button class="chip" onclick="setChip(this,'accepting')">Accepting patients</button>
+    <button class="chip" onclick="setChip(this,'fast')">Wait &lt; 2 weeks</button>
+    <button class="chip" onclick="setChip(this,'gkv')">GKV / Kassenpatient</button>
+    <button class="chip" onclick="setChip(this,'video')">Video consult</button>
   </div>
 </div>
-</body></html>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px" id="stats"></div>
+<div class="g3" id="results"></div>
+</div>
+<script>
+const DOCS=[
+  {id:1,n:"Dr. Sarah Mitchell",s:"General Practitioner (Hausarzt)",c:"Berlin",l:["en","de"],w:3,acc:true,gkv:true,vid:true,r:4.8,rv:142,addr:"Mitte, Berlin",ph:"+49 30 2345 6789",next:"Tomorrow 10:00"},
+  {id:2,n:"Dr. Ahmed Al-Rashidi",s:"General Practitioner (Hausarzt)",c:"Berlin",l:["en","ar","de"],w:5,acc:true,gkv:true,vid:false,r:4.9,rv:87,addr:"Neukölln, Berlin",ph:"+49 30 9876 5432",next:"Thursday 14:30"},
+  {id:3,n:"Dr. Zara Malik",s:"General Practitioner (Hausarzt)",c:"Stuttgart",l:["en","ur","de"],w:2,acc:true,gkv:true,vid:true,r:5.0,rv:44,addr:"Stuttgart-West",ph:"+49 711 1122 3344",next:"Today 15:00"},
+  {id:4,n:"Dr. Elena Volkova",s:"Psychiatrist",c:"Berlin",l:["en","ru","de"],w:28,acc:false,gkv:true,vid:true,r:4.7,rv:63,addr:"Prenzlauer Berg, Berlin",ph:"+49 30 1111 2222",next:"In 4 weeks"},
+  {id:5,n:"Dr. Mehmet Yilmaz",s:"Cardiologist",c:"Hamburg",l:["en","tr","de"],w:14,acc:true,gkv:true,vid:false,r:4.6,rv:95,addr:"Altona, Hamburg",ph:"+49 40 5555 6666",next:"Next Monday"},
+  {id:6,n:"Dr. Fatima Hassan",s:"Gynecologist",c:"Frankfurt",l:["en","ar","de"],w:7,acc:true,gkv:true,vid:true,r:4.9,rv:178,addr:"Sachsenhausen, Frankfurt",ph:"+49 69 3344 5566",next:"Friday 09:00"},
+  {id:7,n:"Dr. Priya Sharma",s:"Dermatologist",c:"Munich",l:["en","de"],w:21,acc:true,gkv:false,vid:true,r:4.8,rv:211,addr:"Schwabing, Munich",ph:"+49 89 2233 4455",next:"In 3 weeks"},
+  {id:8,n:"Dr. Thomas Weber",s:"Orthopedist",c:"Cologne",l:["en","de"],w:11,acc:true,gkv:true,vid:false,r:4.5,rv:89,addr:"Ehrenfeld, Cologne",ph:"+49 221 7788 9900",next:"Wednesday 16:00"},
+  {id:9,n:"Dr. Nadia Benali",s:"Pediatrician",c:"Hamburg",l:["en","ar","fr","de"],w:4,acc:true,gkv:true,vid:true,r:4.9,rv:203,addr:"Eimsbüttel, Hamburg",ph:"+49 40 2233 4411",next:"Tomorrow 09:30"},
+  {id:10,n:"Dr. Olga Petrov",s:"Neurologist",c:"Dortmund",l:["en","ru","de"],w:32,acc:false,gkv:true,vid:false,r:4.4,rv:52,addr:"Mitte, Dortmund",ph:"+49 231 8899 0011",next:"In 5 weeks"},
+  {id:11,n:"Dr. Kenji Tanaka",s:"General Practitioner (Hausarzt)",c:"Frankfurt",l:["en","de"],w:6,acc:true,gkv:true,vid:true,r:4.8,rv:159,addr:"Bockenheim, Frankfurt",ph:"+49 69 6677 8899",next:"Thursday 11:00"},
+  {id:12,n:"Dr. Hans Bauer",s:"Cardiologist",c:"Leipzig",l:["en","de"],w:9,acc:true,gkv:true,vid:false,r:4.7,rv:130,addr:"Gohlis, Leipzig",ph:"+49 341 5566 7788",next:"Next Tuesday"},
+];
+let chip='all';
+function wc(d){return d<=7?'#22c55e':d<=21?'#f59e0b':'#ef4444';}
+function setChip(el,v){chip=v;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');filter();}
+function filter(){
+  const city=document.getElementById('f-city').value;
+  const spec=document.getElementById('f-spec').value;
+  const lang=document.getElementById('f-lang').value;
+  let docs=DOCS.filter(d=>
+    (!city||d.c===city)&&(!spec||d.s===spec)&&(!lang||d.l.includes(lang))
+  );
+  if(chip==='accepting') docs=docs.filter(d=>d.acc);
+  if(chip==='fast') docs=docs.filter(d=>d.w<=14);
+  if(chip==='gkv') docs=docs.filter(d=>d.gkv);
+  if(chip==='video') docs=docs.filter(d=>d.vid);
+  document.getElementById('stats').innerHTML=[
+    ['Doctors',docs.length,'var(--accent)'],
+    ['English-speaking',docs.filter(d=>d.l.includes('en')).length,'#93c5fd'],
+    ['Accepting now',docs.filter(d=>d.acc).length,'#22c55e'],
+    ['Avg wait (days)',docs.length?Math.round(docs.map(d=>d.w).reduce((a,b)=>a+b,0)/docs.length):'—','#f59e0b'],
+  ].map(([l,v,c])=>'<div class="card" style="text-align:center;padding:14px"><div style="font-size:1.4rem;font-weight:800;color:'+c+'">'+v+'</div><div style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">'+l+'</div></div>').join('');
+  document.getElementById('results').innerHTML=docs.map(d=>
+    '<div class="doc-card">' +
+    '<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">' +
+    '<div style="font-size:1.6rem">🩺</div>' +
+    '<div><div style="font-weight:700;font-size:.9rem">'+d.n+'</div>' +
+    '<div style="font-size:.78rem;color:var(--muted)">'+d.s+'</div>' +
+    '<div style="font-size:.78rem;color:#f59e0b;margin-top:2px">'+'★'.repeat(Math.round(d.r))+'☆'.repeat(5-Math.round(d.r))+' '+d.r+' ('+d.rv+')</div></div></div>' +
+    '<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">'+d.l.map(l=>'<span class="lang-tag">'+l.toUpperCase()+'</span>').join('')+(d.gkv?'<span class="badge bgreen">GKV</span>':'')+(d.vid?'<span class="badge bblue">📹 Video</span>':'')+'</div>'+
+    '<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-bottom:3px"><span>Wait time</span><span style="font-weight:700;color:'+wc(d.w)+'">'+d.w+' days</span></div>'+
+    '<div class="wait-track"><div class="wait-fill" style="width:'+Math.min(100,d.w/50*100)+'%;background:'+wc(d.w)+'"></div></div></div>'+
+    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'+
+    '<span class="'+(d.acc?'avail-y':'avail-n')+'">'+(d.acc?'Accepting':'Not accepting')+'</span>'+
+    '<span style="font-size:.75rem;color:var(--muted)">Next: '+d.next+'</span></div>'+
+    '<div style="font-size:.75rem;color:var(--muted);margin-bottom:10px">📍 '+d.addr+' &nbsp; 📞 '+d.ph+'</div>'+
+    '<div style="display:flex;gap:6px"><button class="btn bg" style="font-size:.75rem;padding:6px 12px" onclick="alert('Calling: '+d.ph+'')">📞 Call</button>'+(d.vid?'<button class="btn bo" style="font-size:.75rem;padding:6px 12px">📹 Video</button>':'')+'</div>'+
+    '</div>'
+  ).join('') || '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">No doctors found. Try adjusting filters.</div>';
+}
+filter();
+</script></body></html>
