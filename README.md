@@ -64,6 +64,11 @@ The entire interface translates — hero text, navigation, module titles. Langua
 
 Pure HTML5 + CSS3 + JavaScript · Anthropic Claude API (legal features) · Zero build step · Works offline (except AI features) · GitHub Pages
 
+The general assistant uses local FAQs plus visible content from the current
+page, so it works on GitHub Pages without an API key. A future Claude version
+must call a server-side proxy or serverless function; an Anthropic key must
+never be embedded in `chatbot.js`.
+
 ---
 
 ## 🚀 Run locally
