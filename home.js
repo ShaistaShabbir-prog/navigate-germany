@@ -12,7 +12,7 @@ const LANGUAGES = [
 ];
 
 const TRANSLATIONS = {
-  en: ["Navigate Germany with Confidence", "Your official-link based multilingual guide for immigrants, students, families, and new arrivals."],
+  en: ["Navigate Germany with Confidence", "Germany explained step-by-step in your language — with official links, emergency support, and state-wise guidance."],
   de: ["Sicher durch Deutschland navigieren", "Ihr mehrsprachiger Wegweiser mit offiziellen Links für Zugewanderte, Studierende, Familien und Neuankömmlinge."],
   ar: ["تنقّل في ألمانيا بثقة", "دليلك متعدد اللغات القائم على الروابط الرسمية للمهاجرين والطلاب والعائلات والوافدين الجدد."],
   tr: ["Almanya'da güvenle yolunuzu bulun", "Göçmenler, öğrenciler, aileler ve yeni gelenler için resmi bağlantılara dayalı çok dilli rehberiniz."],
@@ -25,17 +25,17 @@ const TRANSLATIONS = {
 };
 
 const MODULES = [
-  { id: "housing", icon: "⌂", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
-  { id: "healthcare", icon: "✚", title: "Healthcare", desc: "Health insurance, doctors, hospitals, appointments, and wellbeing.", url: "modules/doctors.html", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" },
-  { id: "jobs", icon: "▣", title: "Jobs & Visa", desc: "Work opportunities, residence routes, Blue Card, and job search.", url: "modules/jobs.html", color: "#b45309", bg: "#fff7ed", border: "#fed7aa" },
-  { id: "legal", icon: "⚖", title: "Legal Help", desc: "Residence law, official letters, deadlines, rights, and support.", url: "modules/legal.html", color: "#dc2626", bg: "#fff1f2", border: "#fecdd3" },
-  { id: "language", icon: "•••", title: "Language", desc: "Learn German, practise daily phrases, and find language resources.", url: "modules/language.html", color: "#0f766e", bg: "#f0fdfa", border: "#99f6e4" },
+  { id: "housing", icon: "⌂", iconSrc: "./assets/icons/housing.png", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
+  { id: "healthcare", icon: "✚", iconSrc: "./assets/icons/healthcare.png", title: "Healthcare", desc: "Health insurance, doctors, hospitals, appointments, and wellbeing.", url: "modules/doctors.html", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" },
+  { id: "jobs", icon: "▣", iconSrc: "./assets/icons/jobs.png", title: "Jobs & Visa", desc: "Work opportunities, residence routes, Blue Card, and job search.", url: "modules/jobs.html", color: "#b45309", bg: "#fff7ed", border: "#fed7aa" },
+  { id: "legal", icon: "⚖", iconSrc: "./assets/icons/legal.png", title: "Legal Help", desc: "Residence law, official letters, deadlines, rights, and support.", url: "modules/legal.html", color: "#dc2626", bg: "#fff1f2", border: "#fecdd3" },
+  { id: "language", icon: "•••", iconSrc: "./assets/icons/language.png", title: "Language", desc: "Learn German, practise daily phrases, and find language resources.", url: "modules/language.html", color: "#0f766e", bg: "#f0fdfa", border: "#99f6e4" },
   { id: "costs", icon: "€", title: "Cost of Living", desc: "Compare rent, expenses, salaries, banking, and everyday costs.", url: "modules/costs.html", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
   { id: "education", icon: "▤", title: "Education", desc: "Schools, childcare, integration courses, and learning pathways.", url: "modules/integration.html", color: "#7c3aed", bg: "#f5f3ff", border: "#ddd6fe" },
   { id: "banking", icon: "▥", title: "Banking & Taxes", desc: "Bank accounts, transfers, Schufa, tax ID, and finance basics.", url: "modules/banking.html", color: "#0369a1", bg: "#f0f9ff", border: "#bae6fd" },
   { id: "family", icon: "♡", title: "Family & Child Support", desc: "Kindergeld, Kita, schools, parental support, and family life.", url: "modules/family.html", color: "#be185d", bg: "#fdf2f8", border: "#fbcfe8" },
   { id: "transport", icon: "↔", title: "Transport", desc: "Driving licence and practical mobility steps for daily life.", url: "modules/bureaucracy.html", color: "#4f46e5", bg: "#eef2ff", border: "#c7d2fe" },
-  { id: "emergency", icon: "!", title: "Emergency", desc: "Emergency numbers, urgent medical help, crisis lines, and safety.", url: "modules/emergency.html", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
+  { id: "emergency", icon: "!", iconSrc: "./assets/icons/emergency.png", title: "Emergency", desc: "Emergency numbers, urgent medical help, crisis lines, and safety.", url: "modules/emergency.html", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
   { id: "documents", icon: "▧", title: "Documents", desc: "Anmeldung, insurance, tax ID, bank account, and admin checklists.", url: "modules/bureaucracy.html", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
 ];
 
@@ -125,22 +125,22 @@ const STATES = [
 ];
 
 const STATE_META = {
-  BW: { cities: "Stuttgart · Karlsruhe · Freiburg", bestFor: "Students & skilled jobs" },
-  BY: { cities: "Munich · Nuremberg · Augsburg", bestFor: "Jobs & families" },
-  BE: { cities: "Berlin", bestFor: "International newcomers" },
-  BB: { cities: "Potsdam · Cottbus · Frankfurt (Oder)", bestFor: "Families & commuters" },
-  HB: { cities: "Bremen · Bremerhaven", bestFor: "Students & logistics jobs" },
-  HH: { cities: "Hamburg", bestFor: "Global careers" },
-  HE: { cities: "Wiesbaden · Frankfurt · Darmstadt", bestFor: "Finance & skilled jobs" },
-  MV: { cities: "Schwerin · Rostock · Greifswald", bestFor: "Affordable coastal living" },
-  NI: { cities: "Hannover · Braunschweig · Göttingen", bestFor: "Families & industry" },
-  NW: { cities: "Düsseldorf · Cologne · Dortmund", bestFor: "Jobs & diverse cities" },
-  RP: { cities: "Mainz · Koblenz · Trier", bestFor: "Families & students" },
-  SL: { cities: "Saarbrücken · Homburg · Saarlouis", bestFor: "Cross-border workers" },
-  SN: { cities: "Dresden · Leipzig · Chemnitz", bestFor: "Students & technology" },
-  ST: { cities: "Magdeburg · Halle · Dessau", bestFor: "Affordable student life" },
-  SH: { cities: "Kiel · Lübeck · Flensburg", bestFor: "Families & coastal life" },
-  TH: { cities: "Erfurt · Jena · Weimar", bestFor: "Research & affordable cities" },
+  BW: { cities: "Stuttgart · Karlsruhe · Freiburg", bestFor: "Students & skilled jobs", image: "baden-wuerttemberg.jpg", alt: "Baden-Württemberg city and riverside scenery" },
+  BY: { cities: "Munich · Nuremberg · Augsburg", bestFor: "Jobs & families", image: "bavaria.jpg", alt: "Neuschwanstein Castle and the Bavarian Alps" },
+  BE: { cities: "Berlin", bestFor: "International newcomers", image: "berlin.jpg", alt: "Berlin skyline with the TV Tower" },
+  BB: { cities: "Potsdam · Cottbus · Frankfurt (Oder)", bestFor: "Families & commuters", image: "brandenburg.jpg", alt: "Brandenburg Gate at sunset" },
+  HB: { cities: "Bremen · Bremerhaven", bestFor: "Students & logistics jobs", image: "bremen.jpg", alt: "Historic market square in Bremen" },
+  HH: { cities: "Hamburg", bestFor: "Global careers", image: "hamburg.jpg", alt: "Hamburg harbor and Elbphilharmonie" },
+  HE: { cities: "Wiesbaden · Frankfurt · Darmstadt", bestFor: "Finance & skilled jobs", image: "hessen.jpg", alt: "Frankfurt skyline in Hessen" },
+  MV: { cities: "Schwerin · Rostock · Greifswald", bestFor: "Affordable coastal living", image: "mecklenburg-vorpommern.jpg", alt: "Baltic coast in Mecklenburg-Vorpommern" },
+  NI: { cities: "Hannover · Braunschweig · Göttingen", bestFor: "Families & industry", image: "lower-saxony.jpg", alt: "Historic architecture in Lower Saxony" },
+  NW: { cities: "Düsseldorf · Cologne · Dortmund", bestFor: "Jobs & diverse cities", image: "north-rhine-westphalia.jpg", alt: "Cologne Cathedral and Rhine bridge in North Rhine-Westphalia" },
+  RP: { cities: "Mainz · Koblenz · Trier", bestFor: "Families & students", image: "rhineland-palatinate.jpg", alt: "Rhine valley in Rhineland-Palatinate" },
+  SL: { cities: "Saarbrücken · Homburg · Saarlouis", bestFor: "Cross-border workers", image: "saarland.jpg", alt: "Saarbrücken riverside in Saarland" },
+  SN: { cities: "Dresden · Leipzig · Chemnitz", bestFor: "Students & technology", image: "saxony.jpg", alt: "Historic Dresden cityscape in Saxony" },
+  ST: { cities: "Magdeburg · Halle · Dessau", bestFor: "Affordable student life", image: "saxony-anhalt.jpg", alt: "Magdeburg cathedral and river in Saxony-Anhalt" },
+  SH: { cities: "Kiel · Lübeck · Flensburg", bestFor: "Families & coastal life", image: "schleswig-holstein.jpg", alt: "Harbor town in Schleswig-Holstein" },
+  TH: { cities: "Erfurt · Jena · Weimar", bestFor: "Research & affordable cities", image: "thuringia.jpg", alt: "Historic Erfurt cityscape in Thuringia" },
 };
 
 function state(id, name, capital, visual, description, background, links) {
@@ -161,14 +161,15 @@ let showingSavedOnly = false;
 
 function renderModules(items = MODULES) {
   guidesGrid.innerHTML = items.map((item) => `
-    <article class="module-card" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border};--module-icon-bg:${item.bg}">
+    <article class="module-card reveal" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border};--module-icon-bg:${item.bg}">
       <button class="save-guide ${savedGuides.has(item.id) ? "saved" : ""}" type="button" data-save="${item.id}" aria-label="${savedGuides.has(item.id) ? "Remove" : "Save"} ${item.title} guide">♡</button>
-      <span class="module-icon" aria-hidden="true">${item.icon}</span>
+      <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="52" height="52">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
       <h3>${item.title}</h3>
       <p>${item.desc}</p>
       <a class="module-link" href="${item.url}">Open Guide &nbsp;→</a>
     </article>
   `).join("");
+  requestAnimationFrame(observeReveals);
 }
 
 function renderStates(items = STATES) {
@@ -176,9 +177,9 @@ function renderStates(items = STATES) {
   statesGrid.innerHTML = items.length ? items.map((item) => {
     const meta = STATE_META[item.id];
     return `
-    <button class="state-card" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="Open ${item.name} resources">
+    <button class="state-card reveal" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="Open ${item.name} resources">
       <span class="state-card-content" data-best="${meta.bestFor}">
-        <small>${item.visual}</small>
+        <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy"><small>${item.visual}</small></span>
         <strong>${item.name}</strong>
         <span class="state-city">${meta.cities}</span>
         <span class="state-description">${item.description}</span>
@@ -186,6 +187,7 @@ function renderStates(items = STATES) {
       </span>
     </button>
   `;}).join("") : '<div class="no-results">No state matches your search.</div>';
+  requestAnimationFrame(observeReveals);
 }
 
 function openState(id) {
@@ -260,10 +262,33 @@ function searchAll(query) {
   const guideMatches = MODULES.filter((item) => `${item.title} ${item.desc}`.toLowerCase().includes(normalized))
     .slice(0, 4)
     .map((item) => ({ title: item.title, type: "Guide", url: item.url }));
-  const stateMatches = STATES.filter((item) => `${item.name} ${item.capital} ${item.visual}`.toLowerCase().includes(normalized))
+  const stateMatches = STATES.filter((item) => {
+    const meta = STATE_META[item.id];
+    return `${item.name} ${item.capital} ${meta.cities} ${meta.bestFor} ${item.visual} ${item.description}`.toLowerCase().includes(normalized);
+  })
     .slice(0, 3)
     .map((item) => ({ title: item.name, type: "State", state: item.id }));
   return [...guideMatches, ...stateMatches];
+}
+
+let revealObserver;
+function observeReveals() {
+  const elements = document.querySelectorAll(".reveal:not(.reveal-ready)");
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach((element) => element.classList.add("reveal-ready", "is-visible"));
+    return;
+  }
+  revealObserver ||= new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -40px", threshold: 0.08 });
+  elements.forEach((element) => {
+    element.classList.add("reveal-ready");
+    revealObserver.observe(element);
+  });
 }
 
 function init() {
@@ -272,6 +297,7 @@ function init() {
   languagePills.innerHTML = LANGUAGES.map((item) => `<button type="button" data-lang="${item.code}">${item.flag} ${item.label}</button>`).join("");
   setLanguage(localStorage.getItem("ng_lang") || "en");
   document.querySelector("#current-year").textContent = new Date().getFullYear();
+  observeReveals();
 }
 
 document.querySelector(".menu-toggle").addEventListener("click", (event) => {
@@ -317,7 +343,10 @@ stateDetail.addEventListener("click", (event) => {
 
 document.querySelector("#state-search").addEventListener("input", (event) => {
   const query = event.target.value.toLowerCase().trim();
-  renderStates(STATES.filter((item) => `${item.name} ${item.capital} ${item.description} ${item.visual}`.toLowerCase().includes(query)));
+  renderStates(STATES.filter((item) => {
+    const meta = STATE_META[item.id];
+    return `${item.name} ${item.capital} ${meta.cities} ${meta.bestFor} ${item.description} ${item.visual}`.toLowerCase().includes(query);
+  }));
   stateDetail.hidden = true;
 });
 
