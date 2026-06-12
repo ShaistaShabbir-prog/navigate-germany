@@ -40,6 +40,10 @@ const staticStateCards = [...homepage.matchAll(/data-state="[A-Z]{2}"/g)];
 if (staticStateCards.length !== 16) {
   failures.push(`index.html: expected 16 static state cards, found ${staticStateCards.length}`);
 }
+const stateAudienceTags = [...homepage.matchAll(/data-best="[^"]+"/g)];
+if (stateAudienceTags.length !== 16) {
+  failures.push(`index.html: expected 16 state audience tags, found ${stateAudienceTags.length}`);
+}
 
 for (const script of ["chatbot.js", "home.js", "legal.js"]) {
   try {
