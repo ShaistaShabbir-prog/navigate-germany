@@ -162,34 +162,35 @@ function renderTab(tab){
   if(tab==='quiz'){renderQuiz(el);return;}
   if(tab==='alpha'){renderAlpha(el);return;}
   const phrases=CATS[tab]||[];
-  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔊 Tap "Say" to hear native pronunciation. Clicking the card earns +5 XP!</div>'+
-  '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">'+
-  phrases.map(p=>
-    '<div class="phrase-card" onclick="addXP(5)">'+
-    '<button class="say-btn" onclick="event.stopPropagation();speak(''+p.de.replace(/'/g,'\'')+'')">🔊 Say</button>'+
-    '<div class="phrase-de">'+p.de+'</div>'+
-    '<div class="phrase-en">'+p.en+'</div>'+
-    '<div class="phrase-pron">📢 '+p.pron+'</div>'+
-    '<span class="ctx-tag">'+p.ctx+'</span>'+
-    '</div>'
-  ).join('')+'</div>';
-  el.querySelectorAll('.phrase-card').forEach(c=>{
-    const p=phrases[Array.from(c.parentElement.children).indexOf(c)];
-    if(!p)return;
-    c.querySelector('.phrase-pron').textContent='📢 '+p.p;
+  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔊 Tap "Say" to hear native pronunciation. Clicking the card earns +5 XP!</div><div id="phrase-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px"></div>';
+  const grid=document.getElementById('phrase-grid');
+  phrases.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='phrase-card';
+    card.innerHTML='<button class="say-btn">🔊 Say</button><div class="phrase-de"></div><div class="phrase-en"></div><div class="phrase-pron"></div><span class="ctx-tag"></span>';
+    card.querySelector('.phrase-de').textContent=p.de;
+    card.querySelector('.phrase-en').textContent=p.en;
+    card.querySelector('.phrase-pron').textContent='📢 '+p.p;
+    card.querySelector('.ctx-tag').textContent=p.ctx;
+    card.addEventListener('click',()=>addXP(5));
+    card.querySelector('.say-btn').addEventListener('click',event=>{event.stopPropagation();speak(p.de);});
+    grid.appendChild(card);
   });
 }
 
 function renderAlpha(el){
-  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔤 German special letters: <strong>Ä (ah-umlaut)</strong>, <strong>Ö (oh-umlaut)</strong>, <strong>Ü (oo-umlaut)</strong>, <strong>ß (ss)</strong>. Click any letter to hear it!</div>'+
-  '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px">'+
-  ALPHA.map(a=>
-    '<div class="letter-card" onclick="speak(''+a.l+'');addXP(2)">'+
-    '<div style="font-size:2rem;font-weight:800;color:var(--accent)">'+a.l+'</div>'+
-    '<div style="font-size:.72rem;color:var(--muted);margin-top:2px">'+a.s+'</div>'+
-    '<div style="font-size:.65rem;color:#475569;margin-top:2px">'+a.ex+'</div>'+
-    '</div>'
-  ).join('')+'</div>';
+  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔤 German special letters: <strong>Ä (ah-umlaut)</strong>, <strong>Ö (oh-umlaut)</strong>, <strong>Ü (oo-umlaut)</strong>, <strong>ß (ss)</strong>. Click any letter to hear it!</div><div id="alpha-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px"></div>';
+  const grid=document.getElementById('alpha-grid');
+  ALPHA.forEach(a=>{
+    const card=document.createElement('div');
+    card.className='letter-card';
+    card.innerHTML='<div style="font-size:2rem;font-weight:800;color:var(--accent)"></div><div style="font-size:.72rem;color:var(--muted);margin-top:2px"></div><div style="font-size:.65rem;color:#475569;margin-top:2px"></div>';
+    card.children[0].textContent=a.l;
+    card.children[1].textContent=a.s;
+    card.children[2].textContent=a.ex;
+    card.addEventListener('click',()=>{speak(a.l);addXP(2);});
+    grid.appendChild(card);
+  });
 }
 
 const QS=[
@@ -207,21 +208,24 @@ const QS=[
 let qi=0,qs=0;
 function renderQuiz(el){
   if(qi>=QS.length){
-    el.innerHTML='<div class="card" style="text-align:center;padding:32px">'+
-      '<div style="font-size:3rem;margin-bottom:10px">🎉</div>'+
-      '<h2 style="font-size:1.3rem;margin-bottom:8px">Quiz Complete!</h2>'+
-      '<p>Score: <strong style="color:var(--accent);font-size:1.3rem">'+qs+'/'+QS.length+'</strong></p>'+
-      '<button class="btn bg" style="margin-top:16px" onclick="qi=0;qs=0;renderQuiz(document.getElementById('content'))">Play again</button></div>';
+    el.innerHTML='<div class="card" style="text-align:center;padding:32px"><div style="font-size:3rem;margin-bottom:10px">🎉</div><h2 style="font-size:1.3rem;margin-bottom:8px">Quiz Complete!</h2><p>Score: <strong id="final-score" style="color:var(--accent);font-size:1.3rem"></strong></p><button id="play-again" class="btn bg" style="margin-top:16px">Play again</button></div>';
+    document.getElementById('final-score').textContent=qs+'/'+QS.length;
+    document.getElementById('play-again').addEventListener('click',()=>{qi=0;qs=0;renderQuiz(document.getElementById('content'));});
     return;
   }
   const q=QS[qi];
   const opts=[q.a,...q.w].sort(()=>Math.random()-.5);
-  el.innerHTML='<div class="card">'+
-    '<div style="font-size:.78rem;color:var(--muted);margin-bottom:10px">Question '+(qi+1)+' of '+QS.length+' &nbsp;·&nbsp; Score: '+qs+'</div>'+
-    '<div style="font-size:1.1rem;font-weight:700;margin-bottom:18px">'+q.q+'</div>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'+
-    opts.map(o=>'<button class="qopt" onclick="checkQ(this,''+o.replace(/'/g,'\'')+'',''+q.a.replace(/'/g,'\'')+'')">'+o+'</button>').join('')+
-    '</div><div id="qfb" style="min-height:28px;margin-top:14px;font-size:1rem;text-align:center"></div></div>';
+  el.innerHTML='<div class="card"><div id="qmeta" style="font-size:.78rem;color:var(--muted);margin-bottom:10px"></div><div id="qtext" style="font-size:1.1rem;font-weight:700;margin-bottom:18px"></div><div id="qopts" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div><div id="qfb" style="min-height:28px;margin-top:14px;font-size:1rem;text-align:center"></div></div>';
+  document.getElementById('qmeta').textContent='Question '+(qi+1)+' of '+QS.length+' · Score: '+qs;
+  document.getElementById('qtext').textContent=q.q;
+  const options=document.getElementById('qopts');
+  opts.forEach(option=>{
+    const button=document.createElement('button');
+    button.className='qopt';
+    button.textContent=option;
+    button.addEventListener('click',()=>checkQ(button,option,q.a));
+    options.appendChild(button);
+  });
 }
 function checkQ(btn,c,a){
   document.querySelectorAll('.qopt').forEach(b=>b.onclick=null);

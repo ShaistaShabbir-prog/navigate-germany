@@ -64,7 +64,7 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div class="tabs">
   <button class="tab active" onclick="showTab('guide',this)">📋 Process Guide</button>
   <button class="tab" onclick="showTab('letter',this)">✉️ Read My Letter</button>
-  <button class="tab" onclick="showTab('chat',this)">🤖 AI Legal Chat</button>
+  <button class="tab" onclick="showTab('chat',this)">💬 Legal FAQ Chat</button>
   <button class="tab" onclick="showTab('laws',this)">📚 Laws</button>
   <button class="tab" onclick="showTab('rights',this)">🛡️ Rights</button>
   <button class="tab" onclick="showTab('templates',this)">📝 Templates</button>
@@ -190,7 +190,7 @@ What do you need help with?</div></div>
 
 </div>
 
-<script>
+<script type="text/plain" id="legacy-legal-script">
 const CLAUDE = "claude-sonnet-4-20250514";
 async function callClaude(sys, msgs, max) {
   const r = await fetch("https://api.anthropic.com/v1/messages", {
@@ -490,6 +490,7 @@ function showTpl(i) {
 renderProcBtns();
 if(location.hash==='#letter') { document.querySelectorAll('.tab')[1].click(); showTab('letter',document.querySelectorAll('.tab')[1]); }
 </script>
+<script src="../legal.js"></script>
 <script src="../chatbot.js" defer></script>
 </body>
 </html>

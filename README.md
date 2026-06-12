@@ -40,7 +40,7 @@ The entire interface translates — hero text, navigation, module titles. Langua
 
 | Module | Description |
 |---|---|
-| ⚖️ Legal Navigator + AI | AI letter reader, law database, rights, templates, chat |
+| ⚖️ Legal Navigator | Local letter deadline checker, law database, rights, templates, FAQ chat |
 | 📋 Bureaucracy Guide | Anmeldung, Krankenkasse, Steuer-ID, Bankkonto, Führerschein |
 | 🏥 Doctor Finder | English/Arabic/Turkish/Urdu-speaking doctors, wait times |
 | 💼 Jobs & Visa | Blue Card checker, 2026 thresholds, Chancenkarte, pathways |
@@ -53,16 +53,17 @@ The entire interface translates — hero text, navigation, module titles. Langua
 | 📚 Integration | Integration courses, language schools, community |
 | 👶 Family | Kindergeld, Kita, schools, family reunification |
 
-### ⚖️ AI-Powered Legal Features (Claude claude-sonnet-4-20250514)
-- Paste any German official letter → AI explains urgency, deadline, laws, actions
-- Legal assistant chat — knows AufenthG, KSchG, BGB, SGB, AGG
-- Draft reply letters with AI assistance
+### ⚖️ Offline Legal Information Features
+- Paste German letter text → local keyword check highlights common urgency and deadline patterns
+- Legal FAQ chat covers common topics such as dismissal, rent, permits, official decisions, and Anmeldung
+- Reusable letter templates, process guides, law summaries, and rights information
+- No API key required; personal cases still need qualified legal advice
 
 ---
 
 ## 🛠️ Stack
 
-Pure HTML5 + CSS3 + JavaScript · Anthropic Claude API (legal features) · Zero build step · Works offline (except AI features) · GitHub Pages
+Pure HTML5 + CSS3 + JavaScript · Zero build step · Works offline · GitHub Pages
 
 The general assistant uses local FAQs plus visible content from the current
 page, so it works on GitHub Pages without an API key. A future Claude version

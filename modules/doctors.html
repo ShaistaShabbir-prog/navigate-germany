@@ -145,9 +145,12 @@ function filter(){
     '<span class="'+(d.acc?'avail-y':'avail-n')+'">'+(d.acc?'Accepting':'Not accepting')+'</span>'+
     '<span style="font-size:.75rem;color:var(--muted)">Next: '+d.next+'</span></div>'+
     '<div style="font-size:.75rem;color:var(--muted);margin-bottom:10px">📍 '+d.addr+' &nbsp; 📞 '+d.ph+'</div>'+
-    '<div style="display:flex;gap:6px"><button class="btn bg" style="font-size:.75rem;padding:6px 12px" onclick="alert('Calling: '+d.ph+'')">📞 Call</button>'+(d.vid?'<button class="btn bo" style="font-size:.75rem;padding:6px 12px">📹 Video</button>':'')+'</div>'+
+    '<div style="display:flex;gap:6px"><a class="btn bg" style="font-size:.75rem;padding:6px 12px;text-decoration:none" href="tel:'+d.ph.replace(/\s/g,'')+'">📞 Call</a>'+(d.vid?'<button class="btn bo video-info" data-doctor="'+d.n+'" style="font-size:.75rem;padding:6px 12px">📹 Video info</button>':'')+'</div>'+
     '</div>'
   ).join('') || '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">No doctors found. Try adjusting filters.</div>';
+  document.querySelectorAll('.video-info').forEach(button=>button.addEventListener('click',()=>{
+    alert('Contact '+button.dataset.doctor+' by phone to ask for the current video consultation link and availability.');
+  }));
 }
 filter();
 </script><script src="../chatbot.js" defer></script>
