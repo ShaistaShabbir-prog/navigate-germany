@@ -35,6 +35,12 @@ for (const relative of htmlFiles) {
   }
 }
 
+const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const staticStateCards = [...homepage.matchAll(/data-state="[A-Z]{2}"/g)];
+if (staticStateCards.length !== 16) {
+  failures.push(`index.html: expected 16 static state cards, found ${staticStateCards.length}`);
+}
+
 for (const script of ["chatbot.js", "home.js", "legal.js"]) {
   try {
     new vm.Script(fs.readFileSync(path.join(root, script), "utf8"), { filename: script });
