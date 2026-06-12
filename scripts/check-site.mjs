@@ -35,7 +35,7 @@ for (const relative of htmlFiles) {
   }
 }
 
-for (const script of ["chatbot.js", "legal.js"]) {
+for (const script of ["chatbot.js", "home.js", "legal.js"]) {
   try {
     new vm.Script(fs.readFileSync(path.join(root, script), "utf8"), { filename: script });
   } catch (error) {
