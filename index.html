@@ -56,7 +56,7 @@
 
   <aside class="emergency-strip" aria-label="Emergency telephone numbers">
     <div class="emergency-inner">
-      <strong>Emergency help</strong>
+      <strong><img src="./assets/icons/emergency.png" alt="" width="24" height="24"> Emergency help</strong>
       <a href="tel:112"><span>✚</span><b>112</b> Ambulance &amp; Fire</a>
       <a href="tel:110"><span>✦</span><b>110</b> Police</a>
       <a href="tel:116117"><span>✚</span><b>116117</b> Doctor on Call</a>
@@ -70,7 +70,7 @@
         <div class="hero-copy">
           <div class="eyebrow"><span></span> Official sources. Clear next steps.</div>
           <h1 id="hero-title">Navigate Germany <em>with Confidence</em></h1>
-          <p id="hero-subtitle">Your official-link based multilingual guide for immigrants, students, families, and new arrivals.</p>
+          <p id="hero-subtitle">Germany explained step-by-step in your language — with official links, emergency support, and state-wise guidance.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#states">Start by State <span>→</span></a>
             <a class="button button-secondary" href="modules/emergency.html"><span aria-hidden="true">♟</span> Emergency Help</a>
@@ -83,8 +83,8 @@
           </form>
           <div class="search-results" id="search-results" aria-live="polite"></div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <img src="assets/hero-germany.svg" alt="">
+        <div class="hero-visual">
+          <img src="./assets/images/backgrounds/germany-hero.jpg" alt="Neuschwanstein Castle in the Bavarian Alps" width="130" height="95">
           <div class="hero-trust-card">
             <span class="trust-icon">✓</span>
             <div><strong>Trusted guidance</strong><small>Links to official German sources</small></div>
@@ -99,7 +99,7 @@
         <div class="stat"><span class="stat-icon globe">◎</span><div><strong>10+</strong><small>Languages</small></div></div>
         <div class="stat"><span class="stat-icon layers">◆</span><div><strong>12+</strong><small>Life Modules</small></div></div>
         <div class="stat"><span class="stat-icon link">⌁</span><div><strong>400+</strong><small>Official Links</small></div></div>
-        <div class="stat"><span class="stat-icon shield">✓</span><div><strong>100%</strong><small>Trusted Sources</small></div></div>
+        <div class="stat"><span class="stat-icon shield">✓</span><div><strong>24/7</strong><small>Emergency Ready</small></div></div>
       </div>
     </section>
 
@@ -110,11 +110,11 @@
         <p>Choose your situation and go directly to the most useful guide.</p>
       </div>
       <div class="journey-grid">
-        <a class="journey-card" href="modules/bureaucracy.html"><span class="journey-icon blue">👋</span><strong>I am new in Germany</strong><small>First-week checklist</small></a>
-        <a class="journey-card" href="modules/jobs.html"><span class="journey-icon green">🛂</span><strong>I need visa / residence help</strong><small>Permits and work routes</small></a>
-        <a class="journey-card" href="modules/housing.html"><span class="journey-icon orange">⌂</span><strong>I need housing help</strong><small>Renting and tenant rights</small></a>
-        <a class="journey-card" href="modules/legal.html"><span class="journey-icon red">⚖</span><strong>I need emergency / legal help</strong><small>Rights, letters and deadlines</small></a>
-        <a class="journey-card" href="modules/language.html"><span class="journey-icon purple">文</span><strong>I want to learn German</strong><small>Daily phrases and practice</small></a>
+        <a class="journey-card reveal" href="modules/bureaucracy.html"><span class="journey-icon blue">👋</span><strong>I am new in Germany</strong><small>First-week checklist</small></a>
+        <a class="journey-card reveal" href="modules/jobs.html"><span class="journey-icon green"><img src="./assets/icons/jobs.png" alt="" width="44" height="44"></span><strong>I need visa / residence help</strong><small>Permits and work routes</small></a>
+        <a class="journey-card reveal" href="modules/housing.html"><span class="journey-icon orange"><img src="./assets/icons/housing.png" alt="" width="44" height="44"></span><strong>I need housing help</strong><small>Renting and tenant rights</small></a>
+        <a class="journey-card reveal" href="modules/legal.html"><span class="journey-icon red"><img src="./assets/icons/legal.png" alt="" width="44" height="44"></span><strong>I need emergency / legal help</strong><small>Rights, letters and deadlines</small></a>
+        <a class="journey-card reveal" href="modules/language.html"><span class="journey-icon purple"><img src="./assets/icons/language.png" alt="" width="44" height="44"></span><strong>I want to learn German</strong><small>Daily phrases and practice</small></a>
       </div>
     </section>
 
@@ -149,52 +149,52 @@
         </div>
         <div class="states-grid" id="states-grid">
           <button class="state-card" type="button" data-state="BW" style="--state-bg:linear-gradient(145deg,#174d45,#5b926e 48%,#d09a4a)" aria-label="Open Baden-Württemberg state guide">
-            <span class="state-card-content" data-best="Students &amp; skilled jobs"><small>Black Forest &amp; Stuttgart</small><strong>Baden-Württemberg</strong><span class="state-city">Stuttgart · Karlsruhe · Freiburg</span><span class="state-description">Industry, universities, registration services, and international communities.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Students &amp; skilled jobs"><span class="state-media"><img src="./assets/images/states/baden-wuerttemberg.jpg" alt="Baden-Württemberg city and riverside scenery" loading="lazy"><small>Black Forest &amp; Stuttgart</small></span><strong>Baden-Württemberg</strong><span class="state-city">Stuttgart · Karlsruhe · Freiburg</span><span class="state-description">Industry, universities, registration services, and international communities.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="BY" style="--state-bg:linear-gradient(145deg,#315f91,#84b9d3 47%,#506f36)" aria-label="Open Bavaria state guide">
-            <span class="state-card-content" data-best="Jobs &amp; families"><small>Alps &amp; Neuschwanstein</small><strong>Bavaria</strong><span class="state-city">Munich · Nuremberg · Augsburg</span><span class="state-description">Visa, work, housing, and family services across Bavaria's major cities.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Jobs &amp; families"><span class="state-media"><img src="./assets/images/states/bavaria.jpg" alt="Neuschwanstein Castle and the Bavarian Alps" loading="lazy"><small>Alps &amp; Neuschwanstein</small></span><strong>Bavaria</strong><span class="state-city">Munich · Nuremberg · Augsburg</span><span class="state-description">Visa, work, housing, and family services across Bavaria's major cities.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="BE" style="--state-bg:linear-gradient(145deg,#d77748,#b4474c 48%,#35455f)" aria-label="Open Berlin state guide">
-            <span class="state-card-content" data-best="International newcomers"><small>TV Tower &amp; city life</small><strong>Berlin</strong><span class="state-city">Berlin</span><span class="state-description">Appointments, immigration, Anmeldung, housing, and multilingual support.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="International newcomers"><span class="state-media"><img src="./assets/images/states/berlin.jpg" alt="Berlin skyline with the TV Tower" loading="lazy"><small>TV Tower &amp; city life</small></span><strong>Berlin</strong><span class="state-city">Berlin</span><span class="state-description">Appointments, immigration, Anmeldung, housing, and multilingual support.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="BB" style="--state-bg:linear-gradient(145deg,#4f8ca6,#668b54 48%,#b9854e)" aria-label="Open Brandenburg state guide">
-            <span class="state-card-content" data-best="Families &amp; commuters"><small>Lakes &amp; palaces</small><strong>Brandenburg</strong><span class="state-city">Potsdam · Cottbus · Frankfurt (Oder)</span><span class="state-description">Local authorities, commuter towns, employment, and arrival services.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Families &amp; commuters"><span class="state-media"><img src="./assets/images/states/brandenburg.jpg" alt="Brandenburg Gate at sunset" loading="lazy"><small>Lakes &amp; palaces</small></span><strong>Brandenburg</strong><span class="state-city">Potsdam · Cottbus · Frankfurt (Oder)</span><span class="state-description">Local authorities, commuter towns, employment, and arrival services.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="HB" style="--state-bg:linear-gradient(145deg,#547a98,#a1664c 52%,#354353)" aria-label="Open Bremen state guide">
-            <span class="state-card-content" data-best="Students &amp; logistics jobs"><small>Historic market &amp; river</small><strong>Bremen</strong><span class="state-city">Bremen · Bremerhaven</span><span class="state-description">Compact city-state resources for registration, work, study, and family life.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Students &amp; logistics jobs"><span class="state-media"><img src="./assets/images/states/bremen.jpg" alt="Historic market square in Bremen" loading="lazy"><small>Historic market &amp; river</small></span><strong>Bremen</strong><span class="state-city">Bremen · Bremerhaven</span><span class="state-description">Compact city-state resources for registration, work, study, and family life.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="HH" style="--state-bg:linear-gradient(145deg,#3e708d,#78a8b6 45%,#995741)" aria-label="Open Hamburg state guide">
-            <span class="state-card-content" data-best="Global careers"><small>Harbor &amp; Elbphilharmonie</small><strong>Hamburg</strong><span class="state-city">Hamburg</span><span class="state-description">Migration office, city services, jobs, housing, and welcome resources.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Global careers"><span class="state-media"><img src="./assets/images/states/hamburg.jpg" alt="Hamburg harbor and Elbphilharmonie" loading="lazy"><small>Harbor &amp; Elbphilharmonie</small></span><strong>Hamburg</strong><span class="state-city">Hamburg</span><span class="state-description">Migration office, city services, jobs, housing, and welcome resources.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="HE" style="--state-bg:linear-gradient(145deg,#477da7,#344f68 48%,#b98a45)" aria-label="Open Hessen state guide">
-            <span class="state-card-content" data-best="Finance &amp; skilled jobs"><small>Frankfurt skyline</small><strong>Hessen</strong><span class="state-city">Wiesbaden · Frankfurt · Darmstadt</span><span class="state-description">Finance-sector jobs, integration services, universities, and local portals.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Finance &amp; skilled jobs"><span class="state-media"><img src="./assets/images/states/hessen.jpg" alt="Frankfurt skyline in Hessen" loading="lazy"><small>Frankfurt skyline</small></span><strong>Hessen</strong><span class="state-city">Wiesbaden · Frankfurt · Darmstadt</span><span class="state-description">Finance-sector jobs, integration services, universities, and local portals.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="MV" style="--state-bg:linear-gradient(145deg,#2685a5,#65afb2 52%,#b5a650)" aria-label="Open Mecklenburg-Vorpommern state guide">
-            <span class="state-card-content" data-best="Affordable coastal living"><small>Baltic coast &amp; lakes</small><strong>Mecklenburg-Vorpommern</strong><span class="state-city">Schwerin · Rostock · Greifswald</span><span class="state-description">Regional services, coastal cities, study options, and employment support.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Affordable coastal living"><span class="state-media"><img src="./assets/images/states/mecklenburg-vorpommern.jpg" alt="Baltic coast in Mecklenburg-Vorpommern" loading="lazy"><small>Baltic coast &amp; lakes</small></span><strong>Mecklenburg-Vorpommern</strong><span class="state-city">Schwerin · Rostock · Greifswald</span><span class="state-description">Regional services, coastal cities, study options, and employment support.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="NI" style="--state-bg:linear-gradient(145deg,#456d91,#6f8e54 48%,#b77c4e)" aria-label="Open Lower Saxony state guide">
-            <span class="state-card-content" data-best="Families &amp; industry"><small>Heathland &amp; Hannover</small><strong>Lower Saxony</strong><span class="state-city">Hannover · Braunschweig · Göttingen</span><span class="state-description">City portals, skilled work, family services, and registration information.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Families &amp; industry"><span class="state-media"><img src="./assets/images/states/lower-saxony.jpg" alt="Historic architecture in Lower Saxony" loading="lazy"><small>Heathland &amp; Hannover</small></span><strong>Lower Saxony</strong><span class="state-city">Hannover · Braunschweig · Göttingen</span><span class="state-description">City portals, skilled work, family services, and registration information.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="NW" style="--state-bg:linear-gradient(145deg,#3f6079,#354958 45%,#9f6742)" aria-label="Open North Rhine-Westphalia state guide">
-            <span class="state-card-content" data-best="Jobs &amp; diverse cities"><small>Cologne &amp; Rhine cities</small><strong>North Rhine-Westphalia</strong><span class="state-city">Düsseldorf · Cologne · Dortmund</span><span class="state-description">Germany's largest urban region with extensive work and city services.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Jobs &amp; diverse cities"><span class="state-media"><img src="./assets/images/states/north-rhine-westphalia.jpg" alt="Cologne Cathedral and Rhine bridge in North Rhine-Westphalia" loading="lazy"><small>Cologne &amp; Rhine cities</small></span><strong>North Rhine-Westphalia</strong><span class="state-city">Düsseldorf · Cologne · Dortmund</span><span class="state-description">Germany's largest urban region with extensive work and city services.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="RP" style="--state-bg:linear-gradient(145deg,#426d88,#607d3b 50%,#b28040)" aria-label="Open Rhineland-Palatinate state guide">
-            <span class="state-card-content" data-best="Families &amp; students"><small>Rhine valley &amp; vineyards</small><strong>Rhineland-Palatinate</strong><span class="state-city">Mainz · Koblenz · Trier</span><span class="state-description">Residence services, family support, universities, and regional authorities.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Families &amp; students"><span class="state-media"><img src="./assets/images/states/rhineland-palatinate.jpg" alt="Rhine valley in Rhineland-Palatinate" loading="lazy"><small>Rhine valley &amp; vineyards</small></span><strong>Rhineland-Palatinate</strong><span class="state-city">Mainz · Koblenz · Trier</span><span class="state-description">Residence services, family support, universities, and regional authorities.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="SL" style="--state-bg:linear-gradient(145deg,#316d65,#5e824e 52%,#a97942)" aria-label="Open Saarland state guide">
-            <span class="state-card-content" data-best="Cross-border workers"><small>Forests &amp; Saar loop</small><strong>Saarland</strong><span class="state-city">Saarbrücken · Homburg · Saarlouis</span><span class="state-description">Cross-border life, citizen services, jobs, and compact local support.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Cross-border workers"><span class="state-media"><img src="./assets/images/states/saarland.jpg" alt="Saarbrücken riverside in Saarland" loading="lazy"><small>Forests &amp; Saar loop</small></span><strong>Saarland</strong><span class="state-city">Saarbrücken · Homburg · Saarlouis</span><span class="state-description">Cross-border life, citizen services, jobs, and compact local support.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="SN" style="--state-bg:linear-gradient(145deg,#466f99,#8296a5 45%,#9f6746)" aria-label="Open Saxony state guide">
-            <span class="state-card-content" data-best="Students &amp; technology"><small>Dresden &amp; Leipzig</small><strong>Saxony</strong><span class="state-city">Dresden · Leipzig · Chemnitz</span><span class="state-description">Study, technology jobs, registration, housing, and integration resources.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Students &amp; technology"><span class="state-media"><img src="./assets/images/states/saxony.jpg" alt="Historic Dresden cityscape in Saxony" loading="lazy"><small>Dresden &amp; Leipzig</small></span><strong>Saxony</strong><span class="state-city">Dresden · Leipzig · Chemnitz</span><span class="state-description">Study, technology jobs, registration, housing, and integration resources.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="ST" style="--state-bg:linear-gradient(145deg,#5b7185,#858747 50%,#aa6849)" aria-label="Open Saxony-Anhalt state guide">
-            <span class="state-card-content" data-best="Affordable student life"><small>Cathedrals &amp; countryside</small><strong>Saxony-Anhalt</strong><span class="state-city">Magdeburg · Halle · Dessau</span><span class="state-description">Affordable cities, university life, employment, and administration portals.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Affordable student life"><span class="state-media"><img src="./assets/images/states/saxony-anhalt.jpg" alt="Magdeburg cathedral and river in Saxony-Anhalt" loading="lazy"><small>Cathedrals &amp; countryside</small></span><strong>Saxony-Anhalt</strong><span class="state-city">Magdeburg · Halle · Dessau</span><span class="state-description">Affordable cities, university life, employment, and administration portals.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="SH" style="--state-bg:linear-gradient(145deg,#167797,#57a8b6 50%,#b0a04e)" aria-label="Open Schleswig-Holstein state guide">
-            <span class="state-card-content" data-best="Families &amp; coastal life"><small>North Sea &amp; Baltic coast</small><strong>Schleswig-Holstein</strong><span class="state-city">Kiel · Lübeck · Flensburg</span><span class="state-description">Coastal city services, family support, work, and residence information.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Families &amp; coastal life"><span class="state-media"><img src="./assets/images/states/schleswig-holstein.jpg" alt="Harbor town in Schleswig-Holstein" loading="lazy"><small>North Sea &amp; Baltic coast</small></span><strong>Schleswig-Holstein</strong><span class="state-city">Kiel · Lübeck · Flensburg</span><span class="state-description">Coastal city services, family support, work, and residence information.</span><span class="state-cta">Open state guide →</span></span>
           </button>
           <button class="state-card" type="button" data-state="TH" style="--state-bg:linear-gradient(145deg,#2d674e,#628a57 52%,#9d6745)" aria-label="Open Thuringia state guide">
-            <span class="state-card-content" data-best="Research &amp; affordable cities"><small>Forest &amp; historic towns</small><strong>Thuringia</strong><span class="state-city">Erfurt · Jena · Weimar</span><span class="state-description">Research, skilled jobs, city services, and newcomer information.</span><span class="state-cta">Open state guide →</span></span>
+            <span class="state-card-content" data-best="Research &amp; affordable cities"><span class="state-media"><img src="./assets/images/states/thuringia.jpg" alt="Historic Erfurt cityscape in Thuringia" loading="lazy"><small>Forest &amp; historic towns</small></span><strong>Thuringia</strong><span class="state-city">Erfurt · Jena · Weimar</span><span class="state-description">Research, skilled jobs, city services, and newcomer information.</span><span class="state-cta">Open state guide →</span></span>
           </button>
         </div>
         <article class="state-detail" id="state-detail" aria-live="polite" hidden></article>

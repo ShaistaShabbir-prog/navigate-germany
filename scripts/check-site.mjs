@@ -33,6 +33,14 @@ for (const relative of htmlFiles) {
     const target = path.resolve(path.dirname(absolute), clean);
     if (!fs.existsSync(target)) failures.push(`${relative}: missing local link ${href}`);
   }
+
+  const sources = [...html.matchAll(/src="([^"]+)"/g)].map((match) => match[1]);
+  for (const source of sources) {
+    if (/^(https?:|data:|\$\{)/.test(source)) continue;
+    const clean = source.split("?")[0];
+    const target = path.resolve(path.dirname(absolute), clean);
+    if (!fs.existsSync(target)) failures.push(`${relative}: missing local image/script ${source}`);
+  }
 }
 
 const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -43,6 +51,10 @@ if (staticStateCards.length !== 16) {
 const stateAudienceTags = [...homepage.matchAll(/data-best="[^"]+"/g)];
 if (stateAudienceTags.length !== 16) {
   failures.push(`index.html: expected 16 state audience tags, found ${stateAudienceTags.length}`);
+}
+const staticStateImages = [...homepage.matchAll(/assets\/images\/states\/[^"]+\.jpg/g)];
+if (staticStateImages.length !== 16) {
+  failures.push(`index.html: expected 16 static state images, found ${staticStateImages.length}`);
 }
 
 for (const script of ["chatbot.js", "home.js", "legal.js"]) {
