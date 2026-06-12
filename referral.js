@@ -1,298 +1,325 @@
 
-// ═══════════════════════════════════════════════════════════════
-//  Navigate Germany — Referral Banner Widget
-//  Shows rotating partner cards at bottom of every page
-// ═══════════════════════════════════════════════════════════════
-(function() {
+// Navigate Germany — Trusted Recommendations Widget
+// "A friend who lives in Germany" recommendation style
+(function () {
 
-const PARTNERS = [
-  {
-    id: "commerzbank",
-    logo: "🏦",
-    name: "Commerzbank",
-    headline: "Open a German bank account — get €50 starting credit",
-    desc: "Germany's most popular bank for newcomers. Free account with salary deposit. Branches in every city. Use promo code at signup.",
-    badge: "€50 Bonus",
-    badgeColor: "#16a34a",
-    code: "PNGHRA",
-    cta: "Open account →",
-    url: "https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA",
-    note: "Use code PNGHRA at checkout · Free · Takes 10 min online",
-    color: "#FFD700",
-    bg: "linear-gradient(135deg,#0a2342,#0d3060)",
-  },
-  {
-    id: "advanzia",
-    logo: "💳",
-    name: "Advanzia Mastercard Gold",
-    headline: "Free credit card — no annual fee, worldwide travel insurance",
-    desc: "Germany's most popular free credit card. No annual fee ever. Accepted worldwide. Free travel insurance included. Perfect for newcomers.",
-    badge: "100% Free",
-    badgeColor: "#dc2626",
-    code: null,
-    cta: "Get free card →",
-    url: "https://refer.gebuhrenfrei.com/shaistas-45",
-    note: "No annual fee · No hidden costs · Instant online application",
-    color: "#FFD700",
-    bg: "linear-gradient(135deg,#1a0a0a,#3d0000)",
-  },
-  {
-    id: "wise",
-    logo: "💸",
-    name: "Wise (TransferWise)",
-    headline: "Send money home — real exchange rate, lowest fees",
-    desc: "The cheapest way to send money to Pakistan, India, Bangladesh and 80+ countries. Up to 8× cheaper than your bank. Millions of immigrants use it.",
-    badge: "Save up to 8×",
-    badgeColor: "#0d9488",
-    code: null,
-    cta: "Send money cheaper →",
-    url: "https://wise.com/invite/shaistashabbir",
-    note: "Real mid-market rate · No hidden markup · Used by 16M+ people",
-    color: "#00B9FF",
-    bg: "linear-gradient(135deg,#00192b,#003352)",
-  },
-];
+  const PARTNERS = [
+    {
+      id: "commerzbank",
+      context: "bank",        // shown on banking, bureaucracy pages
+      category: "🏦 Bank Account",
+      title: "We use Commerzbank — and we think you should too",
+      personal: "Opening a German bank account was one of the most stressful parts of arriving in Germany. After trying three options, our team settled on Commerzbank. Branches everywhere, real English support on the phone, and the account is free as long as you deposit your salary. We negotiated a €50 starting credit for our users — use the code below.",
+      checklist: [
+        "Free account — no monthly fees with salary",
+        "Branches in every German city (important for newcomers)",
+        "Accepted for Meldebescheinigung processes",
+        "€50 starting credit with our promo code",
+      ],
+      safe: "Commerzbank is one of Germany's two largest banks. Regulated by BaFin. Your money is protected up to €100,000 by the Einlagensicherungsfonds.",
+      code: "PNGHRA",
+      codeLabel: "Your promo code",
+      cta: "Open account with €50 bonus",
+      url: "https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA",
+      accent: "#FFD700",
+      bg: "#0a1628",
+      border: "rgba(255,215,0,.2)",
+      note: "Takes 10 min online · Meldebescheinigung required · Schufa check",
+    },
+    {
+      id: "advanzia",
+      context: "bank",
+      category: "💳 Credit Card",
+      title: "The only credit card we recommend for newcomers in Germany",
+      personal: "Most German credit cards have hidden fees. Advanzia Mastercard Gold is genuinely, permanently free — no annual fee, ever. We've been using it for years. The free worldwide travel insurance alone is worth more than most paid cards. It also helps build your Schufa score from day one.",
+      checklist: [
+        "Zero annual fee — no hidden costs, ever",
+        "Free worldwide travel insurance (flights, hotels, luggage)",
+        "Accepted everywhere Mastercard works",
+        "Builds your German Schufa credit history",
+        "Instant online application — approved in minutes",
+      ],
+      safe: "Advanzia Bank is a Luxembourg-based bank licensed by the CSSF. Cards issued under Mastercard's global fraud protection. Your application is handled securely online.",
+      code: null,
+      codeLabel: null,
+      cta: "Get your free card →",
+      url: "https://refer.gebuhrenfrei.com/shaistas-45",
+      accent: "#f87171",
+      bg: "#1a0505",
+      border: "rgba(248,113,113,.2)",
+      note: "No annual fee · No catch · Click our link to apply securely",
+    },
+    {
+      id: "wise",
+      context: "transfer",
+      category: "💸 Money Transfer",
+      title: "How we send money home — Wise saves us hundreds per year",
+      personal: "When we first arrived in Germany, we sent money home through our German bank and lost €30–40 every time in hidden exchange rate fees. A colleague showed us Wise. The difference was immediate — same amount sent, 5–8× less in fees, money arrived the same day. We've recommended it to every immigrant we know since then.",
+      checklist: [
+        "Real mid-market exchange rate — no hidden markup",
+        "Send to Pakistan (PKR), India (INR), Bangladesh (BDT) and 80+ countries",
+        "Transfers arrive same day or next day",
+        "Transparent fee shown upfront — no surprises",
+        "Multi-currency account — hold money in 50+ currencies",
+      ],
+      safe: "Wise is regulated by the FCA (UK), FinCEN (USA), and financial authorities in 50+ countries. Used by 16 million customers worldwide. Your money is held in reputable banks, segregated from company funds.",
+      code: null,
+      codeLabel: null,
+      cta: "Send your first transfer →",
+      url: "https://wise.com/invite/shaistashabbir",
+      accent: "#34d399",
+      bg: "#00192b",
+      border: "rgba(52,211,153,.2)",
+      note: "First transfer fee-free with our link · Compare at wise.com before sending",
+    },
+  ];
 
-// ── Inject CSS ──────────────────────────────────────────────────
-const style = document.createElement("style");
-style.textContent = `
-  .ref-bar {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000;
-    padding: 0 12px 12px;
-    pointer-events: none;
-  }
-  .ref-card {
-    max-width: 480px;
-    margin: 0 auto;
-    border-radius: 16px;
-    padding: 14px 16px;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    pointer-events: all;
-    box-shadow: 0 8px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06);
-    animation: refSlide .35s cubic-bezier(.34,1.56,.64,1);
-    cursor: default;
-    position: relative;
-  }
-  @keyframes refSlide {
-    from { opacity:0; transform:translateY(20px) scale(.97); }
-    to   { opacity:1; transform:translateY(0) scale(1); }
-  }
-  .ref-logo {
-    font-size: 2rem;
-    flex-shrink: 0;
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    background: rgba(255,255,255,.1);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .ref-body { flex: 1; min-width: 0; }
-  .ref-top { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; flex-wrap: wrap; }
-  .ref-name { font-weight: 800; font-size: .82rem; color: #fff; }
-  .ref-badge {
-    font-size: .65rem; font-weight: 800;
-    padding: 2px 8px; border-radius: 20px;
-    color: #fff;
-  }
-  .ref-headline { font-size: .8rem; font-weight: 700; color: #fff; margin-bottom: 2px; line-height: 1.3; }
-  .ref-note { font-size: .68rem; color: rgba(255,255,255,.5); line-height: 1.4; }
-  .ref-code-pill {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
-    border-radius: 6px; padding: 2px 8px;
-    font-size: .7rem; font-weight: 800; color: #FFD700;
-    cursor: pointer; margin-top: 3px;
-    transition: background .15s;
-  }
-  .ref-code-pill:hover { background: rgba(255,255,255,.18); }
-  .ref-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
-  .ref-cta {
-    display: inline-block;
-    padding: 9px 14px;
-    border-radius: 10px;
-    background: #FFCC02;
-    color: #0B1D3A;
-    font-weight: 800;
-    font-size: .75rem;
-    text-decoration: none;
-    white-space: nowrap;
-    text-align: center;
-    transition: transform .15s, box-shadow .15s;
-    box-shadow: 0 2px 12px rgba(255,204,2,.3);
-  }
-  .ref-cta:hover { transform: scale(1.04); box-shadow: 0 4px 20px rgba(255,204,2,.5); }
-  .ref-close {
-    position: absolute; top: 10px; right: 12px;
-    background: none; border: none; color: rgba(255,255,255,.35);
-    font-size: .9rem; cursor: pointer; padding: 2px;
-    line-height: 1; transition: color .15s;
-  }
-  .ref-close:hover { color: rgba(255,255,255,.8); }
-  .ref-dots {
-    display: flex; justify-content: center; gap: 5px;
-    margin-top: 6px;
-  }
-  .ref-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,.25);
-    cursor: pointer; transition: all .2s;
-    border: none; padding: 0;
-  }
-  .ref-dot.active { background: #FFCC02; width: 18px; border-radius: 3px; }
-  .ref-prev-next {
-    display: flex; gap: 5px; align-items: center; justify-content: center; margin-top: 4px;
-  }
-  .ref-nav-btn {
-    background: rgba(255,255,255,.08); border: none; border-radius: 6px;
-    color: rgba(255,255,255,.5); font-size: .7rem; cursor: pointer;
-    padding: 3px 8px; transition: all .15s;
-  }
-  .ref-nav-btn:hover { background: rgba(255,255,255,.15); color: #fff; }
-  .ref-dismiss-all {
-    display: block; text-align: center;
-    font-size: .65rem; color: rgba(255,255,255,.25);
-    cursor: pointer; margin-top: 3px;
-    background: none; border: none; width: 100%;
-    transition: color .15s;
-  }
-  .ref-dismiss-all:hover { color: rgba(255,255,255,.5); }
-  @media (max-width: 520px) {
-    .ref-card { padding: 12px 14px 14px; gap: 10px; }
-    .ref-headline { font-size: .75rem; }
-    .ref-cta { padding: 8px 11px; font-size: .72rem; }
-  }
-`;
-document.head.appendChild(style);
+  // ── CSS ────────────────────────────────────────────────────────
+  const css = document.createElement("style");
+  css.textContent = `
+    .ng-rec-wrap {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 8000; pointer-events: none;
+      padding: 0 0 16px;
+    }
+    .ng-rec {
+      max-width: 520px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      pointer-events: all;
+      box-shadow: 0 16px 48px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
+      animation: ngRecIn .35s cubic-bezier(.34,1.56,.64,1);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    @keyframes ngRecIn {
+      from { opacity:0; transform:translateY(24px) scale(.96); }
+      to   { opacity:1; transform:translateY(0) scale(1); }
+    }
 
-// ── State ──────────────────────────────────────────────────────
-const DISMISSED_KEY = "ng_ref_dismissed";
-const SEEN_KEY = "ng_ref_seen";
+    /* Top bar — "personal recommendation" */
+    .ng-rec-topbar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 16px;
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: .68rem; color: rgba(255,255,255,.45);
+      letter-spacing: .03em;
+    }
+    .ng-rec-avatar {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, #FFCC02, #f59e0b);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 900; color: #000;
+      flex-shrink: 0;
+    }
+    .ng-rec-verified {
+      margin-left: auto; display: flex; align-items: center; gap: 4px;
+      color: rgba(255,255,255,.35); font-size: .62rem;
+    }
+    .ng-rec-verified-dot { width:5px;height:5px;border-radius:50%;background:#22c55e;flex-shrink:0; }
 
-function isDismissed() {
-  try { return localStorage.getItem(DISMISSED_KEY) === "1"; } catch { return false; }
-}
-function markDismissed() {
-  try { localStorage.setItem(DISMISSED_KEY, "1"); } catch {}
-}
-function getLastSeen() {
-  try { return parseInt(localStorage.getItem(SEEN_KEY) || "0"); } catch { return 0; }
-}
-function saveLastSeen(i) {
-  try { localStorage.setItem(SEEN_KEY, String(i)); } catch {}
-}
+    /* Body */
+    .ng-rec-body { padding: 16px 18px; }
+    .ng-rec-cat { font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.5;margin-bottom:5px; }
+    .ng-rec-title { font-size:.9rem;font-weight:800;color:#fff;line-height:1.3;margin-bottom:10px; }
+    .ng-rec-personal {
+      font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.7;
+      padding:10px 12px;border-radius:10px;
+      background:rgba(255,255,255,.04);border-left:2px solid;
+      margin-bottom:10px;
+      font-style:italic;
+    }
+    .ng-rec-checks { display:flex;flex-direction:column;gap:4px;margin-bottom:10px; }
+    .ng-rec-check { display:flex;align-items:flex-start;gap:7px;font-size:.76rem;color:rgba(255,255,255,.75);line-height:1.4; }
+    .ng-rec-checkmark { flex-shrink:0;font-size:.65rem;margin-top:2px; }
 
-if (isDismissed()) return;
+    /* Safety note */
+    .ng-rec-safe {
+      display:flex;align-items:flex-start;gap:6px;
+      padding:8px 10px;border-radius:8px;
+      background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);
+      font-size:.68rem;color:rgba(255,255,255,.45);line-height:1.5;
+      margin-bottom:12px;
+    }
+    .ng-rec-safe-icon { flex-shrink:0;font-size:.75rem;margin-top:1px; }
 
-let currentIdx = getLastSeen() % PARTNERS.length;
-let bar, card, rotateTimer;
+    /* Code pill */
+    .ng-rec-code-row { display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap; }
+    .ng-rec-code-label { font-size:.65rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em; }
+    .ng-rec-code-pill {
+      display:inline-flex;align-items:center;gap:5px;
+      background:rgba(255,204,2,.1);border:1px solid rgba(255,204,2,.3);
+      border-radius:7px;padding:5px 11px;
+      font-size:.8rem;font-weight:900;color:#FFCC02;
+      cursor:pointer;transition:all .15s;letter-spacing:.08em;
+    }
+    .ng-rec-code-pill:hover { background:rgba(255,204,2,.18); }
 
-// ── Build bar ──────────────────────────────────────────────────
-function buildBar() {
-  bar = document.createElement("div");
-  bar.className = "ref-bar";
-  bar.id = "ref-bar";
-  document.body.appendChild(bar);
-  renderCard();
+    /* CTA row */
+    .ng-rec-cta-row { display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
+    .ng-rec-cta {
+      flex:1;min-width:0;text-align:center;
+      display:block;padding:11px 18px;border-radius:12px;
+      font-weight:800;font-size:.82rem;text-decoration:none;
+      transition:transform .15s, box-shadow .15s;
+    }
+    .ng-rec-cta:hover { transform:scale(1.03); }
+    .ng-rec-footnote { font-size:.62rem;color:rgba(255,255,255,.25);line-height:1.4; }
 
-  // Auto-rotate every 12 seconds
-  rotateTimer = setInterval(() => {
-    currentIdx = (currentIdx + 1) % PARTNERS.length;
-    saveLastSeen(currentIdx);
-    renderCard();
-  }, 12000);
-}
+    /* Navigation */
+    .ng-rec-nav {
+      display:flex;align-items:center;justify-content:space-between;
+      padding:8px 14px 10px;
+      border-top:1px solid rgba(255,255,255,.05);
+      background:rgba(0,0,0,.2);
+    }
+    .ng-rec-dots { display:flex;gap:5px;align-items:center; }
+    .ng-rec-dot {
+      width:6px;height:6px;border-radius:3px;
+      background:rgba(255,255,255,.2);border:none;cursor:pointer;
+      padding:0;transition:all .2s;
+    }
+    .ng-rec-dot.on { width:16px;background:#FFCC02; }
+    .ng-rec-navbtn {
+      background:rgba(255,255,255,.06);border:none;border-radius:7px;
+      color:rgba(255,255,255,.4);font-size:.75rem;cursor:pointer;
+      padding:4px 10px;transition:all .15s;
+    }
+    .ng-rec-navbtn:hover { background:rgba(255,255,255,.12);color:#fff; }
+    .ng-rec-close {
+      background:none;border:none;color:rgba(255,255,255,.25);
+      font-size:.75rem;cursor:pointer;padding:2px 4px;
+      transition:color .15s;letter-spacing:.02em;
+    }
+    .ng-rec-close:hover { color:rgba(255,255,255,.6); }
 
-function copyCode(code, el) {
-  navigator.clipboard?.writeText(code).then(() => {
-    el.textContent = "✓ Copied!";
-    setTimeout(() => { el.textContent = `📋 ${code}`; }, 1500);
-  }).catch(() => {
-    el.textContent = `📋 ${code}`;
-  });
-}
-
-function renderCard() {
-  const p = PARTNERS[currentIdx];
-  bar.innerHTML = "";
-
-  const card = document.createElement("div");
-  card.className = "ref-card";
-  card.style.background = p.bg;
-
-  card.innerHTML = `
-    <button class="ref-close" aria-label="Close">✕</button>
-    <div class="ref-logo">${p.logo}</div>
-    <div class="ref-body">
-      <div class="ref-top">
-        <span class="ref-name">${p.name}</span>
-        <span class="ref-badge" style="background:${p.badgeColor}">${p.badge}</span>
-      </div>
-      <div class="ref-headline">${p.headline}</div>
-      ${p.code ? `<div class="ref-code-pill" onclick="navigator.clipboard?.writeText('${p.code}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='📋 Code: ${p.code}'},1500)})">📋 Code: ${p.code}</div>` : ""}
-      <div class="ref-note">${p.note}</div>
-    </div>
-    <div class="ref-actions">
-      <a class="ref-cta" href="${p.url}" target="_blank" rel="noopener sponsored">
-        ${p.cta}
-      </a>
-    </div>
+    @media(max-width:560px){
+      .ng-rec-wrap { padding:0 0 8px; }
+      .ng-rec { border-radius:16px 16px 0 0; max-width:100%; }
+      .ng-rec-body { padding:14px 15px; }
+      .ng-rec-personal { display:none; }
+    }
   `;
+  document.head.appendChild(css);
 
-  // Navigation dots
-  const dotsRow = document.createElement("div");
-  dotsRow.className = "ref-prev-next";
+  // ── State ──────────────────────────────────────────────────────
+  const SK = "ng_rec_idx", DK = "ng_rec_gone";
+  const gone = () => { try { return localStorage.getItem(DK)==="1"; } catch { return false; } };
+  const setGone = () => { try { localStorage.setItem(DK,"1"); } catch {} };
+  const getIdx = () => { try { return parseInt(localStorage.getItem(SK)||"0"); } catch { return 0; } };
+  const saveIdx = i => { try { localStorage.setItem(SK, String(i)); } catch {} };
 
-  const prev = document.createElement("button");
-  prev.className = "ref-nav-btn";
-  prev.textContent = "‹";
-  prev.onclick = () => { currentIdx = (currentIdx - 1 + PARTNERS.length) % PARTNERS.length; saveLastSeen(currentIdx); renderCard(); resetTimer(); };
+  if (gone()) return;
 
-  const dots = document.createElement("div");
-  dots.className = "ref-dots";
-  PARTNERS.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.className = "ref-dot" + (i === currentIdx ? " active" : "");
-    dot.onclick = () => { currentIdx = i; saveLastSeen(i); renderCard(); resetTimer(); };
-    dots.appendChild(dot);
-  });
+  let idx = getIdx() % PARTNERS.length;
+  let wrap, timer;
 
-  const next = document.createElement("button");
-  next.className = "ref-nav-btn";
-  next.textContent = "›";
-  next.onclick = () => { currentIdx = (currentIdx + 1) % PARTNERS.length; saveLastSeen(currentIdx); renderCard(); resetTimer(); };
+  function build() {
+    wrap = document.createElement("div");
+    wrap.className = "ng-rec-wrap";
+    document.body.appendChild(wrap);
+    render();
+    timer = setInterval(() => { idx = (idx+1) % PARTNERS.length; saveIdx(idx); render(); }, 15000);
+  }
 
-  const dismiss = document.createElement("button");
-  dismiss.className = "ref-dismiss-all";
-  dismiss.textContent = "Don't show again";
-  dismiss.onclick = () => { clearInterval(rotateTimer); bar.remove(); markDismissed(); };
+  function render() {
+    const p = PARTNERS[idx];
+    wrap.innerHTML = "";
 
-  dotsRow.append(prev, dots, next);
+    const box = document.createElement("div");
+    box.className = "ng-rec";
+    box.style.background = p.bg;
+    box.style.border = `1px solid ${p.border}`;
 
-  const wrapper = document.createElement("div");
-  wrapper.style.cssText = "padding:0 4px 4px;";
-  wrapper.append(card, dotsRow, dismiss);
-  bar.appendChild(wrapper);
+    // Top bar
+    const top = `<div class="ng-rec-topbar">
+      <div class="ng-rec-avatar">S</div>
+      <span>Personal recommendation from our Germany guide team</span>
+      <div class="ng-rec-verified">
+        <span class="ng-rec-verified-dot"></span>
+        Verified by team
+      </div>
+    </div>`;
 
-  // Close button
-  card.querySelector(".ref-close").onclick = () => {
-    clearInterval(rotateTimer);
-    bar.remove();
-    // Show again next page visit
-    try { localStorage.removeItem(DISMISSED_KEY); } catch {}
-  };
-}
+    // Checklist
+    const checks = p.checklist.map(c =>
+      `<div class="ng-rec-check">
+        <span class="ng-rec-checkmark" style="color:${p.accent}">✓</span>
+        <span>${c}</span>
+      </div>`
+    ).join("");
 
-function resetTimer() {
-  clearInterval(rotateTimer);
-  rotateTimer = setInterval(() => {
-    currentIdx = (currentIdx + 1) % PARTNERS.length;
-    saveLastSeen(currentIdx);
-    renderCard();
-  }, 12000);
-}
+    // Code pill
+    const codePill = p.code ? `
+      <div class="ng-rec-code-row">
+        <span class="ng-rec-code-label">${p.codeLabel}</span>
+        <div class="ng-rec-code-pill" id="ng-cpill-${p.id}"
+          onclick="navigator.clipboard?.writeText('${p.code}').then(()=>{const el=document.getElementById('ng-cpill-${p.id}');el.innerHTML='✓ Copied!';setTimeout(()=>{el.innerHTML='📋 &nbsp;${p.code}'},1600)})">
+          📋 &nbsp;${p.code}
+        </div>
+      </div>` : "";
 
-// ── Show after 3 seconds ───────────────────────────────────────
-setTimeout(buildBar, 3000);
+    box.innerHTML = top + `
+      <div class="ng-rec-body">
+        <div class="ng-rec-cat">${p.category}</div>
+        <div class="ng-rec-title">${p.title}</div>
+        <div class="ng-rec-personal" style="border-color:${p.accent}40">"${p.personal}"</div>
+        <div class="ng-rec-checks">${checks}</div>
+        <div class="ng-rec-safe">
+          <span class="ng-rec-safe-icon">🔒</span>
+          <span>${p.safe}</span>
+        </div>
+        ${codePill}
+        <div class="ng-rec-cta-row">
+          <a class="ng-rec-cta" href="${p.url}" target="_blank" rel="noopener sponsored"
+            style="background:${p.accent};color:${p.id==='advanzia'?'#fff':'#0B1D3A'};box-shadow:0 3px 16px ${p.accent}40">
+            ${p.cta}
+          </a>
+        </div>
+        <div class="ng-rec-footnote" style="margin-top:7px">${p.note}</div>
+      </div>
+      <div class="ng-rec-nav">
+        <div style="display:flex;gap:6px;align-items:center">
+          <button class="ng-rec-navbtn" id="ng-prev">‹</button>
+          <div class="ng-rec-dots" id="ng-dots"></div>
+          <button class="ng-rec-navbtn" id="ng-next">›</button>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="ng-rec-close" id="ng-hide">Hide for now</button>
+          <button class="ng-rec-close" id="ng-gone">Don't show again</button>
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(box);
+
+    // Dots
+    const dotsEl = document.getElementById("ng-dots");
+    PARTNERS.forEach((_, i) => {
+      const d = document.createElement("button");
+      d.className = "ng-rec-dot" + (i===idx?" on":"");
+      d.onclick = () => { idx=i; saveIdx(i); render(); reset(); };
+      dotsEl.appendChild(d);
+    });
+
+    // Nav buttons
+    document.getElementById("ng-prev").onclick = () => { idx=(idx-1+PARTNERS.length)%PARTNERS.length; saveIdx(idx); render(); reset(); };
+    document.getElementById("ng-next").onclick = () => { idx=(idx+1)%PARTNERS.length; saveIdx(idx); render(); reset(); };
+
+    // Hide (this session)
+    document.getElementById("ng-hide").onclick = () => { clearInterval(timer); wrap.remove(); };
+
+    // Gone (permanent)
+    document.getElementById("ng-gone").onclick = () => { clearInterval(timer); wrap.remove(); setGone(); };
+  }
+
+  function reset() {
+    clearInterval(timer);
+    timer = setInterval(() => { idx=(idx+1)%PARTNERS.length; saveIdx(idx); render(); }, 15000);
+  }
+
+  // Show after 4 seconds — let user settle in first
+  setTimeout(build, 4000);
 
 })();
