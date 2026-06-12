@@ -42,90 +42,90 @@ const MODULES = [
 // Each state currently uses a named scenic gradient placeholder. Replace the
 // background value with a local image URL when licensed state photography is added.
 const STATES = [
-  state("BW", "Baden-Württemberg", "Stuttgart", "Black Forest & Stuttgart", "linear-gradient(145deg,#216e68,#7fbf8e 45%,#e4a95b)", [
+  state("BW", "Baden-Württemberg", "Stuttgart", "Black Forest & Stuttgart", "Industry, universities, registration services, and international communities.", "linear-gradient(145deg,#174d45,#5b926e 48%,#d09a4a)", [
     link("Official state portal", "https://www.baden-wuerttemberg.de"),
     link("Service-BW", "https://www.service-bw.de"),
     link("Stuttgart city portal", "https://www.stuttgart.de"),
   ]),
-  state("BY", "Bavaria", "Munich", "Alps & Neuschwanstein", "linear-gradient(145deg,#4f7fb8,#9ed2ee 45%,#637c40)", [
+  state("BY", "Bavaria", "Munich", "Alps & Neuschwanstein", "Visa, work, housing, and family services across Bavaria's major cities.", "linear-gradient(145deg,#315f91,#84b9d3 47%,#506f36)", [
     link("Official state portal", "https://www.bayern.de"),
     link("BayernPortal", "https://www.bayernportal.de"),
     link("Munich city portal", "https://www.muenchen.de"),
   ]),
-  state("BE", "Berlin", "Berlin", "TV Tower & city life", "linear-gradient(145deg,#f6a55f,#d56054 48%,#42536f)", [
+  state("BE", "Berlin", "Berlin", "TV Tower & city life", "Appointments, immigration, Anmeldung, housing, and multilingual support.", "linear-gradient(145deg,#d77748,#b4474c 48%,#35455f)", [
     link("Official Berlin portal", "https://www.berlin.de"),
     link("Service Berlin", "https://service.berlin.de"),
     link("Immigration portal", "https://www.berlin.de/einwanderung/"),
   ]),
-  state("BB", "Brandenburg", "Potsdam", "Lakes & palaces", "linear-gradient(145deg,#7eb4cc,#88a963 48%,#d3a46a)", [
+  state("BB", "Brandenburg", "Potsdam", "Lakes & palaces", "Local authorities, commuter towns, employment, and arrival services.", "linear-gradient(145deg,#4f8ca6,#668b54 48%,#b9854e)", [
     link("Official state portal", "https://www.brandenburg.de"),
     link("Potsdam city portal", "https://www.potsdam.de"),
     link("Employment Agency", "https://www.arbeitsagentur.de/"),
   ]),
-  state("HB", "Bremen", "Bremen", "Historic market & river", "linear-gradient(145deg,#86a9c3,#c58d66 52%,#465567)", [
+  state("HB", "Bremen", "Bremen", "Historic market & river", "Compact city-state resources for registration, work, study, and family life.", "linear-gradient(145deg,#547a98,#a1664c 52%,#354353)", [
     link("Official Bremen portal", "https://www.bremen.de"),
     link("Service Portal Bremen", "https://www.service.bremen.de"),
     link("Bremerhaven portal", "https://www.bremerhaven.de"),
   ]),
-  state("HH", "Hamburg", "Hamburg", "Harbor & Elbphilharmonie", "linear-gradient(145deg,#739db8,#9ec4cf 45%,#b66f56)", [
+  state("HH", "Hamburg", "Hamburg", "Harbor & Elbphilharmonie", "Migration office, city services, jobs, housing, and welcome resources.", "linear-gradient(145deg,#3e708d,#78a8b6 45%,#995741)", [
     link("Official Hamburg portal", "https://www.hamburg.de"),
     link("Hamburg service portal", "https://www.hamburg.de/service/"),
     link("Welcome to Hamburg", "https://www.hamburg.com/welcome/"),
   ]),
-  state("HE", "Hessen", "Wiesbaden", "Frankfurt skyline", "linear-gradient(145deg,#6ea1cc,#4d6f8c 48%,#d3a95e)", [
+  state("HE", "Hessen", "Wiesbaden / Frankfurt", "Frankfurt skyline", "Finance-sector jobs, integration services, universities, and local portals.", "linear-gradient(145deg,#477da7,#344f68 48%,#b98a45)", [
     link("Official state portal", "https://www.hessen.de"),
     link("Hessen service portal", "https://verwaltungsportal.hessen.de/"),
     link("Frankfurt city portal", "https://www.frankfurt.de"),
   ]),
-  state("MV", "Mecklenburg-Vorpommern", "Schwerin", "Baltic coast & lakes", "linear-gradient(145deg,#4ca6c7,#8ed2d5 52%,#d9c978)", [
+  state("MV", "Mecklenburg-Vorpommern", "Schwerin / Rostock", "Baltic coast & lakes", "Regional services, coastal cities, study options, and employment support.", "linear-gradient(145deg,#2685a5,#65afb2 52%,#b5a650)", [
     link("Official state portal", "https://www.regierung-mv.de"),
     link("Service Portal MV", "https://www.service.mvnet.de"),
     link("Rostock city portal", "https://www.rostock.de"),
   ]),
-  state("NI", "Lower Saxony", "Hannover", "Heathland & Hannover", "linear-gradient(145deg,#668db2,#93ad75 48%,#cf9d67)", [
+  state("NI", "Lower Saxony", "Hannover", "Heathland & Hannover", "City portals, skilled work, family services, and registration information.", "linear-gradient(145deg,#456d91,#6f8e54 48%,#b77c4e)", [
     link("Official state portal", "https://www.niedersachsen.de"),
     link("Service Niedersachsen", "https://service.niedersachsen.de/"),
     link("Hannover portal", "https://www.hannover.de"),
   ]),
-  state("NW", "North Rhine-Westphalia", "Düsseldorf", "Cologne & Rhine cities", "linear-gradient(145deg,#6588a5,#4d687a 45%,#b98056)", [
+  state("NW", "North Rhine-Westphalia", "Düsseldorf / Cologne", "Cologne & Rhine cities", "Germany's largest urban region with extensive work and city services.", "linear-gradient(145deg,#3f6079,#354958 45%,#9f6742)", [
     link("Official NRW portal", "https://www.land.nrw/"),
     link("NRW service portal", "https://www.service.nrw.de"),
     link("Cologne city portal", "https://www.stadt-koeln.de"),
   ]),
-  state("RP", "Rhineland-Palatinate", "Mainz", "Rhine valley & vineyards", "linear-gradient(145deg,#658aa6,#7d9b56 50%,#d3a456)", [
+  state("RP", "Rhineland-Palatinate", "Mainz", "Rhine valley & vineyards", "Residence services, family support, universities, and regional authorities.", "linear-gradient(145deg,#426d88,#607d3b 50%,#b28040)", [
     link("Official state portal", "https://www.rlp.de"),
     link("Service Portal RLP", "https://www.service.rlp.de"),
     link("Mainz city portal", "https://www.mainz.de"),
   ]),
-  state("SL", "Saarland", "Saarbrücken", "Forests & Saar loop", "linear-gradient(145deg,#4d8c83,#79a069 52%,#c59a60)", [
+  state("SL", "Saarland", "Saarbrücken", "Forests & Saar loop", "Cross-border life, citizen services, jobs, and compact local support.", "linear-gradient(145deg,#316d65,#5e824e 52%,#a97942)", [
     link("Official Saarland portal", "https://www.saarland.de"),
     link("Saarland citizen service", "https://www.saarland.de/DE/portale/buergerservice/"),
     link("Saarbrücken portal", "https://www.saarbruecken.de"),
   ]),
-  state("SN", "Saxony", "Dresden", "Dresden & Leipzig", "linear-gradient(145deg,#658db7,#a9b9c5 45%,#b4805a)", [
+  state("SN", "Saxony", "Dresden / Leipzig", "Dresden & Leipzig", "Study, technology jobs, registration, housing, and integration resources.", "linear-gradient(145deg,#466f99,#8296a5 45%,#9f6746)", [
     link("Official Saxony portal", "https://www.sachsen.de"),
     link("Dresden city portal", "https://www.dresden.de"),
     link("Leipzig city portal", "https://www.leipzig.de"),
   ]),
-  state("ST", "Saxony-Anhalt", "Magdeburg", "Cathedrals & countryside", "linear-gradient(145deg,#7b91a7,#a7a970 50%,#c9885f)", [
+  state("ST", "Saxony-Anhalt", "Magdeburg / Halle", "Cathedrals & countryside", "Affordable cities, university life, employment, and administration portals.", "linear-gradient(145deg,#5b7185,#858747 50%,#aa6849)", [
     link("Official state portal", "https://www.sachsen-anhalt.de"),
     link("Service Portal ST", "https://serviceportal.sachsen-anhalt.de/"),
     link("Magdeburg portal", "https://www.magdeburg.de"),
   ]),
-  state("SH", "Schleswig-Holstein", "Kiel", "North Sea & Baltic coast", "linear-gradient(145deg,#2e91b7,#7bc8d5 50%,#d6c67d)", [
+  state("SH", "Schleswig-Holstein", "Kiel / Lübeck", "North Sea & Baltic coast", "Coastal city services, family support, work, and residence information.", "linear-gradient(145deg,#167797,#57a8b6 50%,#b0a04e)", [
     link("Official state portal", "https://www.schleswig-holstein.de"),
     link("SH service portal", "https://serviceportal.schleswig-holstein.de/"),
     link("Kiel city portal", "https://www.kiel.de"),
   ]),
-  state("TH", "Thuringia", "Erfurt", "Forest & historic towns", "linear-gradient(145deg,#3f8066,#7aa56e 52%,#bd895e)", [
+  state("TH", "Thuringia", "Erfurt / Jena", "Forest & historic towns", "Research, skilled jobs, city services, and newcomer information.", "linear-gradient(145deg,#2d674e,#628a57 52%,#9d6745)", [
     link("Official Thuringia portal", "https://www.thueringen.de"),
     link("Citizen services", "https://www.thueringen.de/buerger/buergerdienste/"),
     link("Erfurt city portal", "https://www.erfurt.de"),
   ]),
 ];
 
-function state(id, name, capital, visual, background, links) {
-  return { id, name, capital, visual, background, links };
+function state(id, name, capital, visual, description, background, links) {
+  return { id, name, capital, visual, description, background, links };
 }
 
 function link(label, url) {
@@ -153,12 +153,15 @@ function renderModules(items = MODULES) {
 }
 
 function renderStates(items = STATES) {
+  document.querySelector("#state-result-count").textContent = `${items.length} state${items.length === 1 ? "" : "s"}`;
   statesGrid.innerHTML = items.length ? items.map((item) => `
     <button class="state-card" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="Open ${item.name} resources">
       <span class="state-card-content">
         <small>${item.visual}</small>
         <strong>${item.name}</strong>
-        <span>Explore resources →</span>
+        <span class="state-city">${item.capital}</span>
+        <span class="state-description">${item.description}</span>
+        <span class="state-cta">Open state guide →</span>
       </span>
     </button>
   `).join("") : '<div class="no-results">No state matches your search.</div>';
@@ -293,7 +296,7 @@ stateDetail.addEventListener("click", (event) => {
 
 document.querySelector("#state-search").addEventListener("input", (event) => {
   const query = event.target.value.toLowerCase().trim();
-  renderStates(STATES.filter((item) => `${item.name} ${item.capital}`.toLowerCase().includes(query)));
+  renderStates(STATES.filter((item) => `${item.name} ${item.capital} ${item.description} ${item.visual}`.toLowerCase().includes(query)));
   stateDetail.hidden = true;
 });
 
