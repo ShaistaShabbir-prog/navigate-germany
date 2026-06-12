@@ -170,6 +170,10 @@ function renderModules(items = MODULES) {
     </article>
   `).join("");
   requestAnimationFrame(observeReveals);
+  // Fallback: ensure items become visible even if observer misses them
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach(el => el.classList.add("is-visible"));
+  }, 800);
 }
 
 function renderStates(items = STATES) {
@@ -179,7 +183,7 @@ function renderStates(items = STATES) {
     return `
     <button class="state-card reveal" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="Open ${item.name} resources">
       <span class="state-card-content" data-best="${meta.bestFor}">
-        <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy"><small>${item.visual}</small></span>
+        <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy" onerror="this.style.display='none'"><small>${item.visual}</small></span>
         <strong>${item.name}</strong>
         <span class="state-city">${meta.cities}</span>
         <span class="state-description">${item.description}</span>
@@ -284,7 +288,7 @@ function observeReveals() {
       entry.target.classList.add("is-visible");
       revealObserver.unobserve(entry.target);
     });
-  }, { rootMargin: "0px 0px -40px", threshold: 0.08 });
+  }, { rootMargin: "200px 0px 0px", threshold: 0 });
   elements.forEach((element) => {
     element.classList.add("reveal-ready");
     revealObserver.observe(element);
