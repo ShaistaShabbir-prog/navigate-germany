@@ -38,11 +38,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);
 <div class="ph"><h1>🏘️ Housing &amp; Tenant Rights Germany</h1><p>Find apartments · Understand your Mietvertrag · Tenant rights (BGB) · Fight unfair rent increases</p></div>
 <div class="con">
 <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:16px;overflow-x:auto">
-  <button style="padding:9px 16px;border:none;background:transparent;color:var(--accent);font-weight:600;font-size:.82rem;border-bottom:2px solid var(--accent);cursor:pointer">🏠 Find housing</button>
-  <button onclick="this.style.color='var(--accent)';this.style.borderBottom='2px solid var(--accent)'" style="padding:9px 16px;border:none;background:transparent;color:var(--muted);font-weight:600;font-size:.82rem;border-bottom:2px solid transparent;cursor:pointer">⚖️ Your rights</button>
+  <button onclick="document.getElementById('find-housing').scrollIntoView({behavior:'smooth'})" style="padding:9px 16px;border:none;background:transparent;color:var(--accent);font-weight:600;font-size:.82rem;border-bottom:2px solid var(--accent);cursor:pointer">🏠 Find housing</button>
+  <button onclick="document.getElementById('tenant-rights').scrollIntoView({behavior:'smooth'})" style="padding:9px 16px;border:none;background:transparent;color:var(--muted);font-weight:600;font-size:.82rem;border-bottom:2px solid transparent;cursor:pointer">⚖️ Your rights</button>
 </div>
 
-<h2 style="font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--accent)">🔍 Where to find apartments</h2>
+<h2 id="find-housing" style="font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--accent)">🔍 Where to find apartments</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:20px">
   <div class="portal-card"><h3>ImmobilienScout24</h3><p>Largest German real estate portal. Set up instant alerts for new listings.</p><a href="https://www.immobilienscout24.de" target="_blank" style="font-size:.75rem;color:#93c5fd">→ immobilienscout24.de</a></div>
   <div class="portal-card"><h3>ImmoWelt</h3><p>Second largest portal. Good for smaller cities and affordable listings.</p><a href="https://www.immowelt.de" target="_blank" style="font-size:.75rem;color:#93c5fd">→ immowelt.de</a></div>
@@ -52,7 +52,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);
   <div class="portal-card"><h3>Local Facebook Groups</h3><p>Search "[City] Wohnungen" or "WG [City]". Fast and direct.</p><a href="https://www.facebook.com" target="_blank" style="font-size:.75rem;color:#93c5fd">→ facebook.com groups</a></div>
 </div>
 
-<h2 style="font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--accent)">🛡️ Your tenant rights (BGB)</h2>
+<h2 id="tenant-rights" style="font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--accent)">🛡️ Your tenant rights (BGB)</h2>
 
 <div class="right-card" style="border-left-color:#3b82f6;background:#3b82f620">
   <h3 style="color:#93c5fd">Security deposit (Kaution) — max 3 months</h3>

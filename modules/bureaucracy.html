@@ -104,9 +104,15 @@ const PROCS=[
 
 let cur=null;
 function renderBtns(){
-  document.getElementById('proc-btns').innerHTML=PROCS.map(p=>
-    '<button class="proc-btn'+(cur===p.id?' active':'')+'" onclick="selProc(''+p.id+'')">'+p.name+'</button>'
-  ).join('');
+  const container=document.getElementById('proc-btns');
+  container.innerHTML='';
+  PROCS.forEach(p=>{
+    const button=document.createElement('button');
+    button.className='proc-btn'+(cur===p.id?' active':'');
+    button.textContent=p.name;
+    button.addEventListener('click',()=>selProc(p.id));
+    container.appendChild(button);
+  });
 }
 function selProc(id){
   cur=id; const p=PROCS.find(x=>x.id===id);
