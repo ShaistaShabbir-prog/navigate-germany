@@ -124,6 +124,25 @@ const STATES = [
   ]),
 ];
 
+const STATE_META = {
+  BW: { cities: "Stuttgart · Karlsruhe · Freiburg", bestFor: "Students & skilled jobs" },
+  BY: { cities: "Munich · Nuremberg · Augsburg", bestFor: "Jobs & families" },
+  BE: { cities: "Berlin", bestFor: "International newcomers" },
+  BB: { cities: "Potsdam · Cottbus · Frankfurt (Oder)", bestFor: "Families & commuters" },
+  HB: { cities: "Bremen · Bremerhaven", bestFor: "Students & logistics jobs" },
+  HH: { cities: "Hamburg", bestFor: "Global careers" },
+  HE: { cities: "Wiesbaden · Frankfurt · Darmstadt", bestFor: "Finance & skilled jobs" },
+  MV: { cities: "Schwerin · Rostock · Greifswald", bestFor: "Affordable coastal living" },
+  NI: { cities: "Hannover · Braunschweig · Göttingen", bestFor: "Families & industry" },
+  NW: { cities: "Düsseldorf · Cologne · Dortmund", bestFor: "Jobs & diverse cities" },
+  RP: { cities: "Mainz · Koblenz · Trier", bestFor: "Families & students" },
+  SL: { cities: "Saarbrücken · Homburg · Saarlouis", bestFor: "Cross-border workers" },
+  SN: { cities: "Dresden · Leipzig · Chemnitz", bestFor: "Students & technology" },
+  ST: { cities: "Magdeburg · Halle · Dessau", bestFor: "Affordable student life" },
+  SH: { cities: "Kiel · Lübeck · Flensburg", bestFor: "Families & coastal life" },
+  TH: { cities: "Erfurt · Jena · Weimar", bestFor: "Research & affordable cities" },
+};
+
 function state(id, name, capital, visual, description, background, links) {
   return { id, name, capital, visual, description, background, links };
 }
@@ -154,17 +173,19 @@ function renderModules(items = MODULES) {
 
 function renderStates(items = STATES) {
   document.querySelector("#state-result-count").textContent = `${items.length} state${items.length === 1 ? "" : "s"}`;
-  statesGrid.innerHTML = items.length ? items.map((item) => `
+  statesGrid.innerHTML = items.length ? items.map((item) => {
+    const meta = STATE_META[item.id];
+    return `
     <button class="state-card" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="Open ${item.name} resources">
-      <span class="state-card-content">
+      <span class="state-card-content" data-best="${meta.bestFor}">
         <small>${item.visual}</small>
         <strong>${item.name}</strong>
-        <span class="state-city">${item.capital}</span>
+        <span class="state-city">${meta.cities}</span>
         <span class="state-description">${item.description}</span>
         <span class="state-cta">Open state guide →</span>
       </span>
     </button>
-  `).join("") : '<div class="no-results">No state matches your search.</div>';
+  `;}).join("") : '<div class="no-results">No state matches your search.</div>';
 }
 
 function openState(id) {
