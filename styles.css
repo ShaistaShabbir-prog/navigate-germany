@@ -509,7 +509,7 @@ img { display: block; max-width: 100%; }
 .state-links a:hover { border-color: #93c5fd; background: #eff6ff; }
 .no-results { grid-column: 1 / -1; padding: 35px; border: 1px dashed #cbd5e1; border-radius: 14px; color: var(--text-muted); text-align: center; }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+.reveal { opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 @keyframes blob-drift {
   from { transform: translate3d(-20px,0,0) scale(.92); }
