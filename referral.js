@@ -78,9 +78,9 @@
   const css = document.createElement("style");
   css.textContent = `
     .ng-rec-wrap {
-      position: fixed; bottom: 0; left: 0; right: 0;
+      position: fixed; bottom: 16px; right: 16px; left: auto;
       z-index: 8000; pointer-events: none;
-      padding: 0 0 16px;
+      width: min(360px, calc(100vw - 32px));
     }
     .ng-rec {
       max-width: 520px;
@@ -282,11 +282,13 @@
       <div class="ng-rec-nav">
         <div style="display:flex;gap:6px;align-items:center">
           <button class="ng-rec-navbtn" id="ng-prev">‹</button>
+          <button class="ng-rec-navbtn" onclick="document.getElementById('ng-rec-collapse').click()" style="font-size:.65rem;">↓ Collapse</button>
           <div class="ng-rec-dots" id="ng-dots"></div>
           <button class="ng-rec-navbtn" id="ng-next">›</button>
         </div>
         <div style="display:flex;gap:10px;align-items:center">
-          <button class="ng-rec-close" id="ng-hide">Hide for now</button>
+          <button class="ng-rec-navbtn" id="ng-rec-collapse">↓ Collapse</button>
+          <button class="ng-rec-close" id="ng-hide">Hide</button>
           <button class="ng-rec-close" id="ng-gone">Don't show again</button>
         </div>
       </div>
@@ -307,6 +309,10 @@
     document.getElementById("ng-prev").onclick = () => { idx=(idx-1+PARTNERS.length)%PARTNERS.length; saveIdx(idx); render(); reset(); };
     document.getElementById("ng-next").onclick = () => { idx=(idx+1)%PARTNERS.length; saveIdx(idx); render(); reset(); };
 
+    // Collapse back to pill
+    document.getElementById("ng-rec-collapse").onclick = () => {
+      expanded = false; clearInterval(timer); renderPill();
+    };
     // Hide (this session)
     document.getElementById("ng-hide").onclick = () => { clearInterval(timer); wrap.remove(); };
 
@@ -319,7 +325,7 @@
     timer = setInterval(() => { idx=(idx+1)%PARTNERS.length; saveIdx(idx); render(); }, 15000);
   }
 
-  // Show after 4 seconds — let user settle in first
-  setTimeout(build, 4000);
+  // Show after 5 seconds — collapsed pill first, expand on click
+  setTimeout(build, 5000);
 
 })();
