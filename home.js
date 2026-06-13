@@ -727,7 +727,7 @@ function renderStates(items = STATES) {
         <strong>${item.name}</strong>
         <span class="state-city">${meta.cities}</span>
         <span class="state-description">${item.description}</span>
-        <span class="state-cta">Open state guide →</span>
+        <span class="state-cta">View details →</span>
       </span>
     </button>
   `;}).join("") : '<div class="no-results">No state matches your search.</div>';
@@ -737,16 +737,27 @@ function renderStates(items = STATES) {
 function openState(id) {
   const selected = STATES.find((item) => item.id === id);
   if (!selected) return;
+  const meta = STATE_META[id] || {};
   document.querySelectorAll(".state-card").forEach((card) => card.classList.toggle("active", card.dataset.state === id));
   stateDetail.hidden = false;
+
+  const t = window._ng_t || {};
+  const statePage = `states/${id.toLowerCase()}.html`;
+
   stateDetail.innerHTML = `
     <div class="state-detail-head">
       <div>
         <span class="kicker">Official local resources</span>
         <h3>${selected.name}</h3>
-        <p>Capital: ${selected.capital} · Start with the state portal, then choose the relevant city or service.</p>
+        <p style="margin-bottom:6px">Capital: ${selected.capital} · ${selected.description}</p>
+        ${meta.cities ? `<p style="font-size:.75rem;color:#64748b;margin-bottom:0">📍 Cities: ${meta.cities}</p>` : ""}
       </div>
       <button class="state-detail-close" type="button" aria-label="Close state details">×</button>
+    </div>
+    <div style="padding:12px 0 6px">
+      <a href="${statePage}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;background:#0B1D3A;color:#FFCC02;border-radius:10px;text-decoration:none;font-weight:800;font-size:.82rem;margin-bottom:12px">
+        📖 Open full ${selected.name} guide →
+      </a>
     </div>
     <div class="state-links">
       ${selected.links.map((item) => `<a href="${item.url}" target="_blank" rel="noopener noreferrer">↗ ${item.label}</a>`).join("")}
