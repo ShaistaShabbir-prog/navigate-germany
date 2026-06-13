@@ -12,16 +12,316 @@ const LANGUAGES = [
 ];
 
 const TRANSLATIONS = {
-  en: ["Navigate Germany with Confidence", "Germany explained step-by-step in your language — with official links, emergency support, and state-wise guidance."],
-  de: ["Sicher durch Deutschland navigieren", "Ihr mehrsprachiger Wegweiser mit offiziellen Links für Zugewanderte, Studierende, Familien und Neuankömmlinge."],
-  ar: ["تنقّل في ألمانيا بثقة", "دليلك متعدد اللغات القائم على الروابط الرسمية للمهاجرين والطلاب والعائلات والوافدين الجدد."],
-  tr: ["Almanya'da güvenle yolunuzu bulun", "Göçmenler, öğrenciler, aileler ve yeni gelenler için resmi bağlantılara dayalı çok dilli rehberiniz."],
-  ur: ["اعتماد کے ساتھ جرمنی میں رہنمائی پائیں", "تارکین وطن، طلبہ، خاندانوں اور نئے آنے والوں کے لیے سرکاری لنکس پر مبنی کثیر لسانی رہنما۔"],
-  ru: ["Уверенно ориентируйтесь в Германии", "Многоязычный путеводитель по официальным источникам для иммигрантов, студентов, семей и новых жителей."],
-  fr: ["Naviguez en Allemagne en toute confiance", "Votre guide multilingue fondé sur des liens officiels pour les immigrés, étudiants, familles et nouveaux arrivants."],
-  fa: ["با اطمینان در آلمان مسیر خود را پیدا کنید", "راهنمای چندزبانه مبتنی بر لینک‌های رسمی برای مهاجران، دانشجویان، خانواده‌ها و تازه‌واردان."],
-  it: ["Orientati in Germania con sicurezza", "La guida multilingue basata su fonti ufficiali per immigrati, studenti, famiglie e nuovi arrivati."],
-  uk: ["Впевнено орієнтуйтеся в Німеччині", "Багатомовний путівник з офіційними посиланнями для іммігрантів, студентів, сімей і новоприбулих."],
+  en: {
+    hero:       ["Navigate Germany with Confidence", "Germany explained step-by-step in your language — official links, emergency support, and state-by-state guidance."],
+    nav:        ["Guides","Languages","About","Resources"],
+    stats:      ["Verified Links","Life Modules","Emergency 24/7","Languages"],
+    search_ph:  "Search guides and states...",
+    state_ph:   "Search state or city...",
+    modules_h:  "Life Modules",
+    states_h:   "Choose your Bundesland",
+    open_guide: "Open Guide →",
+    emergency:  "🚨 Emergency: 112 (ambulance · fire) · 110 (police) · 116 117 (out-of-hours doctor)",
+    emg_btn:    "Emergency numbers →",
+    save:       "Save",
+    remove:     "Remove",
+    saved_only: "Show saved",
+    all_guides: "All guides",
+    dir:        "ltr",
+    modules: [
+      {title:"Housing",         desc:"Find accommodation, rental contracts, deposits, and tenant rights."},
+      {title:"Healthcare",      desc:"Health insurance, doctors, hospitals, and appointments."},
+      {title:"Jobs & Visa",     desc:"Work opportunities, residence routes, Blue Card, and job search."},
+      {title:"Legal Help",      desc:"Residence law, official letters, deadlines, rights, and support."},
+      {title:"Language",        desc:"Learn German, practise daily phrases, and find language resources."},
+      {title:"Cost of Living",  desc:"Compare rent, expenses, salaries, banking, and everyday costs."},
+      {title:"Education",       desc:"Schools, childcare, integration courses, and learning pathways."},
+      {title:"Banking & Taxes", desc:"Bank accounts, transfers, Schufa, tax ID, and finance basics."},
+      {title:"Family & Children",desc:"Kindergeld, Kita, schools, parental support, and family rights."},
+      {title:"Bureaucracy",     desc:"Anmeldung, Steuer-ID, health insurance, and official processes."},
+      {title:"Integration",     desc:"Community, BAMF courses, support organisations, and volunteer work."},
+      {title:"Emergency",       desc:"Emergency numbers, urgent deadlines, free legal help, and crisis support."},
+    ],
+  },
+  de: {
+    hero:       ["Sicher durch Deutschland navigieren", "Deutschland Schritt für Schritt erklärt – offizielle Links, Notfallhilfe und bundeslandspezifische Orientierung."],
+    nav:        ["Ratgeber","Sprachen","Über uns","Ressourcen"],
+    stats:      ["Geprüfte Links","Lebensmodule","Notfall 24/7","Sprachen"],
+    search_ph:  "Ratgeber und Bundesländer suchen...",
+    state_ph:   "Bundesland oder Stadt suchen...",
+    modules_h:  "Lebensmodule",
+    states_h:   "Wählen Sie Ihr Bundesland",
+    open_guide: "Ratgeber öffnen →",
+    emergency:  "🚨 Notruf: 112 (Rettung · Feuerwehr) · 110 (Polizei) · 116 117 (ärztlicher Bereitschaftsdienst)",
+    emg_btn:    "Notfallnummern →",
+    save:       "Speichern",
+    remove:     "Entfernen",
+    saved_only: "Gespeicherte anzeigen",
+    all_guides: "Alle Ratgeber",
+    dir:        "ltr",
+    modules: [
+      {title:"Wohnen",              desc:"Wohnungssuche, Mietvertrag, Kaution und Mieterrechte."},
+      {title:"Gesundheit",          desc:"Krankenversicherung, Ärzte, Krankenhäuser und Termine."},
+      {title:"Arbeit & Visum",      desc:"Arbeitsmöglichkeiten, Aufenthaltstitel, Blue Card und Jobsuche."},
+      {title:"Rechtshilfe",         desc:"Aufenthaltsrecht, Behördenbriefe, Fristen, Rechte und Unterstützung."},
+      {title:"Sprache",             desc:"Deutsch lernen, Alltagsphrasen üben und Sprachressourcen finden."},
+      {title:"Lebenshaltungskosten",desc:"Miete, Ausgaben, Gehälter, Banking und Alltagskosten vergleichen."},
+      {title:"Bildung",             desc:"Schulen, Kita, Integrationskurse und Bildungswege."},
+      {title:"Banking & Steuern",   desc:"Bankkonten, Überweisungen, Schufa, Steuer-ID und Finanzen."},
+      {title:"Familie & Kinder",    desc:"Kindergeld, Kita, Schulen, Elterngeld und Familienrechte."},
+      {title:"Bürokratie",          desc:"Anmeldung, Steuer-ID, Krankenversicherung und Behördengänge."},
+      {title:"Integration",         desc:"Gemeinschaft, BAMF-Kurse, Hilfsorganisationen und Ehrenamt."},
+      {title:"Notfall",             desc:"Notfallnummern, dringende Fristen, kostenlose Rechtsberatung."},
+    ],
+  },
+  ar: {
+    hero:       ["تنقّل في ألمانيا بثقة", "دليل خطوة بخطوة بلغتك — روابط رسمية ودعم طارئ وإرشادات حسب الولاية."],
+    nav:        ["الأدلة","اللغات","عن الموقع","الموارد"],
+    stats:      ["روابط موثّقة","أدلة الحياة","طوارئ 24/7","لغات"],
+    search_ph:  "ابحث في الأدلة والولايات...",
+    state_ph:   "ابحث في الولاية أو المدينة...",
+    modules_h:  "أدلة الحياة",
+    states_h:   "اختر ولايتك الفيدرالية",
+    open_guide: "فتح الدليل →",
+    emergency:  "🚨 طوارئ: 112 (إسعاف · إطفاء) · 110 (شرطة) · 116 117 (طبيب خارج أوقات العمل)",
+    emg_btn:    "أرقام الطوارئ →",
+    save:       "حفظ",
+    remove:     "إزالة",
+    saved_only: "عرض المحفوظ",
+    all_guides: "جميع الأدلة",
+    dir:        "rtl",
+    modules: [
+      {title:"السكن",              desc:"إيجاد شقة، عقود الإيجار، الوديعة وحقوق المستأجر."},
+      {title:"الرعاية الصحية",    desc:"التأمين الصحي، الأطباء، المستشفيات والمواعيد."},
+      {title:"العمل والتأشيرة",   desc:"فرص العمل، إقامة العمل، البطاقة الزرقاء والبحث عن وظيفة."},
+      {title:"المساعدة القانونية",desc:"قانون الإقامة، الرسائل الرسمية، المواعيد النهائية والحقوق."},
+      {title:"اللغة",              desc:"تعلّم الألمانية، تدرّب على العبارات اليومية وابحث عن موارد لغوية."},
+      {title:"تكلفة المعيشة",     desc:"مقارنة الإيجار والمصاريف والرواتب والمصارف والتكاليف اليومية."},
+      {title:"التعليم",            desc:"المدارس، الحضانة، دورات الاندماج ومسارات التعلم."},
+      {title:"البنوك والضرائب",   desc:"الحسابات البنكية، التحويلات، شوفا، رقم الضريبة والشؤون المالية."},
+      {title:"العائلة والأطفال",  desc:"مخصصات الأطفال، الحضانة، المدارس وحقوق الأسرة."},
+      {title:"البيروقراطية",      desc:"تسجيل العنوان، رقم الضريبة، التأمين الصحي والإجراءات الرسمية."},
+      {title:"الاندماج",          desc:"المجتمع ودورات بامف ومنظمات الدعم والتطوع."},
+      {title:"الطوارئ",           desc:"أرقام الطوارئ والمواعيد العاجلة والمساعدة القانونية المجانية."},
+    ],
+  },
+  ur: {
+    hero:       ["اعتماد کے ساتھ جرمنی میں رہنمائی پائیں", "اپنی زبان میں جرمنی کی قدم بہ قدم وضاحت — سرکاری لنکس، ہنگامی مدد اور ریاستی رہنمائی۔"],
+    nav:        ["رہنما","زبانیں","ہمارے بارے میں","وسائل"],
+    stats:      ["تصدیق شدہ لنکس","زندگی کے رہنما","ہنگامی 24/7","زبانیں"],
+    search_ph:  "رہنما اور ریاستیں تلاش کریں...",
+    state_ph:   "ریاست یا شہر تلاش کریں...",
+    modules_h:  "زندگی کے رہنما",
+    states_h:   "اپنی ریاست منتخب کریں",
+    open_guide: "رہنما کھولیں →",
+    emergency:  "🚨 ہنگامی: 112 (ایمبولینس · آگ) · 110 (پولیس) · 116 117 (اوقات کے باہر ڈاکٹر)",
+    emg_btn:    "ہنگامی نمبر →",
+    save:       "محفوظ کریں",
+    remove:     "ہٹائیں",
+    saved_only: "محفوظ دکھائیں",
+    all_guides: "تمام رہنما",
+    dir:        "rtl",
+    modules: [
+      {title:"رہائش",                desc:"اپارٹمنٹ تلاش کریں، کرایہ معاہدہ، ڈپازٹ اور کرایہ دار کے حقوق۔"},
+      {title:"صحت",                  desc:"ہیلتھ انشورنس، ڈاکٹر، ہسپتال اور ملاقاتیں۔"},
+      {title:"نوکری اور ویزہ",       desc:"کام کے مواقع، اقامت، بلو کارڈ اور نوکری کی تلاش۔"},
+      {title:"قانونی مدد",            desc:"اقامت کا قانون، سرکاری خطوط، ڈیڈلائنز اور حقوق۔"},
+      {title:"زبان",                  desc:"جرمن سیکھیں، روزمرہ جملے اور زبان کے وسائل۔"},
+      {title:"زندگی کا خرچ",         desc:"کرایہ، اخراجات، تنخواہیں، بینکنگ اور روزمرہ لاگت۔"},
+      {title:"تعلیم",                 desc:"اسکول، بچوں کی نگہداشت، انضمام کورسز اور تعلیمی راستے۔"},
+      {title:"بینکنگ اور ٹیکس",      desc:"بینک اکاؤنٹ، ٹرانسفر، شوفا، ٹیکس آئی ڈی اور مالیات۔"},
+      {title:"خاندان اور بچے",       desc:"کنڈرگیلڈ، کٹا، اسکول، والدین کی مدد اور خاندانی حقوق۔"},
+      {title:"بیوروکریسی",           desc:"انملڈونگ، ٹیکس آئی ڈی، ہیلتھ انشورنس اور سرکاری کام۔"},
+      {title:"انضمام",               desc:"کمیونٹی، بامف کورسز، سپورٹ تنظیمیں اور رضاکارانہ خدمت۔"},
+      {title:"ہنگامی",               desc:"ہنگامی نمبر، فوری ڈیڈلائنز اور مفت قانونی مدد۔"},
+    ],
+  },
+  tr: {
+    hero:       ["Almanya'da güvenle yolunuzu bulun", "Almanya adım adım kendi dilinizde açıklandı — resmi bağlantılar, acil destek ve eyalete göre rehberlik."],
+    nav:        ["Rehberler","Diller","Hakkında","Kaynaklar"],
+    stats:      ["Doğrulanmış Bağlantı","Yaşam Rehberi","Acil 24/7","Dil"],
+    search_ph:  "Rehber ve eyaletlerde ara...",
+    state_ph:   "Eyalet veya şehir ara...",
+    modules_h:  "Yaşam Rehberleri",
+    states_h:   "Eyaletinizi seçin",
+    open_guide: "Rehberi Aç →",
+    emergency:  "🚨 Acil: 112 (ambulans · itfaiye) · 110 (polis) · 116 117 (mesai dışı doktor)",
+    emg_btn:    "Acil numaralar →",
+    save:       "Kaydet",
+    remove:     "Kaldır",
+    saved_only: "Kaydedilenleri göster",
+    all_guides: "Tüm rehberler",
+    dir:        "ltr",
+    modules: [
+      {title:"Konut",               desc:"Daire bul, kira sözleşmeleri, depozito ve kiracı hakları."},
+      {title:"Sağlık",              desc:"Sağlık sigortası, doktorlar, hastaneler ve randevular."},
+      {title:"İş ve Vize",          desc:"İş olanakları, oturma izni, Blue Card ve iş arama."},
+      {title:"Hukuki Yardım",       desc:"Oturma hukuku, resmi mektuplar, son tarihler ve haklar."},
+      {title:"Dil",                 desc:"Almanca öğren, günlük ifadeleri pratik yap."},
+      {title:"Yaşam Maliyeti",      desc:"Kira, giderler, maaşlar, bankacılık ve günlük maliyetler."},
+      {title:"Eğitim",              desc:"Okullar, çocuk bakımı, entegrasyon kursları."},
+      {title:"Bankacılık ve Vergi", desc:"Banka hesapları, transferler, Schufa, vergi numarası."},
+      {title:"Aile ve Çocuklar",   desc:"Kindergeld, Kita, okullar, ebeveyn desteği."},
+      {title:"Bürokrasi",           desc:"Anmeldung, vergi numarası, sağlık sigortası ve resmi işlemler."},
+      {title:"Entegrasyon",         desc:"Topluluk, BAMF kursları, destek kuruluşları."},
+      {title:"Acil Durum",          desc:"Acil numaralar, kritik son tarihler, ücretsiz hukuki yardım."},
+    ],
+  },
+  ru: {
+    hero:       ["Уверенно ориентируйтесь в Германии", "Германия объясняется шаг за шагом на вашем языке — официальные ссылки, экстренная помощь и региональное руководство."],
+    nav:        ["Руководства","Языки","О нас","Ресурсы"],
+    stats:      ["Проверенных ссылок","Жизненных разделов","Экстренно 24/7","Языков"],
+    search_ph:  "Поиск по руководствам и землям...",
+    state_ph:   "Поиск по земле или городу...",
+    modules_h:  "Жизненные руководства",
+    states_h:   "Выберите федеральную землю",
+    open_guide: "Открыть руководство →",
+    emergency:  "🚨 Экстренно: 112 (скорая · пожар) · 110 (полиция) · 116 117 (врач вне часов)",
+    emg_btn:    "Номера экстренных служб →",
+    save:       "Сохранить",
+    remove:     "Удалить",
+    saved_only: "Показать сохранённые",
+    all_guides: "Все руководства",
+    dir:        "ltr",
+    modules: [
+      {title:"Жильё",               desc:"Поиск квартиры, договор аренды, депозит и права арендатора."},
+      {title:"Здравоохранение",     desc:"Медицинское страхование, врачи, больницы и записи."},
+      {title:"Работа и виза",       desc:"Вакансии, вид на жительство, Blue Card и поиск работы."},
+      {title:"Юридическая помощь",  desc:"Закон о проживании, официальные письма, сроки и права."},
+      {title:"Язык",                desc:"Учите немецкий, практикуйте фразы и находите ресурсы."},
+      {title:"Стоимость жизни",     desc:"Аренда, расходы, зарплаты, банкинг и повседневные затраты."},
+      {title:"Образование",         desc:"Школы, детские сады, курсы интеграции и пути обучения."},
+      {title:"Банки и налоги",      desc:"Банковские счета, переводы, Schufa, ИНН и финансы."},
+      {title:"Семья и дети",        desc:"Kindergeld, Kita, школы, поддержка родителей."},
+      {title:"Бюрократия",          desc:"Anmeldung, ИНН, медицинское страхование и официальные процедуры."},
+      {title:"Интеграция",          desc:"Сообщество, курсы BAMF, организации поддержки."},
+      {title:"Экстренная помощь",   desc:"Номера экстренных служб, срочные сроки, бесплатная юрпомощь."},
+    ],
+  },
+  fr: {
+    hero:       ["Naviguez en Allemagne en toute confiance", "L'Allemagne expliquée étape par étape dans votre langue — liens officiels, aide d'urgence et guide par Land."],
+    nav:        ["Guides","Langues","À propos","Ressources"],
+    stats:      ["Liens vérifiés","Modules de vie","Urgence 24h/7","Langues"],
+    search_ph:  "Rechercher guides et Länder...",
+    state_ph:   "Rechercher Land ou ville...",
+    modules_h:  "Modules de vie",
+    states_h:   "Choisissez votre Land",
+    open_guide: "Ouvrir le guide →",
+    emergency:  "🚨 Urgence : 112 (ambulance · pompiers) · 110 (police) · 116 117 (médecin de garde)",
+    emg_btn:    "Numéros d'urgence →",
+    save:       "Sauvegarder",
+    remove:     "Retirer",
+    saved_only: "Afficher les sauvegardés",
+    all_guides: "Tous les guides",
+    dir:        "ltr",
+    modules: [
+      {title:"Logement",             desc:"Trouver un appartement, contrat de location, caution et droits des locataires."},
+      {title:"Santé",                desc:"Assurance maladie, médecins, hôpitaux et rendez-vous."},
+      {title:"Emploi et Visa",       desc:"Offres d'emploi, titre de séjour, Blue Card et recherche d'emploi."},
+      {title:"Aide juridique",       desc:"Droit de séjour, lettres officielles, délais et droits."},
+      {title:"Langue",               desc:"Apprendre l'allemand, pratiquer les phrases du quotidien."},
+      {title:"Coût de la vie",       desc:"Comparer loyers, dépenses, salaires et coûts quotidiens."},
+      {title:"Éducation",            desc:"Écoles, crèches, cours d'intégration et parcours d'apprentissage."},
+      {title:"Banque et impôts",     desc:"Comptes bancaires, virements, Schufa, numéro fiscal."},
+      {title:"Famille et enfants",   desc:"Kindergeld, Kita, écoles, congé parental et droits familiaux."},
+      {title:"Bureaucratie",         desc:"Anmeldung, numéro fiscal, assurance maladie et démarches."},
+      {title:"Intégration",          desc:"Communauté, cours BAMF, organisations de soutien."},
+      {title:"Urgence",              desc:"Numéros d'urgence, délais critiques, aide juridique gratuite."},
+    ],
+  },
+  fa: {
+    hero:       ["با اطمینان در آلمان مسیر خود را پیدا کنید", "آلمان گام‌به‌گام به زبان شما توضیح داده شده — لینک‌های رسمی، پشتیبانی اضطراری و راهنمای ایالتی."],
+    nav:        ["راهنماها","زبان‌ها","درباره ما","منابع"],
+    stats:      ["لینک تأییدشده","ماژول زندگی","اورژانس ۲۴/۷","زبان"],
+    search_ph:  "جستجو در راهنماها و ایالت‌ها...",
+    state_ph:   "جستجوی ایالت یا شهر...",
+    modules_h:  "ماژول‌های زندگی",
+    states_h:   "ایالت خود را انتخاب کنید",
+    open_guide: "باز کردن راهنما →",
+    emergency:  "🚨 اورژانس: ۱۱۲ (اورژانس · آتش‌نشانی) · ۱۱۰ (پلیس) · ۱۱۶ ۱۱۷ (پزشک خارج از ساعت کاری)",
+    emg_btn:    "شماره‌های اورژانسی →",
+    save:       "ذخیره",
+    remove:     "حذف",
+    saved_only: "نمایش ذخیره‌شده‌ها",
+    all_guides: "همه راهنماها",
+    dir:        "rtl",
+    modules: [
+      {title:"مسکن",               desc:"پیدا کردن آپارتمان، قرارداد اجاره، ودیعه و حقوق مستأجر."},
+      {title:"بهداشت",             desc:"بیمه درمانی، پزشکان، بیمارستان‌ها و نوبت‌ها."},
+      {title:"کار و ویزا",         desc:"فرصت‌های شغلی، اقامت، کارت آبی و جستجوی کار."},
+      {title:"کمک حقوقی",          desc:"قانون اقامت، نامه‌های رسمی، مهلت‌ها و حقوق."},
+      {title:"زبان",               desc:"یادگیری آلمانی، تمرین عبارات روزمره و منابع زبانی."},
+      {title:"هزینه زندگی",        desc:"مقایسه اجاره، هزینه‌ها، حقوق و هزینه‌های روزانه."},
+      {title:"آموزش",              desc:"مدارس، مهدکودک، دوره‌های ادغام و مسیرهای یادگیری."},
+      {title:"بانکداری و مالیات",  desc:"حساب‌های بانکی، انتقال، شوفا، شناسه مالیاتی."},
+      {title:"خانواده و کودکان",   desc:"کیندرگلد، کیتا، مدارس و حقوق خانوادگی."},
+      {title:"بوروکراسی",          desc:"آنملدونگ، شناسه مالیاتی، بیمه درمانی و مراحل رسمی."},
+      {title:"ادغام",              desc:"جامعه، دوره‌های بامف و سازمان‌های حمایتی."},
+      {title:"اضطراری",            desc:"شماره‌های اضطراری، مهلت‌های فوری و کمک حقوقی رایگان."},
+    ],
+  },
+  it: {
+    hero:       ["Orientati in Germania con sicurezza", "La Germania spiegata passo dopo passo nella tua lingua — link ufficiali, supporto d'emergenza e guida per Land."],
+    nav:        ["Guide","Lingue","Chi siamo","Risorse"],
+    stats:      ["Link verificati","Moduli di vita","Emergenza 24/7","Lingue"],
+    search_ph:  "Cerca guide e Länder...",
+    state_ph:   "Cerca Land o città...",
+    modules_h:  "Moduli di vita",
+    states_h:   "Scegli il tuo Land",
+    open_guide: "Apri la guida →",
+    emergency:  "🚨 Emergenza: 112 (ambulanza · pompieri) · 110 (polizia) · 116 117 (medico fuori orario)",
+    emg_btn:    "Numeri d'emergenza →",
+    save:       "Salva",
+    remove:     "Rimuovi",
+    saved_only: "Mostra salvati",
+    all_guides: "Tutte le guide",
+    dir:        "ltr",
+    modules: [
+      {title:"Alloggio",             desc:"Trovare casa, contratti d'affitto, caparra e diritti degli inquilini."},
+      {title:"Salute",               desc:"Assicurazione sanitaria, medici, ospedali e appuntamenti."},
+      {title:"Lavoro e Visto",       desc:"Opportunità di lavoro, permesso di soggiorno, Blue Card."},
+      {title:"Aiuto legale",         desc:"Diritto di soggiorno, lettere ufficiali, scadenze e diritti."},
+      {title:"Lingua",               desc:"Imparare il tedesco, praticare frasi quotidiane."},
+      {title:"Costo della vita",     desc:"Confronta affitti, spese, stipendi e costi quotidiani."},
+      {title:"Istruzione",           desc:"Scuole, asili nido, corsi d'integrazione e percorsi formativi."},
+      {title:"Banca e tasse",        desc:"Conti bancari, bonifici, Schufa, codice fiscale."},
+      {title:"Famiglia e bambini",   desc:"Kindergeld, Kita, scuole, congedo parentale e diritti familiari."},
+      {title:"Burocrazia",           desc:"Anmeldung, codice fiscale, assicurazione sanitaria e pratiche."},
+      {title:"Integrazione",         desc:"Comunità, corsi BAMF, organizzazioni di supporto."},
+      {title:"Emergenza",            desc:"Numeri di emergenza, scadenze urgenti, assistenza legale gratuita."},
+    ],
+  },
+  uk: {
+    hero:       ["Впевнено орієнтуйтеся в Німеччині", "Німеччина пояснюється крок за кроком вашою мовою — офіційні посилання, екстрена допомога та регіональний путівник."],
+    nav:        ["Путівники","Мови","Про нас","Ресурси"],
+    stats:      ["Перевірених посилань","Розділів для життя","Екстрено 24/7","Мов"],
+    search_ph:  "Пошук по путівниках і землях...",
+    state_ph:   "Пошук за землею або містом...",
+    modules_h:  "Путівники для життя",
+    states_h:   "Виберіть федеральну землю",
+    open_guide: "Відкрити путівник →",
+    emergency:  "🚨 Екстрено: 112 (швидка · пожежа) · 110 (поліція) · 116 117 (лікар поза часом)",
+    emg_btn:    "Номери екстрених служб →",
+    save:       "Зберегти",
+    remove:     "Видалити",
+    saved_only: "Показати збережені",
+    all_guides: "Всі путівники",
+    dir:        "ltr",
+    modules: [
+      {title:"Житло",               desc:"Знайти квартиру, договір оренди, застава та права орендаря."},
+      {title:"Охорона здоров'я",    desc:"Медичне страхування, лікарі, лікарні та запис."},
+      {title:"Робота та віза",      desc:"Вакансії, посвідка на проживання, Blue Card та пошук роботи."},
+      {title:"Юридична допомога",   desc:"Закон про проживання, офіційні листи, терміни та права."},
+      {title:"Мова",                desc:"Вивчайте німецьку, практикуйте фрази та знаходьте ресурси."},
+      {title:"Вартість життя",      desc:"Порівняння оренди, витрат, зарплат та щоденних витрат."},
+      {title:"Освіта",              desc:"Школи, дитячі садки, курси інтеграції та шляхи навчання."},
+      {title:"Банки та податки",    desc:"Банківські рахунки, перекази, Schufa, ІПН та фінанси."},
+      {title:"Сім'я та діти",       desc:"Kindergeld, Kita, школи, підтримка батьків та сімейні права."},
+      {title:"Бюрократія",          desc:"Anmeldung, ІПН, медстрахування та офіційні процедури."},
+      {title:"Інтеграція",          desc:"Спільнота, курси BAMF, організації підтримки."},
+      {title:"Екстрена допомога",   desc:"Номери екстрених служб, термінові терміни, безкоштовна юрдопомога."},
+    ],
+  },
 };
 
 const MODULES = [
@@ -166,7 +466,7 @@ function renderModules(items = MODULES) {
       <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="52" height="52">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
       <h3>${item.title}</h3>
       <p>${item.desc}</p>
-      <a class="module-link" href="${item.url}">Open Guide &nbsp;→</a>
+      <a class="module-link" href="${item.url}">${item.linkLabel || (window._ng_t?.open_guide || "Open Guide →")}</a>
     </article>
   `).join("");
   requestAnimationFrame(observeReveals);
@@ -218,14 +518,70 @@ function openState(id) {
 
 function setLanguage(code) {
   const selected = LANGUAGES.find((item) => item.code === code) || LANGUAGES[0];
-  const translation = TRANSLATIONS[selected.code] || TRANSLATIONS.en;
-  const [titleStart, titleEmphasis = ""] = splitTitle(translation[0]);
-  document.querySelector("#hero-title").innerHTML = `${titleStart} <em>${titleEmphasis}</em>`;
-  document.querySelector("#hero-subtitle").textContent = translation[1];
-  document.documentElement.dir = ["ar", "ur", "fa"].includes(selected.code) ? "rtl" : "ltr";
-  languageSelect.value = selected.code;
+  const t = TRANSLATIONS[selected.code] || TRANSLATIONS.en;
+
+  // ── Direction ──────────────────────────────────────────────
+  document.documentElement.dir = t.dir || "ltr";
+  document.documentElement.lang = selected.code;
+
+  // ── Hero ───────────────────────────────────────────────────
+  const [titleStart, titleEmphasis = ""] = splitTitle(t.hero[0]);
+  const heroTitle = document.querySelector("#hero-title");
+  const heroSub   = document.querySelector("#hero-subtitle");
+  if (heroTitle) heroTitle.innerHTML = `${titleStart} <em>${titleEmphasis}</em>`;
+  if (heroSub)   heroSub.textContent = t.hero[1];
+
+  // ── Nav links ──────────────────────────────────────────────
+  const navLinks = document.querySelectorAll("nav a[href^='#']:not(.brand)");
+  navLinks.forEach((a, i) => { if (t.nav[i]) a.textContent = t.nav[i]; });
+
+  // ── Search placeholder ─────────────────────────────────────
+  const siteSearch  = document.querySelector("#site-search");
+  const stateSearch = document.querySelector("#state-search");
+  if (siteSearch)  siteSearch.placeholder = t.search_ph;
+  if (stateSearch) stateSearch.placeholder = t.state_ph;
+
+  // ── Section headings ──────────────────────────────────────
+  const modulesHeading = document.querySelector("#guides h2, .section-title");
+  if (modulesHeading && t.modules_h) modulesHeading.textContent = t.modules_h;
+
+  const statesHeading = document.querySelector("#states h2, #states .section-title");
+  if (statesHeading && t.states_h) statesHeading.textContent = t.states_h;
+
+  // ── Emergency banner ──────────────────────────────────────
+  const emgBanner = document.querySelector(".emergency-banner p, .emg-text, [data-i18n='emergency']");
+  if (emgBanner && t.emergency) emgBanner.textContent = t.emergency;
+
+  const emgBtn = document.querySelector(".emg-btn, [data-i18n='emg_btn']");
+  if (emgBtn && t.emg_btn) emgBtn.textContent = t.emg_btn;
+
+  // ── Module cards — re-render with translated titles/descs ──
+  if (t.modules && MODULES.length === t.modules.length) {
+    const translatedModules = MODULES.map((mod, i) => ({
+      ...mod,
+      title: t.modules[i]?.title || mod.title,
+      desc:  t.modules[i]?.desc  || mod.desc,
+      linkLabel: t.open_guide || "Open Guide →",
+    }));
+    renderModules(translatedModules, t);
+  }
+
+  // ── Stats labels ──────────────────────────────────────────
+  const statLabels = document.querySelectorAll(".stat small");
+  if (t.stats) {
+    statLabels.forEach((el, i) => { if (t.stats[i]) el.textContent = t.stats[i]; });
+  }
+
+  // ── Save/Remove button labels (future renders) ─────────────
+  window._ng_t = t;  // store globally for use in renderModules
+
+  // ── Persist + update selectors ────────────────────────────
+  const langSelect = document.querySelector("#lang-select");
+  if (langSelect) langSelect.value = selected.code;
   localStorage.setItem("ng_lang", selected.code);
-  languagePills.querySelectorAll("button").forEach((button) => button.classList.toggle("active", button.dataset.lang === selected.code));
+  document.querySelectorAll("[data-lang]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.lang === selected.code);
+  });
 }
 
 function splitTitle(title) {
