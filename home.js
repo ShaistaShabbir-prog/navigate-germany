@@ -851,7 +851,7 @@ function renderStates(items = STATES) {
     return `
     <a class="state-card reveal" href="${statePage}" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="${t.view_details.replace(/[←→]/g, "").trim()}: ${item.name}">
       <span class="state-card-content">
-        <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy" onerror="this.style.display='none'"><small>${language === "en" ? item.visual : item.name}</small></span>
+        <span class="state-media"><img src="./assets/images/states/heroes/${meta.image}" alt="${meta.alt}" width="1452" height="672" loading="lazy" decoding="async" onerror="this.style.display='none'"><small>${language === "en" ? item.visual : item.name}</small></span>
         <strong>${item.name}</strong>
         <span class="state-capital"><b>${t.capital}</b> ${item.capital}</span>
         <span class="state-city"><b>${t.major_cities}</b> ${meta.cities}</span>
@@ -897,9 +897,16 @@ function openState(id) {
   stateDetail.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-function setLanguage(code) {
+let languageRequest = 0;
+async function setLanguage(code) {
+  const requestId = ++languageRequest;
   const selected = LANGUAGES.find((item) => item.code === code) || LANGUAGES[0];
-  const t = TRANSLATIONS[selected.code] || TRANSLATIONS.en;
+  const [englishExternal, external] = await Promise.all([
+    window.NavigateGermanyI18n?.load("en") || {},
+    window.NavigateGermanyI18n?.load(selected.code) || {}
+  ]);
+  if (requestId !== languageRequest) return;
+  const t = { ...TRANSLATIONS.en, ...englishExternal, ...(TRANSLATIONS[selected.code] || {}), ...external };
   window._ng_t = t;
 
   // ── Direction + RTL font ──────────────────────────────────
