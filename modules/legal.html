@@ -100,8 +100,115 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div id="tc-letter" class="tc">
   <div class="row2">
     <div>
-      <div class="card">
-        <h2>Paste your German letter</h2>
+      <!-- ── Input methods ── -->
+      <div class="card" style="padding:0;overflow:hidden">
+        
+        <!-- Tab selector for input method -->
+        <div style="display:flex;border-bottom:1px solid var(--border);background:var(--surface2)">
+          <button class="inp-tab active" onclick="setInpTab('paste',this)" style="flex:1;padding:11px 6px;border:none;background:transparent;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent)">
+            📝 Paste text
+          </button>
+          <button class="inp-tab" onclick="setInpTab('upload',this)" style="flex:1;padding:11px 6px;border:none;background:transparent;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent">
+            📎 Upload file
+          </button>
+          <button class="inp-tab" onclick="setInpTab('camera',this)" style="flex:1;padding:11px 6px;border:none;background:transparent;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent">
+            📷 Take photo
+          </button>
+        </div>
+
+        <!-- PASTE TEXT -->
+        <div id="inp-paste" class="inp-panel" style="padding:16px">
+          <textarea id="ltxt" rows="9" placeholder="Paste any German official letter here...&#10;&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF, Mietrecht letters..."></textarea>
+        </div>
+
+        <!-- UPLOAD FILE (PDF / image) -->
+        <div id="inp-upload" class="inp-panel" style="display:none;padding:16px">
+          <div id="drop-zone"
+            onclick="document.getElementById('file-inp').click()"
+            ondragover="event.preventDefault();this.style.borderColor='var(--accent)'"
+            ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
+            ondrop="event.preventDefault();this.style.borderColor='rgba(255,255,255,.15)';handleFileDrop(event.dataTransfer.files)"
+            style="border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:28px 16px;text-align:center;cursor:pointer;transition:border-color .2s">
+            <div style="font-size:2.4rem;margin-bottom:8px">📄</div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:4px">Click to choose file or drag & drop</div>
+            <div style="font-size:.75rem;color:var(--muted)">Supports: PDF · JPG · PNG · HEIC (up to 10 MB)</div>
+          </div>
+          <input type="file" id="file-inp" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp" style="display:none" onchange="handleFileSelect(this.files)">
+          <div id="file-preview" style="margin-top:12px;display:none">
+            <div id="file-name" style="font-size:.78rem;color:var(--accent);margin-bottom:8px"></div>
+            <img id="img-preview" style="max-width:100%;max-height:280px;border-radius:8px;display:none;object-fit:contain">
+            <canvas id="pdf-canvas" style="max-width:100%;border-radius:8px;display:none"></canvas>
+          </div>
+        </div>
+
+        <!-- CAMERA -->
+        <div id="inp-camera" class="inp-panel" style="display:none;padding:16px">
+          <div id="camera-inactive">
+            <div style="text-align:center;padding:20px">
+              <div style="font-size:2.4rem;margin-bottom:10px">📷</div>
+              <div style="font-weight:700;font-size:.9rem;margin-bottom:6px">Take a photo of your letter</div>
+              <div style="font-size:.75rem;color:var(--muted);margin-bottom:16px">Make sure the letter is well-lit and text is readable</div>
+              <button class="btn bg" onclick="startCamera()" style="margin-bottom:6px">Open camera →</button>
+              <div style="font-size:.68rem;color:var(--muted);margin-top:6px">Or pick from gallery:</div>
+              <input type="file" id="gallery-inp" accept="image/*" style="display:none" onchange="handleFileSelect(this.files)">
+              <button class="btn bo" onclick="document.getElementById('gallery-inp').click()" style="margin-top:6px;font-size:.75rem">🖼️ Choose from gallery</button>
+            </div>
+          </div>
+          <div id="camera-active" style="display:none">
+            <video id="cam-video" autoplay playsinline style="width:100%;border-radius:10px;max-height:320px;object-fit:cover"></video>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn bg" onclick="capturePhoto()" style="flex:1">📸 Capture</button>
+              <button class="btn bo" onclick="stopCamera()" style="flex:1">✕ Cancel</button>
+            </div>
+          </div>
+          <canvas id="cam-canvas" style="display:none"></canvas>
+          <div id="cam-preview" style="display:none;margin-top:10px">
+            <img id="cam-img" style="width:100%;border-radius:10px;max-height:280px;object-fit:contain">
+            <button class="btn bo" onclick="retakePhoto()" style="margin-top:8px;font-size:.75rem;width:100%">🔄 Retake photo</button>
+          </div>
+        </div>
+
+        <!-- Shared controls -->
+        <div style="padding:12px 16px;border-top:1px solid var(--border);background:var(--surface2)">
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <select id="ltype" style="flex:1;min-width:160px">
+              <option value="">Auto-detect letter type</option>
+              <option>Kündigung (dismissal)</option>
+              <option>Mietrecht (tenancy)</option>
+              <option>Immigration / Aufenthaltstitel</option>
+              <option>Jobcenter / Bürgergeld</option>
+              <option>Finanzamt / Tax</option>
+              <option>Krankenkasse</option>
+            </select>
+            <select id="translate-lang" style="flex:1;min-width:140px">
+              <option value="English">Explain in English</option>
+              <option value="Urdu">اردو میں سمجھائیں</option>
+              <option value="Arabic">شرح بالعربية</option>
+              <option value="Turkish">Türkçe açıkla</option>
+              <option value="Russian">Объяснить на русском</option>
+              <option value="Farsi">توضیح به فارسی</option>
+              <option value="French">Expliquer en français</option>
+              <option value="Italian">Spiegare in italiano</option>
+              <option value="Ukrainian">Пояснити українською</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn bg" onclick="doAnalyse()" id="abtn" style="flex:1">🔍 Analyse & explain</button>
+            <button class="btn bo" onclick="clearLetter()" style="font-size:.78rem">🗑️ Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Processing indicator -->
+      <div id="ocr-loading" style="display:none;text-align:center;padding:16px;color:var(--muted);font-size:.82rem">
+        <div class="typing-dot"></div><div class="typing-dot" style="animation-delay:.18s"></div><div class="typing-dot" style="animation-delay:.36s"></div>
+        <span id="ocr-msg" style="margin-left:8px">Processing image...</span>
+      </div>
+
+      <div id="lres"></div>
+    </div>
+
+    
         <textarea id="ltxt" rows="10" placeholder="Paste any German official letter here...&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF letters..."></textarea>
         <select id="ltype" style="margin-top:8px">
           <option value="">Auto-detect letter type</option>
@@ -546,6 +653,326 @@ if(location.hash==='#letter') { document.querySelectorAll('.tab')[1].click(); sh
 </div>
 
 <script src="../chatbot.js" defer></script>
-<script src="../referral.js" defer></script>
+<script src="../referral.js" defer>
+// ═══════════════════════════════════════════════════════
+//  Legal Letter — Camera, File Upload, OCR, Translate
+// ═══════════════════════════════════════════════════════
+
+let currentInputMode = "paste";
+let capturedImageData = null;
+let cameraStream = null;
+
+// ── Input tab switching ──
+function setInpTab(mode, btn) {
+  currentInputMode = mode;
+  document.querySelectorAll(".inp-tab").forEach(b => {
+    b.style.color = "var(--muted)";
+    b.style.borderBottom = "2px solid transparent";
+  });
+  btn.style.color = "var(--accent)";
+  btn.style.borderBottom = "2px solid var(--accent)";
+  document.querySelectorAll(".inp-panel").forEach(p => p.style.display = "none");
+  document.getElementById("inp-" + mode).style.display = "block";
+  if (mode !== "camera" && cameraStream) stopCamera();
+  capturedImageData = null;
+}
+
+// ── File handling ──
+function handleFileSelect(files) {
+  if (!files || !files[0]) return;
+  processFile(files[0]);
+}
+
+function handleFileDrop(files) {
+  if (!files || !files[0]) return;
+  processFile(files[0]);
+}
+
+function processFile(file) {
+  const maxMB = 10;
+  if (file.size > maxMB * 1024 * 1024) {
+    alert("File too large. Maximum 10 MB.");
+    return;
+  }
+  document.getElementById("file-preview").style.display = "block";
+  document.getElementById("file-name").textContent = `📄 ${file.name} (${(file.size/1024).toFixed(0)} KB)`;
+
+  if (file.type === "application/pdf") {
+    extractPDFText(file);
+  } else if (file.type.startsWith("image/") || file.name.toLowerCase().endsWith(".heic")) {
+    showImagePreview(file);
+    readImageAsBase64(file);
+  }
+}
+
+function showImagePreview(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById("img-preview");
+    img.src = e.target.result;
+    img.style.display = "block";
+    document.getElementById("pdf-canvas").style.display = "none";
+  };
+  reader.readAsDataURL(file);
+}
+
+function readImageAsBase64(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    capturedImageData = { base64: e.target.result.split(",")[1], type: file.type || "image/jpeg" };
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── PDF text extraction via PDF.js ──
+async function extractPDFText(file) {
+  showOcrLoading("Extracting text from PDF...");
+  try {
+    if (!window.pdfjsLib) {
+      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let fullText = "";
+    for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
+      const page = await pdf.getPage(i);
+      const textContent = await page.getTextContent();
+      fullText += textContent.items.map(item => item.str).join(" ") + "\n";
+    }
+    hideOcrLoading();
+    if (fullText.trim().length > 30) {
+      document.getElementById("ltxt").value = fullText.trim();
+      // Switch to paste view to show extracted text
+      document.getElementById("inp-upload").style.display = "none";
+      document.getElementById("inp-paste").style.display = "block";
+      showToast("PDF text extracted successfully — review and click Analyse");
+    } else {
+      // Scanned PDF — render page as image
+      showOcrLoading("Scanned PDF detected — rendering as image...");
+      const page = await pdf.getPage(1);
+      const viewport = page.getViewport({ scale: 2 });
+      const canvas = document.getElementById("pdf-canvas");
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.display = "block";
+      await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
+      const imgData = canvas.toDataURL("image/jpeg", 0.92);
+      capturedImageData = { base64: imgData.split(",")[1], type: "image/jpeg" };
+      hideOcrLoading();
+      showToast("PDF rendered as image — click Analyse to read");
+    }
+  } catch (err) {
+    hideOcrLoading();
+    showToast("Could not read PDF. Try taking a photo instead.");
+    console.error(err);
+  }
+}
+
+function loadScript(src) {
+  return new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = src; s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+}
+
+// ── Camera ──
+async function startCamera() {
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } }
+    });
+    const video = document.getElementById("cam-video");
+    video.srcObject = cameraStream;
+    document.getElementById("camera-inactive").style.display = "none";
+    document.getElementById("camera-active").style.display = "block";
+    document.getElementById("cam-preview").style.display = "none";
+  } catch (err) {
+    if (err.name === "NotAllowedError") {
+      alert("Camera permission denied. Please allow camera access in your browser settings, or choose a file from your gallery instead.");
+    } else {
+      alert("Camera not available. Please use the Upload file option instead.");
+    }
+  }
+}
+
+function capturePhoto() {
+  const video = document.getElementById("cam-video");
+  const canvas = document.getElementById("cam-canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+  const imgData = canvas.toDataURL("image/jpeg", 0.92);
+  capturedImageData = { base64: imgData.split(",")[1], type: "image/jpeg" };
+  
+  const img = document.getElementById("cam-img");
+  img.src = imgData;
+  document.getElementById("camera-active").style.display = "none";
+  document.getElementById("cam-preview").style.display = "block";
+  stopCamera();
+}
+
+function stopCamera() {
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(t => t.stop());
+    cameraStream = null;
+  }
+  document.getElementById("camera-active").style.display = "none";
+  document.getElementById("camera-inactive").style.display = "block";
+}
+
+function retakePhoto() {
+  capturedImageData = null;
+  document.getElementById("cam-preview").style.display = "none";
+  startCamera();
+}
+
+// ── OCR loading indicator ──
+function showOcrLoading(msg) {
+  const el = document.getElementById("ocr-loading");
+  if (el) { el.style.display = "block"; document.getElementById("ocr-msg").textContent = msg || "Processing..."; }
+}
+function hideOcrLoading() {
+  const el = document.getElementById("ocr-loading");
+  if (el) el.style.display = "none";
+}
+
+// ── Clear ──
+function clearLetter() {
+  document.getElementById("ltxt").value = "";
+  document.getElementById("lres").innerHTML = "";
+  capturedImageData = null;
+  document.getElementById("file-preview").style.display = "none";
+  document.getElementById("cam-preview").style.display = "none";
+}
+
+// ── Main analyse function — handles image + text + translation ──
+async function doAnalyse() {
+  const lang = document.getElementById("translate-lang").value || "English";
+  const ltype = document.getElementById("ltype").value;
+  const btn = document.getElementById("abtn");
+  
+  // Build the request
+  let messages = [];
+  let systemPrompt = `You are an expert German legal document analyst and immigration specialist.
+Analyse the German official letter provided and respond in ${lang}.
+
+Your response must include:
+1. **Letter type** — what kind of document this is
+2. **What it says** — plain language summary (no legal jargon)  
+3. **Deadlines** — any deadlines mentioned (highlight urgently in 🔴 if under 4 weeks)
+4. **What you must do** — concrete action steps
+5. **Your rights** — relevant legal rights (cite BGB/AufenthG/SGB if applicable)
+6. **Urgency level** — 🔴 Urgent / 🟡 Within a month / 🟢 No rush
+
+Always translate the key sentences of the letter into ${lang} as well.
+Keep explanations simple — the reader may be new to Germany.`;
+
+  if (capturedImageData) {
+    // Image input (camera photo or uploaded image)
+    showOcrLoading("Reading your letter with AI...");
+    messages = [{
+      role: "user",
+      content: [
+        {
+          type: "image",
+          source: {
+            type: "base64",
+            media_type: capturedImageData.type,
+            data: capturedImageData.base64,
+          }
+        },
+        {
+          type: "text",
+          text: `Please read this German official letter image and explain it in ${lang}.${ltype ? " Letter type hint: " + ltype : ""}`
+        }
+      ]
+    }];
+  } else {
+    // Text input
+    const text = document.getElementById("ltxt").value.trim();
+    if (!text) {
+      alert("Please paste your letter text, upload a file, or take a photo first.");
+      return;
+    }
+    messages = [{
+      role: "user",
+      content: `Here is a German official letter. Please analyse it and explain in ${lang}.\n\nLETTER:\n${text}`
+    }];
+  }
+
+  btn.disabled = true;
+  btn.textContent = "⏳ Analysing...";
+  document.getElementById("lres").innerHTML = "";
+
+  try {
+    const result = await callClaude(systemPrompt, messages, 1200);
+    hideOcrLoading();
+    
+    // Render result
+    const resultDiv = document.getElementById("lres");
+    resultDiv.innerHTML = `
+      <div class="card" style="margin-top:12px;border-left:3px solid var(--accent)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+          <div style="font-weight:800;font-size:.88rem;color:var(--accent)">📋 Letter Analysis</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn bo" onclick="copyResult()" style="font-size:.72rem;padding:5px 10px">📋 Copy</button>
+            <select onchange="retranslate(this.value)" style="font-size:.72rem;padding:4px 8px">
+              <option value="">🌍 Translate to...</option>
+              <option value="Urdu">اردو</option>
+              <option value="Arabic">العربية</option>
+              <option value="Turkish">Türkçe</option>
+              <option value="Russian">Русский</option>
+              <option value="Farsi">فارسی</option>
+              <option value="French">Français</option>
+              <option value="Italian">Italiano</option>
+              <option value="Ukrainian">Українська</option>
+              <option value="English">English</option>
+            </select>
+          </div>
+        </div>
+        <div id="result-text" style="font-size:.85rem;line-height:1.8;white-space:pre-wrap;word-break:break-word">${result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</div>
+      </div>`;
+  } catch (err) {
+    hideOcrLoading();
+    document.getElementById("lres").innerHTML = `<div class="wb" style="margin-top:10px">⚠️ Could not analyse the letter. Please check your connection and try again.<br><small>${err.message}</small></div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "🔍 Analyse & explain";
+  }
+}
+
+// ── Copy result ──
+function copyResult() {
+  const text = document.getElementById("result-text")?.innerText || "";
+  navigator.clipboard?.writeText(text).then(() => showToast("Copied to clipboard"));
+}
+
+// ── Re-translate existing result ──
+async function retranslate(toLang) {
+  if (!toLang) return;
+  const existing = document.getElementById("result-text")?.innerText;
+  if (!existing) return;
+  const btn = document.getElementById("abtn");
+  btn.disabled = true;
+  btn.textContent = "⏳ Translating...";
+  try {
+    const result = await callClaude(
+      `You are a translator. Translate the following letter analysis into ${toLang}. Keep all the structure, bold headings, and urgency markers.`,
+      [{ role: "user", content: existing }],
+      1000
+    );
+    document.getElementById("result-text").innerHTML = result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+    showToast(`Translated to ${toLang}`);
+  } catch(e) {
+    showToast("Translation failed. Try again.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "🔍 Analyse & explain";
+  }
+}
+
+</script>
 </body>
 </html>
