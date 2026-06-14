@@ -564,6 +564,21 @@ const TRANSLATIONS = {
   },
 };
 
+const UI_TEXT = {
+  en: { state_count: "{count} states", capital: "Capital", major_cities: "Major cities", best_for: "Best for", view_details: "View details →", official_resources: "Official local resources", full_state_guide: "Open full state guide →", cities: "Cities", arrival_checklist: "Open arrival checklist →", close_state: "Close state details", no_states: "No state matches your search.", guide: "Guide", state: "State", saved: "Saved", more: "More" },
+  de: { state_count: "{count} Bundesländer", capital: "Hauptstadt", major_cities: "Wichtige Städte", best_for: "Besonders geeignet für", view_details: "Details ansehen →", official_resources: "Offizielle lokale Ressourcen", full_state_guide: "Vollständigen Landesratgeber öffnen →", cities: "Städte", arrival_checklist: "Ankunftscheckliste öffnen →", close_state: "Landesdetails schließen", no_states: "Kein Bundesland entspricht Ihrer Suche.", guide: "Ratgeber", state: "Bundesland", saved: "Gespeichert", more: "Mehr" },
+  ar: { state_count: "{count} ولاية", capital: "العاصمة", major_cities: "المدن الرئيسية", best_for: "الأنسب لـ", view_details: "عرض التفاصيل →", official_resources: "موارد محلية رسمية", full_state_guide: "فتح دليل الولاية الكامل →", cities: "المدن", arrival_checklist: "فتح قائمة الوصول →", close_state: "إغلاق تفاصيل الولاية", no_states: "لا توجد ولاية مطابقة لبحثك.", guide: "دليل", state: "ولاية", saved: "المحفوظ", more: "المزيد" },
+  tr: { state_count: "{count} eyalet", capital: "Başkent", major_cities: "Büyük şehirler", best_for: "En uygun", view_details: "Ayrıntıları gör →", official_resources: "Resmi yerel kaynaklar", full_state_guide: "Tam eyalet rehberini aç →", cities: "Şehirler", arrival_checklist: "Varış kontrol listesini aç →", close_state: "Eyalet ayrıntılarını kapat", no_states: "Aramanızla eşleşen eyalet yok.", guide: "Rehber", state: "Eyalet", saved: "Kaydedilenler", more: "Daha fazla" },
+  ur: { state_count: "{count} ریاستیں", capital: "دارالحکومت", major_cities: "اہم شہر", best_for: "بہترین برائے", view_details: "تفصیل دیکھیں ←", official_resources: "سرکاری مقامی وسائل", full_state_guide: "مکمل ریاستی رہنما کھولیں ←", cities: "شہر", arrival_checklist: "آمد کی چیک لسٹ کھولیں ←", close_state: "ریاست کی تفصیل بند کریں", no_states: "آپ کی تلاش سے کوئی ریاست نہیں ملی۔", guide: "رہنما", state: "ریاست", saved: "محفوظ", more: "مزید" },
+  ru: { state_count: "{count} земель", capital: "Столица", major_cities: "Крупные города", best_for: "Лучше всего для", view_details: "Подробнее →", official_resources: "Официальные местные ресурсы", full_state_guide: "Открыть полный путеводитель по земле →", cities: "Города", arrival_checklist: "Открыть список первых шагов →", close_state: "Закрыть сведения о земле", no_states: "По вашему запросу ничего не найдено.", guide: "Руководство", state: "Земля", saved: "Сохранённое", more: "Ещё" },
+  fr: { state_count: "{count} Länder", capital: "Capitale", major_cities: "Villes principales", best_for: "Idéal pour", view_details: "Voir les détails →", official_resources: "Ressources locales officielles", full_state_guide: "Ouvrir le guide complet du Land →", cities: "Villes", arrival_checklist: "Ouvrir la liste d'arrivée →", close_state: "Fermer les détails du Land", no_states: "Aucun Land ne correspond à votre recherche.", guide: "Guide", state: "Land", saved: "Enregistrés", more: "Plus" },
+  fa: { state_count: "{count} ایالت", capital: "مرکز", major_cities: "شهرهای مهم", best_for: "مناسب برای", view_details: "مشاهده جزئیات ←", official_resources: "منابع رسمی محلی", full_state_guide: "باز کردن راهنمای کامل ایالت ←", cities: "شهرها", arrival_checklist: "باز کردن چک‌لیست ورود ←", close_state: "بستن جزئیات ایالت", no_states: "هیچ ایالتی با جستجوی شما مطابقت ندارد.", guide: "راهنما", state: "ایالت", saved: "ذخیره‌شده", more: "بیشتر" },
+  it: { state_count: "{count} Länder", capital: "Capitale", major_cities: "Città principali", best_for: "Ideale per", view_details: "Vedi dettagli →", official_resources: "Risorse locali ufficiali", full_state_guide: "Apri la guida completa del Land →", cities: "Città", arrival_checklist: "Apri la lista di arrivo →", close_state: "Chiudi i dettagli del Land", no_states: "Nessun Land corrisponde alla ricerca.", guide: "Guida", state: "Land", saved: "Salvati", more: "Altro" },
+  uk: { state_count: "{count} земель", capital: "Столиця", major_cities: "Великі міста", best_for: "Найкраще для", view_details: "Переглянути деталі →", official_resources: "Офіційні місцеві ресурси", full_state_guide: "Відкрити повний путівник землею →", cities: "Міста", arrival_checklist: "Відкрити список перших кроків →", close_state: "Закрити відомості про землю", no_states: "За вашим запитом земель не знайдено.", guide: "Путівник", state: "Земля", saved: "Збережене", more: "Більше" },
+};
+
+Object.entries(UI_TEXT).forEach(([code, text]) => Object.assign(TRANSLATIONS[code], text));
+
 const MODULES = [
   { id: "housing", icon: "⌂", iconSrc: "./assets/icons/housing.png", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
   { id: "healthcare", icon: "✚", iconSrc: "./assets/icons/healthcare.png", title: "Healthcare", desc: "Health insurance, doctors, hospitals, appointments, and wellbeing.", url: "modules/doctors.html", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" },
@@ -699,14 +714,28 @@ const languagePills = document.querySelector("#language-pills");
 const savedGuides = new Set(JSON.parse(localStorage.getItem("ng_saved_guides") || "[]"));
 let showingSavedOnly = false;
 
+function currentTranslation() {
+  return window._ng_t || TRANSLATIONS.en;
+}
+
+function localizedModules(t = currentTranslation()) {
+  return MODULES.map((module, index) => ({
+    ...module,
+    title: t.modules?.[index]?.title || module.title,
+    desc: t.modules?.[index]?.desc || module.desc,
+    linkLabel: t.open_guide,
+  }));
+}
+
 function renderModules(items = MODULES) {
+  const t = currentTranslation();
   guidesGrid.innerHTML = items.map((item) => `
     <article class="module-card reveal" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border};--module-icon-bg:${item.bg}">
-      <button class="save-guide ${savedGuides.has(item.id) ? "saved" : ""}" type="button" data-save="${item.id}" aria-label="${savedGuides.has(item.id) ? "Remove" : "Save"} ${item.title} guide">♡</button>
+      <button class="save-guide ${savedGuides.has(item.id) ? "saved" : ""}" type="button" data-save="${item.id}" aria-label="${savedGuides.has(item.id) ? t.remove : t.save} ${item.title}">♡</button>
       <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="52" height="52">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
       <h3>${item.title}</h3>
       <p>${item.desc}</p>
-      <a class="module-link" href="${item.url}">${item.linkLabel || (window._ng_t?.open_guide || "Open Guide →")}</a>
+      <a class="module-link" href="${item.url}">${item.linkLabel || t.open_guide}</a>
     </article>
   `).join("");
   requestAnimationFrame(observeReveals);
@@ -717,20 +746,23 @@ function renderModules(items = MODULES) {
 }
 
 function renderStates(items = STATES) {
-  document.querySelector("#state-result-count").textContent = `${items.length} state${items.length === 1 ? "" : "s"}`;
+  const t = currentTranslation();
+  document.querySelector("#state-result-count").textContent = t.state_count.replace("{count}", items.length);
   statesGrid.innerHTML = items.length ? items.map((item) => {
     const meta = STATE_META[item.id];
     return `
-    <button class="state-card reveal" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="Open ${item.name} resources">
-      <span class="state-card-content" data-best="${meta.bestFor}">
+    <button class="state-card reveal" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="${t.view_details.replace(/[←→]/g, "").trim()}: ${item.name}">
+      <span class="state-card-content">
         <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy" onerror="this.style.display='none'"><small>${item.visual}</small></span>
         <strong>${item.name}</strong>
-        <span class="state-city">${meta.cities}</span>
+        <span class="state-capital"><b>${t.capital}</b> ${item.capital}</span>
+        <span class="state-city"><b>${t.major_cities}</b> ${meta.cities}</span>
         <span class="state-description">${item.description}</span>
-        <span class="state-cta">View details →</span>
+        <span class="state-best">${t.best_for} ${meta.bestFor}</span>
+        <span class="state-cta">${t.view_details}</span>
       </span>
     </button>
-  `;}).join("") : '<div class="no-results">No state matches your search.</div>';
+  `;}).join("") : `<div class="no-results">${t.no_states}</div>`;
   requestAnimationFrame(observeReveals);
 }
 
@@ -741,27 +773,27 @@ function openState(id) {
   document.querySelectorAll(".state-card").forEach((card) => card.classList.toggle("active", card.dataset.state === id));
   stateDetail.hidden = false;
 
-  const t = window._ng_t || {};
+  const t = currentTranslation();
   const statePage = `states/${id.toLowerCase()}.html`;
 
   stateDetail.innerHTML = `
     <div class="state-detail-head">
       <div>
-        <span class="kicker">Official local resources</span>
+        <span class="kicker">${t.official_resources}</span>
         <h3>${selected.name}</h3>
-        <p style="margin-bottom:6px">Capital: ${selected.capital} · ${selected.description}</p>
-        ${meta.cities ? `<p style="font-size:.75rem;color:#64748b;margin-bottom:0">📍 Cities: ${meta.cities}</p>` : ""}
+        <p style="margin-bottom:6px">${t.capital}: ${selected.capital} · ${selected.description}</p>
+        ${meta.cities ? `<p style="font-size:.75rem;color:#64748b;margin-bottom:0">📍 ${t.cities}: ${meta.cities}</p>` : ""}
       </div>
-      <button class="state-detail-close" type="button" aria-label="Close state details">×</button>
+      <button class="state-detail-close" type="button" aria-label="${t.close_state}">×</button>
     </div>
     <div style="padding:12px 0 6px">
       <a href="${statePage}" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;background:#0B1D3A;color:#FFCC02;border-radius:10px;text-decoration:none;font-weight:800;font-size:.82rem;margin-bottom:12px">
-        📖 Open full ${selected.name} guide →
+        📖 ${t.full_state_guide}
       </a>
     </div>
     <div class="state-links">
       ${selected.links.map((item) => `<a href="${item.url}" target="_blank" rel="noopener noreferrer">↗ ${item.label}</a>`).join("")}
-      <a href="modules/bureaucracy.html">Open arrival checklist →</a>
+      <a href="modules/bureaucracy.html">${t.arrival_checklist}</a>
     </div>
   `;
   stateDetail.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -770,6 +802,7 @@ function openState(id) {
 function setLanguage(code) {
   const selected = LANGUAGES.find((item) => item.code === code) || LANGUAGES[0];
   const t = TRANSLATIONS[selected.code] || TRANSLATIONS.en;
+  window._ng_t = t;
 
   // ── Direction ──────────────────────────────────────────────
   document.documentElement.dir = t.dir || "ltr";
@@ -788,22 +821,11 @@ function setLanguage(code) {
     if (t[key]) el.textContent = t[key];
   });
 
-  // ── Nav links (legacy fallback) ───────────────────────────
-  const navLinks = document.querySelectorAll("nav a[href^='#']:not(.brand)");
-  navLinks.forEach((a, i) => { if (t.nav[i]) a.textContent = t.nav[i]; });
-
   // ── Search placeholder ─────────────────────────────────────
   const siteSearch  = document.querySelector("#site-search");
   const stateSearch = document.querySelector("#state-search");
   if (siteSearch)  siteSearch.placeholder = t.search_ph;
   if (stateSearch) stateSearch.placeholder = t.state_ph;
-
-  // ── Section headings ──────────────────────────────────────
-  const modulesHeading = document.querySelector("#guides h2, .section-title");
-  if (modulesHeading && t.modules_h) modulesHeading.textContent = t.modules_h;
-
-  const statesHeading = document.querySelector("#states h2, #states .section-title");
-  if (statesHeading && t.states_h) statesHeading.textContent = t.states_h;
 
   // ── Emergency banner ──────────────────────────────────────
   const emgBanner = document.querySelector(".emergency-banner p, .emg-text, [data-i18n='emergency']");
@@ -814,30 +836,23 @@ function setLanguage(code) {
 
   // ── Module cards — re-render with translated titles/descs ──
   if (t.modules && MODULES.length === t.modules.length) {
-    const translatedModules = MODULES.map((mod, i) => ({
-      ...mod,
-      title: t.modules[i]?.title || mod.title,
-      desc:  t.modules[i]?.desc  || mod.desc,
-      linkLabel: t.open_guide || "Open Guide →",
-    }));
-    renderModules(translatedModules, t);
+    renderModules(localizedModules(t));
   }
 
-  // ── Stats labels ──────────────────────────────────────────
-  const statLabels = document.querySelectorAll(".stat small");
-  if (t.stats) {
-    statLabels.forEach((el, i) => { if (t.stats[i]) el.textContent = t.stats[i]; });
-  }
-
-  // ── Save/Remove button labels (future renders) ─────────────
-  window._ng_t = t;  // store globally for use in renderModules
+  const activeStateId = document.querySelector(".state-card.active")?.dataset.state;
+  const stateQuery = document.querySelector("#state-search")?.value.toLowerCase().trim() || "";
+  renderStates(STATES.filter((item) => {
+    const meta = STATE_META[item.id];
+    return `${item.name} ${item.capital} ${meta.cities} ${meta.bestFor} ${item.description} ${item.visual}`.toLowerCase().includes(stateQuery);
+  }));
+  if (activeStateId) openState(activeStateId);
 
   // ── Persist + update selectors ────────────────────────────
-  const langSelect = document.querySelector("#lang-select");
-  if (langSelect) langSelect.value = selected.code;
+  languageSelect.value = selected.code;
   localStorage.setItem("ng_lang", selected.code);
   document.querySelectorAll("[data-lang]").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.lang === selected.code);
+    btn.setAttribute("aria-pressed", String(btn.dataset.lang === selected.code));
   });
 }
 
@@ -861,7 +876,8 @@ function toggleSavedGuides() {
     return;
   }
   showingSavedOnly = !showingSavedOnly;
-  renderModules(showingSavedOnly ? MODULES.filter((item) => savedGuides.has(item.id)) : MODULES);
+  const modules = localizedModules();
+  renderModules(showingSavedOnly ? modules.filter((item) => savedGuides.has(item.id)) : modules);
   document.querySelector("#saved-button").classList.toggle("active", showingSavedOnly);
   document.querySelector("#guides").scrollIntoView({ behavior: "smooth" });
   showToast(showingSavedOnly
@@ -909,12 +925,20 @@ function observeReveals() {
 }
 
 function init() {
-  renderModules();
-  renderStates();
   languagePills.innerHTML = LANGUAGES.map((item) => `<button type="button" data-lang="${item.code}">${item.flag} ${item.label}</button>`).join("");
   setLanguage(localStorage.getItem("ng_lang") || "en");
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   observeReveals();
+  restoreHashPosition();
+}
+
+function restoreHashPosition() {
+  if (!window.location.hash) return;
+  const target = document.querySelector(window.location.hash);
+  if (!target) return;
+  window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+    target.scrollIntoView({ block: "start" });
+  }));
 }
 
 document.querySelector(".menu-toggle").addEventListener("click", (event) => {
@@ -943,7 +967,8 @@ guidesGrid.addEventListener("click", (event) => {
   const id = saveButton.dataset.save;
   savedGuides.has(id) ? savedGuides.delete(id) : savedGuides.add(id);
   localStorage.setItem("ng_saved_guides", JSON.stringify([...savedGuides]));
-  renderModules();
+  const modules = localizedModules();
+  renderModules(showingSavedOnly ? modules.filter((item) => savedGuides.has(item.id)) : modules);
   showToast(savedGuides.has(id) ? "Guide saved on this device." : "Guide removed from saved items.");
 });
 
@@ -967,13 +992,18 @@ document.querySelector("#state-search").addEventListener("input", (event) => {
   stateDetail.hidden = true;
 });
 
+window.addEventListener("hashchange", restoreHashPosition);
+window.addEventListener("load", restoreHashPosition);
+document.fonts?.ready.then(restoreHashPosition);
+
 const siteSearch = document.querySelector("#site-search");
 const searchResults = document.querySelector("#search-results");
 siteSearch.addEventListener("input", () => {
+  const t = currentTranslation();
   const results = searchAll(siteSearch.value);
   searchResults.innerHTML = results.map((item) => item.state
-    ? `<button class="search-result" type="button" data-search-state="${item.state}"><span>${item.title}</span><small>${item.type}</small></button>`
-    : `<a class="search-result" href="${item.url}"><span>${item.title}</span><small>${item.type}</small></a>`
+    ? `<button class="search-result" type="button" data-search-state="${item.state}"><span>${item.title}</span><small>${t.state}</small></button>`
+    : `<a class="search-result" href="${item.url}"><span>${item.title}</span><small>${t.guide}</small></a>`
   ).join("");
 });
 siteSearch.closest("form").addEventListener("submit", (event) => {
