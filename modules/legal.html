@@ -486,36 +486,7 @@ function selProc(id) {
   renderProcBtns();
 }
 
-async function doAnalyse() {
-  const txt=document.getElementById('ltxt').value.trim();
-  if(txt.length<50){alert('Please paste your letter text first.');return;}
-  const btn=document.getElementById('abtn');
-  btn.disabled=true; btn.textContent='Analysing...';
-  const sys='You are a German legal expert. Analyse the letter and respond ONLY with valid JSON (no markdown): {"summary":"plain English summary","urgency":"high|medium|low","deadline":"deadline or None","laws":["§X Law"],"rights":["right1"],"actions":[{"n":1,"a":"action","d":"deadline"}],"consequences":"if ignored"}';
-  try {
-    const res=await callClaude(sys,[{role:'user',content:txt}],900);
-    const clean=res.replace(/```json
-?/g,'').replace(/```
-?/g,'').trim();
-    const a=JSON.parse(clean);
-    const uc={high:'uh',medium:'um',low:'ul'};
-    document.getElementById('lres').style.display='block';
-    document.getElementById('lres').innerHTML=
-      '<div style="font-weight:700;margin-bottom:10px">Analysis</div>'+
-      '<span class="ub '+(uc[a.urgency]||'ul')+'">'+((a.urgency||'info')).toUpperCase()+' URGENCY</span>'+
-      '<div style="font-size:.85rem;margin:10px 0">'+a.summary+'</div>'+
-      (a.deadline&&a.deadline!='None'?'<div class="wb">Deadline: '+a.deadline+'</div>':'')+
-      '<div style="margin-bottom:8px"><strong style="font-size:.75rem;text-transform:uppercase;color:var(--muted)">Laws</strong><br>'+
-        (a.laws||[]).map(l=>'<span style="background:rgba(124,58,237,.15);color:#a78bfa;padding:2px 8px;border-radius:5px;font-size:.72rem;margin:2px;display:inline-block">'+l+'</span>').join('')+'</div>'+
-      '<div style="margin-bottom:8px"><strong style="font-size:.75rem;text-transform:uppercase;color:var(--muted)">Actions</strong>'+
-        (a.actions||[]).map(x=>'<div style="display:flex;gap:8px;align-items:flex-start;padding:6px 10px;background:var(--surface2);border-radius:7px;margin-bottom:5px;font-size:.82rem"><div style="width:20px;height:20px;border-radius:50%;background:var(--purple);color:#fff;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+x.n+'</div><div><strong>'+x.a+'</strong>'+(x.d?'<div style="font-size:.72rem;color:var(--muted)">'+x.d+'</div>':'')+'</div></div>').join('')+'</div>'+
-      (a.consequences?'<div class="wb">If ignored: '+a.consequences+'</div>':'')+
-      '<button class="btn bg" style="margin-top:8px;font-size:.82rem" onclick="document.getElementById('cin').value='Draft a reply to this German letter. My situation: '+document.getElementById('ltxt').value.slice(0,200);document.querySelectorAll('.tab')[2].click();showTab('chat',document.querySelectorAll('.tab')[2])">Draft reply with AI</button>';
-  } catch(e) {
-    document.getElementById('lres').style.display='block';
-    document.getElementById('lres').innerHTML='<div class="wb">Analysis failed: '+e.message+'<br>Check ANTHROPIC_API_KEY is configured.</div>';
-  } finally { btn.disabled=false; btn.textContent='Analyse letter'; }
-}
+
 
 async function doChat() {
   const inp=document.getElementById('cin');
