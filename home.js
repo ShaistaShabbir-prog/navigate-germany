@@ -893,7 +893,7 @@ function setLanguage(code) {
   const [titleStart, titleEmphasis = ""] = splitTitle(t.hero[0]);
   const heroTitle = document.querySelector("#hero-title");
   const heroSub   = document.querySelector("#hero-subtitle");
-  if (heroTitle) heroTitle.innerHTML = `${titleStart} <em>${titleEmphasis}</em>`;
+  if (heroTitle) heroTitle.innerHTML = titleEmphasis ? `${titleStart}<br><em>${titleEmphasis}</em>` : titleStart;
   if (heroSub)   heroSub.textContent = t.hero[1];
 
   // ── ALL data-i18n elements ────────────────────────────────
