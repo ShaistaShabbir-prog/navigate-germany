@@ -62,7 +62,11 @@
     </div>`;
 
   if (group) {
-    main.before(tools);
+    if (isModule) {
+      main.after(tools);
+    } else {
+      main.before(tools);
+    }
   }
 
   // Wire search

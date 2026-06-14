@@ -77,13 +77,15 @@ tr:last-child td{border-bottom:none;}
 .result-no{border-color:#ef4444;background:rgba(239,68,68,.06);}
 input[type=range]{accent-color:var(--accent);}
 </style>
+  <link rel="stylesheet" href="../internal-shell.css">
+  <link rel="stylesheet" href="module-product.css">
 </head><body>
 <nav>
   <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
   <a class="bl" href="../index.html">← All modules</a>
 </nav>
 <div class="ph"><h1>💼 Jobs & Visa Germany</h1><p>EU Blue Card checker · 2026 salary thresholds · Chancenkarte points · Visa pathways · Qualification recognition</p></div>
-<div style="display:flex;gap:0;border-bottom:1px solid var(--border);overflow-x:auto">
+<div class="jobs-tabs" style="display:flex;gap:0;border-bottom:1px solid var(--border);overflow-x:auto">
   <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid var(--accent);color:var(--accent);font-size:.82rem" onclick="showTab('bc',this)">💳 Blue Card</button>
   <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid transparent;font-size:.82rem" onclick="showTab('sal',this)">💶 Salaries 2026</button>
   <button class="btn bo" style="border-radius:0;border-right:none;border-top:none;border-left:none;border-bottom:2px solid transparent;font-size:.82rem" onclick="showTab('cc',this)">🃏 Chancenkarte</button>
@@ -92,6 +94,13 @@ input[type=range]{accent-color:var(--accent);}
 </div>
 <div class="con">
   <div id="tc-bc">
+    <div class="module-tool-header module-tool-shell">
+      <div>
+        <h2>Find your likely work pathway</h2>
+        <p>Use the calculators as a planning aid, then confirm eligibility and documents with the official authority.</p>
+      </div>
+      <span class="module-status-badge">Decision-support preview</span>
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
       <div class="card">
         <h2>Check Blue Card eligibility</h2>
@@ -116,7 +125,9 @@ input[type=range]{accent-color:var(--accent);}
           <option value="foreign">Foreign degree (needs recognition)</option>
           <option value="it_exp">IT — 2+ years experience (no degree)</option>
         </select>
+        <button class="btn bg" type="button" onclick="checkBC()" style="width:100%;justify-content:center;margin-top:14px">Check my pathway</button>
         <div id="bc-result" class="result-box"></div>
+        <div class="module-alert module-alert--caution" style="margin-top:12px">This checker is general guidance, not a visa decision. Salary alone does not establish eligibility.</div>
       </div>
       <div class="card">
         <h2>Blue Card Quick Facts 2026</h2>
@@ -131,6 +142,7 @@ input[type=range]{accent-color:var(--accent);}
           <div>✅ Family: immediate reunification</div>
           <div>✅ EU mobility: work in other EU states after 12 months</div>
         </div>
+        <a class="btn bo" href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noopener" style="margin-top:14px;text-decoration:none">Open official source ↗</a>
       </div>
     </div>
   </div>
@@ -178,6 +190,7 @@ input[type=range]{accent-color:var(--accent);}
       </div>
       <div class="card">
         <h2>Chancenkarte Facts</h2>
+        <a href="https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card" target="_blank" rel="noopener" class="module-source-badge" style="margin-bottom:10px">Official source: Make it in Germany</a>
         <div style="font-size:.85rem;line-height:2">
           <div>✅ Come without job offer</div>
           <div>✅ Valid: <strong>1 year</strong> job search</div>
@@ -200,6 +213,7 @@ input[type=range]{accent-color:var(--accent);}
   <div id="tc-recog" style="display:none">
     <div class="card">
       <h2>Qualification Recognition — Key Resources</h2>
+      <div class="module-alert module-alert--verified" style="margin-bottom:12px"><strong>Official-source checklist:</strong> start with Anerkennung in Deutschland, then use the authority named for your profession.</div>
       <table>
         <tr><th>Resource</th><th>What it does</th><th>Link</th></tr>
         <tr><td><strong>Anabin Database</strong></td><td>Check if your university/degree is recognised</td><td><a href="https://anabin.kmk.org" target="_blank" style="color:#93c5fd">anabin.kmk.org</a></td></tr>
@@ -228,8 +242,9 @@ const SHORTAGE = ['IT','STEM','Healthcare','Construction','Education'];
 function showTab(name, btn) {
   ['bc','sal','cc','paths','recog'].forEach(t=>document.getElementById('tc-'+t).style.display='none');
   document.getElementById('tc-'+name).style.display='block';
-  document.querySelectorAll('nav + div + div button').forEach(b=>{b.style.borderBottomColor='transparent';b.style.color='var(--muted)';});
+  document.querySelectorAll('.jobs-tabs button').forEach(b=>{b.style.borderBottomColor='transparent';b.style.color='var(--muted)';b.setAttribute('aria-selected','false');});
   if(btn){btn.style.borderBottomColor='var(--accent)';btn.style.color='var(--accent)';}
+  if(btn){btn.setAttribute('aria-selected','true');}
   if(name==='paths') renderPaths();
 }
 
@@ -335,5 +350,7 @@ calcCC();
     </div>
   </div>
 </div>
-<script src="../referral.js" defer></script>
+  <script src="../referral.js" defer></script>
+  <script src="module-product.js" defer></script>
+  <script src="../internal-shell.js" defer></script>
 </body></html>
