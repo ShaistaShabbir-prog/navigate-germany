@@ -98,155 +98,146 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 </div>
 
 <div id="tc-letter" class="tc">
-  <div class="row2">
-    <div>
-      <!-- ── Input methods ── -->
-      <div class="card" style="padding:0;overflow:hidden">
-        
-        <!-- Tab selector for input method -->
-        <div style="display:flex;border-bottom:1px solid var(--border);background:var(--surface2)">
-          <button class="inp-tab active" onclick="setInpTab('paste',this)" style="flex:1;padding:11px 6px;border:none;background:transparent;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent)">
-            📝 Paste text
-          </button>
-          <button class="inp-tab" onclick="setInpTab('upload',this)" style="flex:1;padding:11px 6px;border:none;background:transparent;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent">
-            📎 Upload file
-          </button>
-          <button class="inp-tab" onclick="setInpTab('camera',this)" style="flex:1;padding:11px 6px;border:none;background:transparent;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent">
-            📷 Take photo
-          </button>
-        </div>
+<div class="row2">
+<div>
 
-        <!-- PASTE TEXT -->
-        <div id="inp-paste" class="inp-panel" style="padding:16px">
-          <textarea id="ltxt" rows="9" placeholder="Paste any German official letter here...&#10;&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF, Mietrecht letters..."></textarea>
-        </div>
+<!-- INPUT METHOD SELECTOR -->
+<div style="display:flex;gap:0;margin-bottom:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)">
+  <button id="btn-paste" style="flex:1;padding:10px 4px;border:none;background:rgba(255,204,2,.15);color:#FFCC02;font-weight:700;font-size:.75rem;cursor:pointer;border-right:1px solid rgba(255,255,255,.08)" onclick="switchMode('paste')">📝 Paste text</button>
+  <button id="btn-upload" style="flex:1;padding:10px 4px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:.75rem;cursor:pointer;border-right:1px solid rgba(255,255,255,.08)" onclick="switchMode('upload')">📎 Upload file</button>
+  <button id="btn-camera" style="flex:1;padding:10px 4px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:.75rem;cursor:pointer" onclick="switchMode('camera')">📷 Camera</button>
+</div>
 
-        <!-- UPLOAD FILE (PDF / image) -->
-        <div id="inp-upload" class="inp-panel" style="display:none;padding:16px">
-          <div id="drop-zone"
-            onclick="document.getElementById('file-inp').click()"
-            ondragover="event.preventDefault();this.style.borderColor='var(--accent)'"
-            ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
-            ondrop="event.preventDefault();this.style.borderColor='rgba(255,255,255,.15)';handleFileDrop(event.dataTransfer.files)"
-            style="border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:28px 16px;text-align:center;cursor:pointer;transition:border-color .2s">
-            <div style="font-size:2.4rem;margin-bottom:8px">📄</div>
-            <div style="font-weight:700;font-size:.9rem;margin-bottom:4px">Click to choose file or drag & drop</div>
-            <div style="font-size:.75rem;color:var(--muted)">Supports: PDF · JPG · PNG · HEIC (up to 10 MB)</div>
-          </div>
-          <input type="file" id="file-inp" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp" style="display:none" onchange="handleFileSelect(this.files)">
-          <div id="file-preview" style="margin-top:12px;display:none">
-            <div id="file-name" style="font-size:.78rem;color:var(--accent);margin-bottom:8px"></div>
-            <img id="img-preview" style="max-width:100%;max-height:280px;border-radius:8px;display:none;object-fit:contain">
-            <canvas id="pdf-canvas" style="max-width:100%;border-radius:8px;display:none"></canvas>
-          </div>
-        </div>
+<!-- PASTE MODE -->
+<div id="mode-paste">
+  <div class="card">
+    <h2 style="margin-bottom:8px">Paste your German letter</h2>
+    <textarea id="ltxt" rows="9" placeholder="Paste any German official letter here...&#10;&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF, Mietrecht letters..."></textarea>
+  </div>
+</div>
 
-        <!-- CAMERA -->
-        <div id="inp-camera" class="inp-panel" style="display:none;padding:16px">
-          <div id="camera-inactive">
-            <div style="text-align:center;padding:20px">
-              <div style="font-size:2.4rem;margin-bottom:10px">📷</div>
-              <div style="font-weight:700;font-size:.9rem;margin-bottom:6px">Take a photo of your letter</div>
-              <div style="font-size:.75rem;color:var(--muted);margin-bottom:16px">Make sure the letter is well-lit and text is readable</div>
-              <button class="btn bg" onclick="startCamera()" style="margin-bottom:6px">Open camera →</button>
-              <div style="font-size:.68rem;color:var(--muted);margin-top:6px">Or pick from gallery:</div>
-              <input type="file" id="gallery-inp" accept="image/*" style="display:none" onchange="handleFileSelect(this.files)">
-              <button class="btn bo" onclick="document.getElementById('gallery-inp').click()" style="margin-top:6px;font-size:.75rem">🖼️ Choose from gallery</button>
-            </div>
-          </div>
-          <div id="camera-active" style="display:none">
-            <video id="cam-video" autoplay playsinline style="width:100%;border-radius:10px;max-height:320px;object-fit:cover"></video>
-            <div style="display:flex;gap:8px;margin-top:10px">
-              <button class="btn bg" onclick="capturePhoto()" style="flex:1">📸 Capture</button>
-              <button class="btn bo" onclick="stopCamera()" style="flex:1">✕ Cancel</button>
-            </div>
-          </div>
-          <canvas id="cam-canvas" style="display:none"></canvas>
-          <div id="cam-preview" style="display:none;margin-top:10px">
-            <img id="cam-img" style="width:100%;border-radius:10px;max-height:280px;object-fit:contain">
-            <button class="btn bo" onclick="retakePhoto()" style="margin-top:8px;font-size:.75rem;width:100%">🔄 Retake photo</button>
-          </div>
-        </div>
-
-        <!-- Shared controls -->
-        <div style="padding:12px 16px;border-top:1px solid var(--border);background:var(--surface2)">
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-            <select id="ltype" style="flex:1;min-width:160px">
-              <option value="">Auto-detect letter type</option>
-              <option>Kündigung (dismissal)</option>
-              <option>Mietrecht (tenancy)</option>
-              <option>Immigration / Aufenthaltstitel</option>
-              <option>Jobcenter / Bürgergeld</option>
-              <option>Finanzamt / Tax</option>
-              <option>Krankenkasse</option>
-            </select>
-            <select id="translate-lang" style="flex:1;min-width:140px">
-              <option value="English">Explain in English</option>
-              <option value="Urdu">اردو میں سمجھائیں</option>
-              <option value="Arabic">شرح بالعربية</option>
-              <option value="Turkish">Türkçe açıkla</option>
-              <option value="Russian">Объяснить на русском</option>
-              <option value="Farsi">توضیح به فارسی</option>
-              <option value="French">Expliquer en français</option>
-              <option value="Italian">Spiegare in italiano</option>
-              <option value="Ukrainian">Пояснити українською</option>
-            </select>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <button class="btn bg" onclick="doAnalyse()" id="abtn" style="flex:1">🔍 Analyse & explain</button>
-            <button class="btn bo" onclick="clearLetter()" style="font-size:.78rem">🗑️ Clear</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Processing indicator -->
-      <div id="ocr-loading" style="display:none;text-align:center;padding:16px;color:var(--muted);font-size:.82rem">
-        <div class="typing-dot"></div><div class="typing-dot" style="animation-delay:.18s"></div><div class="typing-dot" style="animation-delay:.36s"></div>
-        <span id="ocr-msg" style="margin-left:8px">Processing image...</span>
-      </div>
-
-      <div id="lres"></div>
+<!-- UPLOAD MODE -->
+<div id="mode-upload" style="display:none">
+  <div class="card">
+    <h2 style="margin-bottom:8px">📎 Upload PDF or image</h2>
+    <div id="drop-zone" onclick="document.getElementById('file-inp').click()"
+      ondragover="event.preventDefault();this.style.borderColor='#FFCC02'"
+      ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
+      ondrop="event.preventDefault();this.style.borderColor='rgba(255,255,255,.15)';handleFileDrop(event.dataTransfer.files)"
+      style="border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:32px 16px;text-align:center;cursor:pointer;transition:border-color .2s">
+      <div style="font-size:2.5rem;margin-bottom:10px">📄</div>
+      <div style="font-weight:700;font-size:.88rem;margin-bottom:4px">Click to choose file or drag &amp; drop</div>
+      <div style="font-size:.72rem;color:#64748b">PDF · JPG · PNG · HEIC · up to 10 MB</div>
     </div>
-
-    
-        <textarea id="ltxt" rows="10" placeholder="Paste any German official letter here...&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF letters..."></textarea>
-        <select id="ltype" style="margin-top:8px">
-          <option value="">Auto-detect letter type</option>
-          <option>Kündigung (dismissal)</option>
-          <option>Mietrecht (tenancy)</option>
-          <option>Immigration / Aufenthaltstitel</option>
-          <option>Jobcenter / Bürgergeld</option>
-          <option>Finanzamt / Tax</option>
-          <option>Krankenkasse</option>
-        </select>
-        <div style="display:flex;gap:8px;margin-top:10px">
-          <button class="btn bg" onclick="doAnalyse()" id="abtn">🔍 Analyse letter</button>
-          <button class="btn bo" onclick="document.getElementById('ltxt').value='';document.getElementById('lres').style.display='none'">Clear</button>
-        </div>
-      </div>
-      <div id="lres" style="display:none;background:#1a1030;border:1.5px solid var(--purple);border-radius:12px;padding:16px"></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="card"><h2>What this tool does</h2>
-        <ul style="font-size:.82rem;color:var(--muted);line-height:2;padding-left:14px">
-          <li>Checks common letter keywords</li><li>Highlights possible deadlines</li>
-          <li>Points to relevant legal topics</li><li>Suggests practical next steps</li>
-          <li>Runs entirely in your browser</li><li>Requires no API key</li>
-        </ul>
-      </div>
-      <div class="wb"><strong>Disclaimer:</strong> General information only, not legal advice. Verify every deadline and see a Rechtsanwalt for court, criminal, or asylum matters.</div>
-      <div class="card"><h2>Free legal help</h2>
-        <div style="font-size:.8rem;line-height:2">
-          <div>💶 <b>Beratungshilfe</b> — €15 at any lawyer</div>
-          <div>🏛️ <b>DGB</b> — free employment advice</div>
-          <div>🏠 <b>Mieterverein</b> — tenant association</div>
-          <div>📞 <b>ADS</b> — 030 18555-1855</div>
-          <div>🤝 <b>Caritas / Diakonie</b> — social advice</div>
-        </div>
-      </div>
+    <input type="file" id="file-inp" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp,image/*" style="display:none" onchange="handleFileSelect(this.files)">
+    <div id="file-preview" style="display:none;margin-top:12px">
+      <div id="file-name" style="font-size:.78rem;color:#FFCC02;margin-bottom:8px"></div>
+      <img id="img-preview" style="max-width:100%;max-height:260px;border-radius:8px;display:none;object-fit:contain">
+      <canvas id="pdf-canvas" style="max-width:100%;border-radius:8px;display:none"></canvas>
     </div>
   </div>
 </div>
+
+<!-- CAMERA MODE -->
+<div id="mode-camera" style="display:none">
+  <div class="card">
+    <h2 style="margin-bottom:8px">📷 Take a photo of your letter</h2>
+    <div id="camera-inactive" style="text-align:center;padding:12px 0">
+      <div style="font-size:.82rem;color:#64748b;margin-bottom:12px">Hold your letter under good light and take a clear photo</div>
+      <button class="btn bg" onclick="startCamera()" style="margin-bottom:10px;width:100%">📷 Open camera</button>
+      <div style="font-size:.72rem;color:#64748b;margin-bottom:6px">— or choose existing photo —</div>
+      <input type="file" id="gallery-inp" accept="image/*" capture="environment" style="display:none" onchange="handleFileSelect(this.files)">
+      <button class="btn bo" onclick="document.getElementById('gallery-inp').click()" style="width:100%;font-size:.78rem">🖼️ Choose from gallery</button>
+    </div>
+    <div id="camera-active" style="display:none">
+      <video id="cam-video" autoplay playsinline muted style="width:100%;border-radius:10px;max-height:300px;background:#000;display:block"></video>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn bg" onclick="capturePhoto()" style="flex:1;font-size:.85rem">📸 Capture photo</button>
+        <button class="btn bo" onclick="stopCamera()" style="font-size:.85rem">✕</button>
+      </div>
+    </div>
+    <canvas id="cam-canvas" style="display:none"></canvas>
+    <div id="cam-preview" style="display:none;margin-top:10px">
+      <img id="cam-img" style="width:100%;border-radius:10px;max-height:260px;object-fit:contain;display:block">
+      <button class="btn bo" onclick="retakePhoto()" style="margin-top:8px;font-size:.78rem;width:100%">🔄 Retake</button>
+    </div>
+  </div>
+</div>
+
+<!-- OCR LOADING -->
+<div id="ocr-loading" style="display:none;text-align:center;padding:14px;font-size:.82rem;color:#94a3b8">
+  ⏳ <span id="ocr-msg">Processing...</span>
+</div>
+
+<!-- SHARED CONTROLS -->
+<div class="card" style="margin-top:0">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+    <select id="ltype">
+      <option value="">Auto-detect type</option>
+      <option>Kündigung (dismissal)</option>
+      <option>Mietrecht (tenancy)</option>
+      <option>Immigration / Aufenthaltstitel</option>
+      <option>Jobcenter / Bürgergeld</option>
+      <option>Finanzamt / Tax</option>
+      <option>Krankenkasse</option>
+    </select>
+    <select id="translate-lang">
+      <option value="English">🌍 Explain in English</option>
+      <option value="Urdu">اردو میں سمجھائیں</option>
+      <option value="Arabic">شرح بالعربية</option>
+      <option value="Turkish">Türkçe açıkla</option>
+      <option value="Russian">На русском</option>
+      <option value="Farsi">به فارسی</option>
+      <option value="French">En français</option>
+      <option value="Italian">In italiano</option>
+      <option value="Ukrainian">Українською</option>
+    </select>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button class="btn bg" onclick="doAnalyse()" id="abtn" style="flex:1">🔍 Analyse &amp; explain</button>
+    <button class="btn bo" onclick="clearLetter()" style="font-size:.78rem">🗑️</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="lres"></div>
+
+</div>
+
+<!-- RIGHT COLUMN - QUICK HELP -->
+<div>
+  <div class="card">
+    <h2>⚡ Quick help</h2>
+    <div class="ib" style="margin-bottom:10px">🔴 <strong>Kündigung received?</strong> You have <strong>3 weeks</strong> to file Kündigungsschutzklage at Arbeitsgericht. It's free.</div>
+    <div class="ib">🔴 <strong>Official refusal (Bescheid)?</strong> You have <strong>1 month</strong> to file Widerspruch in writing.</div>
+  </div>
+  <div class="card">
+    <h2>🛡️ Your rights</h2>
+    <div style="font-size:.82rem;line-height:1.8">
+      <div>📋 Every official letter must state the <strong>authority</strong> and the <strong>legal basis</strong></div>
+      <div>⏰ You always have a right to <strong>sufficient time to respond</strong></div>
+      <div>🗣️ You have a right to an <strong>interpreter</strong> in legal proceedings</div>
+      <div>📁 You can request a copy of your <strong>file (Akteneinsicht)</strong></div>
+      <div>🆓 Low-income residents can get a <strong>Beratungshilfeschein</strong> (€15 legal advice)</div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>📞 Free help</h2>
+    <div style="font-size:.82rem;line-height:2">
+      <div>🏛️ <b>Caritas</b> — free migration counselling</div>
+      <div>🏛️ <b>Diakonie</b> — social & legal advice</div>
+      <div>🏛️ <b>AWO</b> — welfare & integration help</div>
+      <div>📞 <b>Mieterverein</b> — tenant law (~€80/yr)</div>
+      <div>📞 <b>ADS</b> — anti-discrimination: 030 18555-1855</div>
+      <div>🌐 <b>BAMF MBE</b> — migration advice (free)</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
 
 <div id="tc-chat" class="tc">
   <div class="row2">
