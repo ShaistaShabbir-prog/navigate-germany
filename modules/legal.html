@@ -616,122 +616,102 @@ if(location.hash==='#letter') { document.querySelectorAll('.tab')[1].click(); sh
 
 <script src="../chatbot.js" defer></script>
 <script src="../referral.js" defer>
+
 // ═══════════════════════════════════════════════════════
-//  Legal Letter — Camera, File Upload, OCR, Translate
+//  Letter Reader — Camera · Upload · OCR · Translate
 // ═══════════════════════════════════════════════════════
 
-let currentInputMode = "paste";
-let capturedImageData = null;
-let cameraStream = null;
+let _capturedImage = null; // {base64, type}
+let _cameraStream  = null;
 
-// ── Input tab switching ──
-function setInpTab(mode, btn) {
-  currentInputMode = mode;
-  document.querySelectorAll(".inp-tab").forEach(b => {
-    b.style.color = "var(--muted)";
-    b.style.borderBottom = "2px solid transparent";
+// ── Switch input mode ─────────────────────────────────
+function switchMode(mode) {
+  ["paste","upload","camera"].forEach(m => {
+    document.getElementById("mode-" + m).style.display = m === mode ? "block" : "none";
+    const btn = document.getElementById("btn-" + m);
+    if (btn) {
+      btn.style.background = m === mode ? "rgba(255,204,2,.15)" : "transparent";
+      btn.style.color      = m === mode ? "#FFCC02" : "#94a3b8";
+    }
   });
-  btn.style.color = "var(--accent)";
-  btn.style.borderBottom = "2px solid var(--accent)";
-  document.querySelectorAll(".inp-panel").forEach(p => p.style.display = "none");
-  document.getElementById("inp-" + mode).style.display = "block";
-  if (mode !== "camera" && cameraStream) stopCamera();
-  capturedImageData = null;
+  if (mode !== "camera" && _cameraStream) stopCamera();
+  _capturedImage = null;
 }
 
-// ── File handling ──
+// ── File select ───────────────────────────────────────
 function handleFileSelect(files) {
-  if (!files || !files[0]) return;
-  processFile(files[0]);
+  if (files && files[0]) processFile(files[0]);
 }
-
 function handleFileDrop(files) {
-  if (!files || !files[0]) return;
-  processFile(files[0]);
+  if (files && files[0]) processFile(files[0]);
 }
 
 function processFile(file) {
-  const maxMB = 10;
-  if (file.size > maxMB * 1024 * 1024) {
-    alert("File too large. Maximum 10 MB.");
-    return;
-  }
+  if (file.size > 10 * 1024 * 1024) { alert("File too large — max 10 MB."); return; }
+  document.getElementById("file-name").textContent = "📄 " + file.name;
   document.getElementById("file-preview").style.display = "block";
-  document.getElementById("file-name").textContent = `📄 ${file.name} (${(file.size/1024).toFixed(0)} KB)`;
+  document.getElementById("img-preview").style.display  = "none";
+  document.getElementById("pdf-canvas").style.display   = "none";
 
-  if (file.type === "application/pdf") {
+  if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
     extractPDFText(file);
-  } else if (file.type.startsWith("image/") || file.name.toLowerCase().endsWith(".heic")) {
-    showImagePreview(file);
-    readImageAsBase64(file);
+  } else {
+    // Image
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById("img-preview").src = e.target.result;
+      document.getElementById("img-preview").style.display = "block";
+      _capturedImage = { base64: e.target.result.split(",")[1], type: file.type || "image/jpeg" };
+    };
+    reader.readAsDataURL(file);
   }
 }
 
-function showImagePreview(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = document.getElementById("img-preview");
-    img.src = e.target.result;
-    img.style.display = "block";
-    document.getElementById("pdf-canvas").style.display = "none";
-  };
-  reader.readAsDataURL(file);
-}
-
-function readImageAsBase64(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    capturedImageData = { base64: e.target.result.split(",")[1], type: file.type || "image/jpeg" };
-  };
-  reader.readAsDataURL(file);
-}
-
-// ── PDF text extraction via PDF.js ──
+// ── PDF extraction ────────────────────────────────────
 async function extractPDFText(file) {
-  showOcrLoading("Extracting text from PDF...");
+  showProcessing("Reading PDF...");
   try {
     if (!window.pdfjsLib) {
-      await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");
-      window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      await _loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
     }
-    const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-    let fullText = "";
-    for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
-      const page = await pdf.getPage(i);
-      const textContent = await page.getTextContent();
-      fullText += textContent.items.map(item => item.str).join(" ") + "\n";
+    const pdf  = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+    let text = "";
+    for (let p = 1; p <= Math.min(pdf.numPages, 5); p++) {
+      const page = await pdf.getPage(p);
+      const tc   = await page.getTextContent();
+      text += tc.items.map(i => i.str).join(" ") + "
+";
     }
-    hideOcrLoading();
-    if (fullText.trim().length > 30) {
-      document.getElementById("ltxt").value = fullText.trim();
-      // Switch to paste view to show extracted text
-      document.getElementById("inp-upload").style.display = "none";
-      document.getElementById("inp-paste").style.display = "block";
-      showToast("PDF text extracted successfully — review and click Analyse");
+    hideProcessing();
+    if (text.trim().length > 30) {
+      document.getElementById("ltxt").value = text.trim();
+      switchMode("paste");
+      showToast("✅ PDF text extracted — click Analyse");
     } else {
-      // Scanned PDF — render page as image
-      showOcrLoading("Scanned PDF detected — rendering as image...");
-      const page = await pdf.getPage(1);
-      const viewport = page.getViewport({ scale: 2 });
-      const canvas = document.getElementById("pdf-canvas");
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
+      // Scanned — render first page as image
+      showProcessing("Scanned PDF — rendering as image...");
+      const page     = await pdf.getPage(1);
+      const vp       = page.getViewport({ scale: 2 });
+      const canvas   = document.getElementById("pdf-canvas");
+      canvas.width   = vp.width;
+      canvas.height  = vp.height;
       canvas.style.display = "block";
-      await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
-      const imgData = canvas.toDataURL("image/jpeg", 0.92);
-      capturedImageData = { base64: imgData.split(",")[1], type: "image/jpeg" };
-      hideOcrLoading();
-      showToast("PDF rendered as image — click Analyse to read");
+      await page.render({ canvasContext: canvas.getContext("2d"), viewport: vp }).promise;
+      const data = canvas.toDataURL("image/jpeg", 0.9);
+      _capturedImage = { base64: data.split(",")[1], type: "image/jpeg" };
+      hideProcessing();
+      showToast("📷 PDF rendered as image — click Analyse");
     }
-  } catch (err) {
-    hideOcrLoading();
+  } catch(e) {
+    hideProcessing();
     showToast("Could not read PDF. Try taking a photo instead.");
-    console.error(err);
+    console.error(e);
   }
 }
 
-function loadScript(src) {
+function _loadScript(src) {
   return new Promise((res, rej) => {
     const s = document.createElement("script");
     s.src = src; s.onload = res; s.onerror = rej;
@@ -739,149 +719,125 @@ function loadScript(src) {
   });
 }
 
-// ── Camera ──
+// ── Camera ────────────────────────────────────────────
 async function startCamera() {
   try {
-    cameraStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } }
+    _cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 } }
     });
-    const video = document.getElementById("cam-video");
-    video.srcObject = cameraStream;
+    const v = document.getElementById("cam-video");
+    v.srcObject = _cameraStream;
     document.getElementById("camera-inactive").style.display = "none";
-    document.getElementById("camera-active").style.display = "block";
-    document.getElementById("cam-preview").style.display = "none";
-  } catch (err) {
-    if (err.name === "NotAllowedError") {
-      alert("Camera permission denied. Please allow camera access in your browser settings, or choose a file from your gallery instead.");
+    document.getElementById("camera-active").style.display  = "block";
+    document.getElementById("cam-preview").style.display    = "none";
+  } catch(e) {
+    if (e.name === "NotAllowedError") {
+      alert("Camera permission denied. Please allow camera access in your browser settings, then try again.");
     } else {
-      alert("Camera not available. Please use the Upload file option instead.");
+      alert("Camera not available on this device. Please use 'Choose from gallery' instead.");
     }
   }
 }
 
 function capturePhoto() {
-  const video = document.getElementById("cam-video");
-  const canvas = document.getElementById("cam-canvas");
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  canvas.getContext("2d").drawImage(video, 0, 0);
-  const imgData = canvas.toDataURL("image/jpeg", 0.92);
-  capturedImageData = { base64: imgData.split(",")[1], type: "image/jpeg" };
-  
-  const img = document.getElementById("cam-img");
-  img.src = imgData;
+  const v = document.getElementById("cam-video");
+  const c = document.getElementById("cam-canvas");
+  c.width = v.videoWidth; c.height = v.videoHeight;
+  c.getContext("2d").drawImage(v, 0, 0);
+  const data = c.toDataURL("image/jpeg", 0.92);
+  _capturedImage = { base64: data.split(",")[1], type: "image/jpeg" };
+  document.getElementById("cam-img").src = data;
   document.getElementById("camera-active").style.display = "none";
-  document.getElementById("cam-preview").style.display = "block";
+  document.getElementById("cam-preview").style.display   = "block";
   stopCamera();
 }
 
 function stopCamera() {
-  if (cameraStream) {
-    cameraStream.getTracks().forEach(t => t.stop());
-    cameraStream = null;
-  }
-  document.getElementById("camera-active").style.display = "none";
+  if (_cameraStream) { _cameraStream.getTracks().forEach(t => t.stop()); _cameraStream = null; }
+  document.getElementById("camera-active").style.display   = "none";
   document.getElementById("camera-inactive").style.display = "block";
 }
 
 function retakePhoto() {
-  capturedImageData = null;
+  _capturedImage = null;
   document.getElementById("cam-preview").style.display = "none";
   startCamera();
 }
 
-// ── OCR loading indicator ──
-function showOcrLoading(msg) {
+// ── UI helpers ────────────────────────────────────────
+function showProcessing(msg) {
   const el = document.getElementById("ocr-loading");
   if (el) { el.style.display = "block"; document.getElementById("ocr-msg").textContent = msg || "Processing..."; }
 }
-function hideOcrLoading() {
+function hideProcessing() {
   const el = document.getElementById("ocr-loading");
   if (el) el.style.display = "none";
 }
 
-// ── Clear ──
+// ── Clear ─────────────────────────────────────────────
 function clearLetter() {
   document.getElementById("ltxt").value = "";
   document.getElementById("lres").innerHTML = "";
-  capturedImageData = null;
   document.getElementById("file-preview").style.display = "none";
-  document.getElementById("cam-preview").style.display = "none";
+  document.getElementById("cam-preview").style.display  = "none";
+  _capturedImage = null;
 }
 
-// ── Main analyse function — handles image + text + translation ──
+// ── Main analyse ──────────────────────────────────────
 async function doAnalyse() {
-  const lang = document.getElementById("translate-lang").value || "English";
-  const ltype = document.getElementById("ltype").value;
-  const btn = document.getElementById("abtn");
-  
-  // Build the request
-  let messages = [];
-  let systemPrompt = `You are an expert German legal document analyst and immigration specialist.
-Analyse the German official letter provided and respond in ${lang}.
+  const lang  = (document.getElementById("translate-lang")?.value) || "English";
+  const ltype = (document.getElementById("ltype")?.value) || "";
+  const btn   = document.getElementById("abtn");
 
-Your response must include:
-1. **Letter type** — what kind of document this is
-2. **What it says** — plain language summary (no legal jargon)  
-3. **Deadlines** — any deadlines mentioned (highlight urgently in 🔴 if under 4 weeks)
-4. **What you must do** — concrete action steps
-5. **Your rights** — relevant legal rights (cite BGB/AufenthG/SGB if applicable)
-6. **Urgency level** — 🔴 Urgent / 🟡 Within a month / 🟢 No rush
+  const sys = `You are an expert German legal document analyst and immigration specialist.
+Analyse the German official letter and respond in ${lang}.
 
-Always translate the key sentences of the letter into ${lang} as well.
-Keep explanations simple — the reader may be new to Germany.`;
+Structure your response as follows:
+**📋 Letter type:** what kind of document this is
+**📝 What it says:** plain-language summary (no legal jargon)
+**⏰ Deadlines:** any deadlines mentioned (mark 🔴 if under 4 weeks, 🟡 if 1–2 months)
+**✅ What you must do:** 3–5 concrete action steps
+**🛡️ Your rights:** relevant legal rights with law references (BGB/AufenthG/SGB)
+**🚦 Urgency:** 🔴 Urgent / 🟡 Within a month / 🟢 No rush
 
-  if (capturedImageData) {
-    // Image input (camera photo or uploaded image)
-    showOcrLoading("Reading your letter with AI...");
+Also translate the 2–3 most important sentences of the letter into ${lang}.
+Keep language simple — the reader may be new to Germany.${ltype ? " Letter type hint: "+ltype : ""}`;
+
+  let messages;
+
+  if (_capturedImage) {
+    // Image / camera / scanned PDF
     messages = [{
       role: "user",
       content: [
-        {
-          type: "image",
-          source: {
-            type: "base64",
-            media_type: capturedImageData.type,
-            data: capturedImageData.base64,
-          }
-        },
-        {
-          type: "text",
-          text: `Please read this German official letter image and explain it in ${lang}.${ltype ? " Letter type hint: " + ltype : ""}`
-        }
+        { type: "image", source: { type: "base64", media_type: _capturedImage.type, data: _capturedImage.base64 } },
+        { type: "text", text: `Please read this German official letter from the image and explain it in ${lang}.${ltype ? " Hint: "+ltype : ""}` }
       ]
     }];
   } else {
-    // Text input
-    const text = document.getElementById("ltxt").value.trim();
-    if (!text) {
-      alert("Please paste your letter text, upload a file, or take a photo first.");
-      return;
-    }
-    messages = [{
-      role: "user",
-      content: `Here is a German official letter. Please analyse it and explain in ${lang}.\n\nLETTER:\n${text}`
-    }];
+    const txt = document.getElementById("ltxt").value.trim();
+    if (txt.length < 20) { alert("Please paste your letter text, upload a file, or take a photo first."); return; }
+    messages = [{ role: "user", content: `Here is a German official letter. Explain it in ${lang}.
+
+LETTER:
+${txt}` }];
   }
 
-  btn.disabled = true;
-  btn.textContent = "⏳ Analysing...";
+  btn.disabled = true; btn.textContent = "⏳ Analysing...";
   document.getElementById("lres").innerHTML = "";
+  showProcessing("AI is reading your letter...");
 
   try {
-    const result = await callClaude(systemPrompt, messages, 1200);
-    hideOcrLoading();
-    
-    // Render result
-    const resultDiv = document.getElementById("lres");
-    resultDiv.innerHTML = `
+    const result = await callClaude(sys, messages, 1400);
+    hideProcessing();
+    document.getElementById("lres").innerHTML = `
       <div class="card" style="margin-top:12px;border-left:3px solid var(--accent)">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-          <div style="font-weight:800;font-size:.88rem;color:var(--accent)">📋 Letter Analysis</div>
-          <div style="display:flex;gap:6px">
-            <button class="btn bo" onclick="copyResult()" style="font-size:.72rem;padding:5px 10px">📋 Copy</button>
-            <select onchange="retranslate(this.value)" style="font-size:.72rem;padding:4px 8px">
-              <option value="">🌍 Translate to...</option>
+          <span style="font-weight:800;font-size:.85rem;color:var(--accent)">📋 Analysis result</span>
+          <div style="display:flex;gap:6px;align-items:center">
+            <button class="btn bo" style="font-size:.7rem;padding:5px 9px" onclick="copyResult()">📋 Copy</button>
+            <select style="font-size:.72rem;padding:4px 8px;border-radius:7px;background:var(--surface2);color:var(--text);border:1px solid rgba(255,255,255,.1)" onchange="retranslate(this.value);this.value=''">
+              <option value="">🌍 Translate result...</option>
               <option value="Urdu">اردو</option>
               <option value="Arabic">العربية</option>
               <option value="Turkish">Türkçe</option>
@@ -894,45 +850,51 @@ Keep explanations simple — the reader may be new to Germany.`;
             </select>
           </div>
         </div>
-        <div id="result-text" style="font-size:.85rem;line-height:1.8;white-space:pre-wrap;word-break:break-word">${result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</div>
+        <div id="result-text" style="font-size:.84rem;line-height:1.85;white-space:pre-wrap;word-break:break-word">${
+          result.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/
+/g,"<br>")
+        }</div>
       </div>`;
-  } catch (err) {
-    hideOcrLoading();
-    document.getElementById("lres").innerHTML = `<div class="wb" style="margin-top:10px">⚠️ Could not analyse the letter. Please check your connection and try again.<br><small>${err.message}</small></div>`;
+  } catch(e) {
+    hideProcessing();
+    document.getElementById("lres").innerHTML =
+      '<div class="wb" style="margin-top:10px">⚠️ Analysis failed. Please check your connection and try again.</div>';
+    console.error(e);
   } finally {
-    btn.disabled = false;
-    btn.textContent = "🔍 Analyse & explain";
+    btn.disabled = false; btn.textContent = "🔍 Analyse & explain";
   }
 }
 
-// ── Copy result ──
-function copyResult() {
-  const text = document.getElementById("result-text")?.innerText || "";
-  navigator.clipboard?.writeText(text).then(() => showToast("Copied to clipboard"));
-}
-
-// ── Re-translate existing result ──
+// ── Re-translate existing result ──────────────────────
 async function retranslate(toLang) {
   if (!toLang) return;
   const existing = document.getElementById("result-text")?.innerText;
-  if (!existing) return;
+  if (!existing || existing.length < 20) return;
   const btn = document.getElementById("abtn");
-  btn.disabled = true;
-  btn.textContent = "⏳ Translating...";
+  btn.disabled = true; btn.textContent = "⏳ Translating...";
+  showProcessing("Translating to " + toLang + "...");
   try {
     const result = await callClaude(
-      `You are a translator. Translate the following letter analysis into ${toLang}. Keep all the structure, bold headings, and urgency markers.`,
-      [{ role: "user", content: existing }],
-      1000
+      "Translate the following letter analysis into " + toLang + ". Keep all structure, bold headings, emojis and urgency markers exactly as they are.",
+      [{ role: "user", content: existing }], 1000
     );
-    document.getElementById("result-text").innerHTML = result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-    showToast(`Translated to ${toLang}`);
+    hideProcessing();
+    document.getElementById("result-text").innerHTML =
+      result.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/
+/g,"<br>");
+    showToast("✅ Translated to " + toLang);
   } catch(e) {
+    hideProcessing();
     showToast("Translation failed. Try again.");
   } finally {
-    btn.disabled = false;
-    btn.textContent = "🔍 Analyse & explain";
+    btn.disabled = false; btn.textContent = "🔍 Analyse & explain";
   }
+}
+
+// ── Copy ──────────────────────────────────────────────
+function copyResult() {
+  const t = document.getElementById("result-text")?.innerText || "";
+  navigator.clipboard?.writeText(t).then(() => showToast("Copied!"));
 }
 
 </script>
