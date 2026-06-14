@@ -613,7 +613,8 @@ if(location.hash==='#letter') { document.querySelectorAll('.tab')[1].click(); sh
     </div>
   </div>
 </div>
-<script src="../referral.js" defer>
+<script src="../referral.js" defer></script>
+<script>
 
 // ═══════════════════════════════════════════════════════
 //  Letter Reader — Camera · Upload · OCR · Translate
@@ -894,6 +895,7 @@ function copyResult() {
   const t = document.getElementById("result-text")?.innerText || "";
   navigator.clipboard?.writeText(t).then(() => showToast("Copied!"));
 }
+
 
 </script>
 </body>
