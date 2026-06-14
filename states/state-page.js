@@ -22,21 +22,50 @@ document.querySelectorAll(".emg-row").forEach((row) => {
   });
 });
 
+const stateCode = window.location.pathname.split("/").pop().replace(".html", "").toUpperCase();
+const stateFocus = {
+  BW: ["Engineering jobs", "Research", "International students"],
+  BY: ["Technology jobs", "Families", "Universities"],
+  BE: ["Startups", "Creative careers", "International community"],
+  BB: ["Families", "Research", "Berlin commuters"],
+  HB: ["Logistics", "Students", "Maritime careers"],
+  HH: ["Logistics", "Media", "International jobs"],
+  HE: ["Finance jobs", "Research", "International schools"],
+  MV: ["Healthcare careers", "Families", "Coastal living"],
+  NI: ["Engineering jobs", "Research", "Families"],
+  NW: ["Jobs", "Universities", "Large city choice"],
+  RP: ["Families", "Research", "Wine and tourism"],
+  SL: ["Cross-border jobs", "Research", "Affordable cities"],
+  SN: ["Technology", "Students", "Research"],
+  ST: ["Research", "Manufacturing", "Affordable cities"],
+  SH: ["Maritime careers", "Families", "Coastal living"],
+  TH: ["Research", "Manufacturing", "Students"],
+};
+
 const mainColumn = document.querySelector(".layout > div:first-child");
 if (mainColumn) {
+  const focusCard = document.createElement("section");
+  focusCard.className = "card ng-state-focus";
+  focusCard.innerHTML = `
+    <div class="card-label">Good starting points</div>
+    <div class="ng-state-tags">${(stateFocus[stateCode] || ["Jobs", "Study", "Family life"]).map((tag) => `<span>${tag}</span>`).join("")}</div>
+    <p class="desc">These are orientation themes, not rankings. Opportunities and costs vary by city, qualification and personal situation.</p>
+  `;
+  mainColumn.prepend(focusCard);
+
   const planningCard = document.createElement("section");
-  planningCard.className = "card";
+  planningCard.className = "card ng-state-life";
   planningCard.innerHTML = `
-    <div class="card-label">Newcomer planning</div>
-    <div class="mods">
-      <a href="../modules/bureaucracy.html" class="mod">Authorities & registration</a>
-      <a href="../modules/housing.html" class="mod">Housing</a>
-      <a href="../modules/jobs.html" class="mod">Jobs & residence</a>
-      <a href="../modules/education.html" class="mod">Universities & education</a>
-      <a href="../modules/family.html" class="mod">Family support</a>
-      <a href="../modules/doctors.html" class="mod">Healthcare</a>
+    <div class="card-label">Newcomer essentials</div>
+    <div class="ng-state-life-grid">
+      <a href="../modules/bureaucracy.html"><strong>Authorities</strong><span>Registration, residence and the correct local office.</span></a>
+      <a href="../modules/housing.html"><strong>Housing</strong><span>Rental search, contracts, deposits and tenant rights.</span></a>
+      <a href="../modules/jobs.html"><strong>Jobs & industries</strong><span>Official job search, recognition and residence routes.</span></a>
+      <a href="../modules/education.html"><strong>Universities</strong><span>Study pathways, schools and official education portals.</span></a>
+      <a href="../modules/family.html"><strong>Family support</strong><span>Childcare, schools, benefits and local family services.</span></a>
+      <a href="../modules/doctors.html"><strong>Healthcare</strong><span>Insurance, doctors, urgent care and pharmacies.</span></a>
     </div>
-    <p class="desc" style="margin:14px 0 0">Local immigration-office links differ by city. Use the official state and city portals on this page; additional authority links are being expanded.</p>
+    <p class="desc" style="margin:14px 0 0">Immigration offices and appointment systems differ by city. Start with the official state or city portals listed on this page and verify the responsible authority before submitting documents.</p>
   `;
   mainColumn.appendChild(planningCard);
 }
