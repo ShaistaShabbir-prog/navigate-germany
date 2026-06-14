@@ -191,4 +191,9 @@
     <priority>0.7</priority>
   </url>
 
+  <url><loc>https://shaistashabbir-prog.github.io/navigate-germany/about.html</loc><lastmod>2026-06-14</lastmod><priority>0.5</priority></url>
+  <url><loc>https://shaistashabbir-prog.github.io/navigate-germany/resources.html</loc><lastmod>2026-06-14</lastmod><priority>0.7</priority></url>
+  <url><loc>https://shaistashabbir-prog.github.io/navigate-germany/modules/education.html</loc><lastmod>2026-06-14</lastmod><priority>0.7</priority></url>
+  <url><loc>https://shaistashabbir-prog.github.io/navigate-germany/modules/transport.html</loc><lastmod>2026-06-14</lastmod><priority>0.7</priority></url>
+  <url><loc>https://shaistashabbir-prog.github.io/navigate-germany/modules/documents.html</loc><lastmod>2026-06-14</lastmod><priority>0.7</priority></url>
 </urlset>

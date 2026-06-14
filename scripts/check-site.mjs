@@ -5,6 +5,10 @@ import vm from "node:vm";
 const root = path.resolve(import.meta.dirname, "..");
 const htmlFiles = [
   "index.html",
+  "about.html",
+  "resources.html",
+  "privacy.html",
+  "privacy-policy.html",
   ...fs.readdirSync(path.join(root, "modules"))
     .filter((name) => name.endsWith(".html"))
     .map((name) => `modules/${name}`),
@@ -60,7 +64,19 @@ if (staticStateImages.length !== 16) {
   failures.push(`index.html: expected 16 static state images, found ${staticStateImages.length}`);
 }
 
-for (const script of ["chatbot.js", "home.js", "legal.js"]) {
+for (const expectedModule of ["housing", "doctors", "jobs", "legal", "language", "costs", "education", "banking", "family", "transport", "emergency", "documents"]) {
+  if (!homepage.includes(`modules/${expectedModule}.html`) && !fs.readFileSync(path.join(root, "home.js"), "utf8").includes(`modules/${expectedModule}.html`)) {
+    failures.push(`homepage: missing module destination ${expectedModule}`);
+  }
+}
+
+for (const stateFile of htmlFiles.filter((name) => name.startsWith("states/"))) {
+  const html = fs.readFileSync(path.join(root, stateFile), "utf8");
+  if (!html.includes('src="state-page.js"')) failures.push(`${stateFile}: missing shared state-page script`);
+  if (/images\.unsplash\.com/.test(html)) failures.push(`${stateFile}: remote hero image still present`);
+}
+
+for (const script of ["chatbot.js", "home.js", "legal.js", "referral.js", "states/state-page.js"]) {
   try {
     new vm.Script(fs.readFileSync(path.join(root, script), "utf8"), { filename: script });
   } catch (error) {

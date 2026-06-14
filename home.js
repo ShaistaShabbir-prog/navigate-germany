@@ -7,7 +7,7 @@ const LANGUAGES = [
   { code: "ru", label: "Русский", flag: "🇷🇺" },
   { code: "fr", label: "Français", flag: "🇫🇷" },
   { code: "fa", label: "فارسی", flag: "🇮🇷" },
-  { code: "it", label: "Italiano", flag: "🇮🇹" },
+  { code: "hi", label: "हिन्दी", flag: "🇮🇳" },
   { code: "uk", label: "Українська", flag: "🇺🇦" },
 ];
 
@@ -661,12 +661,12 @@ const MODULES = [
   { id: "legal", icon: "⚖", iconSrc: "./assets/icons/legal.png", title: "Legal Help", desc: "Residence law, official letters, deadlines, rights, and support.", url: "modules/legal.html", color: "#dc2626", bg: "#fff1f2", border: "#fecdd3" },
   { id: "language", icon: "•••", iconSrc: "./assets/icons/language.png", title: "Language", desc: "Learn German, practise daily phrases, and find language resources.", url: "modules/language.html", color: "#0f766e", bg: "#f0fdfa", border: "#99f6e4" },
   { id: "costs", icon: "€", title: "Cost of Living", desc: "Compare rent, expenses, salaries, banking, and everyday costs.", url: "modules/costs.html", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
-  { id: "education", icon: "▤", title: "Education", desc: "Schools, childcare, integration courses, and learning pathways.", url: "modules/integration.html", color: "#7c3aed", bg: "#f5f3ff", border: "#ddd6fe" },
+  { id: "education", icon: "▤", title: "Education", desc: "Schools, childcare, universities, integration courses, and learning pathways.", url: "modules/education.html", color: "#7c3aed", bg: "#f5f3ff", border: "#ddd6fe" },
   { id: "banking", icon: "▥", title: "Banking & Taxes", desc: "Bank accounts, transfers, Schufa, tax ID, and finance basics.", url: "modules/banking.html", color: "#0369a1", bg: "#f0f9ff", border: "#bae6fd" },
   { id: "family", icon: "♡", title: "Family & Child Support", desc: "Kindergeld, Kita, schools, parental support, and family life.", url: "modules/family.html", color: "#be185d", bg: "#fdf2f8", border: "#fbcfe8" },
-  { id: "transport", icon: "↔", title: "Transport", desc: "Driving licence and practical mobility steps for daily life.", url: "modules/bureaucracy.html", color: "#4f46e5", bg: "#eef2ff", border: "#c7d2fe" },
+  { id: "transport", icon: "↔", title: "Transport", desc: "Public transport, Deutschlandticket, driving licences, cycling, and mobility.", url: "modules/transport.html", color: "#4f46e5", bg: "#eef2ff", border: "#c7d2fe" },
   { id: "emergency", icon: "!", iconSrc: "./assets/icons/emergency.png", title: "Emergency", desc: "Emergency numbers, urgent medical help, crisis lines, and safety.", url: "modules/emergency.html", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  { id: "documents", icon: "▧", title: "Documents", desc: "Anmeldung, insurance, tax ID, bank account, and admin checklists.", url: "modules/bureaucracy.html", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
+  { id: "documents", icon: "▧", title: "Documents", desc: "Anmeldung, residence papers, insurance, tax ID, and admin checklists.", url: "modules/documents.html", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
 ];
 
 // Each state currently uses a named scenic gradient placeholder. Replace the
@@ -1042,6 +1042,10 @@ function observeReveals() {
 
 function init() {
   languagePills.innerHTML = LANGUAGES.map((item) => `<button type="button" data-lang="${item.code}">${item.flag} ${item.label}</button>`).join("");
+  const params = new URLSearchParams(window.location.search);
+  const initialStateQuery = params.get("city") || params.get("state") || "";
+  const stateSearch = document.querySelector("#state-search");
+  if (stateSearch && initialStateQuery) stateSearch.value = initialStateQuery;
   setLanguage(localStorage.getItem("ng_lang") || "en");
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   observeReveals();
@@ -1074,6 +1078,20 @@ document.querySelector(".menu-toggle").addEventListener("click", (event) => {
   button.setAttribute("aria-expanded", String(!isOpen));
   document.querySelector("#primary-nav").classList.toggle("open", !isOpen);
   document.body.classList.toggle("menu-open", !isOpen);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  document.querySelector(".menu-toggle").setAttribute("aria-expanded", "false");
+  document.querySelector("#primary-nav").classList.remove("open");
+  document.body.classList.remove("menu-open");
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".menu-toggle, #primary-nav")) return;
+  document.querySelector(".menu-toggle").setAttribute("aria-expanded", "false");
+  document.querySelector("#primary-nav").classList.remove("open");
+  document.body.classList.remove("menu-open");
 });
 
 document.querySelectorAll("#primary-nav a").forEach((linkItem) => linkItem.addEventListener("click", () => {
