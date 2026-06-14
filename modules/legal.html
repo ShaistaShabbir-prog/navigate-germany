@@ -101,106 +101,155 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div class="row2">
 <div>
 
-<!-- INPUT METHOD SELECTOR -->
-<div style="display:flex;gap:0;margin-bottom:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);position:relative;z-index:5">
-  <button id="btn-paste" style="flex:1;padding:10px 4px;border:none;background:rgba(255,204,2,.15);color:#FFCC02;font-weight:700;font-size:.75rem;cursor:pointer;border-right:1px solid rgba(255,255,255,.08)" onclick="switchMode('paste')">📝 Paste text</button>
-  <button id="btn-upload" style="flex:1;padding:10px 4px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:.75rem;cursor:pointer;border-right:1px solid rgba(255,255,255,.08)" onclick="switchMode('upload')">📎 Upload file</button>
-  <button id="btn-camera" style="flex:1;padding:10px 4px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:.75rem;cursor:pointer" onclick="switchMode('camera')">📷 Camera</button>
-</div>
+<div class="card" style="padding:0;overflow:visible">
 
-<!-- PASTE MODE -->
-<div id="mode-paste">
-  <div class="card">
-    <h2 style="margin-bottom:8px">Paste your German letter</h2>
-    <textarea id="ltxt" rows="9" placeholder="Paste any German official letter here...&#10;&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF, Mietrecht letters..."></textarea>
+  <!-- Mode tabs -->
+  <div style="display:flex;border-bottom:1px solid rgba(255,255,255,.08)">
+    <button id="ltab-paste"
+      style="flex:1;padding:12px 8px;border:none;border-bottom:2px solid #FFCC02;background:rgba(255,204,2,.08);color:#FFCC02;font-size:.78rem;font-weight:700;cursor:pointer"
+      onclick="(function(){
+        document.getElementById('lmode-paste').style.display='block';
+        document.getElementById('lmode-upload').style.display='none';
+        document.getElementById('lmode-camera').style.display='none';
+        document.getElementById('ltab-paste').style.borderBottomColor='#FFCC02';
+        document.getElementById('ltab-paste').style.background='rgba(255,204,2,.08)';
+        document.getElementById('ltab-paste').style.color='#FFCC02';
+        document.getElementById('ltab-upload').style.borderBottomColor='transparent';
+        document.getElementById('ltab-upload').style.background='transparent';
+        document.getElementById('ltab-upload').style.color='#94a3b8';
+        document.getElementById('ltab-camera').style.borderBottomColor='transparent';
+        document.getElementById('ltab-camera').style.background='transparent';
+        document.getElementById('ltab-camera').style.color='#94a3b8';
+      })()">📝 Paste text</button>
+    <button id="ltab-upload"
+      style="flex:1;padding:12px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:#94a3b8;font-size:.78rem;font-weight:700;cursor:pointer"
+      onclick="(function(){
+        document.getElementById('lmode-paste').style.display='none';
+        document.getElementById('lmode-upload').style.display='block';
+        document.getElementById('lmode-camera').style.display='none';
+        document.getElementById('ltab-upload').style.borderBottomColor='#FFCC02';
+        document.getElementById('ltab-upload').style.background='rgba(255,204,2,.08)';
+        document.getElementById('ltab-upload').style.color='#FFCC02';
+        document.getElementById('ltab-paste').style.borderBottomColor='transparent';
+        document.getElementById('ltab-paste').style.background='transparent';
+        document.getElementById('ltab-paste').style.color='#94a3b8';
+        document.getElementById('ltab-camera').style.borderBottomColor='transparent';
+        document.getElementById('ltab-camera').style.background='transparent';
+        document.getElementById('ltab-camera').style.color='#94a3b8';
+      })()">📎 Upload file</button>
+    <button id="ltab-camera"
+      style="flex:1;padding:12px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:#94a3b8;font-size:.78rem;font-weight:700;cursor:pointer"
+      onclick="(function(){
+        document.getElementById('lmode-paste').style.display='none';
+        document.getElementById('lmode-upload').style.display='none';
+        document.getElementById('lmode-camera').style.display='block';
+        document.getElementById('ltab-camera').style.borderBottomColor='#FFCC02';
+        document.getElementById('ltab-camera').style.background='rgba(255,204,2,.08)';
+        document.getElementById('ltab-camera').style.color='#FFCC02';
+        document.getElementById('ltab-paste').style.borderBottomColor='transparent';
+        document.getElementById('ltab-paste').style.background='transparent';
+        document.getElementById('ltab-paste').style.color='#94a3b8';
+        document.getElementById('ltab-upload').style.borderBottomColor='transparent';
+        document.getElementById('ltab-upload').style.background='transparent';
+        document.getElementById('ltab-upload').style.color='#94a3b8';
+        window._lStopCamera && window._lStopCamera();
+      })()">📷 Camera</button>
   </div>
-</div>
 
-<!-- UPLOAD MODE -->
-<div id="mode-upload" style="display:none">
-  <div class="card">
-    <h2 style="margin-bottom:8px">📎 Upload PDF or image</h2>
-    <div id="drop-zone" onclick="document.getElementById('file-inp').click()"
-      ondragover="event.preventDefault();this.style.borderColor='#FFCC02'"
-      ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
-      ondrop="event.preventDefault();this.style.borderColor='rgba(255,255,255,.15)';handleFileDrop(event.dataTransfer.files)"
-      style="border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:32px 16px;text-align:center;cursor:pointer;transition:border-color .2s">
-      <div style="font-size:2.5rem;margin-bottom:10px">📄</div>
+  <!-- PASTE -->
+  <div id="lmode-paste" style="padding:16px">
+    <textarea id="ltxt" rows="9" placeholder="Paste any German official letter here…&#10;&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF, Mietrecht…"></textarea>
+  </div>
+
+  <!-- UPLOAD -->
+  <div id="lmode-upload" style="display:none;padding:16px">
+    <div onclick="document.getElementById('l-file-inp').click()"
+         ondragover="event.preventDefault();this.style.borderColor='#FFCC02'"
+         ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
+         ondrop="event.preventDefault();this.style.borderColor='rgba(255,255,255,.15)';window._lHandleFiles(event.dataTransfer.files)"
+         style="border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:36px 16px;text-align:center;cursor:pointer;transition:border-color .2s">
+      <div style="font-size:2.4rem;margin-bottom:10px">📄</div>
       <div style="font-weight:700;font-size:.88rem;margin-bottom:4px">Click to choose file or drag &amp; drop</div>
-      <div style="font-size:.72rem;color:#64748b">PDF · JPG · PNG · HEIC · up to 10 MB</div>
+      <div style="font-size:.72rem;color:#64748b">PDF · JPG · PNG · HEIC · max 10 MB</div>
     </div>
-    <input type="file" id="file-inp" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp,image/*" style="display:none" onchange="handleFileSelect(this.files)">
-    <div id="file-preview" style="display:none;margin-top:12px">
-      <div id="file-name" style="font-size:.78rem;color:#FFCC02;margin-bottom:8px"></div>
-      <img id="img-preview" alt="Uploaded document preview" style="max-width:100%;max-height:260px;border-radius:8px;display:none;object-fit:contain">
-      <canvas id="pdf-canvas" style="max-width:100%;border-radius:8px;display:none"></canvas>
+    <input type="file" id="l-file-inp" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp,image/*"
+           style="display:none" onchange="window._lHandleFiles(this.files)">
+    <div id="l-file-info" style="display:none;margin-top:12px">
+      <div id="l-file-name" style="font-size:.78rem;color:#FFCC02;margin-bottom:8px"></div>
+      <img id="l-img-preview" alt="preview" style="max-width:100%;max-height:260px;border-radius:8px;display:none;object-fit:contain">
+      <canvas id="l-pdf-canvas" style="max-width:100%;border-radius:8px;display:none"></canvas>
     </div>
   </div>
-</div>
 
-<!-- CAMERA MODE -->
-<div id="mode-camera" style="display:none">
-  <div class="card">
-    <h2 style="margin-bottom:8px">📷 Take a photo of your letter</h2>
-    <div id="camera-inactive" style="text-align:center;padding:12px 0">
-      <div style="font-size:.82rem;color:#64748b;margin-bottom:12px">Hold your letter under good light and take a clear photo</div>
-      <button class="btn bg" onclick="startCamera()" style="margin-bottom:10px;width:100%">📷 Open camera</button>
-      <div style="font-size:.72rem;color:#64748b;margin-bottom:6px">— or choose existing photo —</div>
-      <input type="file" id="gallery-inp" accept="image/*" capture="environment" style="display:none" onchange="handleFileSelect(this.files)">
-      <button class="btn bo" onclick="document.getElementById('gallery-inp').click()" style="width:100%;font-size:.78rem">🖼️ Choose from gallery</button>
+  <!-- CAMERA -->
+  <div id="lmode-camera" style="display:none;padding:16px">
+    <div id="l-cam-off" style="text-align:center">
+      <div style="font-size:.82rem;color:#64748b;margin-bottom:12px">Hold your letter in good light and take a clear photo</div>
+      <button class="btn bg" style="width:100%;margin-bottom:8px"
+              onclick="window._lStartCamera()">📷 Open camera</button>
+      <button class="btn bo" style="width:100%;font-size:.78rem"
+              onclick="document.getElementById('l-gallery-inp').click()">🖼️ Choose from gallery</button>
+      <input type="file" id="l-gallery-inp" accept="image/*" style="display:none"
+             onchange="window._lHandleFiles(this.files)">
     </div>
-    <div id="camera-active" style="display:none">
-      <video id="cam-video" autoplay playsinline muted style="width:100%;border-radius:10px;max-height:300px;background:#000;display:block"></video>
+    <div id="l-cam-on" style="display:none">
+      <video id="l-cam-video" autoplay playsinline muted
+             style="width:100%;border-radius:10px;max-height:280px;background:#000;display:block"></video>
       <div style="display:flex;gap:8px;margin-top:10px">
-        <button class="btn bg" onclick="capturePhoto()" style="flex:1;font-size:.85rem">📸 Capture photo</button>
-        <button class="btn bo" onclick="stopCamera()" style="font-size:.85rem">✕</button>
+        <button class="btn bg" style="flex:1" onclick="window._lCapture()">📸 Capture</button>
+        <button class="btn bo" onclick="window._lStopCamera()">✕ Cancel</button>
       </div>
     </div>
-    <canvas id="cam-canvas" style="display:none"></canvas>
-    <div id="cam-preview" style="display:none;margin-top:10px">
-      <img id="cam-img" alt="Camera document preview" style="width:100%;border-radius:10px;max-height:260px;object-fit:contain;display:block">
-      <button class="btn bo" onclick="retakePhoto()" style="margin-top:8px;font-size:.78rem;width:100%">🔄 Retake</button>
+    <canvas id="l-cam-canvas" style="display:none"></canvas>
+    <div id="l-cam-preview" style="display:none;margin-top:10px">
+      <img id="l-cam-img" alt="captured" style="width:100%;border-radius:10px;max-height:260px;object-fit:contain;display:block">
+      <button class="btn bo" style="width:100%;margin-top:8px;font-size:.78rem"
+              onclick="document.getElementById('l-cam-preview').style.display='none';window._lCapturedImage=null;window._lStartCamera()">🔄 Retake</button>
+    </div>
+  </div>
+
+  <!-- Processing indicator -->
+  <div id="l-processing" style="display:none;text-align:center;padding:14px;font-size:.82rem;color:#94a3b8">
+    ⏳ <span id="l-proc-msg">Processing…</span>
+  </div>
+
+  <!-- Controls -->
+  <div style="padding:12px 16px;border-top:1px solid rgba(255,255,255,.07)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      <select id="l-type">
+        <option value="">Auto-detect letter type</option>
+        <option>Kündigung (dismissal)</option>
+        <option>Mietrecht (tenancy)</option>
+        <option>Immigration / Aufenthaltstitel</option>
+        <option>Jobcenter / Bürgergeld</option>
+        <option>Finanzamt / Tax</option>
+        <option>Krankenkasse</option>
+      </select>
+      <select id="l-lang">
+        <option value="English">🌍 Explain in English</option>
+        <option value="Urdu">اردو میں سمجھائیں</option>
+        <option value="Arabic">شرح بالعربية</option>
+        <option value="Turkish">Türkçe açıkla</option>
+        <option value="Russian">На русском</option>
+        <option value="Farsi">به فارسی</option>
+        <option value="French">En français</option>
+        <option value="Italian">In italiano</option>
+        <option value="Ukrainian">Українською</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn bg" id="l-analyse-btn" style="flex:1"
+              onclick="window._lAnalyse()">🔍 Analyse &amp; explain</button>
+      <button class="btn bo" style="font-size:.78rem"
+              onclick="document.getElementById('ltxt').value='';document.getElementById('lres').innerHTML='';document.getElementById('l-file-info').style.display='none';document.getElementById('l-cam-preview').style.display='none';window._lCapturedImage=null">🗑️</button>
     </div>
   </div>
 </div>
 
-<!-- OCR LOADING -->
-<div id="ocr-loading" style="display:none;text-align:center;padding:14px;font-size:.82rem;color:#94a3b8">
-  ⏳ <span id="ocr-msg">Processing...</span>
-</div>
+<!-- Processing + result -->
+<div id="lres" style="margin-top:12px"></div>
 
-<!-- SHARED CONTROLS -->
-<div class="card" style="margin-top:0">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-    <select id="ltype">
-      <option value="">Auto-detect type</option>
-      <option>Kündigung (dismissal)</option>
-      <option>Mietrecht (tenancy)</option>
-      <option>Immigration / Aufenthaltstitel</option>
-      <option>Jobcenter / Bürgergeld</option>
-      <option>Finanzamt / Tax</option>
-      <option>Krankenkasse</option>
-    </select>
-    <select id="translate-lang">
-      <option value="English">🌍 Explain in English</option>
-      <option value="Urdu">اردو میں سمجھائیں</option>
-      <option value="Arabic">شرح بالعربية</option>
-      <option value="Turkish">Türkçe açıkla</option>
-      <option value="Russian">На русском</option>
-      <option value="Farsi">به فارسی</option>
-      <option value="French">En français</option>
-      <option value="Italian">In italiano</option>
-      <option value="Ukrainian">Українською</option>
-    </select>
-  </div>
-  <div style="display:flex;gap:8px">
-    <button class="btn bg" onclick="doAnalyse()" id="abtn" style="flex:1">🔍 Analyse &amp; explain</button>
-    <button class="btn bo" onclick="clearLetter()" style="font-size:.78rem">🗑️</button>
-  </div>
 </div>
-
-<!-- RESULT -->
-<div id="lres"></div>
 
 </div>
 
@@ -614,289 +663,192 @@ if(location.hash==='#letter') { document.querySelectorAll('.tab')[1].click(); sh
   </div>
 </div>
 <script src="../referral.js" defer></script>
+
 <script>
+// ── Letter Reader — fully self-contained ──────────────────
+window._lCapturedImage = null;
+window._lStream = null;
 
-// ═══════════════════════════════════════════════════════
-//  Letter Reader — Camera · Upload · OCR · Translate
-// ═══════════════════════════════════════════════════════
-
-let _capturedImage = null; // {base64, type}
-let _cameraStream  = null;
-
-// ── Switch input mode ─────────────────────────────────
-function switchMode(mode) {
-  ["paste","upload","camera"].forEach(m => {
-    document.getElementById("mode-" + m).style.display = m === mode ? "block" : "none";
-    const btn = document.getElementById("btn-" + m);
-    if (btn) {
-      btn.style.background = m === mode ? "rgba(255,204,2,.15)" : "transparent";
-      btn.style.color      = m === mode ? "#FFCC02" : "#94a3b8";
-    }
-  });
-  if (mode !== "camera" && _cameraStream) stopCamera();
-  _capturedImage = null;
-}
-
-// ── File select ───────────────────────────────────────
-function handleFileSelect(files) {
-  if (files && files[0]) processFile(files[0]);
-}
-function handleFileDrop(files) {
-  if (files && files[0]) processFile(files[0]);
-}
-
-function processFile(file) {
-  if (file.size > 10 * 1024 * 1024) { alert("File too large — max 10 MB."); return; }
-  document.getElementById("file-name").textContent = "📄 " + file.name;
-  document.getElementById("file-preview").style.display = "block";
-  document.getElementById("img-preview").style.display  = "none";
-  document.getElementById("pdf-canvas").style.display   = "none";
-
-  if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
-    extractPDFText(file);
+window._lHandleFiles = function(files) {
+  if (!files || !files[0]) return;
+  var file = files[0];
+  if (file.size > 10*1024*1024) { alert('File too large — max 10 MB'); return; }
+  document.getElementById('l-file-name').textContent = '📄 ' + file.name;
+  document.getElementById('l-file-info').style.display = 'block';
+  document.getElementById('l-img-preview').style.display = 'none';
+  document.getElementById('l-pdf-canvas').style.display = 'none';
+  if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+    window._lReadPDF(file);
   } else {
-    // Image
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById("img-preview").src = e.target.result;
-      document.getElementById("img-preview").style.display = "block";
-      _capturedImage = { base64: e.target.result.split(",")[1], type: file.type || "image/jpeg" };
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('l-img-preview').src = e.target.result;
+      document.getElementById('l-img-preview').style.display = 'block';
+      window._lCapturedImage = { base64: e.target.result.split(',')[1], type: file.type || 'image/jpeg' };
     };
     reader.readAsDataURL(file);
   }
-}
+};
 
-// ── PDF extraction ────────────────────────────────────
-async function extractPDFText(file) {
-  showProcessing("Reading PDF...");
+window._lReadPDF = async function(file) {
+  document.getElementById('l-proc-msg').textContent = 'Reading PDF…';
+  document.getElementById('l-processing').style.display = 'block';
   try {
     if (!window.pdfjsLib) {
-      await _loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      await new Promise(function(res,rej){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
-    const pdf  = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
-    let text = "";
-    for (let p = 1; p <= Math.min(pdf.numPages, 5); p++) {
-      const page = await pdf.getPage(p);
-      const tc   = await page.getTextContent();
-      text += tc.items.map(i => i.str).join(" ") + "
-";
+    var pdf = await window.pdfjsLib.getDocument({data: await file.arrayBuffer()}).promise;
+    var text = '';
+    for (var i=1; i<=Math.min(pdf.numPages,5); i++) {
+      var page = await pdf.getPage(i);
+      var tc = await page.getTextContent();
+      text += tc.items.map(function(x){return x.str;}).join(' ') + '
+';
     }
-    hideProcessing();
+    document.getElementById('l-processing').style.display = 'none';
     if (text.trim().length > 30) {
-      document.getElementById("ltxt").value = text.trim();
-      switchMode("paste");
-      showToast("✅ PDF text extracted — click Analyse");
+      document.getElementById('ltxt').value = text.trim();
+      document.getElementById('ltab-paste').click();
+      alert('✅ PDF text extracted — review then click Analyse');
     } else {
-      // Scanned — render first page as image
-      showProcessing("Scanned PDF — rendering as image...");
-      const page     = await pdf.getPage(1);
-      const vp       = page.getViewport({ scale: 2 });
-      const canvas   = document.getElementById("pdf-canvas");
-      canvas.width   = vp.width;
-      canvas.height  = vp.height;
-      canvas.style.display = "block";
-      await page.render({ canvasContext: canvas.getContext("2d"), viewport: vp }).promise;
-      const data = canvas.toDataURL("image/jpeg", 0.9);
-      _capturedImage = { base64: data.split(",")[1], type: "image/jpeg" };
-      hideProcessing();
-      showToast("📷 PDF rendered as image — click Analyse");
+      document.getElementById('l-proc-msg').textContent = 'Rendering scanned PDF…';
+      var page = await pdf.getPage(1);
+      var vp = page.getViewport({scale:2});
+      var cv = document.getElementById('l-pdf-canvas');
+      cv.width=vp.width; cv.height=vp.height; cv.style.display='block';
+      await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+      var data = cv.toDataURL('image/jpeg',0.92);
+      window._lCapturedImage = {base64:data.split(',')[1], type:'image/jpeg'};
+      document.getElementById('l-processing').style.display = 'none';
+      alert('📷 PDF rendered as image — click Analyse');
     }
   } catch(e) {
-    hideProcessing();
-    showToast("Could not read PDF. Try taking a photo instead.");
-    console.error(e);
+    document.getElementById('l-processing').style.display = 'none';
+    alert('Could not read PDF. Try taking a photo instead.');
   }
-}
+};
 
-function _loadScript(src) {
-  return new Promise((res, rej) => {
-    const s = document.createElement("script");
-    s.src = src; s.onload = res; s.onerror = rej;
-    document.head.appendChild(s);
-  });
-}
-
-// ── Camera ────────────────────────────────────────────
-async function startCamera() {
+window._lStartCamera = async function() {
   try {
-    _cameraStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 } }
-    });
-    const v = document.getElementById("cam-video");
-    v.srcObject = _cameraStream;
-    document.getElementById("camera-inactive").style.display = "none";
-    document.getElementById("camera-active").style.display  = "block";
-    document.getElementById("cam-preview").style.display    = "none";
+    window._lStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});
+    document.getElementById('l-cam-video').srcObject = window._lStream;
+    document.getElementById('l-cam-off').style.display = 'none';
+    document.getElementById('l-cam-on').style.display = 'block';
+    document.getElementById('l-cam-preview').style.display = 'none';
   } catch(e) {
-    if (e.name === "NotAllowedError") {
-      alert("Camera permission denied. Please allow camera access in your browser settings, then try again.");
-    } else {
-      alert("Camera not available on this device. Please use 'Choose from gallery' instead.");
-    }
+    alert(e.name==='NotAllowedError'
+      ? 'Camera permission denied. Allow camera access in browser settings.'
+      : 'Camera not available. Use Upload file or Gallery instead.');
   }
-}
+};
 
-function capturePhoto() {
-  const v = document.getElementById("cam-video");
-  const c = document.getElementById("cam-canvas");
-  c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext("2d").drawImage(v, 0, 0);
-  const data = c.toDataURL("image/jpeg", 0.92);
-  _capturedImage = { base64: data.split(",")[1], type: "image/jpeg" };
-  document.getElementById("cam-img").src = data;
-  document.getElementById("camera-active").style.display = "none";
-  document.getElementById("cam-preview").style.display   = "block";
-  stopCamera();
-}
+window._lCapture = function() {
+  var v = document.getElementById('l-cam-video');
+  var c = document.getElementById('l-cam-canvas');
+  c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  var data = c.toDataURL('image/jpeg',0.92);
+  window._lCapturedImage = {base64:data.split(',')[1], type:'image/jpeg'};
+  document.getElementById('l-cam-img').src = data;
+  document.getElementById('l-cam-on').style.display = 'none';
+  document.getElementById('l-cam-preview').style.display = 'block';
+  window._lStopCamera();
+};
 
-function stopCamera() {
-  if (_cameraStream) { _cameraStream.getTracks().forEach(t => t.stop()); _cameraStream = null; }
-  document.getElementById("camera-active").style.display   = "none";
-  document.getElementById("camera-inactive").style.display = "block";
-}
+window._lStopCamera = function() {
+  if (window._lStream) { window._lStream.getTracks().forEach(function(t){t.stop();}); window._lStream=null; }
+  document.getElementById('l-cam-on').style.display = 'none';
+  document.getElementById('l-cam-off').style.display = 'block';
+};
 
-function retakePhoto() {
-  _capturedImage = null;
-  document.getElementById("cam-preview").style.display = "none";
-  startCamera();
-}
+window._lAnalyse = async function() {
+  var lang  = document.getElementById('l-lang').value || 'English';
+  var ltype = document.getElementById('l-type').value || '';
+  var btn   = document.getElementById('l-analyse-btn');
+  var sys = 'You are an expert German legal document analyst. Analyse the letter and respond in '+lang+'.
 
-// ── UI helpers ────────────────────────────────────────
-function showProcessing(msg) {
-  const el = document.getElementById("ocr-loading");
-  if (el) { el.style.display = "block"; document.getElementById("ocr-msg").textContent = msg || "Processing..."; }
-}
-function hideProcessing() {
-  const el = document.getElementById("ocr-loading");
-  if (el) el.style.display = "none";
-}
+'
+    + 'Structure your response:
+'
+    + '**📋 Letter type:** what kind of document
+'
+    + '**📝 What it says:** plain-language summary
+'
+    + '**⏰ Deadlines:** any deadlines (🔴 if under 4 weeks, 🟡 if 1-2 months)
+'
+    + '**✅ What you must do:** 3-5 action steps
+'
+    + '**🛡️ Your rights:** relevant legal rights
+'
+    + '**🚦 Urgency:** 🔴 Urgent / 🟡 Within a month / 🟢 No rush
 
-// ── Clear ─────────────────────────────────────────────
-function clearLetter() {
-  document.getElementById("ltxt").value = "";
-  document.getElementById("lres").innerHTML = "";
-  document.getElementById("file-preview").style.display = "none";
-  document.getElementById("cam-preview").style.display  = "none";
-  _capturedImage = null;
-}
-
-// ── Main analyse ──────────────────────────────────────
-async function doAnalyse() {
-  const lang  = (document.getElementById("translate-lang")?.value) || "English";
-  const ltype = (document.getElementById("ltype")?.value) || "";
-  const btn   = document.getElementById("abtn");
-
-  const sys = `You are an expert German legal document analyst and immigration specialist.
-Analyse the German official letter and respond in ${lang}.
-
-Structure your response as follows:
-**📋 Letter type:** what kind of document this is
-**📝 What it says:** plain-language summary (no legal jargon)
-**⏰ Deadlines:** any deadlines mentioned (mark 🔴 if under 4 weeks, 🟡 if 1–2 months)
-**✅ What you must do:** 3–5 concrete action steps
-**🛡️ Your rights:** relevant legal rights with law references (BGB/AufenthG/SGB)
-**🚦 Urgency:** 🔴 Urgent / 🟡 Within a month / 🟢 No rush
-
-Also translate the 2–3 most important sentences of the letter into ${lang}.
-Keep language simple — the reader may be new to Germany.${ltype ? " Letter type hint: "+ltype : ""}`;
-
-  let messages;
-
-  if (_capturedImage) {
-    // Image / camera / scanned PDF
-    messages = [{
-      role: "user",
-      content: [
-        { type: "image", source: { type: "base64", media_type: _capturedImage.type, data: _capturedImage.base64 } },
-        { type: "text", text: `Please read this German official letter from the image and explain it in ${lang}.${ltype ? " Hint: "+ltype : ""}` }
-      ]
-    }];
+'
+    + 'Also translate 2-3 key sentences into '+lang+'.'
+    + (ltype ? ' Letter type hint: '+ltype : '');
+  var messages;
+  if (window._lCapturedImage) {
+    messages = [{role:'user',content:[
+      {type:'image',source:{type:'base64',media_type:window._lCapturedImage.type,data:window._lCapturedImage.base64}},
+      {type:'text',text:'Read this German letter image and explain in '+lang+'.'}
+    ]}];
   } else {
-    const txt = document.getElementById("ltxt").value.trim();
-    if (txt.length < 20) { alert("Please paste your letter text, upload a file, or take a photo first."); return; }
-    messages = [{ role: "user", content: `Here is a German official letter. Explain it in ${lang}.
+    var txt = document.getElementById('ltxt').value.trim();
+    if (txt.length < 20) { alert('Please paste letter text, upload a file, or take a photo first.'); return; }
+    messages = [{role:'user',content:'German official letter — explain in '+lang+':
 
-LETTER:
-${txt}` }];
+'+txt}];
   }
-
-  btn.disabled = true; btn.textContent = "⏳ Analysing...";
-  document.getElementById("lres").innerHTML = "";
-  showProcessing("AI is reading your letter...");
-
+  btn.disabled=true; btn.textContent='⏳ Analysing…';
+  document.getElementById('lres').innerHTML='';
+  document.getElementById('l-proc-msg').textContent='AI is reading your letter…';
+  document.getElementById('l-processing').style.display='block';
   try {
-    const result = await callClaude(sys, messages, 1400);
-    hideProcessing();
-    document.getElementById("lres").innerHTML = `
-      <div class="card" style="margin-top:12px;border-left:3px solid var(--accent)">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-          <span style="font-weight:800;font-size:.85rem;color:var(--accent)">📋 Analysis result</span>
-          <div style="display:flex;gap:6px;align-items:center">
-            <button class="btn bo" style="font-size:.7rem;padding:5px 9px" onclick="copyResult()">📋 Copy</button>
-            <select style="font-size:.72rem;padding:4px 8px;border-radius:7px;background:var(--surface2);color:var(--text);border:1px solid rgba(255,255,255,.1)" onchange="retranslate(this.value);this.value=''">
-              <option value="">🌍 Translate result...</option>
-              <option value="Urdu">اردو</option>
-              <option value="Arabic">العربية</option>
-              <option value="Turkish">Türkçe</option>
-              <option value="Russian">Русский</option>
-              <option value="Farsi">فارسی</option>
-              <option value="French">Français</option>
-              <option value="Italian">Italiano</option>
-              <option value="Ukrainian">Українська</option>
-              <option value="English">English</option>
-            </select>
-          </div>
-        </div>
-        <div id="result-text" style="font-size:.84rem;line-height:1.85;white-space:pre-wrap;word-break:break-word">${
-          result.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/
-/g,"<br>")
-        }</div>
-      </div>`;
+    var result = await callClaude(sys, messages, 1400);
+    document.getElementById('l-processing').style.display='none';
+    document.getElementById('lres').innerHTML =
+      '<div class="card" style="border-left:3px solid var(--accent)">'
+      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">'
+      +'<span style="font-weight:800;font-size:.85rem;color:var(--accent)">📋 Analysis result</span>'
+      +'<div style="display:flex;gap:6px;align-items:center">'
+      +'<button class="btn bo" style="font-size:.7rem;padding:5px 9px" onclick="navigator.clipboard?.writeText(document.getElementById('lres-text').innerText).then(()=>showToast('Copied!'))">📋 Copy</button>'
+      +'<select style="font-size:.72rem;padding:4px 8px;border-radius:7px;background:var(--surface2);color:var(--text);border:1px solid rgba(255,255,255,.1)" onchange="window._lRetranslate(this.value);this.value=''">'
+      +'<option value="">🌍 Translate…</option>'
+      +'<option value="Urdu">اردو</option><option value="Arabic">العربية</option>'
+      +'<option value="Turkish">Türkçe</option><option value="Russian">Русский</option>'
+      +'<option value="Farsi">فارسی</option><option value="French">Français</option>'
+      +'<option value="Italian">Italiano</option><option value="English">English</option>'
+      +'</select></div></div>'
+      +'<div id="lres-text" style="font-size:.84rem;line-height:1.85;white-space:pre-wrap;word-break:break-word">'
+      + result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/
+/g,'<br>')
+      +'</div></div>';
   } catch(e) {
-    hideProcessing();
-    document.getElementById("lres").innerHTML =
-      '<div class="wb" style="margin-top:10px">⚠️ Analysis failed. Please check your connection and try again.</div>';
-    console.error(e);
+    document.getElementById('l-processing').style.display='none';
+    document.getElementById('lres').innerHTML='<div class="wb">⚠️ Analysis failed. Check connection and try again.</div>';
   } finally {
-    btn.disabled = false; btn.textContent = "🔍 Analyse & explain";
+    btn.disabled=false; btn.textContent='🔍 Analyse & explain';
   }
-}
+};
 
-// ── Re-translate existing result ──────────────────────
-async function retranslate(toLang) {
+window._lRetranslate = async function(toLang) {
   if (!toLang) return;
-  const existing = document.getElementById("result-text")?.innerText;
+  var existing = document.getElementById('lres-text')?.innerText;
   if (!existing || existing.length < 20) return;
-  const btn = document.getElementById("abtn");
-  btn.disabled = true; btn.textContent = "⏳ Translating...";
-  showProcessing("Translating to " + toLang + "...");
+  var btn = document.getElementById('l-analyse-btn');
+  btn.disabled=true; btn.textContent='⏳ Translating…';
   try {
-    const result = await callClaude(
-      "Translate the following letter analysis into " + toLang + ". Keep all structure, bold headings, emojis and urgency markers exactly as they are.",
-      [{ role: "user", content: existing }], 1000
+    var result = await callClaude(
+      'Translate this letter analysis into '+toLang+'. Keep all structure, headings and urgency markers.',
+      [{role:'user',content:existing}], 1000
     );
-    hideProcessing();
-    document.getElementById("result-text").innerHTML =
-      result.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/
-/g,"<br>");
-    showToast("✅ Translated to " + toLang);
-  } catch(e) {
-    hideProcessing();
-    showToast("Translation failed. Try again.");
-  } finally {
-    btn.disabled = false; btn.textContent = "🔍 Analyse & explain";
-  }
-}
-
-// ── Copy ──────────────────────────────────────────────
-function copyResult() {
-  const t = document.getElementById("result-text")?.innerText || "";
-  navigator.clipboard?.writeText(t).then(() => showToast("Copied!"));
-}
-
-
+    document.getElementById('lres-text').innerHTML =
+      result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/
+/g,'<br>');
+    showToast('✅ Translated to '+toLang);
+  } catch(e) { showToast('Translation failed. Try again.'); }
+  finally { btn.disabled=false; btn.textContent='🔍 Analyse & explain'; }
+};
 </script>
 </body>
 </html>
