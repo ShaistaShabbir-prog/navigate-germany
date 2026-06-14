@@ -209,9 +209,9 @@ img { display: block; max-width: 100%; }
   max-width: 680px;
   margin: 0;
   color: var(--text-dark);
-  font-size: clamp(2.8rem, 5.2vw, 5rem);
-  line-height: 1.03;
-  letter-spacing: -.055em;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: -.03em;
 }
 .hero h1 em { display: block; color: var(--primary-dark); font-style: normal; }
 .hero h1 em::after {
