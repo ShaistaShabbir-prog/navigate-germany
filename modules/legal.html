@@ -54,6 +54,8 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 .tpln{font-weight:700;font-size:.85rem;margin-bottom:3px;}
 .tpld{font-size:.75rem;color:var(--muted);}
 </style>
+  <link rel="stylesheet" href="../internal-shell.css">
+  <link rel="stylesheet" href="module-product.css">
 </head>
 <body>
 <nav>
@@ -64,7 +66,7 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div class="tabs">
   <button class="tab active" onclick="showTab('guide',this)">📋 Process Guide</button>
   <button class="tab" onclick="showTab('letter',this)">✉️ Read My Letter</button>
-  <button class="tab" onclick="showTab('chat',this)">💬 Legal FAQ Chat</button>
+  <button class="tab" onclick="showTab('chat',this)">💬 Legal FAQ Search</button>
   <button class="tab" onclick="showTab('laws',this)">📚 Laws</button>
   <button class="tab" onclick="showTab('rights',this)">🛡️ Rights</button>
   <button class="tab" onclick="showTab('templates',this)">📝 Templates</button>
@@ -100,6 +102,15 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div id="tc-letter" class="tc">
 <div class="row2">
 <div>
+<div class="module-tool-header">
+  <div>
+    <h2>German letter analyser</h2>
+    <p>Preview files in your browser, then use the configured online analysis service for explanation and translation.</p>
+  </div>
+  <span class="module-status-badge">Online analysis preview</span>
+</div>
+<div class="module-alert module-alert--info" style="margin-bottom:12px"><strong>Privacy:</strong> file preview and camera capture begin in your browser. Selecting Analyse sends the letter text or image to the configured analysis service.</div>
+<div class="module-alert module-alert--caution" style="margin-bottom:12px"><strong>Not legal advice:</strong> confirm every deadline in the original letter or with a qualified lawyer.</div>
 
 <div class="card" style="padding:0;overflow:visible">
 
@@ -163,6 +174,7 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 
   <!-- UPLOAD -->
   <div id="lmode-upload" style="display:none;padding:16px">
+    <div class="module-alert module-alert--info" style="margin-bottom:12px"><strong>Browser preview:</strong> review the selected file before choosing Analyse.</div>
     <div onclick="document.getElementById('l-file-inp').click()"
          ondragover="event.preventDefault();this.style.borderColor='#FFCC02'"
          ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
@@ -183,6 +195,7 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 
   <!-- CAMERA -->
   <div id="lmode-camera" style="display:none;padding:16px">
+    <div class="module-alert module-alert--info" style="margin-bottom:12px"><strong>Camera preview:</strong> capture and review the image before choosing Analyse.</div>
     <div id="l-cam-off" style="text-align:center">
       <div style="font-size:.82rem;color:#64748b;margin-bottom:12px">Hold your letter in good light and take a clear photo</div>
       <button class="btn bg" style="width:100%;margin-bottom:8px"
@@ -257,8 +270,8 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div>
   <div class="card">
     <h2>⚡ Quick help</h2>
-    <div class="ib" style="margin-bottom:10px">🔴 <strong>Kündigung received?</strong> You have <strong>3 weeks</strong> to file Kündigungsschutzklage at Arbeitsgericht. It's free.</div>
-    <div class="ib">🔴 <strong>Official refusal (Bescheid)?</strong> You have <strong>1 month</strong> to file Widerspruch in writing.</div>
+    <div class="module-alert module-alert--urgent" style="margin-bottom:10px"><strong>Kündigung received?</strong> A dismissal challenge can have a strict <strong>3-week deadline</strong>. Contact the Arbeitsgericht, a union, or a lawyer immediately.</div>
+    <div class="module-alert module-alert--caution"><strong>Official refusal (Bescheid)?</strong> Read the Rechtsbehelfsbelehrung for the exact remedy and deadline; one month is common but not universal.</div>
   </div>
   <div class="card">
     <h2>🛡️ Your rights</h2>
@@ -280,6 +293,10 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
       <div>📞 <b>ADS</b> — anti-discrimination: 030 18555-1855</div>
       <div>🌐 <b>BAMF MBE</b> — migration advice (free)</div>
     </div>
+    <div class="module-source-row">
+      <a class="module-source-badge" href="https://www.bamf.de/EN/Themen/Integration/ZugewanderteTeilnehmende/BeratungErwachsene/beratung-erwachsene-node.html" target="_blank" rel="noopener">Official source: BAMF</a>
+      <span class="module-status-badge">Last checked: June 2026</span>
+    </div>
   </div>
 </div>
 
@@ -291,9 +308,9 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div id="tc-chat" class="tc">
   <div class="row2">
     <div>
-      <div class="ib" style="font-size:.82rem;margin-bottom:10px">⚖️ <strong>Offline Legal FAQ</strong> — Get local guidance about common German law, rights, visa, employment, tenancy, and letter topics.</div>
+      <div class="module-alert module-alert--verified" style="font-size:.82rem;margin-bottom:10px"><strong>Local FAQ search</strong> — common questions are matched from the guide in your browser.</div>
       <div class="chat-box" id="chat-msgs">
-        <div class="m ai"><div class="mb">Hello! I'm your German legal assistant. Ask me anything about:
+        <div class="m ai"><div class="mb">Hello! This local legal guide can match common questions about:
 • German laws and your rights  
 • Official letters and what to do
 • Visa and residence permits
@@ -850,5 +867,7 @@ window._lRetranslate = async function(toLang) {
   finally { btn.disabled=false; btn.textContent='🔍 Analyse & explain'; }
 };
 </script>
+<script src="module-product.js" defer></script>
+<script src="../internal-shell.js" defer></script>
 </body>
 </html>
