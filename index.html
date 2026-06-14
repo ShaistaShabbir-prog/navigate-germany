@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Navigate Germany — Free guide to life in Germany">
   <meta name="twitter:description" content="Complete free guide for immigrants in Germany. 10 languages. All 16 Bundesländer.">
   <meta name="twitter:image" content="https://shaistashabbir-prog.github.io/navigate-germany/assets/images/backgrounds/germany-hero-hd.jpg">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Navigate Germany","url":"https://shaistashabbir-prog.github.io/navigate-germany/","description":"Free complete guide for immigrants in Germany — visa, housing, jobs, health insurance, emergency numbers. 10 languages.","inLanguage":["en","de","ar","tr","ur","ru","fa","fr","it","uk"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Navigate Germany","url":"https://shaistashabbir-prog.github.io/navigate-germany/","description":"Free official-link guide for immigrants in Germany — visa, housing, jobs, health insurance and emergency numbers.","inLanguage":["en","de","ar","tr","ur","ru","fa","fr","hi","uk"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I do Anmeldung in Germany?","acceptedAnswer":{"@type":"Answer","text":"Anmeldung is mandatory within 2 weeks of moving. Get WGB from landlord, book Bürgeramt appointment, bring passport + WGB. Receive Meldebescheinigung same day."}},{"@type":"Question","name":"What is the EU Blue Card salary in Germany 2026?","acceptedAnswer":{"@type":"Answer","text":"EU Blue Card requires €50,700/year (standard) or €45,934 for shortage occupations (IT, STEM, healthcare, construction)."}},{"@type":"Question","name":"What are emergency numbers in Germany?","acceptedAnswer":{"@type":"Answer","text":"112 ambulance and fire, 110 police, 116 117 out-of-hours doctor, 0800 111 0 111 crisis line. All free 24/7."}},{"@type":"Question","name":"How much does it cost to live in Germany?","acceptedAnswer":{"@type":"Answer","text":"Monthly costs: Munich €2,800–3,200, Berlin €2,000–2,400, Leipzig €1,400–1,700 (cheapest major city)."}}]}</script>
   <!-- Google Analytics — replace with your real Measurement ID -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -70,7 +70,7 @@
           <option value="ru">Русский</option>
           <option value="fr">Français</option>
           <option value="fa">فارسی</option>
-          <option value="it">Italiano</option>
+          <option value="hi">हिन्दी</option>
           <option value="uk">Українська</option>
         </select>
       </label>
@@ -96,7 +96,7 @@
           <p id="hero-subtitle">Germany explained step-by-step in your language — with official links, emergency support, and state-wise guidance.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#states"><span data-i18n="hero_start">Start by State</span> <span>→</span></a>
-            <a class="button button-secondary" href="modules/emergency.html"><span aria-hidden="true">♟</span> <span data-i18n="hero_emergency">Emergency Help</span></a>
+            <a class="button button-danger" href="modules/emergency.html"><span aria-hidden="true">!</span> <span data-i18n="hero_emergency">Emergency Help</span></a>
           </div>
           <form class="hero-search" role="search">
             <label class="sr-only" for="site-search">Search guides and states</label>
@@ -171,54 +171,54 @@
           </div>
         </div>
         <div class="states-grid" id="states-grid">
-          <button class="state-card" type="button" data-state="BW" style="--state-bg:linear-gradient(145deg,#174d45,#5b926e 48%,#d09a4a)" aria-label="Open Baden-Württemberg state guide">
+          <a class="state-card" href="states/bw.html" data-state="BW" style="--state-bg:linear-gradient(145deg,#174d45,#5b926e 48%,#d09a4a)" aria-label="Open Baden-Württemberg state guide">
             <span class="state-card-content" data-best="Students &amp; skilled jobs"><span class="state-media"><img src="./assets/images/states/baden-wuerttemberg.jpg" alt="Baden-Württemberg city and riverside scenery" loading="lazy"><small>Black Forest &amp; Stuttgart</small></span><strong>Baden-Württemberg</strong><span class="state-city">Stuttgart · Karlsruhe · Freiburg</span><span class="state-description">Industry, universities, registration services, and international communities.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="BY" style="--state-bg:linear-gradient(145deg,#315f91,#84b9d3 47%,#506f36)" aria-label="Open Bavaria state guide">
+          </a>
+          <a class="state-card" href="states/by.html" data-state="BY" style="--state-bg:linear-gradient(145deg,#315f91,#84b9d3 47%,#506f36)" aria-label="Open Bavaria state guide">
             <span class="state-card-content" data-best="Jobs &amp; families"><span class="state-media"><img src="./assets/images/states/bavaria.jpg" alt="Neuschwanstein Castle and the Bavarian Alps" loading="lazy"><small>Alps &amp; Neuschwanstein</small></span><strong>Bavaria</strong><span class="state-city">Munich · Nuremberg · Augsburg</span><span class="state-description">Visa, work, housing, and family services across Bavaria's major cities.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="BE" style="--state-bg:linear-gradient(145deg,#d77748,#b4474c 48%,#35455f)" aria-label="Open Berlin state guide">
+          </a>
+          <a class="state-card" href="states/be.html" data-state="BE" style="--state-bg:linear-gradient(145deg,#d77748,#b4474c 48%,#35455f)" aria-label="Open Berlin state guide">
             <span class="state-card-content" data-best="International newcomers"><span class="state-media"><img src="./assets/images/states/berlin.jpg" alt="Berlin skyline with the TV Tower" loading="lazy"><small>TV Tower &amp; city life</small></span><strong>Berlin</strong><span class="state-city">Berlin</span><span class="state-description">Appointments, immigration, Anmeldung, housing, and multilingual support.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="BB" style="--state-bg:linear-gradient(145deg,#4f8ca6,#668b54 48%,#b9854e)" aria-label="Open Brandenburg state guide">
+          </a>
+          <a class="state-card" href="states/bb.html" data-state="BB" style="--state-bg:linear-gradient(145deg,#4f8ca6,#668b54 48%,#b9854e)" aria-label="Open Brandenburg state guide">
             <span class="state-card-content" data-best="Families &amp; commuters"><span class="state-media"><img src="./assets/images/states/brandenburg.jpg" alt="Brandenburg Gate at sunset" loading="lazy"><small>Lakes &amp; palaces</small></span><strong>Brandenburg</strong><span class="state-city">Potsdam · Cottbus · Frankfurt (Oder)</span><span class="state-description">Local authorities, commuter towns, employment, and arrival services.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="HB" style="--state-bg:linear-gradient(145deg,#547a98,#a1664c 52%,#354353)" aria-label="Open Bremen state guide">
+          </a>
+          <a class="state-card" href="states/hb.html" data-state="HB" style="--state-bg:linear-gradient(145deg,#547a98,#a1664c 52%,#354353)" aria-label="Open Bremen state guide">
             <span class="state-card-content" data-best="Students &amp; logistics jobs"><span class="state-media"><img src="./assets/images/states/bremen.jpg" alt="Historic market square in Bremen" loading="lazy"><small>Historic market &amp; river</small></span><strong>Bremen</strong><span class="state-city">Bremen · Bremerhaven</span><span class="state-description">Compact city-state resources for registration, work, study, and family life.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="HH" style="--state-bg:linear-gradient(145deg,#3e708d,#78a8b6 45%,#995741)" aria-label="Open Hamburg state guide">
+          </a>
+          <a class="state-card" href="states/hh.html" data-state="HH" style="--state-bg:linear-gradient(145deg,#3e708d,#78a8b6 45%,#995741)" aria-label="Open Hamburg state guide">
             <span class="state-card-content" data-best="Global careers"><span class="state-media"><img src="./assets/images/states/hamburg.jpg" alt="Hamburg harbor and Elbphilharmonie" loading="lazy"><small>Harbor &amp; Elbphilharmonie</small></span><strong>Hamburg</strong><span class="state-city">Hamburg</span><span class="state-description">Migration office, city services, jobs, housing, and welcome resources.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="HE" style="--state-bg:linear-gradient(145deg,#477da7,#344f68 48%,#b98a45)" aria-label="Open Hessen state guide">
+          </a>
+          <a class="state-card" href="states/he.html" data-state="HE" style="--state-bg:linear-gradient(145deg,#477da7,#344f68 48%,#b98a45)" aria-label="Open Hessen state guide">
             <span class="state-card-content" data-best="Finance &amp; skilled jobs"><span class="state-media"><img src="./assets/images/states/hessen.jpg" alt="Frankfurt skyline in Hessen" loading="lazy"><small>Frankfurt skyline</small></span><strong>Hessen</strong><span class="state-city">Wiesbaden · Frankfurt · Darmstadt</span><span class="state-description">Finance-sector jobs, integration services, universities, and local portals.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="MV" style="--state-bg:linear-gradient(145deg,#2685a5,#65afb2 52%,#b5a650)" aria-label="Open Mecklenburg-Vorpommern state guide">
+          </a>
+          <a class="state-card" href="states/mv.html" data-state="MV" style="--state-bg:linear-gradient(145deg,#2685a5,#65afb2 52%,#b5a650)" aria-label="Open Mecklenburg-Vorpommern state guide">
             <span class="state-card-content" data-best="Affordable coastal living"><span class="state-media"><img src="./assets/images/states/mecklenburg-vorpommern.jpg" alt="Baltic coast in Mecklenburg-Vorpommern" loading="lazy"><small>Baltic coast &amp; lakes</small></span><strong>Mecklenburg-Vorpommern</strong><span class="state-city">Schwerin · Rostock · Greifswald</span><span class="state-description">Regional services, coastal cities, study options, and employment support.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="NI" style="--state-bg:linear-gradient(145deg,#456d91,#6f8e54 48%,#b77c4e)" aria-label="Open Lower Saxony state guide">
+          </a>
+          <a class="state-card" href="states/ni.html" data-state="NI" style="--state-bg:linear-gradient(145deg,#456d91,#6f8e54 48%,#b77c4e)" aria-label="Open Lower Saxony state guide">
             <span class="state-card-content" data-best="Families &amp; industry"><span class="state-media"><img src="./assets/images/states/lower-saxony.jpg" alt="Historic architecture in Lower Saxony" loading="lazy"><small>Heathland &amp; Hannover</small></span><strong>Lower Saxony</strong><span class="state-city">Hannover · Braunschweig · Göttingen</span><span class="state-description">City portals, skilled work, family services, and registration information.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="NW" style="--state-bg:linear-gradient(145deg,#3f6079,#354958 45%,#9f6742)" aria-label="Open North Rhine-Westphalia state guide">
+          </a>
+          <a class="state-card" href="states/nw.html" data-state="NW" style="--state-bg:linear-gradient(145deg,#3f6079,#354958 45%,#9f6742)" aria-label="Open North Rhine-Westphalia state guide">
             <span class="state-card-content" data-best="Jobs &amp; diverse cities"><span class="state-media"><img src="./assets/images/states/north-rhine-westphalia.jpg" alt="Cologne Cathedral and Rhine bridge in North Rhine-Westphalia" loading="lazy"><small>Cologne &amp; Rhine cities</small></span><strong>North Rhine-Westphalia</strong><span class="state-city">Düsseldorf · Cologne · Dortmund</span><span class="state-description">Germany's largest urban region with extensive work and city services.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="RP" style="--state-bg:linear-gradient(145deg,#426d88,#607d3b 50%,#b28040)" aria-label="Open Rhineland-Palatinate state guide">
+          </a>
+          <a class="state-card" href="states/rp.html" data-state="RP" style="--state-bg:linear-gradient(145deg,#426d88,#607d3b 50%,#b28040)" aria-label="Open Rhineland-Palatinate state guide">
             <span class="state-card-content" data-best="Families &amp; students"><span class="state-media"><img src="./assets/images/states/rhineland-palatinate.jpg" alt="Rhine valley in Rhineland-Palatinate" loading="lazy"><small>Rhine valley &amp; vineyards</small></span><strong>Rhineland-Palatinate</strong><span class="state-city">Mainz · Koblenz · Trier</span><span class="state-description">Residence services, family support, universities, and regional authorities.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="SL" style="--state-bg:linear-gradient(145deg,#316d65,#5e824e 52%,#a97942)" aria-label="Open Saarland state guide">
+          </a>
+          <a class="state-card" href="states/sl.html" data-state="SL" style="--state-bg:linear-gradient(145deg,#316d65,#5e824e 52%,#a97942)" aria-label="Open Saarland state guide">
             <span class="state-card-content" data-best="Cross-border workers"><span class="state-media"><img src="./assets/images/states/saarland.jpg" alt="Saarbrücken riverside in Saarland" loading="lazy"><small>Forests &amp; Saar loop</small></span><strong>Saarland</strong><span class="state-city">Saarbrücken · Homburg · Saarlouis</span><span class="state-description">Cross-border life, citizen services, jobs, and compact local support.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="SN" style="--state-bg:linear-gradient(145deg,#466f99,#8296a5 45%,#9f6746)" aria-label="Open Saxony state guide">
+          </a>
+          <a class="state-card" href="states/sn.html" data-state="SN" style="--state-bg:linear-gradient(145deg,#466f99,#8296a5 45%,#9f6746)" aria-label="Open Saxony state guide">
             <span class="state-card-content" data-best="Students &amp; technology"><span class="state-media"><img src="./assets/images/states/saxony.jpg" alt="Historic Dresden cityscape in Saxony" loading="lazy"><small>Dresden &amp; Leipzig</small></span><strong>Saxony</strong><span class="state-city">Dresden · Leipzig · Chemnitz</span><span class="state-description">Study, technology jobs, registration, housing, and integration resources.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="ST" style="--state-bg:linear-gradient(145deg,#5b7185,#858747 50%,#aa6849)" aria-label="Open Saxony-Anhalt state guide">
+          </a>
+          <a class="state-card" href="states/st.html" data-state="ST" style="--state-bg:linear-gradient(145deg,#5b7185,#858747 50%,#aa6849)" aria-label="Open Saxony-Anhalt state guide">
             <span class="state-card-content" data-best="Affordable student life"><span class="state-media"><img src="./assets/images/states/saxony-anhalt.jpg" alt="Magdeburg cathedral and river in Saxony-Anhalt" loading="lazy"><small>Cathedrals &amp; countryside</small></span><strong>Saxony-Anhalt</strong><span class="state-city">Magdeburg · Halle · Dessau</span><span class="state-description">Affordable cities, university life, employment, and administration portals.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="SH" style="--state-bg:linear-gradient(145deg,#167797,#57a8b6 50%,#b0a04e)" aria-label="Open Schleswig-Holstein state guide">
+          </a>
+          <a class="state-card" href="states/sh.html" data-state="SH" style="--state-bg:linear-gradient(145deg,#167797,#57a8b6 50%,#b0a04e)" aria-label="Open Schleswig-Holstein state guide">
             <span class="state-card-content" data-best="Families &amp; coastal life"><span class="state-media"><img src="./assets/images/states/schleswig-holstein.jpg" alt="Harbor town in Schleswig-Holstein" loading="lazy"><small>North Sea &amp; Baltic coast</small></span><strong>Schleswig-Holstein</strong><span class="state-city">Kiel · Lübeck · Flensburg</span><span class="state-description">Coastal city services, family support, work, and residence information.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
-          <button class="state-card" type="button" data-state="TH" style="--state-bg:linear-gradient(145deg,#2d674e,#628a57 52%,#9d6745)" aria-label="Open Thuringia state guide">
+          </a>
+          <a class="state-card" href="states/th.html" data-state="TH" style="--state-bg:linear-gradient(145deg,#2d674e,#628a57 52%,#9d6745)" aria-label="Open Thuringia state guide">
             <span class="state-card-content" data-best="Research &amp; affordable cities"><span class="state-media"><img src="./assets/images/states/thuringia.jpg" alt="Historic Erfurt cityscape in Thuringia" loading="lazy"><small>Forest &amp; historic towns</small></span><strong>Thuringia</strong><span class="state-city">Erfurt · Jena · Weimar</span><span class="state-description">Research, skilled jobs, city services, and newcomer information.</span><span class="state-cta">Open state guide →</span></span>
-          </button>
+          </a>
         </div>
         <article class="state-detail" id="state-detail" aria-live="polite" hidden></article>
       </div>
@@ -227,15 +227,15 @@
     <section class="languages-section" id="languages" aria-labelledby="languages-title">
       <div class="section language-layout">
         <div class="language-copy">
-          <span class="kicker" data-i18n="language_kicker">Multilingual by design</span>
-          <h2 id="languages-title" data-i18n="language_title">Guidance that feels easier to understand</h2>
-          <p data-i18n="language_sub">Choose your preferred language for key homepage guidance. Original official links remain available for verification.</p>
+          <span class="kicker">Multilingual support roadmap</span>
+          <h2 id="languages-title">Key homepage guidance in 10 languages</h2>
+          <p>Navigation and key homepage guidance are translated. Full guide and state-page translations are still being expanded, so always verify details through the linked official source.</p>
           <div class="language-pills" id="language-pills"></div>
         </div>
         <div class="language-card">
           <span class="language-card-icon">A<span>文</span></span>
-          <strong data-i18n="language_count">10 supported languages</strong>
-          <p data-i18n="language_list">English, German, Arabic, Turkish, Urdu, Russian, French, Persian, Italian, and Ukrainian.</p>
+          <strong>Translation status: in progress</strong>
+          <p>English, German, Urdu, Arabic, Turkish, Ukrainian, Russian, Farsi, Hindi and French are on the product roadmap. Homepage coverage varies by language.</p>
           <a href="modules/language.html"><span data-i18n="language_guide">Open German language guide</span> <span>→</span></a>
         </div>
       </div>
@@ -274,7 +274,7 @@
       </div>
       <div>
         <h3 data-i18n="footer_quick">Quick Links</h3>
-        <a href="#home" data-i18n="nav_home">Home</a><a href="#states" data-i18n="nav_states">States</a><a href="#guides" data-i18n="nav_guides">Guides</a><a href="#languages" data-i18n="nav_languages">Languages</a><a href="#resources" data-i18n="nav_resources">Resources</a>
+        <a href="#home" data-i18n="nav_home">Home</a><a href="#states" data-i18n="nav_states">States</a><a href="#guides" data-i18n="nav_guides">Guides</a><a href="about.html">About</a><a href="resources.html" data-i18n="nav_resources">Resources</a>
       </div>
       <div>
         <h3 data-i18n="footer_popular">Popular Guides</h3>
@@ -290,7 +290,7 @@
         <p class="copyright">© <span id="current-year"></span> Navigate Germany<br><span data-i18n="footer_built">Built with care by Shaista Shabbir</span></p>
       </div>
     </div>
-  <div style="text-align:center;padding:8px;background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.05)"><a href="privacy-policy.html" style="color:rgba(255,255,255,.35);font-size:.72rem;text-decoration:none">Privacy Policy</a> &nbsp;·&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,.35);font-size:.72rem;text-decoration:none">Datenschutz</a></div>
+  <div class="footer-legal"><a href="about.html">About</a> · <a href="resources.html">Resources</a> · <a href="privacy.html">Privacy</a> · <a href="privacy-policy.html">Datenschutz</a></div>
 </footer>
 
   <nav class="mobile-bottom-nav" aria-label="Mobile navigation">

@@ -2,6 +2,25 @@
 // Navigate Germany — Trusted Recommendations Widget
 // "A friend who lives in Germany" recommendation style
 (function () {
+  const sponsoredLinks = [...document.querySelectorAll('a[rel~="sponsored"]')];
+  sponsoredLinks.forEach((link) => {
+    link.setAttribute("aria-label", `${link.textContent.trim()} (partner or affiliate link)`);
+  });
+
+  if (sponsoredLinks.length) {
+    const host = sponsoredLinks[0].closest(".ref, .card, section, div");
+    if (host && !host.querySelector(".ng-affiliate-disclaimer")) {
+      const note = document.createElement("p");
+      note.className = "ng-affiliate-disclaimer";
+      note.textContent = "Partner / affiliate recommendation. Some links may be partner links. They are optional resources; compare alternatives. This is not official government guidance.";
+      note.style.cssText = "margin:12px 0 0;font-size:.68rem;line-height:1.55;color:#94a3b8";
+      host.appendChild(note);
+    }
+  }
+
+  // The floating recommendation is opt-in only. Pages may add this marker
+  // after their primary guidance when an inline partner widget is appropriate.
+  if (!document.querySelector("[data-partner-widget]")) return;
 
   const PARTNERS = [
     {
@@ -235,10 +254,10 @@
     // Top bar
     const top = `<div class="ng-rec-topbar">
       <div class="ng-rec-avatar">S</div>
-      <span>Personal recommendation from our Germany guide team</span>
+      <span>Optional partner / affiliate recommendation</span>
       <div class="ng-rec-verified">
         <span class="ng-rec-verified-dot"></span>
-        Verified by team
+        Sponsored
       </div>
     </div>`;
 

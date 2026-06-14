@@ -49,6 +49,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);
   <button class="tab active" onclick="showTab('basics',this)">🏠 Basics</button>
   <button class="tab" onclick="showTab('amt',this)">🏛️ At the Amt</button>
   <button class="tab" onclick="showTab('doctor',this)">🏥 Doctor</button>
+  <button class="tab" onclick="showTab('apartment',this)">🏠 Apartment</button>
+  <button class="tab" onclick="showTab('school',this)">🎒 School/Kita</button>
   <button class="tab" onclick="showTab('work',this)">💼 Work</button>
   <button class="tab" onclick="showTab('shop',this)">🛒 Shopping</button>
   <button class="tab" onclick="showTab('transport',this)">🚆 Transport</button>
@@ -96,7 +98,20 @@ const CATS={
     {de:"Können Sie mich überweisen?",en:"Can you give me a referral?",p:"KUR-nen zee mikh Ü-ber-vy-zen",ctx:"Get referral"},
     {de:"Wo tut es weh?",en:"Where does it hurt?",p:"vo toot es VAY",ctx:"Doctor asks you"},
   ],
+  apartment:[
+    {de:"Ich interessiere mich für die Wohnung.",en:"I am interested in the apartment.",p:"ikh in-teh-ree-reh mikh für dee VOH-nung",ctx:"Apartment viewing"},
+    {de:"Wie hoch ist die Warmmiete?",en:"How much is the total rent including service costs?",p:"vee hoh ist dee VARM-mee-teh",ctx:"Rent"},
+    {de:"Wann kann ich einziehen?",en:"When can I move in?",p:"van kan ikh EYN-tsee-en",ctx:"Move-in"},
+    {de:"Bekomme ich eine Wohnungsgeberbestätigung?",en:"Will I receive the landlord confirmation?",p:"beh-KOM-meh ikh eye-neh VOH-nungs-gay-ber-beh-shtay-ti-gung",ctx:"Anmeldung"}
+  ],
+  school:[
+    {de:"Ich möchte mein Kind anmelden.",en:"I would like to register my child.",p:"ikh MUKH-teh mine kint AN-mel-den",ctx:"School/Kita"},
+    {de:"Gibt es einen freien Kita-Platz?",en:"Is there a childcare place available?",p:"gipt es eye-nen FRY-en KEE-ta plats",ctx:"Kita"},
+    {de:"Welche Unterlagen brauchen Sie?",en:"Which documents do you need?",p:"VEL-kheh OON-ter-lah-gen brow-khen zee",ctx:"Documents"},
+    {de:"Gibt es Sprachförderung?",en:"Is language support available?",p:"gipt es SHPRAKH-fur-der-oong",ctx:"Language support"}
+  ],
   work:[
+    {de:"Vielen Dank für die Einladung zum Vorstellungsgespräch.",en:"Thank you for the job interview invitation.",p:"FEE-len dank für dee EYN-lah-doong tsoom FOR-shtel-oongs-geh-shprehkh",ctx:"Job interview"},
     {de:"Ich bin im Homeoffice.",en:"I'm working from home.",p:"ikh bin im HOME-o-fis",ctx:"Remote work"},
     {de:"Ich habe eine Frage.",en:"I have a question.",p:"ikh HAH-beh EYE-neh FRAH-geh",ctx:"In meetings"},
     {de:"Können wir das Meeting verschieben?",en:"Can we reschedule the meeting?",p:"KUR-nen veer das MEE-ting fer-SHE-ben",ctx:"Professional"},
@@ -237,15 +252,18 @@ function checkQ(btn,c,a){
 document.getElementById('xp-total').textContent=xp;
 renderTab('basics');
 </script>
+<div class="con" style="padding-top:0">
+  <div class="ib"><strong>Urdu and Farsi support roadmap:</strong> phrase translations are being prepared. The current cards show German with English meaning so no empty language tabs are presented.</div>
+</div>
 <!-- Partner recommendation — compact -->
 <div style="max-width:1000px;margin:24px auto 0;padding:0 16px 28px">
   <div style="background:linear-gradient(135deg,#0a0d14,#111520);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px 18px">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
       <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FFCC02,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:.72rem;flex-shrink:0">S</div>
-      <div style="font-size:.72rem;font-weight:700;color:#f1f5f9">Our recommendations for newcomers in Germany</div>
+      <div style="font-size:.72rem;font-weight:700;color:#f1f5f9">Partner / affiliate recommendations</div>
       <div style="margin-left:auto;display:flex;align-items:center;gap:4px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:2px 8px;white-space:nowrap">
         <span style="width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block"></span>
-        <span style="font-size:.6rem;color:#86efac;font-weight:700">Verified</span>
+        <span style="font-size:.6rem;color:#86efac;font-weight:700">Optional</span>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
