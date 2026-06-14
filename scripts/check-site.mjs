@@ -8,6 +8,9 @@ const htmlFiles = [
   ...fs.readdirSync(path.join(root, "modules"))
     .filter((name) => name.endsWith(".html"))
     .map((name) => `modules/${name}`),
+  ...fs.readdirSync(path.join(root, "states"))
+    .filter((name) => name.endsWith(".html"))
+    .map((name) => `states/${name}`),
 ];
 
 const failures = [];
