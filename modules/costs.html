@@ -36,9 +36,6 @@
     }
   }
   </script>
-  <!-- GA placeholder -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <style>
@@ -98,7 +95,8 @@ input[type=range]{flex:1;accent-color:var(--accent);}
 .sl:before{position:absolute;content:"";height:14px;width:14px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;}
 input:checked+.sl{background:var(--accent);}
 input:checked+.sl:before{transform:translateX(16px);}
-</style></head><body>
+</style>  <link rel="stylesheet" href="../internal-shell.css">
+</head><body>
 <nav>
   <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
   <a class="bl" href="../index.html">&#8592; All modules</a>
@@ -287,4 +285,5 @@ calc();
 
 <script src="../chatbot.js" defer></script>
 <script src="../referral.js" defer></script>
+<script src="../internal-shell.js" defer></script>
 </body></html>

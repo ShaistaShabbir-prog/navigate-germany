@@ -669,6 +669,23 @@ const MODULES = [
   { id: "documents", icon: "▧", title: "Documents", desc: "Anmeldung, residence papers, insurance, tax ID, and admin checklists.", url: "modules/documents.html", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
 ];
 
+const JOURNEYS = [
+  { title: "Student roadmap", desc: "University, visa, housing, insurance and first-semester steps.", url: "journeys/student.html" },
+  { title: "Skilled worker roadmap", desc: "Job offer, qualification recognition, residence and arrival steps.", url: "journeys/skilled-worker.html" },
+  { title: "Family roadmap", desc: "Family reunification, childcare, schools and everyday support.", url: "journeys/family.html" },
+  { title: "Researcher / PhD roadmap", desc: "Hosting agreements, residence, university onboarding and family needs.", url: "journeys/researcher.html" },
+  { title: "Entrepreneur roadmap", desc: "Business planning, registration, residence and tax basics.", url: "journeys/entrepreneur.html" },
+  { title: "Refugee / asylum support", desc: "Registration, accommodation, healthcare and independent advice.", url: "journeys/refugee.html" },
+];
+
+const HOME_SECTIONS = [
+  { title: "Emergency help", desc: "Emergency telephone numbers and urgent support.", url: "#emergency" },
+  { title: "Life guides", desc: "Housing, health, jobs, legal help, language and documents.", url: "#guides" },
+  { title: "Federal states", desc: "All 16 Bundesländer and their official portals.", url: "#states" },
+  { title: "Languages", desc: "Translation availability and German learning guide.", url: "#languages" },
+  { title: "Official resources", desc: "Trusted federal and nationally recognised services.", url: "#resources" },
+];
+
 // Each state currently uses a named scenic gradient placeholder. Replace the
 // background value with a local image URL when licensed state photography is added.
 const STATES = [
@@ -1017,7 +1034,13 @@ function searchAll(query) {
   })
     .slice(0, 3)
     .map((item) => ({ title: item.name, type: "State", state: item.id }));
-  return [...guideMatches, ...stateMatches];
+  const journeyMatches = JOURNEYS.filter((item) => `${item.title} ${item.desc}`.toLowerCase().includes(normalized))
+    .slice(0, 3)
+    .map((item) => ({ title: item.title, type: "Journey", url: item.url }));
+  const sectionMatches = HOME_SECTIONS.filter((item) => `${item.title} ${item.desc}`.toLowerCase().includes(normalized))
+    .slice(0, 2)
+    .map((item) => ({ title: item.title, type: "Homepage", url: item.url }));
+  return [...sectionMatches, ...journeyMatches, ...guideMatches, ...stateMatches].slice(0, 7);
 }
 
 let revealObserver;
@@ -1142,7 +1165,7 @@ siteSearch.addEventListener("input", () => {
   const results = searchAll(siteSearch.value);
   searchResults.innerHTML = results.map((item) => item.state
     ? `<a class="search-result" href="states/${item.state.toLowerCase()}.html"><span>${item.title}</span><small>${t.state}</small></a>`
-    : `<a class="search-result" href="${item.url}"><span>${item.title}</span><small>${t.guide}</small></a>`
+    : `<a class="search-result" href="${item.url}"><span>${item.title}</span><small>${item.type || t.guide}</small></a>`
   ).join("");
 });
 siteSearch.closest("form").addEventListener("submit", (event) => {

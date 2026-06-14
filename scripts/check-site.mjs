@@ -15,6 +15,9 @@ const htmlFiles = [
   ...fs.readdirSync(path.join(root, "states"))
     .filter((name) => name.endsWith(".html"))
     .map((name) => `states/${name}`),
+  ...fs.readdirSync(path.join(root, "journeys"))
+    .filter((name) => name.endsWith(".html"))
+    .map((name) => `journeys/${name}`),
 ];
 
 const failures = [];
@@ -23,6 +26,8 @@ for (const relative of htmlFiles) {
   const absolute = path.join(root, relative);
   const html = fs.readFileSync(absolute, "utf8");
   const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((match) => match[1]);
+  const h1Count = [...html.matchAll(/<h1(?:\s|>)/gi)].length;
+  if (h1Count !== 1) failures.push(`${relative}: expected one h1, found ${h1Count}`);
 
   for (const [index, script] of scripts.entries()) {
     try {
@@ -63,6 +68,14 @@ const staticStateImages = [...homepage.matchAll(/assets\/images\/states\/[^"]+\.
 if (staticStateImages.length !== 16) {
   failures.push(`index.html: expected 16 static state images, found ${staticStateImages.length}`);
 }
+const journeyCards = [...homepage.matchAll(/href="journeys\/[^"]+\.html"/g)];
+if (journeyCards.length !== 6) {
+  failures.push(`index.html: expected 6 journey cards, found ${journeyCards.length}`);
+}
+const mapStateLinks = [...homepage.matchAll(/class="map-state-links"[\s\S]*?<\/div>/g)][0]?.[0].match(/href="states\/[^"]+\.html"/g) || [];
+if (mapStateLinks.length !== 16) {
+  failures.push(`index.html: expected 16 map state links, found ${mapStateLinks.length}`);
+}
 
 for (const expectedModule of ["housing", "doctors", "jobs", "legal", "language", "costs", "education", "banking", "family", "transport", "emergency", "documents"]) {
   if (!homepage.includes(`modules/${expectedModule}.html`) && !fs.readFileSync(path.join(root, "home.js"), "utf8").includes(`modules/${expectedModule}.html`)) {
@@ -74,9 +87,15 @@ for (const stateFile of htmlFiles.filter((name) => name.startsWith("states/"))) 
   const html = fs.readFileSync(path.join(root, stateFile), "utf8");
   if (!html.includes('src="state-page.js"')) failures.push(`${stateFile}: missing shared state-page script`);
   if (/images\.unsplash\.com/.test(html)) failures.push(`${stateFile}: remote hero image still present`);
+  if (!html.includes("internal-shell.css") || !html.includes("internal-shell.js")) failures.push(`${stateFile}: missing shared internal UI`);
 }
 
-for (const script of ["chatbot.js", "home.js", "legal.js", "referral.js", "states/state-page.js"]) {
+for (const internalFile of htmlFiles.filter((name) => /^(modules|journeys)\//.test(name))) {
+  const html = fs.readFileSync(path.join(root, internalFile), "utf8");
+  if (!html.includes("internal-shell.css") || !html.includes("internal-shell.js")) failures.push(`${internalFile}: missing shared internal UI`);
+}
+
+for (const script of ["chatbot.js", "home.js", "legal.js", "referral.js", "internal-shell.js", "states/state-page.js"]) {
   try {
     new vm.Script(fs.readFileSync(path.join(root, script), "utf8"), { filename: script });
   } catch (error) {
