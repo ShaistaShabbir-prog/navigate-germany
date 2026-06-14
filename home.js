@@ -565,19 +565,94 @@ const TRANSLATIONS = {
 };
 
 const UI_TEXT = {
-  en: { state_count: "{count} states", capital: "Capital", major_cities: "Major cities", best_for: "Best for", view_details: "View details →", official_resources: "Official local resources", full_state_guide: "Open full state guide →", cities: "Cities", arrival_checklist: "Open arrival checklist →", close_state: "Close state details", no_states: "No state matches your search.", guide: "Guide", state: "State", saved: "Saved", more: "More" },
-  de: { state_count: "{count} Bundesländer", capital: "Hauptstadt", major_cities: "Wichtige Städte", best_for: "Besonders geeignet für", view_details: "Details ansehen →", official_resources: "Offizielle lokale Ressourcen", full_state_guide: "Vollständigen Landesratgeber öffnen →", cities: "Städte", arrival_checklist: "Ankunftscheckliste öffnen →", close_state: "Landesdetails schließen", no_states: "Kein Bundesland entspricht Ihrer Suche.", guide: "Ratgeber", state: "Bundesland", saved: "Gespeichert", more: "Mehr" },
-  ar: { state_count: "{count} ولاية", capital: "العاصمة", major_cities: "المدن الرئيسية", best_for: "الأنسب لـ", view_details: "عرض التفاصيل →", official_resources: "موارد محلية رسمية", full_state_guide: "فتح دليل الولاية الكامل →", cities: "المدن", arrival_checklist: "فتح قائمة الوصول →", close_state: "إغلاق تفاصيل الولاية", no_states: "لا توجد ولاية مطابقة لبحثك.", guide: "دليل", state: "ولاية", saved: "المحفوظ", more: "المزيد" },
-  tr: { state_count: "{count} eyalet", capital: "Başkent", major_cities: "Büyük şehirler", best_for: "En uygun", view_details: "Ayrıntıları gör →", official_resources: "Resmi yerel kaynaklar", full_state_guide: "Tam eyalet rehberini aç →", cities: "Şehirler", arrival_checklist: "Varış kontrol listesini aç →", close_state: "Eyalet ayrıntılarını kapat", no_states: "Aramanızla eşleşen eyalet yok.", guide: "Rehber", state: "Eyalet", saved: "Kaydedilenler", more: "Daha fazla" },
-  ur: { state_count: "{count} ریاستیں", capital: "دارالحکومت", major_cities: "اہم شہر", best_for: "بہترین برائے", view_details: "تفصیل دیکھیں ←", official_resources: "سرکاری مقامی وسائل", full_state_guide: "مکمل ریاستی رہنما کھولیں ←", cities: "شہر", arrival_checklist: "آمد کی چیک لسٹ کھولیں ←", close_state: "ریاست کی تفصیل بند کریں", no_states: "آپ کی تلاش سے کوئی ریاست نہیں ملی۔", guide: "رہنما", state: "ریاست", saved: "محفوظ", more: "مزید" },
-  ru: { state_count: "{count} земель", capital: "Столица", major_cities: "Крупные города", best_for: "Лучше всего для", view_details: "Подробнее →", official_resources: "Официальные местные ресурсы", full_state_guide: "Открыть полный путеводитель по земле →", cities: "Города", arrival_checklist: "Открыть список первых шагов →", close_state: "Закрыть сведения о земле", no_states: "По вашему запросу ничего не найдено.", guide: "Руководство", state: "Земля", saved: "Сохранённое", more: "Ещё" },
-  fr: { state_count: "{count} Länder", capital: "Capitale", major_cities: "Villes principales", best_for: "Idéal pour", view_details: "Voir les détails →", official_resources: "Ressources locales officielles", full_state_guide: "Ouvrir le guide complet du Land →", cities: "Villes", arrival_checklist: "Ouvrir la liste d'arrivée →", close_state: "Fermer les détails du Land", no_states: "Aucun Land ne correspond à votre recherche.", guide: "Guide", state: "Land", saved: "Enregistrés", more: "Plus" },
-  fa: { state_count: "{count} ایالت", capital: "مرکز", major_cities: "شهرهای مهم", best_for: "مناسب برای", view_details: "مشاهده جزئیات ←", official_resources: "منابع رسمی محلی", full_state_guide: "باز کردن راهنمای کامل ایالت ←", cities: "شهرها", arrival_checklist: "باز کردن چک‌لیست ورود ←", close_state: "بستن جزئیات ایالت", no_states: "هیچ ایالتی با جستجوی شما مطابقت ندارد.", guide: "راهنما", state: "ایالت", saved: "ذخیره‌شده", more: "بیشتر" },
-  it: { state_count: "{count} Länder", capital: "Capitale", major_cities: "Città principali", best_for: "Ideale per", view_details: "Vedi dettagli →", official_resources: "Risorse locali ufficiali", full_state_guide: "Apri la guida completa del Land →", cities: "Città", arrival_checklist: "Apri la lista di arrivo →", close_state: "Chiudi i dettagli del Land", no_states: "Nessun Land corrisponde alla ricerca.", guide: "Guida", state: "Land", saved: "Salvati", more: "Altro" },
-  uk: { state_count: "{count} земель", capital: "Столиця", major_cities: "Великі міста", best_for: "Найкраще для", view_details: "Переглянути деталі →", official_resources: "Офіційні місцеві ресурси", full_state_guide: "Відкрити повний путівник землею →", cities: "Міста", arrival_checklist: "Відкрити список перших кроків →", close_state: "Закрити відомості про землю", no_states: "За вашим запитом земель не знайдено.", guide: "Путівник", state: "Земля", saved: "Збережене", more: "Більше" },
+  en: { state_count: "{count} states", capital: "Capital", major_cities: "Major cities", best_for: "Best for", best_value: "students, jobs and families", state_description: "Official guidance for housing, work, study, family life, and local services in {state}.", view_details: "Open state guide →", official_resources: "Official local resources", full_state_guide: "Open full state guide →", cities: "Cities", arrival_checklist: "Open arrival checklist →", close_state: "Close state details", no_states: "No state matches your search.", guide: "Guide", state: "State", saved: "Saved", more: "More" },
+  de: { state_count: "{count} Bundesländer", capital: "Hauptstadt", major_cities: "Wichtige Städte", best_for: "Besonders geeignet für", best_value: "Studium, Arbeit und Familien", state_description: "Offizielle Hinweise zu Wohnen, Arbeit, Studium, Familie und lokalen Diensten in {state}.", view_details: "Landesratgeber öffnen →", official_resources: "Offizielle lokale Ressourcen", full_state_guide: "Vollständigen Landesratgeber öffnen →", cities: "Städte", arrival_checklist: "Ankunftscheckliste öffnen →", close_state: "Landesdetails schließen", no_states: "Kein Bundesland entspricht Ihrer Suche.", guide: "Ratgeber", state: "Bundesland", saved: "Gespeichert", more: "Mehr" },
+  ar: { state_count: "{count} ولاية", capital: "العاصمة", major_cities: "المدن الرئيسية", best_for: "الأنسب لـ", best_value: "الطلاب والعمل والعائلات", state_description: "إرشادات رسمية حول السكن والعمل والدراسة والأسرة والخدمات المحلية في {state}.", view_details: "فتح دليل الولاية →", official_resources: "موارد محلية رسمية", full_state_guide: "فتح دليل الولاية الكامل →", cities: "المدن", arrival_checklist: "فتح قائمة الوصول →", close_state: "إغلاق تفاصيل الولاية", no_states: "لا توجد ولاية مطابقة لبحثك.", guide: "دليل", state: "ولاية", saved: "المحفوظ", more: "المزيد" },
+  tr: { state_count: "{count} eyalet", capital: "Başkent", major_cities: "Büyük şehirler", best_for: "En uygun", best_value: "öğrenciler, işler ve aileler", state_description: "{state} için konut, iş, eğitim, aile ve yerel hizmetler hakkında resmi rehberlik.", view_details: "Eyalet rehberini aç →", official_resources: "Resmi yerel kaynaklar", full_state_guide: "Tam eyalet rehberini aç →", cities: "Şehirler", arrival_checklist: "Varış kontrol listesini aç →", close_state: "Eyalet ayrıntılarını kapat", no_states: "Aramanızla eşleşen eyalet yok.", guide: "Rehber", state: "Eyalet", saved: "Kaydedilenler", more: "Daha fazla" },
+  ur: { state_count: "{count} ریاستیں", capital: "دارالحکومت", major_cities: "اہم شہر", best_for: "بہترین برائے", best_value: "طلبہ، ملازمتیں اور خاندان", state_description: "{state} میں رہائش، کام، تعلیم، خاندان اور مقامی خدمات کے لیے سرکاری رہنمائی۔", view_details: "ریاستی رہنما کھولیں ←", official_resources: "سرکاری مقامی وسائل", full_state_guide: "مکمل ریاستی رہنما کھولیں ←", cities: "شہر", arrival_checklist: "آمد کی چیک لسٹ کھولیں ←", close_state: "ریاست کی تفصیل بند کریں", no_states: "آپ کی تلاش سے کوئی ریاست نہیں ملی۔", guide: "رہنما", state: "ریاست", saved: "محفوظ", more: "مزید" },
+  ru: { state_count: "{count} земель", capital: "Столица", major_cities: "Крупные города", best_for: "Лучше всего для", best_value: "студентов, работы и семей", state_description: "Официальная информация о жилье, работе, учёбе, семье и местных услугах в земле {state}.", view_details: "Открыть путеводитель →", official_resources: "Официальные местные ресурсы", full_state_guide: "Открыть полный путеводитель по земле →", cities: "Города", arrival_checklist: "Открыть список первых шагов →", close_state: "Закрыть сведения о земле", no_states: "По вашему запросу ничего не найдено.", guide: "Руководство", state: "Земля", saved: "Сохранённое", more: "Ещё" },
+  fr: { state_count: "{count} Länder", capital: "Capitale", major_cities: "Villes principales", best_for: "Idéal pour", best_value: "les étudiants, l'emploi et les familles", state_description: "Informations officielles sur le logement, l'emploi, les études, la famille et les services locaux en {state}.", view_details: "Ouvrir le guide du Land →", official_resources: "Ressources locales officielles", full_state_guide: "Ouvrir le guide complet du Land →", cities: "Villes", arrival_checklist: "Ouvrir la liste d'arrivée →", close_state: "Fermer les détails du Land", no_states: "Aucun Land ne correspond à votre recherche.", guide: "Guide", state: "Land", saved: "Enregistrés", more: "Plus" },
+  fa: { state_count: "{count} ایالت", capital: "مرکز", major_cities: "شهرهای مهم", best_for: "مناسب برای", best_value: "دانشجویان، کار و خانواده‌ها", state_description: "راهنمای رسمی مسکن، کار، تحصیل، خانواده و خدمات محلی در {state}.", view_details: "باز کردن راهنمای ایالت ←", official_resources: "منابع رسمی محلی", full_state_guide: "باز کردن راهنمای کامل ایالت ←", cities: "شهرها", arrival_checklist: "باز کردن چک‌لیست ورود ←", close_state: "بستن جزئیات ایالت", no_states: "هیچ ایالتی با جستجوی شما مطابقت ندارد.", guide: "راهنما", state: "ایالت", saved: "ذخیره‌شده", more: "بیشتر" },
+  it: { state_count: "{count} Länder", capital: "Capitale", major_cities: "Città principali", best_for: "Ideale per", best_value: "studenti, lavoro e famiglie", state_description: "Informazioni ufficiali su casa, lavoro, studio, famiglia e servizi locali in {state}.", view_details: "Apri la guida del Land →", official_resources: "Risorse locali ufficiali", full_state_guide: "Apri la guida completa del Land →", cities: "Città", arrival_checklist: "Apri la lista di arrivo →", close_state: "Chiudi i dettagli del Land", no_states: "Nessun Land corrisponde alla ricerca.", guide: "Guida", state: "Land", saved: "Salvati", more: "Altro" },
+  uk: { state_count: "{count} земель", capital: "Столиця", major_cities: "Великі міста", best_for: "Найкраще для", best_value: "студентів, роботи та сімей", state_description: "Офіційна інформація про житло, роботу, навчання, сім'ю та місцеві послуги в землі {state}.", view_details: "Відкрити путівник землею →", official_resources: "Офіційні місцеві ресурси", full_state_guide: "Відкрити повний путівник землею →", cities: "Міста", arrival_checklist: "Відкрити список перших кроків →", close_state: "Закрити відомості про землю", no_states: "За вашим запитом земель не знайдено.", guide: "Путівник", state: "Земля", saved: "Збережене", more: "Більше" },
 };
 
 Object.entries(UI_TEXT).forEach(([code, text]) => Object.assign(TRANSLATIONS[code], text));
+
+const PAGE_TEXT = {
+  en: {
+    hero_eyebrow: "Official sources. Clear next steps.", hero_start: "Start by State", hero_emergency: "Emergency Help", hero_trusted: "Trusted guidance", hero_trusted_sub: "Links to official German sources",
+    journey_kicker: "Quick start", journey_title: "Start here — What do you need?", journey_sub: "Choose your situation and go directly to the most useful guide.", journey_new: "I am new in Germany", journey_new_sub: "First-week checklist", journey_visa: "I need visa / residence help", journey_visa_sub: "Permits and work routes", journey_housing: "I need housing help", journey_housing_sub: "Renting and tenant rights", journey_legal: "I need emergency / legal help", journey_legal_sub: "Rights, letters and deadlines", journey_language: "I want to learn German", journey_language_sub: "Daily phrases and practice",
+    language_kicker: "Multilingual by design", language_title: "Guidance that feels easier to understand", language_sub: "Choose your preferred language for homepage guidance. Official links remain available for verification.", language_count: "10 supported languages", language_list: "English, German, Arabic, Turkish, Urdu, Russian, French, Persian, Italian, and Ukrainian.", language_guide: "Open German language guide",
+    about_kicker: "Built for real life", about_title: "A calmer way to find your next step", about_sub: "Navigate Germany turns scattered public information into clear journeys while keeping official authorities one click away.", about_official: "Official-link focused", about_official_sub: "Public authorities and trusted services", about_explore: "Easy to explore", about_explore_sub: "By situation, guide, or Bundesland", about_mobile: "Mobile first", about_mobile_sub: "Designed to work like an app", about_free: "Free to use", about_free_sub: "No account or API key required",
+    disclaimer_title: "Important:", disclaimer_text: "This platform provides general guidance and links to official sources. Always verify information with official German authorities.", footer_desc: "A multilingual guide with official links to help you live, work, study, and thrive in Germany.", footer_quick: "Quick Links", footer_popular: "Popular Guides", footer_jobs: "Residence & Jobs", footer_health: "Health Insurance", footer_home: "Finding a Home", footer_legal: "Legal Help", footer_language: "German Language", footer_emergency: "Emergency", footer_disclaimer_heading: "Disclaimer", footer_disclaimer: "Information is for general guidance only. Always check official sources.", footer_built: "Built with care by Shaista Shabbir",
+  },
+  de: {
+    hero_eyebrow: "Offizielle Quellen. Klare nächste Schritte.", hero_start: "Nach Bundesland starten", hero_emergency: "Notfallhilfe", hero_trusted: "Verlässliche Orientierung", hero_trusted_sub: "Links zu offiziellen deutschen Quellen",
+    journey_kicker: "Schnellstart", journey_title: "Hier starten — Was brauchen Sie?", journey_sub: "Wählen Sie Ihre Situation und öffnen Sie direkt den passenden Ratgeber.", journey_new: "Ich bin neu in Deutschland", journey_new_sub: "Checkliste für die erste Woche", journey_visa: "Ich brauche Visa- oder Aufenthaltshilfe", journey_visa_sub: "Erlaubnisse und Arbeitswege", journey_housing: "Ich brauche Hilfe beim Wohnen", journey_housing_sub: "Mieten und Mieterrechte", journey_legal: "Ich brauche Notfall- oder Rechtshilfe", journey_legal_sub: "Rechte, Briefe und Fristen", journey_language: "Ich möchte Deutsch lernen", journey_language_sub: "Alltagssätze und Übung",
+    language_kicker: "Mehrsprachig gedacht", language_title: "Orientierung, die leichter verständlich ist", language_sub: "Wählen Sie Ihre Sprache. Offizielle Links bleiben zur Prüfung verfügbar.", language_count: "10 unterstützte Sprachen", language_list: "Englisch, Deutsch, Arabisch, Türkisch, Urdu, Russisch, Französisch, Persisch, Italienisch und Ukrainisch.", language_guide: "Deutschen Sprachratgeber öffnen",
+    about_kicker: "Für den Alltag gebaut", about_title: "Ruhiger zum nächsten Schritt", about_sub: "Navigate Germany bündelt verstreute öffentliche Informationen in klaren Wegen.", about_official: "Offizielle Links im Fokus", about_official_sub: "Behörden und vertrauenswürdige Dienste", about_explore: "Einfach zu erkunden", about_explore_sub: "Nach Situation, Ratgeber oder Bundesland", about_mobile: "Mobil zuerst", about_mobile_sub: "Funktioniert wie eine App", about_free: "Kostenlos nutzbar", about_free_sub: "Kein Konto und kein API-Schlüssel nötig",
+    disclaimer_title: "Wichtig:", disclaimer_text: "Diese Plattform bietet allgemeine Orientierung und offizielle Links. Prüfen Sie Angaben immer bei deutschen Behörden.", footer_desc: "Mehrsprachiger Ratgeber mit offiziellen Links für Leben, Arbeit und Studium in Deutschland.", footer_quick: "Schnelllinks", footer_popular: "Beliebte Ratgeber", footer_jobs: "Aufenthalt & Arbeit", footer_health: "Krankenversicherung", footer_home: "Wohnung finden", footer_legal: "Rechtshilfe", footer_language: "Deutsch lernen", footer_emergency: "Notfall", footer_disclaimer_heading: "Hinweis", footer_disclaimer: "Nur allgemeine Orientierung. Bitte offizielle Quellen prüfen.", footer_built: "Mit Sorgfalt erstellt von Shaista Shabbir",
+  },
+  ar: {
+    hero_eyebrow: "مصادر رسمية. خطوات واضحة.", hero_start: "ابدأ حسب الولاية", hero_emergency: "مساعدة طارئة", hero_trusted: "إرشادات موثوقة", hero_trusted_sub: "روابط إلى مصادر ألمانية رسمية",
+    journey_kicker: "بداية سريعة", journey_title: "ابدأ هنا — ماذا تحتاج؟", journey_sub: "اختر وضعك وانتقل مباشرة إلى الدليل الأنسب.", journey_new: "أنا جديد في ألمانيا", journey_new_sub: "قائمة الأسبوع الأول", journey_visa: "أحتاج مساعدة في التأشيرة أو الإقامة", journey_visa_sub: "التصاريح ومسارات العمل", journey_housing: "أحتاج مساعدة في السكن", journey_housing_sub: "الإيجار وحقوق المستأجر", journey_legal: "أحتاج مساعدة طارئة أو قانونية", journey_legal_sub: "الحقوق والرسائل والمواعيد", journey_language: "أريد تعلم الألمانية", journey_language_sub: "عبارات يومية وتمارين",
+    language_kicker: "متعدد اللغات من الأساس", language_title: "إرشادات أسهل في الفهم", language_sub: "اختر لغتك المفضلة وتحقق دائماً من الروابط الرسمية.", language_count: "10 لغات مدعومة", language_list: "الإنجليزية والألمانية والعربية والتركية والأردية والروسية والفرنسية والفارسية والإيطالية والأوكرانية.", language_guide: "فتح دليل اللغة الألمانية",
+    about_kicker: "مصمم للحياة اليومية", about_title: "طريقة أهدأ لمعرفة خطوتك التالية", about_sub: "يجمع Navigate Germany المعلومات العامة المتفرقة في مسارات واضحة.", about_official: "التركيز على الروابط الرسمية", about_official_sub: "السلطات العامة والخدمات الموثوقة", about_explore: "سهل الاستكشاف", about_explore_sub: "حسب الحالة أو الدليل أو الولاية", about_mobile: "مصمم للهاتف أولاً", about_mobile_sub: "تجربة تشبه التطبيق", about_free: "مجاني للاستخدام", about_free_sub: "لا يحتاج حساباً أو مفتاح API",
+    disclaimer_title: "مهم:", disclaimer_text: "تقدم المنصة إرشادات عامة وروابط رسمية. تحقق دائماً من المعلومات لدى السلطات الألمانية.", footer_desc: "دليل متعدد اللغات بروابط رسمية للحياة والعمل والدراسة في ألمانيا.", footer_quick: "روابط سريعة", footer_popular: "أدلة شائعة", footer_jobs: "الإقامة والعمل", footer_health: "التأمين الصحي", footer_home: "العثور على سكن", footer_legal: "مساعدة قانونية", footer_language: "اللغة الألمانية", footer_emergency: "الطوارئ", footer_disclaimer_heading: "إخلاء مسؤولية", footer_disclaimer: "المعلومات للإرشاد العام فقط. تحقق من المصادر الرسمية.", footer_built: "من إعداد Shaista Shabbir بعناية",
+  },
+  tr: {
+    hero_eyebrow: "Resmi kaynaklar. Net sonraki adımlar.", hero_start: "Eyalete göre başla", hero_emergency: "Acil Yardım", hero_trusted: "Güvenilir rehberlik", hero_trusted_sub: "Resmi Alman kaynaklarına bağlantılar",
+    journey_kicker: "Hızlı başlangıç", journey_title: "Buradan başlayın — Neye ihtiyacınız var?", journey_sub: "Durumunuzu seçin ve en yararlı rehbere gidin.", journey_new: "Almanya'da yeniyim", journey_new_sub: "İlk hafta kontrol listesi", journey_visa: "Vize veya oturum yardımı gerekiyor", journey_visa_sub: "İzinler ve çalışma yolları", journey_housing: "Konut yardımı gerekiyor", journey_housing_sub: "Kiralama ve kiracı hakları", journey_legal: "Acil veya hukuki yardım gerekiyor", journey_legal_sub: "Haklar, mektuplar ve süreler", journey_language: "Almanca öğrenmek istiyorum", journey_language_sub: "Günlük ifadeler ve pratik",
+    language_kicker: "Çok dilli tasarım", language_title: "Anlaması daha kolay rehberlik", language_sub: "Tercih ettiğiniz dili seçin; resmi bağlantılar doğrulama için kalır.", language_count: "10 desteklenen dil", language_list: "İngilizce, Almanca, Arapça, Türkçe, Urduca, Rusça, Fransızca, Farsça, İtalyanca ve Ukraynaca.", language_guide: "Almanca dil rehberini aç",
+    about_kicker: "Gerçek yaşam için", about_title: "Sonraki adımı bulmanın daha sakin yolu", about_sub: "Navigate Germany dağınık kamu bilgilerini net yolculuklarda birleştirir.", about_official: "Resmi bağlantı odaklı", about_official_sub: "Kamu kurumları ve güvenilir hizmetler", about_explore: "Kolay keşif", about_explore_sub: "Duruma, rehbere veya eyalete göre", about_mobile: "Önce mobil", about_mobile_sub: "Uygulama gibi çalışır", about_free: "Ücretsiz kullanım", about_free_sub: "Hesap veya API anahtarı gerekmez",
+    disclaimer_title: "Önemli:", disclaimer_text: "Bu platform genel rehberlik ve resmi bağlantılar sunar. Bilgileri Alman makamlarından doğrulayın.", footer_desc: "Almanya'da yaşam, çalışma ve eğitim için resmi bağlantılı çok dilli rehber.", footer_quick: "Hızlı Bağlantılar", footer_popular: "Popüler Rehberler", footer_jobs: "Oturum ve İş", footer_health: "Sağlık Sigortası", footer_home: "Ev Bulma", footer_legal: "Hukuki Yardım", footer_language: "Almanca", footer_emergency: "Acil Durum", footer_disclaimer_heading: "Sorumluluk Reddi", footer_disclaimer: "Bilgiler yalnızca genel rehberlik içindir. Resmi kaynakları kontrol edin.", footer_built: "Shaista Shabbir tarafından özenle hazırlandı",
+  },
+  ur: {
+    hero_eyebrow: "سرکاری ذرائع۔ واضح اگلے اقدامات۔", hero_start: "ریاست سے شروع کریں", hero_emergency: "ہنگامی مدد", hero_trusted: "قابل اعتماد رہنمائی", hero_trusted_sub: "جرمن سرکاری ذرائع کے لنکس",
+    journey_kicker: "فوری آغاز", journey_title: "یہاں سے شروع کریں — آپ کو کیا چاہیے؟", journey_sub: "اپنی صورتحال منتخب کریں اور مناسب رہنما پر جائیں۔", journey_new: "میں جرمنی میں نیا ہوں", journey_new_sub: "پہلے ہفتے کی چیک لسٹ", journey_visa: "مجھے ویزا یا رہائش میں مدد چاہیے", journey_visa_sub: "اجازت نامے اور کام کے راستے", journey_housing: "مجھے رہائش میں مدد چاہیے", journey_housing_sub: "کرایہ اور کرایہ دار کے حقوق", journey_legal: "مجھے ہنگامی یا قانونی مدد چاہیے", journey_legal_sub: "حقوق، خطوط اور آخری تاریخیں", journey_language: "میں جرمن سیکھنا چاہتا ہوں", journey_language_sub: "روزمرہ جملے اور مشق",
+    language_kicker: "کثیر لسانی ڈیزائن", language_title: "آسانی سے سمجھ آنے والی رہنمائی", language_sub: "اپنی پسندیدہ زبان منتخب کریں اور سرکاری لنکس سے تصدیق کریں۔", language_count: "10 معاون زبانیں", language_list: "انگریزی، جرمن، عربی، ترکی، اردو، روسی، فرانسیسی، فارسی، اطالوی اور یوکرینی۔", language_guide: "جرمن زبان کا رہنما کھولیں",
+    about_kicker: "حقیقی زندگی کے لیے", about_title: "اگلا قدم تلاش کرنے کا پرسکون طریقہ", about_sub: "Navigate Germany بکھری ہوئی سرکاری معلومات کو واضح راستوں میں جمع کرتا ہے۔", about_official: "سرکاری لنکس پر توجہ", about_official_sub: "سرکاری ادارے اور قابل اعتماد خدمات", about_explore: "آسان تلاش", about_explore_sub: "صورتحال، رہنما یا ریاست کے لحاظ سے", about_mobile: "موبائل فرسٹ", about_mobile_sub: "ایپ جیسا تجربہ", about_free: "مفت استعمال", about_free_sub: "اکاؤنٹ یا API کلید کی ضرورت نہیں",
+    disclaimer_title: "اہم:", disclaimer_text: "یہ پلیٹ فارم عمومی رہنمائی اور سرکاری لنکس دیتا ہے۔ معلومات کی جرمن حکام سے ہمیشہ تصدیق کریں۔", footer_desc: "جرمنی میں رہنے، کام اور تعلیم کے لیے سرکاری لنکس والا کثیر لسانی رہنما۔", footer_quick: "فوری لنکس", footer_popular: "مشہور رہنما", footer_jobs: "رہائش اور ملازمت", footer_health: "ہیلتھ انشورنس", footer_home: "گھر تلاش کریں", footer_legal: "قانونی مدد", footer_language: "جرمن زبان", footer_emergency: "ہنگامی", footer_disclaimer_heading: "اعلان", footer_disclaimer: "معلومات صرف عمومی رہنمائی کے لیے ہیں۔ سرکاری ذرائع دیکھیں۔", footer_built: "Shaista Shabbir نے احتیاط سے بنایا",
+  },
+  ru: {
+    hero_eyebrow: "Официальные источники. Понятные шаги.", hero_start: "Начать с земли", hero_emergency: "Экстренная помощь", hero_trusted: "Надёжная информация", hero_trusted_sub: "Ссылки на официальные источники Германии",
+    journey_kicker: "Быстрый старт", journey_title: "Начните здесь — Что вам нужно?", journey_sub: "Выберите ситуацию и сразу откройте нужное руководство.", journey_new: "Я недавно в Германии", journey_new_sub: "План на первую неделю", journey_visa: "Нужна помощь с визой или ВНЖ", journey_visa_sub: "Разрешения и пути к работе", journey_housing: "Нужна помощь с жильём", journey_housing_sub: "Аренда и права жильцов", journey_legal: "Нужна экстренная или правовая помощь", journey_legal_sub: "Права, письма и сроки", journey_language: "Я хочу учить немецкий", journey_language_sub: "Повседневные фразы и практика",
+    language_kicker: "Многоязычный подход", language_title: "Информация, которую легче понять", language_sub: "Выберите язык и проверяйте данные по официальным ссылкам.", language_count: "10 поддерживаемых языков", language_list: "Английский, немецкий, арабский, турецкий, урду, русский, французский, персидский, итальянский и украинский.", language_guide: "Открыть руководство по немецкому",
+    about_kicker: "Для реальной жизни", about_title: "Спокойный путь к следующему шагу", about_sub: "Navigate Germany собирает разрозненную государственную информацию в понятные маршруты.", about_official: "Официальные ссылки", about_official_sub: "Государственные органы и надёжные службы", about_explore: "Легко найти", about_explore_sub: "По ситуации, теме или земле", about_mobile: "Сначала мобильный", about_mobile_sub: "Работает как приложение", about_free: "Бесплатно", about_free_sub: "Без аккаунта и ключа API",
+    disclaimer_title: "Важно:", disclaimer_text: "Платформа даёт общую информацию и официальные ссылки. Всегда проверяйте данные у немецких властей.", footer_desc: "Многоязычный путеводитель с официальными ссылками для жизни, работы и учёбы в Германии.", footer_quick: "Быстрые ссылки", footer_popular: "Популярные руководства", footer_jobs: "ВНЖ и работа", footer_health: "Медстрахование", footer_home: "Поиск жилья", footer_legal: "Правовая помощь", footer_language: "Немецкий язык", footer_emergency: "Экстренная помощь", footer_disclaimer_heading: "Отказ от ответственности", footer_disclaimer: "Информация носит общий характер. Проверяйте официальные источники.", footer_built: "Создано с заботой: Shaista Shabbir",
+  },
+  fr: {
+    hero_eyebrow: "Sources officielles. Étapes claires.", hero_start: "Commencer par Land", hero_emergency: "Aide d'urgence", hero_trusted: "Conseils fiables", hero_trusted_sub: "Liens vers les sources officielles allemandes",
+    journey_kicker: "Démarrage rapide", journey_title: "Commencez ici — De quoi avez-vous besoin ?", journey_sub: "Choisissez votre situation et ouvrez directement le guide utile.", journey_new: "Je viens d'arriver en Allemagne", journey_new_sub: "Liste de la première semaine", journey_visa: "J'ai besoin d'aide pour le visa ou le séjour", journey_visa_sub: "Permis et voies d'emploi", journey_housing: "J'ai besoin d'aide au logement", journey_housing_sub: "Location et droits des locataires", journey_legal: "J'ai besoin d'aide urgente ou juridique", journey_legal_sub: "Droits, courriers et délais", journey_language: "Je veux apprendre l'allemand", journey_language_sub: "Phrases quotidiennes et pratique",
+    language_kicker: "Multilingue par conception", language_title: "Des conseils plus faciles à comprendre", language_sub: "Choisissez votre langue et vérifiez les informations via les liens officiels.", language_count: "10 langues disponibles", language_list: "Anglais, allemand, arabe, turc, ourdou, russe, français, persan, italien et ukrainien.", language_guide: "Ouvrir le guide d'allemand",
+    about_kicker: "Conçu pour la vraie vie", about_title: "Une façon plus sereine de trouver la prochaine étape", about_sub: "Navigate Germany rassemble les informations publiques dans des parcours clairs.", about_official: "Liens officiels", about_official_sub: "Autorités publiques et services fiables", about_explore: "Facile à explorer", about_explore_sub: "Par situation, guide ou Land", about_mobile: "Mobile d'abord", about_mobile_sub: "Pensé comme une application", about_free: "Utilisation gratuite", about_free_sub: "Sans compte ni clé API",
+    disclaimer_title: "Important :", disclaimer_text: "Cette plateforme fournit des conseils généraux et des liens officiels. Vérifiez toujours auprès des autorités allemandes.", footer_desc: "Guide multilingue avec liens officiels pour vivre, travailler et étudier en Allemagne.", footer_quick: "Liens rapides", footer_popular: "Guides populaires", footer_jobs: "Séjour et emploi", footer_health: "Assurance maladie", footer_home: "Trouver un logement", footer_legal: "Aide juridique", footer_language: "Langue allemande", footer_emergency: "Urgence", footer_disclaimer_heading: "Avertissement", footer_disclaimer: "Informations générales uniquement. Vérifiez les sources officielles.", footer_built: "Créé avec soin par Shaista Shabbir",
+  },
+  fa: {
+    hero_eyebrow: "منابع رسمی. گام‌های روشن.", hero_start: "شروع بر اساس ایالت", hero_emergency: "کمک اضطراری", hero_trusted: "راهنمای قابل اعتماد", hero_trusted_sub: "پیوند به منابع رسمی آلمان",
+    journey_kicker: "شروع سریع", journey_title: "از اینجا شروع کنید — چه چیزی نیاز دارید؟", journey_sub: "وضعیت خود را انتخاب کنید و مستقیماً به راهنمای مناسب بروید.", journey_new: "تازه به آلمان آمده‌ام", journey_new_sub: "فهرست هفته اول", journey_visa: "برای ویزا یا اقامت کمک می‌خواهم", journey_visa_sub: "مجوزها و مسیرهای کاری", journey_housing: "برای مسکن کمک می‌خواهم", journey_housing_sub: "اجاره و حقوق مستأجر", journey_legal: "کمک اضطراری یا حقوقی می‌خواهم", journey_legal_sub: "حقوق، نامه‌ها و مهلت‌ها", journey_language: "می‌خواهم آلمانی یاد بگیرم", journey_language_sub: "عبارت‌های روزانه و تمرین",
+    language_kicker: "طراحی چندزبانه", language_title: "راهنمایی که فهم آن آسان‌تر است", language_sub: "زبان دلخواه را انتخاب کنید و اطلاعات را از پیوندهای رسمی بررسی کنید.", language_count: "۱۰ زبان پشتیبانی‌شده", language_list: "انگلیسی، آلمانی، عربی، ترکی، اردو، روسی، فرانسوی، فارسی، ایتالیایی و اوکراینی.", language_guide: "باز کردن راهنمای زبان آلمانی",
+    about_kicker: "برای زندگی واقعی", about_title: "راهی آرام‌تر برای یافتن گام بعدی", about_sub: "Navigate Germany اطلاعات پراکنده عمومی را به مسیرهای روشن تبدیل می‌کند.", about_official: "تمرکز بر پیوندهای رسمی", about_official_sub: "نهادهای عمومی و خدمات معتبر", about_explore: "جست‌وجوی آسان", about_explore_sub: "بر اساس وضعیت، راهنما یا ایالت", about_mobile: "اول موبایل", about_mobile_sub: "طراحی‌شده مانند اپ", about_free: "استفاده رایگان", about_free_sub: "بدون حساب یا کلید API",
+    disclaimer_title: "مهم:", disclaimer_text: "این پلتفرم راهنمای عمومی و پیوندهای رسمی ارائه می‌کند. اطلاعات را همیشه با مقامات آلمان بررسی کنید.", footer_desc: "راهنمای چندزبانه با پیوندهای رسمی برای زندگی، کار و تحصیل در آلمان.", footer_quick: "پیوندهای سریع", footer_popular: "راهنماهای محبوب", footer_jobs: "اقامت و کار", footer_health: "بیمه درمانی", footer_home: "یافتن خانه", footer_legal: "کمک حقوقی", footer_language: "زبان آلمانی", footer_emergency: "اضطراری", footer_disclaimer_heading: "سلب مسئولیت", footer_disclaimer: "اطلاعات فقط راهنمای عمومی است. منابع رسمی را بررسی کنید.", footer_built: "با دقت توسط Shaista Shabbir ساخته شده",
+  },
+  it: {
+    hero_eyebrow: "Fonti ufficiali. Prossimi passi chiari.", hero_start: "Inizia dal Land", hero_emergency: "Aiuto d'emergenza", hero_trusted: "Guida affidabile", hero_trusted_sub: "Link a fonti ufficiali tedesche",
+    journey_kicker: "Avvio rapido", journey_title: "Inizia qui — Di cosa hai bisogno?", journey_sub: "Scegli la tua situazione e apri subito la guida più utile.", journey_new: "Sono appena arrivato in Germania", journey_new_sub: "Lista della prima settimana", journey_visa: "Mi serve aiuto per visto o soggiorno", journey_visa_sub: "Permessi e percorsi di lavoro", journey_housing: "Mi serve aiuto per la casa", journey_housing_sub: "Affitto e diritti degli inquilini", journey_legal: "Mi serve aiuto urgente o legale", journey_legal_sub: "Diritti, lettere e scadenze", journey_language: "Voglio imparare il tedesco", journey_language_sub: "Frasi quotidiane e pratica",
+    language_kicker: "Multilingue fin dal progetto", language_title: "Indicazioni più facili da capire", language_sub: "Scegli la lingua e verifica le informazioni tramite i link ufficiali.", language_count: "10 lingue supportate", language_list: "Inglese, tedesco, arabo, turco, urdu, russo, francese, persiano, italiano e ucraino.", language_guide: "Apri la guida di tedesco",
+    about_kicker: "Pensato per la vita reale", about_title: "Un modo più tranquillo per trovare il prossimo passo", about_sub: "Navigate Germany organizza informazioni pubbliche sparse in percorsi chiari.", about_official: "Link ufficiali al centro", about_official_sub: "Autorità pubbliche e servizi affidabili", about_explore: "Facile da esplorare", about_explore_sub: "Per situazione, guida o Land", about_mobile: "Mobile first", about_mobile_sub: "Progettato come un'app", about_free: "Uso gratuito", about_free_sub: "Nessun account o chiave API",
+    disclaimer_title: "Importante:", disclaimer_text: "La piattaforma offre indicazioni generali e link ufficiali. Verifica sempre con le autorità tedesche.", footer_desc: "Guida multilingue con link ufficiali per vivere, lavorare e studiare in Germania.", footer_quick: "Link rapidi", footer_popular: "Guide popolari", footer_jobs: "Soggiorno e lavoro", footer_health: "Assicurazione sanitaria", footer_home: "Trovare casa", footer_legal: "Aiuto legale", footer_language: "Lingua tedesca", footer_emergency: "Emergenza", footer_disclaimer_heading: "Avvertenza", footer_disclaimer: "Informazioni generali. Controlla sempre le fonti ufficiali.", footer_built: "Creato con cura da Shaista Shabbir",
+  },
+  uk: {
+    hero_eyebrow: "Офіційні джерела. Чіткі наступні кроки.", hero_start: "Почати із землі", hero_emergency: "Екстрена допомога", hero_trusted: "Надійні поради", hero_trusted_sub: "Посилання на офіційні джерела Німеччини",
+    journey_kicker: "Швидкий старт", journey_title: "Почніть тут — Що вам потрібно?", journey_sub: "Оберіть ситуацію та одразу відкрийте потрібний путівник.", journey_new: "Я щойно прибув до Німеччини", journey_new_sub: "Список на перший тиждень", journey_visa: "Потрібна допомога з візою або проживанням", journey_visa_sub: "Дозволи та шляхи до роботи", journey_housing: "Потрібна допомога з житлом", journey_housing_sub: "Оренда та права орендарів", journey_legal: "Потрібна екстрена або правова допомога", journey_legal_sub: "Права, листи та строки", journey_language: "Хочу вивчати німецьку", journey_language_sub: "Щоденні фрази та практика",
+    language_kicker: "Багатомовний дизайн", language_title: "Поради, які легше зрозуміти", language_sub: "Оберіть мову та перевіряйте дані за офіційними посиланнями.", language_count: "10 підтримуваних мов", language_list: "Англійська, німецька, арабська, турецька, урду, російська, французька, перська, італійська та українська.", language_guide: "Відкрити путівник з німецької",
+    about_kicker: "Для реального життя", about_title: "Спокійніший спосіб знайти наступний крок", about_sub: "Navigate Germany об'єднує розрізнену державну інформацію у зрозумілі маршрути.", about_official: "Офіційні посилання", about_official_sub: "Державні органи та надійні служби", about_explore: "Легко шукати", about_explore_sub: "За ситуацією, темою або землею", about_mobile: "Спочатку мобільний", about_mobile_sub: "Працює як застосунок", about_free: "Безкоштовно", about_free_sub: "Без облікового запису та API-ключа",
+    disclaimer_title: "Важливо:", disclaimer_text: "Платформа надає загальні поради й офіційні посилання. Завжди перевіряйте дані в органах влади Німеччини.", footer_desc: "Багатомовний путівник з офіційними посиланнями для життя, роботи та навчання в Німеччині.", footer_quick: "Швидкі посилання", footer_popular: "Популярні путівники", footer_jobs: "Проживання та робота", footer_health: "Медичне страхування", footer_home: "Пошук житла", footer_legal: "Правова допомога", footer_language: "Німецька мова", footer_emergency: "Екстрена допомога", footer_disclaimer_heading: "Застереження", footer_disclaimer: "Інформація має загальний характер. Перевіряйте офіційні джерела.", footer_built: "Створено з турботою Shaista Shabbir",
+  },
+};
+
+Object.entries(PAGE_TEXT).forEach(([code, text]) => Object.assign(TRANSLATIONS[code], text));
 
 const MODULES = [
   { id: "housing", icon: "⌂", iconSrc: "./assets/icons/housing.png", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
@@ -747,21 +822,27 @@ function renderModules(items = MODULES) {
 
 function renderStates(items = STATES) {
   const t = currentTranslation();
+  const language = document.documentElement.lang || "en";
   document.querySelector("#state-result-count").textContent = t.state_count.replace("{count}", items.length);
   statesGrid.innerHTML = items.length ? items.map((item) => {
     const meta = STATE_META[item.id];
+    const statePage = `states/${item.id.toLowerCase()}.html`;
+    const description = language === "en"
+      ? item.description
+      : t.state_description.replace("{state}", item.name);
+    const bestFor = language === "en" ? meta.bestFor : t.best_value;
     return `
-    <button class="state-card reveal" type="button" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="${t.view_details.replace(/[←→]/g, "").trim()}: ${item.name}">
+    <a class="state-card reveal" href="${statePage}" data-state="${item.id}" style="--state-bg:${item.background}" aria-label="${t.view_details.replace(/[←→]/g, "").trim()}: ${item.name}">
       <span class="state-card-content">
-        <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy" onerror="this.style.display='none'"><small>${item.visual}</small></span>
+        <span class="state-media"><img src="./assets/images/states/${meta.image}" alt="${meta.alt}" loading="lazy" onerror="this.style.display='none'"><small>${language === "en" ? item.visual : item.name}</small></span>
         <strong>${item.name}</strong>
         <span class="state-capital"><b>${t.capital}</b> ${item.capital}</span>
         <span class="state-city"><b>${t.major_cities}</b> ${meta.cities}</span>
-        <span class="state-description">${item.description}</span>
-        <span class="state-best">${t.best_for} ${meta.bestFor}</span>
+        <span class="state-description">${description}</span>
+        <span class="state-best">${t.best_for} ${bestFor}</span>
         <span class="state-cta">${t.view_details}</span>
       </span>
-    </button>
+    </a>
   `;}).join("") : `<div class="no-results">${t.no_states}</div>`;
   requestAnimationFrame(observeReveals);
 }
@@ -839,13 +920,11 @@ function setLanguage(code) {
     renderModules(localizedModules(t));
   }
 
-  const activeStateId = document.querySelector(".state-card.active")?.dataset.state;
   const stateQuery = document.querySelector("#state-search")?.value.toLowerCase().trim() || "";
   renderStates(STATES.filter((item) => {
     const meta = STATE_META[item.id];
     return `${item.name} ${item.capital} ${meta.cities} ${meta.bestFor} ${item.description} ${item.visual}`.toLowerCase().includes(stateQuery);
   }));
-  if (activeStateId) openState(activeStateId);
 
   // ── Persist + update selectors ────────────────────────────
   languageSelect.value = selected.code;
@@ -929,16 +1008,27 @@ function init() {
   setLanguage(localStorage.getItem("ng_lang") || "en");
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   observeReveals();
-  restoreHashPosition();
+  stabilizeHashPosition();
 }
 
 function restoreHashPosition() {
   if (!window.location.hash) return;
   const target = document.querySelector(window.location.hash);
   if (!target) return;
-  window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
-    target.scrollIntoView({ block: "start" });
-  }));
+  const stickyOffset = document.querySelector(".site-header")?.offsetHeight || 0;
+  const top = target.getBoundingClientRect().top + window.scrollY - stickyOffset;
+  const root = document.documentElement;
+  const previousBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  window.scrollTo(0, Math.max(0, top));
+  window.requestAnimationFrame(() => {
+    root.style.scrollBehavior = previousBehavior;
+  });
+}
+
+function stabilizeHashPosition() {
+  restoreHashPosition();
+  [0, 80, 240].forEach((delay) => window.setTimeout(restoreHashPosition, delay));
 }
 
 document.querySelector(".menu-toggle").addEventListener("click", (event) => {
@@ -972,11 +1062,6 @@ guidesGrid.addEventListener("click", (event) => {
   showToast(savedGuides.has(id) ? "Guide saved on this device." : "Guide removed from saved items.");
 });
 
-statesGrid.addEventListener("click", (event) => {
-  const card = event.target.closest("[data-state]");
-  if (card) openState(card.dataset.state);
-});
-
 stateDetail.addEventListener("click", (event) => {
   if (!event.target.closest(".state-detail-close")) return;
   stateDetail.hidden = true;
@@ -992,9 +1077,8 @@ document.querySelector("#state-search").addEventListener("input", (event) => {
   stateDetail.hidden = true;
 });
 
-window.addEventListener("hashchange", restoreHashPosition);
-window.addEventListener("load", restoreHashPosition);
-document.fonts?.ready.then(restoreHashPosition);
+window.addEventListener("hashchange", stabilizeHashPosition);
+window.addEventListener("load", restoreHashPosition, { once: true });
 
 const siteSearch = document.querySelector("#site-search");
 const searchResults = document.querySelector("#search-results");
@@ -1002,7 +1086,7 @@ siteSearch.addEventListener("input", () => {
   const t = currentTranslation();
   const results = searchAll(siteSearch.value);
   searchResults.innerHTML = results.map((item) => item.state
-    ? `<button class="search-result" type="button" data-search-state="${item.state}"><span>${item.title}</span><small>${t.state}</small></button>`
+    ? `<a class="search-result" href="states/${item.state.toLowerCase()}.html"><span>${item.title}</span><small>${t.state}</small></a>`
     : `<a class="search-result" href="${item.url}"><span>${item.title}</span><small>${t.guide}</small></a>`
   ).join("");
 });
@@ -1011,18 +1095,10 @@ siteSearch.closest("form").addEventListener("submit", (event) => {
   const first = searchAll(siteSearch.value)[0];
   if (!first) return showToast("Try searching for housing, visa, legal help, or a state.");
   if (first.state) {
-    document.querySelector("#states").scrollIntoView({ behavior: "smooth" });
-    window.setTimeout(() => openState(first.state), 350);
+    window.location.href = `states/${first.state.toLowerCase()}.html`;
   } else {
     window.location.href = first.url;
   }
-});
-searchResults.addEventListener("click", (event) => {
-  const stateButton = event.target.closest("[data-search-state]");
-  if (!stateButton) return;
-  searchResults.innerHTML = "";
-  document.querySelector("#states").scrollIntoView({ behavior: "smooth" });
-  window.setTimeout(() => openState(stateButton.dataset.searchState), 350);
 });
 document.addEventListener("click", (event) => {
   if (!event.target.closest(".hero-copy")) searchResults.innerHTML = "";
