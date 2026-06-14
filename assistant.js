@@ -73,10 +73,19 @@
     const results = root.querySelector(".ng-assistant-results");
 
     const setOpen = (open) => {
-      panel.hidden = !open;
+      if (open) {
+        panel.classList.add("ng-open");
+        panel.removeAttribute("hidden");
+      } else {
+        panel.classList.remove("ng-open");
+        panel.setAttribute("hidden", "");
+      }
       launcher.setAttribute("aria-expanded", String(open));
-      if (open) input.focus();
+      if (open) setTimeout(() => input.focus(), 50);
     };
+    // Ensure panel starts hidden
+    panel.setAttribute("hidden", "");
+    panel.classList.remove("ng-open");
     const search = (query) => {
       const matches = items.map((item) => ({ ...item, score: score(item, query) }))
         .filter((item) => item.score > 0)
