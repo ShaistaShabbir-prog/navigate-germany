@@ -1,77 +1,145 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 720" role="img" aria-labelledby="map-title map-desc">
-  <title id="map-title">Interactive map beta of Germany's 16 federal states</title>
-  <desc id="map-desc">A schematic, non-geographic state map. Select a labelled state to open its guide.</desc>
+  <title id="map-title">Germany — 16 Bundesländer interactive map</title>
+  <desc id="map-desc">Click a state to open the Navigate Germany guide for that Bundesland.</desc>
   <style>
-    .country{fill:#0f2b50;stroke:#60a5fa;stroke-width:5}
-    .state{fill:#eff6ff;stroke:#93c5fd;stroke-width:3;transition:fill .18s ease,stroke .18s ease,transform .18s ease;transform-box:fill-box;transform-origin:center}
-    a:hover .state,a:focus .state{fill:#facc15;stroke:#fff;transform:scale(1.05)}
-    .code{fill:#0f172a;font:800 17px system-ui,sans-serif;text-anchor:middle;pointer-events:none}
-    .small{font-size:13px}
-    a:focus{outline:none}
+    .country { fill: #0B1D3A; stroke: #1e3a5f; stroke-width: 4; }
+    .state {
+      stroke: rgba(255,255,255,.25);
+      stroke-width: 1.5;
+      cursor: pointer;
+      transition: filter .2s, stroke .2s, stroke-width .2s;
+    }
+    a:hover .state,
+    a:focus .state {
+      stroke: #FFCC02;
+      stroke-width: 2.5;
+      filter: brightness(1.35) drop-shadow(0 0 6px rgba(255,204,2,.5));
+    }
+    .code {
+      fill: rgba(255,255,255,.9);
+      font: 800 13px 'Segoe UI',system-ui,sans-serif;
+      text-anchor: middle;
+      pointer-events: none;
+      text-shadow: 0 1px 3px rgba(0,0,0,.8);
+    }
+    .small { font-size: 11px; }
+    a { outline: none; }
+    a:focus-visible .state { stroke: #FFCC02; stroke-width: 3; }
   </style>
+
+  <!-- Background country shape -->
   <path class="country" d="M250 28 370 38 430 91 489 146 471 224 531 292 503 367 536 446 476 514 451 607 359 689 266 674 220 620 144 588 116 505 74 431 105 350 80 273 132 205 146 120 211 88Z"/>
-  <a href="../../states/schleswig-holstein.html" target="_top" aria-label="Schleswig-Holstein, capital Kiel">
-    <title>Schleswig-Holstein — Capital: Kiel — Coastal living, families and maritime careers.</title>
-    <path class="state" d="m251 63 82 4 31 51-29 42-84-4-31-47Z"/><text class="code" x="292" y="119">SH</text>
+
+  <!-- Schleswig-Holstein -->
+  <a href="states/sh.html" target="_top" aria-label="Schleswig-Holstein">
+    <title>Schleswig-Holstein — Capital: Kiel</title>
+    <path class="state" fill="#1e4a7a" d="m251 63 82 4 31 51-29 42-84-4-31-47Z"/>
+    <text class="code" x="292" y="119">SH</text>
   </a>
-  <a href="../../states/hamburg.html" target="_top" aria-label="Hamburg, capital Hamburg">
-    <title>Hamburg — Capital: Hamburg — Harbor economy, media and international careers.</title>
-    <path class="state" d="m278 162 38 1 12 30-26 23-34-18Z"/><text class="code small" x="299" y="191">HH</text>
+
+  <!-- Hamburg -->
+  <a href="states/hh.html" target="_top" aria-label="Hamburg">
+    <title>Hamburg — Capital: Hamburg</title>
+    <path class="state" fill="#c41e3a" d="m278 162 38 1 12 30-26 23-34-18Z"/>
+    <text class="code small" x="299" y="191">HH</text>
   </a>
-  <a href="../../states/mecklenburg-vorpommern.html" target="_top" aria-label="Mecklenburg-Vorpommern, capital Schwerin">
-    <title>Mecklenburg-Vorpommern — Capital: Schwerin — Coastal cities, healthcare and family life.</title>
-    <path class="state" d="m343 122 89 4 42 52-28 52-104-8-19-34Z"/><text class="code" x="404" y="184">MV</text>
+
+  <!-- Mecklenburg-Vorpommern -->
+  <a href="states/mv.html" target="_top" aria-label="Mecklenburg-Vorpommern">
+    <title>Mecklenburg-Vorpommern — Capital: Schwerin</title>
+    <path class="state" fill="#2e5f7a" d="m343 122 89 4 42 52-28 52-104-8-19-34Z"/>
+    <text class="code" x="404" y="184">MV</text>
   </a>
-  <a href="../../states/bremen.html" target="_top" aria-label="Bremen, capital Bremen">
-    <title>Bremen — Capital: Bremen — Compact city-state for logistics, study and maritime work.</title>
-    <path class="state" d="m173 190 39-10 19 31-22 28-40-13Z"/><text class="code small" x="200" y="216">HB</text>
+
+  <!-- Bremen -->
+  <a href="states/hb.html" target="_top" aria-label="Bremen">
+    <title>Bremen — Capital: Bremen</title>
+    <path class="state" fill="#1e3a6e" d="m173 190 39-10 19 31-22 28-40-13Z"/>
+    <text class="code small" x="200" y="216">HB</text>
   </a>
-  <a href="../../states/lower-saxony.html" target="_top" aria-label="Lower Saxony, capital Hannover">
-    <title>Lower Saxony — Capital: Hannover — Engineering, research and family-friendly cities.</title>
-    <path class="state" d="m140 167 113-35 23 84 66 12 6 73-77 39-105-16-48-69Z"/><text class="code" x="224" y="270">NI</text>
+
+  <!-- Lower Saxony -->
+  <a href="states/ni.html" target="_top" aria-label="Lower Saxony">
+    <title>Lower Saxony — Capital: Hannover</title>
+    <path class="state" fill="#6b4c2a" d="m140 167 113-35 23 84 66 12 6 73-77 39-105-16-48-69Z"/>
+    <text class="code" x="224" y="270">NI</text>
   </a>
-  <a href="../../states/brandenburg.html" target="_top" aria-label="Brandenburg, capital Potsdam">
-    <title>Brandenburg — Capital: Potsdam — Research, families and communities around Berlin.</title>
-    <path class="state" d="m356 231 90 7 49 59-16 89-75 27-64-49 12-58Z"/><text class="code" x="426" y="327">BB</text>
+
+  <!-- Brandenburg -->
+  <a href="states/bb.html" target="_top" aria-label="Brandenburg">
+    <title>Brandenburg — Capital: Potsdam</title>
+    <path class="state" fill="#5e3a2e" d="m356 231 90 7 49 59-16 89-75 27-64-49 12-58Z"/>
+    <text class="code" x="426" y="327">BB</text>
   </a>
-  <a href="../../states/berlin.html" target="_top" aria-label="Berlin, capital Berlin">
-    <title>Berlin — Capital: Berlin — Startups, creative work and international communities.</title>
-    <circle class="state" cx="421" cy="312" r="29"/><text class="code small" x="421" y="318">BE</text>
+
+  <!-- Berlin -->
+  <a href="states/be.html" target="_top" aria-label="Berlin">
+    <title>Berlin — Capital: Berlin</title>
+    <circle class="state" fill="#c41e3a" cx="421" cy="312" r="29"/>
+    <text class="code small" x="421" y="318">BE</text>
   </a>
-  <a href="../../states/north-rhine-westphalia.html" target="_top" aria-label="North Rhine-Westphalia, capital Düsseldorf">
-    <title>North Rhine-Westphalia — Capital: Düsseldorf — Diverse cities, universities and broad job markets.</title>
-    <path class="state" d="m105 326 93-5 48 49-18 91-86 22-55-66Z"/><text class="code" x="165" y="407">NW</text>
+
+  <!-- North Rhine-Westphalia -->
+  <a href="states/nw.html" target="_top" aria-label="North Rhine-Westphalia">
+    <title>North Rhine-Westphalia — Capital: Düsseldorf</title>
+    <path class="state" fill="#2e5b9e" d="m105 326 93-5 48 49-18 91-86 22-55-66Z"/>
+    <text class="code" x="165" y="407">NW</text>
   </a>
-  <a href="../../states/saxony-anhalt.html" target="_top" aria-label="Saxony-Anhalt, capital Magdeburg">
-    <title>Saxony-Anhalt — Capital: Magdeburg — Research, manufacturing and affordable cities.</title>
-    <path class="state" d="m278 311 68-8 48 58-20 93-76 1-48-58Z"/><text class="code" x="324" y="393">ST</text>
+
+  <!-- Saxony-Anhalt -->
+  <a href="states/st.html" target="_top" aria-label="Saxony-Anhalt">
+    <title>Saxony-Anhalt — Capital: Magdeburg</title>
+    <path class="state" fill="#7a6030" d="m278 311 68-8 48 58-20 93-76 1-48-58Z"/>
+    <text class="code" x="324" y="393">ST</text>
   </a>
-  <a href="../../states/saxony.html" target="_top" aria-label="Saxony, capital Dresden">
-    <title>Saxony — Capital: Dresden — Technology, universities and research centres.</title>
-    <path class="state" d="m383 407 87-18 39 68-52 66-91-20Z"/><text class="code" x="436" y="470">SN</text>
+
+  <!-- Saxony -->
+  <a href="states/sn.html" target="_top" aria-label="Saxony">
+    <title>Saxony — Capital: Dresden</title>
+    <path class="state" fill="#2c5e2e" d="m383 407 87-18 39 68-52 66-91-20Z"/>
+    <text class="code" x="436" y="470">SN</text>
   </a>
-  <a href="../../states/hessen.html" target="_top" aria-label="Hessen, capital Wiesbaden">
-    <title>Hessen — Capital: Wiesbaden — Finance, research and international employment.</title>
-    <path class="state" d="m213 427 74-34 49 72-31 84-79-5-35-63Z"/><text class="code" x="267" y="493">HE</text>
+
+  <!-- Hessen -->
+  <a href="states/he.html" target="_top" aria-label="Hessen">
+    <title>Hessen — Capital: Wiesbaden</title>
+    <path class="state" fill="#4a7c3f" d="m213 427 74-34 49 72-31 84-79-5-35-63Z"/>
+    <text class="code" x="267" y="493">HE</text>
   </a>
-  <a href="../../states/thuringia.html" target="_top" aria-label="Thuringia, capital Erfurt">
-    <title>Thuringia — Capital: Erfurt — Research, manufacturing and student cities.</title>
-    <path class="state" d="m309 458 67 4 42 53-44 58-78-22Z"/><text class="code" x="355" y="526">TH</text>
+
+  <!-- Thuringia -->
+  <a href="states/th.html" target="_top" aria-label="Thuringia">
+    <title>Thuringia — Capital: Erfurt</title>
+    <path class="state" fill="#2d6b3c" d="m309 458 67 4 42 53-44 58-78-22Z"/>
+    <text class="code" x="355" y="526">TH</text>
   </a>
-  <a href="../../states/rhineland-palatinate.html" target="_top" aria-label="Rhineland-Palatinate, capital Mainz">
-    <title>Rhineland-Palatinate — Capital: Mainz — Family life, universities and Rhine communities.</title>
-    <path class="state" d="m133 478 78-20 35 72-34 72-75-29-28-52Z"/><text class="code" x="174" y="539">RP</text>
+
+  <!-- Rhineland-Palatinate -->
+  <a href="states/rp.html" target="_top" aria-label="Rhineland-Palatinate">
+    <title>Rhineland-Palatinate — Capital: Mainz</title>
+    <path class="state" fill="#8b3a62" d="m133 478 78-20 35 72-34 72-75-29-28-52Z"/>
+    <text class="code" x="174" y="539">RP</text>
   </a>
-  <a href="../../states/saarland.html" target="_top" aria-label="Saarland, capital Saarbrücken">
-    <title>Saarland — Capital: Saarbrücken — Cross-border work, research and compact cities.</title>
-    <path class="state" d="m118 572 49 4 17 43-39 29-45-30Z"/><text class="code small" x="143" y="612">SL</text>
+
+  <!-- Saarland -->
+  <a href="states/sl.html" target="_top" aria-label="Saarland">
+    <title>Saarland — Capital: Saarbrücken</title>
+    <path class="state" fill="#5a3e28" d="m118 572 49 4 17 43-39 29-45-30Z"/>
+    <text class="code small" x="143" y="612">SL</text>
   </a>
-  <a href="../../states/baden-wuerttemberg.html" target="_top" aria-label="Baden-Württemberg, capital Stuttgart">
-    <title>Baden-Württemberg — Capital: Stuttgart — Engineering, research and international study.</title>
-    <path class="state" d="m185 590 82-45 57 67-28 71-87-18-45-36Z"/><text class="code" x="252" y="629">BW</text>
+
+  <!-- Baden-Württemberg -->
+  <a href="states/bw.html" target="_top" aria-label="Baden-Württemberg">
+    <title>Baden-Württemberg — Capital: Stuttgart</title>
+    <path class="state" fill="#174d45" d="m185 590 82-45 57 67-28 71-87-18-45-36Z"/>
+    <text class="code" x="252" y="629">BW</text>
   </a>
-  <a href="../../states/bavaria.html" target="_top" aria-label="Bavaria, capital Munich">
-    <title>Bavaria — Capital: Munich — Technology, universities and family services.</title>
-    <path class="state" d="m324 565 74-40 67 47-31 89-77 40-65-35Z"/><text class="code" x="379" y="627">BY</text>
+
+  <!-- Bavaria -->
+  <a href="states/by.html" target="_top" aria-label="Bavaria">
+    <title>Bavaria — Capital: Munich</title>
+    <path class="state" fill="#315f91" d="m324 565 74-40 67 47-31 89-77 40-65-35Z"/>
+    <text class="code" x="379" y="627">BY</text>
   </a>
+
 </svg>
