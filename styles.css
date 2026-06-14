@@ -206,12 +206,12 @@ img { display: block; max-width: 100%; }
 .eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
 .eyebrow span { width: 28px; height: 3px; border-radius: 4px; background: linear-gradient(90deg, #111 0 33%, #dc2626 33% 66%, #facc15 66%); }
 .hero h1 {
-  max-width: 680px;
-  margin: 0;
+  max-width: 560px;
+  margin: 0 0 14px;
   color: var(--text-dark);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  line-height: 1.12;
-  letter-spacing: -.03em;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -.025em;
 }
 .hero h1 em { display: block; color: var(--primary-dark); font-style: normal; }
 .hero h1 em::after {
