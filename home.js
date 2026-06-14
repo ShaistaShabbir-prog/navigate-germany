@@ -885,9 +885,46 @@ function setLanguage(code) {
   const t = TRANSLATIONS[selected.code] || TRANSLATIONS.en;
   window._ng_t = t;
 
-  // ── Direction ──────────────────────────────────────────────
+  // ── Direction + RTL font ──────────────────────────────────
+  const isRTL = (t.dir || "ltr") === "rtl";
   document.documentElement.dir = t.dir || "ltr";
   document.documentElement.lang = selected.code;
+
+  // Load Arabic/Urdu font dynamically for RTL languages
+  if (isRTL && !document.getElementById("rtl-font")) {
+    const link = document.createElement("link");
+    link.id = "rtl-font";
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700;800&display=swap";
+    document.head.appendChild(link);
+  }
+
+  // Extra RTL spacing fixes applied inline
+  if (isRTL) {
+    // Hero tag spacing
+    const heroTag = document.querySelector(".hero-tag");
+    if (heroTag) {
+      heroTag.style.justifyContent = "flex-end";
+    }
+    // Emergency inner direction
+    const emgInner = document.querySelector(".emergency-inner");
+    if (emgInner) {
+      emgInner.style.direction = "rtl";
+    }
+    // Module grid text alignment
+    document.querySelectorAll(".module-card h3, .module-card p").forEach(el => {
+      el.style.textAlign = "right";
+    });
+  } else {
+    // Reset on LTR switch
+    const heroTag = document.querySelector(".hero-tag");
+    if (heroTag) heroTag.style.justifyContent = "";
+    const emgInner = document.querySelector(".emergency-inner");
+    if (emgInner) emgInner.style.direction = "";
+    document.querySelectorAll(".module-card h3, .module-card p").forEach(el => {
+      el.style.textAlign = "";
+    });
+  }
 
   // ── Hero ───────────────────────────────────────────────────
   const [titleStart, titleEmphasis = ""] = splitTitle(t.hero[0]);
