@@ -655,18 +655,18 @@ const PAGE_TEXT = {
 Object.entries(PAGE_TEXT).forEach(([code, text]) => Object.assign(TRANSLATIONS[code], text));
 
 const MODULES = [
-  { id: "housing", icon: "⌂", iconSrc: "./assets/icons/housing.png", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
-  { id: "healthcare", icon: "✚", iconSrc: "./assets/icons/healthcare.png", title: "Healthcare", desc: "Health insurance, doctors, hospitals, appointments, and wellbeing.", url: "modules/doctors.html", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" },
-  { id: "jobs", icon: "▣", iconSrc: "./assets/icons/jobs.png", title: "Jobs & Visa", desc: "Work opportunities, residence routes, Blue Card, and job search.", url: "modules/jobs.html", color: "#b45309", bg: "#fff7ed", border: "#fed7aa" },
-  { id: "legal", icon: "⚖", iconSrc: "./assets/icons/legal.png", title: "Legal Help", desc: "Residence law, official letters, deadlines, rights, and support.", url: "modules/legal.html", color: "#dc2626", bg: "#fff1f2", border: "#fecdd3" },
-  { id: "language", icon: "•••", iconSrc: "./assets/icons/language.png", title: "Language", desc: "Learn German, practise daily phrases, and find language resources.", url: "modules/language.html", color: "#0f766e", bg: "#f0fdfa", border: "#99f6e4" },
-  { id: "costs", icon: "€", title: "Cost of Living", desc: "Compare rent, expenses, salaries, banking, and everyday costs.", url: "modules/costs.html", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
-  { id: "education", icon: "▤", title: "Education", desc: "Schools, childcare, universities, integration courses, and learning pathways.", url: "modules/education.html", color: "#7c3aed", bg: "#f5f3ff", border: "#ddd6fe" },
-  { id: "banking", icon: "▥", title: "Banking & Taxes", desc: "Bank accounts, transfers, Schufa, tax ID, and finance basics.", url: "modules/banking.html", color: "#0369a1", bg: "#f0f9ff", border: "#bae6fd" },
-  { id: "family", icon: "♡", title: "Family & Child Support", desc: "Kindergeld, Kita, schools, parental support, and family life.", url: "modules/family.html", color: "#be185d", bg: "#fdf2f8", border: "#fbcfe8" },
-  { id: "transport", icon: "↔", title: "Transport", desc: "Public transport, Deutschlandticket, driving licences, cycling, and mobility.", url: "modules/transport.html", color: "#4f46e5", bg: "#eef2ff", border: "#c7d2fe" },
-  { id: "emergency", icon: "!", iconSrc: "./assets/icons/emergency.png", title: "Emergency", desc: "Emergency numbers, urgent medical help, crisis lines, and safety.", url: "modules/emergency.html", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  { id: "documents", icon: "▧", title: "Documents", desc: "Anmeldung, residence papers, insurance, tax ID, and admin checklists.", url: "modules/documents.html", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
+  { id: "housing", icon: "⌂", iconSrc: "./assets/icons/housing.png", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", topics: ["Renting", "Deposit", "Contracts", "Tenant rights"], resources: 12, url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
+  { id: "healthcare", icon: "✚", iconSrc: "./assets/icons/healthcare.png", title: "Healthcare", desc: "Health insurance, doctors, hospitals, appointments, and wellbeing.", topics: ["Insurance", "Doctors", "116117", "Appointments"], resources: 11, url: "modules/doctors.html", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
+  { id: "jobs", icon: "▣", iconSrc: "./assets/icons/jobs.png", title: "Jobs & Visa", desc: "Work opportunities, residence routes, Blue Card, and job search.", topics: ["Blue Card", "Recognition", "CV", "Chancenkarte"], resources: 14, url: "modules/jobs.html", color: "#c2410c", bg: "#fff7ed", border: "#fed7aa" },
+  { id: "legal", icon: "⚖", iconSrc: "./assets/icons/legal.png", title: "Legal Help", desc: "Residence law, official letters, deadlines, rights, and support.", topics: ["Letters", "Deadlines", "Rights", "Templates"], resources: 10, url: "modules/legal.html", color: "#7e22ce", bg: "#faf5ff", border: "#e9d5ff" },
+  { id: "language", icon: "•••", iconSrc: "./assets/icons/language.png", title: "Language", desc: "Learn German, practise daily phrases, and find language resources.", topics: ["Daily German", "Amt phrases", "Courses", "Practice"], resources: 13, url: "modules/language.html", color: "#0f766e", bg: "#f0fdfa", border: "#99f6e4" },
+  { id: "costs", icon: "€", title: "Cost of Living", desc: "Compare rent, expenses, salaries, banking, and everyday costs.", topics: ["Rent", "Groceries", "Utilities", "Budget"], resources: 9, url: "modules/costs.html", color: "#a16207", bg: "#fffbeb", border: "#fde68a" },
+  { id: "education", icon: "▤", title: "Education", desc: "Schools, childcare, universities, integration courses, and learning pathways.", topics: ["Kita", "School", "University", "Recognition"], resources: 12, url: "modules/education.html", color: "#4f46e5", bg: "#eef2ff", border: "#c7d2fe" },
+  { id: "banking", icon: "▥", title: "Banking & Taxes", desc: "Bank accounts, transfers, Schufa, tax ID, and finance basics.", topics: ["Bank account", "SCHUFA", "Tax ID", "Transfers"], resources: 10, url: "modules/banking.html", color: "#0369a1", bg: "#ecfeff", border: "#a5f3fc" },
+  { id: "family", icon: "♡", title: "Family & Child Support", desc: "Kindergeld, Kita, schools, parental support, and family life.", topics: ["Kindergeld", "Kita", "School", "Reunification"], resources: 12, url: "modules/family.html", color: "#be185d", bg: "#fdf2f8", border: "#fbcfe8" },
+  { id: "transport", icon: "↔", title: "Transport", desc: "Public transport, Deutschlandticket, driving licences, cycling, and mobility.", topics: ["Deutschlandticket", "Trains", "Driving", "Cycling"], resources: 9, url: "modules/transport.html", color: "#334155", bg: "#f1f5f9", border: "#cbd5e1" },
+  { id: "emergency", icon: "!", iconSrc: "./assets/icons/emergency.png", title: "Emergency", desc: "Emergency numbers, urgent medical help, crisis lines, and safety.", topics: ["112", "110", "116117", "Crisis help"], resources: 8, url: "modules/emergency.html", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
+  { id: "documents", icon: "▧", title: "Documents", desc: "Anmeldung, residence papers, insurance, tax ID, and admin checklists.", topics: ["Anmeldung", "Residence", "Insurance", "Tax ID"], resources: 11, url: "modules/documents.html", color: "#047857", bg: "#ecfdf5", border: "#a7f3d0" },
 ];
 
 const JOURNEYS = [
@@ -811,12 +811,18 @@ function currentTranslation() {
 }
 
 function localizedModules(t = currentTranslation()) {
-  return MODULES.map((module, index) => ({
-    ...module,
-    title: t.modules?.[index]?.title || module.title,
-    desc: t.modules?.[index]?.desc || module.desc,
-    linkLabel: t.open_guide,
-  }));
+  return MODULES.map((module, index) => {
+    // Legacy locale files only match the first nine module identities.
+    // Avoid assigning unrelated translations to newer module cards.
+    const translated = index < 9 ? t.modules?.[index] : null;
+
+    return {
+      ...module,
+      title: translated?.title || module.title,
+      desc: translated?.desc || module.desc,
+      linkLabel: t.open_guide,
+    };
+  });
 }
 
 function renderModules(items = MODULES) {
@@ -827,7 +833,11 @@ function renderModules(items = MODULES) {
       <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="52" height="52">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
       <h3>${item.title}</h3>
       <p>${item.desc}</p>
-      <a class="module-link" href="${item.url}">${item.linkLabel || t.open_guide}</a>
+      <div class="module-topics" aria-label="${item.title} topics">${item.topics.map((topic) => `<span>${topic}</span>`).join("")}</div>
+      <div class="module-footer">
+        <span class="module-resource-count">${item.resources} resources</span>
+        <a class="module-link" href="${item.url}">${(item.linkLabel || t.open_guide).replace(/\s*[←→]\s*$/, "")}</a>
+      </div>
     </article>
   `).join("");
   requestAnimationFrame(observeReveals);

@@ -121,10 +121,6 @@
       </div>
     </section>
 
-    <aside class="premium-trust-bar section" aria-label="Platform trust commitments">
-      <span>✓ Official Sources</span><span>✓ Mobile Friendly</span><span>✓ Privacy Respecting</span><span>✓ Free Resource</span>
-    </aside>
-
     <section class="audience-strip section" aria-labelledby="audience-title">
       <div>
         <span class="kicker">Who is this for?</span>
@@ -150,19 +146,71 @@
       </div>
     </section>
 
+    <aside class="premium-trust-bar section" aria-label="Platform trust commitments">
+      <span>✓ Official-source focused</span><span>✓ Mobile friendly</span><span>✓ Privacy respecting</span><span>✓ Free resource</span><span>✓ Built for newcomers</span>
+    </aside>
+
+    <section class="settlement-story" aria-labelledby="settlement-story-title">
+      <div class="section">
+        <div class="section-heading centered">
+          <span class="kicker">Your settlement path</span>
+          <h2 id="settlement-story-title">From arrival to confidence</h2>
+          <p>One clear step at a time, from your first day to building a future in Germany.</p>
+        </div>
+        <ol class="settlement-timeline">
+          <li><span class="timeline-icon" aria-hidden="true">✈</span><b>Arrive</b><small>Know your first priorities</small></li>
+          <li><span class="timeline-icon" aria-hidden="true">⌂</span><b>Register</b><small>Complete your Anmeldung</small></li>
+          <li><span class="timeline-icon" aria-hidden="true">✚</span><b>Get insured</b><small>Choose health coverage</small></li>
+          <li><span class="timeline-icon" aria-hidden="true">▱</span><b>Find housing</b><small>Rent with confidence</small></li>
+          <li><span class="timeline-icon" aria-hidden="true">▣</span><b>Work or study</b><small>Start your main pathway</small></li>
+          <li><span class="timeline-icon" aria-hidden="true">★</span><b>Build your future</b><small>Grow roots and community</small></li>
+        </ol>
+      </div>
+    </section>
+
     <section class="section wizard-section" id="journeys" aria-labelledby="wizard-title">
       <div class="section-heading centered">
         <span class="kicker">Journey wizard</span>
-        <h2 id="wizard-title">What best describes you?</h2>
-        <p>Choose a roadmap for your first 7, 30 and 90 days in Germany.</p>
+        <h2 id="wizard-title">Start Your Germany Journey</h2>
+        <p>Choose your situation and get a practical roadmap for your first 7, 30, and 90 days in Germany.</p>
       </div>
       <div class="wizard-grid">
-        <a class="wizard-card reveal" href="journeys/student.html"><span>🎓</span><strong data-i18n="wizard_student">Student</strong><small data-i18n="wizard_student_sub">Study, housing, insurance and residence steps</small></a>
-        <a class="wizard-card reveal" href="journeys/skilled-worker.html"><span>💼</span><strong data-i18n="wizard_worker">Skilled Worker</strong><small data-i18n="wizard_worker_sub">Visa, employment, Blue Card and settling in</small></a>
-        <a class="wizard-card reveal" href="journeys/family.html"><span>👨‍👩‍👧</span><strong data-i18n="wizard_family">Family</strong><small data-i18n="wizard_family_sub">Reunification, childcare, school and benefits</small></a>
-        <a class="wizard-card reveal" href="journeys/researcher.html"><span>🔬</span><strong data-i18n="wizard_researcher">Researcher / PhD</strong><small data-i18n="wizard_researcher_sub">University, hosting agreement and residence</small></a>
-        <a class="wizard-card reveal" href="journeys/entrepreneur.html"><span>🚀</span><strong data-i18n="wizard_entrepreneur">Entrepreneur</strong><small data-i18n="wizard_entrepreneur_sub">Business route, registration and taxes</small></a>
-        <a class="wizard-card reveal" href="journeys/refugee.html"><span>🤝</span><strong data-i18n="wizard_refugee">Refugee / Asylum seeker</strong><small data-i18n="wizard_refugee_sub">Safe, official routes to support and advice</small></a>
+        <a class="wizard-card wizard-student reveal" href="journeys/student.html">
+          <span class="wizard-icon" aria-hidden="true">🎓</span><span class="wizard-count">8 steps</span>
+          <strong data-i18n="wizard_student">Student Journey</strong><small data-i18n="wizard_student_sub">Study, housing, insurance and residence steps.</small>
+          <span class="wizard-roadmap">Arrival <i>→</i> Anmeldung <i>→</i> Insurance <i>→</i> Residence <i>→</i> University</span>
+          <span class="wizard-cta">Open roadmap <i>→</i></span>
+        </a>
+        <a class="wizard-card wizard-worker reveal" href="journeys/skilled-worker.html">
+          <span class="wizard-icon" aria-hidden="true">💼</span><span class="wizard-count">9 steps</span>
+          <strong data-i18n="wizard_worker">Skilled Worker</strong><small data-i18n="wizard_worker_sub">Visa, employment, Blue Card and settling in.</small>
+          <span class="wizard-roadmap">Job <i>→</i> Contract <i>→</i> Visa <i>→</i> Anmeldung <i>→</i> Blue Card</span>
+          <span class="wizard-cta">Open roadmap <i>→</i></span>
+        </a>
+        <a class="wizard-card wizard-family reveal" href="journeys/family.html">
+          <span class="wizard-icon" aria-hidden="true">👨‍👩‍👧</span><span class="wizard-count">8 steps</span>
+          <strong data-i18n="wizard_family">Family</strong><small data-i18n="wizard_family_sub">Reunification, childcare, school and benefits.</small>
+          <span class="wizard-roadmap">Visa <i>→</i> Home <i>→</i> Insurance <i>→</i> Kita <i>→</i> Benefits</span>
+          <span class="wizard-cta">Open roadmap <i>→</i></span>
+        </a>
+        <a class="wizard-card wizard-researcher reveal" href="journeys/researcher.html">
+          <span class="wizard-icon" aria-hidden="true">🔬</span><span class="wizard-count">7 steps</span>
+          <strong data-i18n="wizard_researcher">Researcher / PhD</strong><small data-i18n="wizard_researcher_sub">University, hosting agreement and residence.</small>
+          <span class="wizard-roadmap">Offer <i>→</i> Hosting <i>→</i> Visa <i>→</i> Arrival <i>→</i> Research</span>
+          <span class="wizard-cta">Open roadmap <i>→</i></span>
+        </a>
+        <a class="wizard-card wizard-founder reveal" href="journeys/entrepreneur.html">
+          <span class="wizard-icon" aria-hidden="true">🚀</span><span class="wizard-count">10 steps</span>
+          <strong data-i18n="wizard_entrepreneur">Entrepreneur</strong><small data-i18n="wizard_entrepreneur_sub">Business route, registration and taxes.</small>
+          <span class="wizard-roadmap">Plan <i>→</i> Funding <i>→</i> Visa <i>→</i> Register <i>→</i> Launch</span>
+          <span class="wizard-cta">Open roadmap <i>→</i></span>
+        </a>
+        <a class="wizard-card wizard-refugee reveal" href="journeys/refugee.html">
+          <span class="wizard-icon" aria-hidden="true">🤝</span><span class="wizard-count">9 steps</span>
+          <strong data-i18n="wizard_refugee">Refugee / Asylum seeker</strong><small data-i18n="wizard_refugee_sub">Safe, official routes to support and advice.</small>
+          <span class="wizard-roadmap">Safety <i>→</i> Register <i>→</i> Housing <i>→</i> Health <i>→</i> Advice</span>
+          <span class="wizard-cta">Open roadmap <i>→</i></span>
+        </a>
       </div>
     </section>
 
