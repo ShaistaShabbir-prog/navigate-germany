@@ -103,7 +103,7 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);
 <div>
 
 <!-- INPUT METHOD SELECTOR -->
-<div style="display:flex;gap:0;margin-bottom:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)">
+<div style="display:flex;gap:0;margin-bottom:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);position:relative;z-index:5">
   <button id="btn-paste" style="flex:1;padding:10px 4px;border:none;background:rgba(255,204,2,.15);color:#FFCC02;font-weight:700;font-size:.75rem;cursor:pointer;border-right:1px solid rgba(255,255,255,.08)" onclick="switchMode('paste')">📝 Paste text</button>
   <button id="btn-upload" style="flex:1;padding:10px 4px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:.75rem;cursor:pointer;border-right:1px solid rgba(255,255,255,.08)" onclick="switchMode('upload')">📎 Upload file</button>
   <button id="btn-camera" style="flex:1;padding:10px 4px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:.75rem;cursor:pointer" onclick="switchMode('camera')">📷 Camera</button>
