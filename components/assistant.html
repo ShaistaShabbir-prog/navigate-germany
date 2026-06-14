@@ -1,0 +1,26 @@
+<button class="ng-assistant-launcher" type="button" aria-expanded="false" aria-controls="ng-assistant-panel">
+  <span aria-hidden="true">⌕</span>
+  <span>AI Assistant Preview</span>
+</button>
+<section class="ng-assistant-panel" id="ng-assistant-panel" aria-label="AI Assistant Preview" hidden>
+  <header>
+    <div><span class="ng-assistant-status">Preview</span><strong>AI Assistant Preview</strong><small>Smart navigation, not a chatbot</small></div>
+    <button class="ng-assistant-close" type="button" aria-label="Close assistant">×</button>
+  </header>
+  <div class="ng-assistant-body">
+    <p>Describe what you need. This local search tool recommends relevant Navigate Germany pages. It does not generate advice or use an AI API.</p>
+    <form class="ng-assistant-form" role="search">
+      <label for="ng-assistant-query">Search guides, states and topics</label>
+      <div><input id="ng-assistant-query" type="search" placeholder="e.g. How do I get a Blue Card?" autocomplete="off"><button type="submit">Find</button></div>
+    </form>
+    <div class="ng-assistant-examples" aria-label="Example searches">
+      <button type="button">Blue Card</button>
+      <button type="button">Register my address</button>
+      <button type="button">Find a doctor</button>
+    </div>
+    <div class="ng-assistant-results" aria-live="polite">
+      <p class="ng-assistant-empty">Try a topic above or search in your own words.</p>
+    </div>
+  </div>
+  <footer>Recommendations are based on page titles and keywords. Always verify details with official sources.</footer>
+</section>

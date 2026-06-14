@@ -109,4 +109,12 @@
   document.querySelectorAll('a[target="_blank"]').forEach((link) => {
     if (!link.rel.includes("noopener")) link.rel = `${link.rel} noopener`.trim();
   });
+
+  if (!document.querySelector('script[data-ng-assistant]')) {
+    const assistant = document.createElement("script");
+    assistant.src = `${depth}assistant.js`;
+    assistant.defer = true;
+    assistant.dataset.ngAssistant = "";
+    document.body.appendChild(assistant);
+  }
 })();

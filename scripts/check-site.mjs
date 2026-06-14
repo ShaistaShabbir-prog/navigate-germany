@@ -21,6 +21,7 @@ const htmlFiles = [
 ];
 
 const failures = [];
+const canonicalStatePattern = /^states\/[a-z]{2}\.html$/;
 
 for (const relative of htmlFiles) {
   const absolute = path.join(root, relative);
@@ -68,6 +69,9 @@ const staticStateImages = [...homepage.matchAll(/assets\/images\/states\/[^"]+\.
 if (staticStateImages.length !== 16) {
   failures.push(`index.html: expected 16 static state images, found ${staticStateImages.length}`);
 }
+if (staticStateImages.some((match) => !match[0].includes("/heroes/"))) {
+  failures.push("index.html: state cards must use HD hero images");
+}
 const journeyCards = [...homepage.matchAll(/href="journeys\/[^"]+\.html"/g)];
 if (journeyCards.length !== 6) {
   failures.push(`index.html: expected 6 journey cards, found ${journeyCards.length}`);
@@ -83,7 +87,7 @@ for (const expectedModule of ["housing", "doctors", "jobs", "legal", "language",
   }
 }
 
-for (const stateFile of htmlFiles.filter((name) => name.startsWith("states/"))) {
+for (const stateFile of htmlFiles.filter((name) => canonicalStatePattern.test(name))) {
   const html = fs.readFileSync(path.join(root, stateFile), "utf8");
   if (!html.includes('src="state-page.js"')) failures.push(`${stateFile}: missing shared state-page script`);
   if (/images\.unsplash\.com/.test(html)) failures.push(`${stateFile}: remote hero image still present`);
@@ -95,13 +99,33 @@ for (const internalFile of htmlFiles.filter((name) => /^(modules|journeys)\//.te
   if (!html.includes("internal-shell.css") || !html.includes("internal-shell.js")) failures.push(`${internalFile}: missing shared internal UI`);
 }
 
-for (const script of ["chatbot.js", "home.js", "legal.js", "referral.js", "internal-shell.js", "states/state-page.js"]) {
+for (const script of ["assistant.js", "i18n.js", "home.js", "legal.js", "referral.js", "internal-shell.js", "states/state-page.js"]) {
   try {
     new vm.Script(fs.readFileSync(path.join(root, script), "utf8"), { filename: script });
   } catch (error) {
     failures.push(`${script}: ${error.message}`);
   }
 }
+
+for (const locale of ["en", "de", "ur", "ar", "fa"]) {
+  try {
+    const messages = JSON.parse(fs.readFileSync(path.join(root, `i18n/${locale}.json`), "utf8"));
+    if (!messages.nav_home || !messages.translation_badge) failures.push(`i18n/${locale}.json: missing core translation keys`);
+  } catch (error) {
+    failures.push(`i18n/${locale}.json: ${error.message}`);
+  }
+}
+
+const map = fs.readFileSync(path.join(root, "assets/maps/germany-states.svg"), "utf8");
+const mapLinks = [...map.matchAll(/href="\.\.\/\.\.\/states\/[^"]+\.html"/g)];
+if (mapLinks.length !== 16) failures.push(`germany-states.svg: expected 16 clickable states, found ${mapLinks.length}`);
+if (!map.includes("Interactive map beta")) failures.push("germany-states.svg: missing honest beta label");
+
+const assistantComponent = fs.readFileSync(path.join(root, "components/assistant.html"), "utf8");
+if (!assistantComponent.includes("AI Assistant Preview") || !assistantComponent.includes("not a chatbot")) {
+  failures.push("components/assistant.html: missing preview or non-chatbot disclosure");
+}
+if (homepage.includes("chatbot.js")) failures.push("index.html: legacy chatbot is still active");
 
 if (failures.length) {
   console.error(failures.join("\n"));
