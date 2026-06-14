@@ -8,7 +8,7 @@
 [![Live](https://img.shields.io/badge/🌐_Live-navigate--germany-FFCC02?style=for-the-badge&labelColor=0a0d14)](https://ShaistaShabbir-prog.github.io/navigate-germany)
 [![HTML](https://img.shields.io/badge/HTML5_+_JS-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://ShaistaShabbir-prog.github.io/navigate-germany)
 [![Languages](https://img.shields.io/badge/8_Languages-EN_DE_AR_TR_UR_RU_FR_FA-7C3AED?style=for-the-badge)](https://ShaistaShabbir-prog.github.io/navigate-germany)
-[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
 </div>
 
@@ -84,4 +84,4 @@ open index.html   # or: python3 -m http.server 8080
 
 ## 📄 License
 
-Proprietary — All rights reserved © 2026 Shaista Shabbir.
+MIT License - see [LICENSE](./LICENSE).
