@@ -144,22 +144,94 @@ img { display: block; max-width: 100%; }
 .button-danger { background: var(--danger); color: #fff; box-shadow: 0 9px 20px rgba(220,38,38,.22); }
 .button-danger:hover { background: #b91c1c; transform: translateY(-2px); }
 
-.emergency-strip { background: linear-gradient(90deg, #ef232e, #e21d2a); color: #fff; }
+.emergency-strip {
+  background: linear-gradient(90deg, #c8111b 0%, #e0191e 50%, #c8111b 100%);
+  color: #fff;
+  overflow: hidden;
+}
 .emergency-inner {
   width: min(1120px, calc(100% - 32px));
-  min-height: 48px;
+  min-height: 46px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(20px, 4vw, 54px);
+  gap: clamp(14px, 3vw, 40px);
+  flex-wrap: wrap;
+  padding: 8px 0;
 }
-.emergency-inner strong { display: inline-flex; align-items: center; gap: 8px; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
-.emergency-inner strong img { width: 25px; height: 25px; object-fit: contain; filter: drop-shadow(0 3px 7px rgba(117,0,0,.25)); }
-.emergency-inner a { display: inline-flex; align-items: center; gap: 7px; color: #fff; font-size: .72rem; text-decoration: none; white-space: nowrap; }
-.emergency-inner a span { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, .16); }
-.emergency-inner a:hover { text-decoration: underline; }
-.emergency-inner a:focus-visible { outline-color: #fff; }
+/* Label: "Emergency help" */
+.emergency-inner strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  white-space: nowrap;
+  opacity: .9;
+}
+.emergency-inner strong img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+/* Emergency number links — clean pill, NO circle bubble */
+.emergency-inner a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: .76rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 3px 10px 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .12);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: background .15s;
+}
+.emergency-inner a:hover {
+  background: rgba(0, 0, 0, .25);
+  border-color: rgba(255,255,255,.25);
+}
+.emergency-inner a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+/* Icon inside link — NO bubble, just a small emoji/text character */
+.emergency-inner a span {
+  font-size: .75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  /* Remove ALL circle/bubble styles */
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  display: inline;
+}
+/* Number — bold, always LTR */
+.emergency-inner a b {
+  font-weight: 800;
+  font-size: .82rem;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+@media (max-width: 640px) {
+  .emergency-inner {
+    gap: 8px;
+    padding: 6px 8px;
+  }
+  .emergency-inner strong { display: none; }
+  .emergency-inner a {
+    font-size: .72rem;
+    padding: 4px 8px;
+  }
+}
 
 .hero {
   position: relative;
