@@ -1,26 +1,35 @@
 <button class="ng-assistant-launcher" type="button" aria-label="Ask Germany AI" aria-expanded="false" aria-controls="ng-assistant-panel">
-  <span aria-hidden="true">⌕</span>
-  <span>Ask Germany AI</span>
+  <span aria-hidden="true">✦</span>
+  <span data-i18n="ask_ai">Ask Germany AI</span>
 </button>
-<section class="ng-assistant-panel" id="ng-assistant-panel" aria-label="Ask Germany AI" hidden>
+<section class="ng-assistant-panel" id="ng-assistant-panel" aria-label="Ask Germany AI" hidden style="display:none">
   <header>
-    <div><span class="ng-assistant-status">Preview</span><strong>AI Assistant Preview</strong><small>Smart site search and guide recommendations. Full AI coming soon.</small></div>
+    <div>
+      <span class="ng-assistant-status" data-i18n="ai_preview">AI Assistant Preview</span>
+      <strong>Navigate Germany</strong>
+      <small data-i18n="ai_coming">Full AI coming soon</small>
+    </div>
     <button class="ng-assistant-close" type="button" aria-label="Close assistant">×</button>
   </header>
   <div class="ng-assistant-body">
-    <p>Describe what you need. This local search tool recommends relevant Navigate Germany pages. It does not generate advice or use an AI API.</p>
+    <p>Search guides, state pages, and topics. Results come from official Navigate Germany content.</p>
     <form class="ng-assistant-form" role="search">
-      <label for="ng-assistant-query">Search guides, states and topics</label>
-      <div><input id="ng-assistant-query" type="search" placeholder="e.g. How do I get a Blue Card?" autocomplete="off"><button type="submit">Find</button></div>
+      <label for="ng-assistant-query" data-i18n="search">Search</label>
+      <div><input id="ng-assistant-query" type="search" placeholder="e.g. Blue Card, Anmeldung, housing…" autocomplete="off"><button type="submit" data-i18n="search">Go</button></div>
     </form>
     <div class="ng-assistant-examples" aria-label="Example searches">
       <button type="button">Blue Card</button>
-      <button type="button">Register my address</button>
+      <button type="button">Anmeldung</button>
       <button type="button">Find a doctor</button>
+      <button type="button">Chancenkarte</button>
     </div>
     <div class="ng-assistant-results" aria-live="polite">
       <p class="ng-assistant-empty">Try a topic above or search in your own words.</p>
     </div>
   </div>
-  <footer>Recommendations are based on page titles and keywords. Always verify details with official sources.</footer>
+  <footer>
+    <span data-i18n="lang_status_title">Translation status</span>:
+    <span data-i18n="lang_status_core">Core interface: available</span> ·
+    <span data-i18n="lang_status_guides">Full guide pages: in progress</span>
+  </footer>
 </section>
