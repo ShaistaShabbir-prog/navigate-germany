@@ -1483,6 +1483,12 @@ function init() {
   const initialStateQuery = params.get("city") || params.get("state") || "";
   const stateSearch = document.querySelector("#state-search");
   if (stateSearch && initialStateQuery) stateSearch.value = initialStateQuery;
+  // Render modules immediately with defaults — don't wait for async setLanguage
+  renderModules(MODULES);
+  // Make module cards visible immediately (no reveal animation on first load)
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".module-card.reveal").forEach(el => el.classList.add("is-visible"));
+  });
   setLanguage(localStorage.getItem("ng_lang") || "en");
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   observeReveals();
