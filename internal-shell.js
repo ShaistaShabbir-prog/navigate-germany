@@ -1,3 +1,8 @@
+// ── Module page guard — do not inject shell on module pages ──
+if (window.location.pathname.includes('/modules/')) {
+  // Module pages have their own nav — shell injection disabled
+} else {
+(() => {
 (() => {
   const path = window.location.pathname;
   const isModule = path.includes("/modules/");
@@ -106,3 +111,6 @@
     document.body.appendChild(s);
   }
 })();
+
+})();
+}
