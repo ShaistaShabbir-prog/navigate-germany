@@ -13,6 +13,7 @@ const LANGUAGES = [
 
 const TRANSLATIONS = {
   en: {
+    dir: "ltr",
     hero:       ["Navigate Germany with Confidence", "Germany explained step-by-step in your language — official links, emergency support, and state-by-state guidance."],
     nav_home:      "Home",
     nav_states:    "States",
@@ -103,6 +104,7 @@ const TRANSLATIONS = {
     module_emergency: "Emergency",
     module_banking: "Banking & Tax",},
   de: {
+    dir: "ltr",
     nav_home: "Startseite",
     nav_states: "Bundesländer",
     nav_guides: "Ratgeber",
@@ -193,6 +195,7 @@ const TRANSLATIONS = {
     module_emergency: "Notfall",
     module_banking: "Banking & Steuern",},
   ar: {
+    dir: "rtl",
     nav_home: "الرئيسية",
     nav_states: "الولايات",
     nav_guides: "الأدلة",
@@ -283,6 +286,7 @@ const TRANSLATIONS = {
     module_emergency: "الطوارئ",
     module_banking: "البنوك والضرائب",},
   ur: {
+    dir: "rtl",
     nav_home: "ہوم",
     nav_states: "ریاستیں",
     nav_guides: "رہنما",
@@ -373,6 +377,7 @@ const TRANSLATIONS = {
     module_emergency: "ہنگامی صورت",
     module_banking: "بینکنگ",},
   tr: {
+    dir: "ltr",
     nav_home: "Ana Sayfa",
     nav_states: "Eyaletler",
     nav_guides: "Rehberler",
@@ -463,6 +468,7 @@ const TRANSLATIONS = {
     module_emergency: "Acil",
     module_banking: "Bankacılık",},
   ru: {
+    dir: "ltr",
     nav_home: "Главная",
     nav_states: "Земли",
     nav_guides: "Руководства",
@@ -553,6 +559,7 @@ const TRANSLATIONS = {
     module_emergency: "Экстренная ситуация",
     module_banking: "Банки",},
   fr: {
+    dir: "ltr",
     nav_home: "Accueil",
     nav_states: "Länder",
     nav_guides: "Guides",
@@ -643,6 +650,7 @@ const TRANSLATIONS = {
     module_emergency: "Urgence",
     module_banking: "Banque",},
   fa: {
+    dir: "rtl",
     nav_home: "خانه",
     nav_states: "ایالت‌ها",
     nav_guides: "راهنماها",
@@ -788,6 +796,7 @@ const TRANSLATIONS = {
     ],
   },
   uk: {
+    dir: "ltr",
     nav_home: "Головна",
     nav_states: "Землі",
     nav_guides: "Путівники",
@@ -946,6 +955,7 @@ const PAGE_TEXT = {
   },
 
   hi: {
+    dir: "ltr",
     hero: ["जर्मनी में आत्मविश्वास के साथ नेविगेट करें", "आपकी भाषा में जर्मनी को चरण-दर-चरण समझाया गया।"],
     nav_home: "होम", nav_states: "राज्य", nav_guides: "मार्गदर्शिकाएं",
     nav_languages: "भाषाएं", nav_about: "हमारे बारे में", nav_resources: "संसाधन",
@@ -1271,46 +1281,68 @@ async function setLanguage(code) {
   const t = { ...TRANSLATIONS.en, ...englishExternal, ...(TRANSLATIONS[selected.code] || {}), ...external };
   window._ng_t = t;
 
-  // ── Direction + RTL font ──────────────────────────────────
-  const isRTL = (t.dir || "ltr") === "rtl";
-  document.documentElement.dir = t.dir || "ltr";
+  // ── Direction, language, font ──────────────────────────────
+  const isRTL = ["ar","ur","fa"].includes(selected.code);
+  document.documentElement.dir  = isRTL ? "rtl" : "ltr";
   document.documentElement.lang = selected.code;
 
-  // Load Arabic/Urdu font dynamically for RTL languages
-  if (isRTL && !document.getElementById("rtl-font")) {
+  // Load Noto Naskh Arabic font for RTL languages
+  if (isRTL && !document.getElementById("ng-rtl-font")) {
     const link = document.createElement("link");
-    link.id = "rtl-font";
-    link.rel = "stylesheet";
-    link.href = "https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700;800&display=swap";
+    link.id   = "ng-rtl-font";
+    link.rel  = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700;800&display=swap";
     document.head.appendChild(link);
   }
 
-  // Extra RTL spacing fixes applied inline
+  // ── RTL notice banner ────────────────────────────────────────
+  // Show a polite notice for RTL users about translation status
+  let rtlBanner = document.getElementById("ng-rtl-notice");
   if (isRTL) {
-    // Hero tag spacing
-    const heroTag = document.querySelector(".hero-tag");
-    if (heroTag) {
-      heroTag.style.justifyContent = "flex-end";
+    if (!rtlBanner) {
+      rtlBanner = document.createElement("div");
+      rtlBanner.id = "ng-rtl-notice";
+      rtlBanner.className = "rtl-notice";
+      const statsEl = document.querySelector(".stats-card");
+      if (statsEl) statsEl.before(rtlBanner);
+      else document.querySelector(".hero-section")?.after(rtlBanner);
     }
-    // Emergency inner direction
-    const emgInner = document.querySelector(".emergency-inner");
-    if (emgInner) {
-      emgInner.style.direction = "rtl";
-    }
-    // Module grid text alignment
-    document.querySelectorAll(".module-card h3, .module-card p").forEach(el => {
-      el.style.textAlign = "right";
-    });
-  } else {
-    // Reset on LTR switch
-    const heroTag = document.querySelector(".hero-tag");
-    if (heroTag) heroTag.style.justifyContent = "";
-    const emgInner = document.querySelector(".emergency-inner");
-    if (emgInner) emgInner.style.direction = "";
-    document.querySelectorAll(".module-card h3, .module-card p").forEach(el => {
-      el.style.textAlign = "";
-    });
+    // Set notice text from translation
+    rtlBanner.textContent = t.guide_notice || "Core interface translated. Full guide translations are in progress.";
+  } else if (rtlBanner) {
+    rtlBanner.remove();
   }
+
+  // ── Emergency numbers — always LTR ──────────────────────────
+  document.querySelectorAll(
+    ".emergency-inner b, .emergency-inner strong, [class*='emg-num']"
+  ).forEach(el => {
+    el.setAttribute("dir","ltr");
+    el.style.unicodeBidi = "isolate";
+    el.style.display     = "inline-block";
+  });
+
+  // ── Module link arrows: flip text for RTL ──────────────────
+  document.querySelectorAll(".module-link").forEach(el => {
+    const txt = el.textContent || "";
+    if (isRTL) {
+      el.textContent = txt.replace(/\s*→\s*$/, " ←");
+    } else {
+      el.textContent = txt.replace(/\s*←\s*$/, " →");
+    }
+  });
+
+  // ── Reset inline styles from previous language ──────────────
+  // (CSS handles alignment via html[dir="rtl"]; we only need to undo
+  //  any old inline style overrides applied by previous code)
+  document.querySelectorAll("[style]").forEach(el => {
+    const rem = ["textAlign","justifyContent","direction","flexDirection"];
+    rem.forEach(p => {
+      if (el.style[p]) el.style.removeProperty(
+        p.replace(/([A-Z])/g, "-$1").toLowerCase()
+      );
+    });
+  });
 
   // ── Hero ───────────────────────────────────────────────────
   const [titleStart, titleEmphasis = ""] = splitTitle(t.hero[0]);
