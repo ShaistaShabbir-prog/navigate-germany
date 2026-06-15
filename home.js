@@ -1189,7 +1189,9 @@ function localizedModules(t = currentTranslation()) {
 
 function renderModules(items = MODULES) {
   const t = currentTranslation();
-  guidesGrid.innerHTML = items.map((item) => `
+  const grid = document.querySelector("#guides-grid");
+  if (!grid) return;
+  grid.innerHTML = items.map((item) => `
     <article class="module-card reveal" data-icon="${item.icon}" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border}">
       <button class="save-guide ${savedGuides.has(item.id) ? "saved" : ""}" type="button" data-save="${item.id}" aria-label="${savedGuides.has(item.id) ? t.remove : t.save} ${item.title}">♡</button>
       <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="30" height="30">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
@@ -1384,9 +1386,7 @@ async function setLanguage(code) {
   if (emgBtn && t.emg_btn) emgBtn.textContent = t.emg_btn;
 
   // ── Module cards — re-render with translated titles/descs ──
-  if (t.modules && MODULES.length === t.modules.length) {
-    renderModules(localizedModules(t));
-  }
+  renderModules(localizedModules(t));
 
   const stateQuery = document.querySelector("#state-search")?.value.toLowerCase().trim() || "";
   renderStates(STATES.filter((item) => {
