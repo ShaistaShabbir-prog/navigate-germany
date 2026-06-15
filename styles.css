@@ -958,3 +958,408 @@ img { display: block; max-width: 100%; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   RTL — Arabic (ar) · Urdu (ur) · Farsi (fa)
+   Applied via html[dir="rtl"]
+   Goal: polished, intentional RTL — not a browser auto-flip
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ────────────────────────────────────────────────────── */
+html[dir="rtl"] {
+  direction: rtl;
+}
+html[dir="rtl"] body {
+  font-family: "Noto Naskh Arabic", "Scheherazade New", "Segoe UI",
+               Tahoma, Arial, system-ui, sans-serif;
+  line-height: 1.9;
+  letter-spacing: 0;
+}
+html[dir="rtl"] *:not([dir="ltr"]) {
+  text-align: right;
+}
+
+/* ── Header / Nav ────────────────────────────────────────────── */
+html[dir="rtl"] .nav-shell {
+  direction: rtl;
+}
+html[dir="rtl"] .primary-nav {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .primary-nav a::after {
+  right: auto;
+  left: 0;
+}
+html[dir="rtl"] .language-picker {
+  margin-left: 0;
+  margin-right: auto;
+}
+html[dir="rtl"] .brand {
+  margin-right: 0;
+  margin-left: auto;
+}
+/* Mobile hamburger stays left in RTL → move to right */
+html[dir="rtl"] .menu-toggle {
+  order: -1;
+}
+html[dir="rtl"] .site-header .brand {
+  order: 1;
+}
+
+/* ── Emergency strip ─────────────────────────────────────────── */
+html[dir="rtl"] .emergency-inner {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+/* Keep the "Emergency help" label sticky on the opposite side */
+html[dir="rtl"] .emergency-inner > strong:first-child {
+  position: sticky;
+  left: auto;
+  right: 0;
+  padding-left: 16px;
+  padding-right: 0;
+}
+/* Emergency NUMBERS must stay LTR – critical for readability */
+html[dir="rtl"] .emergency-inner b,
+html[dir="rtl"] .emergency-inner .emg-num,
+html[dir="rtl"] [class*="emg"] b {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* ── Hero ────────────────────────────────────────────────────── */
+html[dir="rtl"] .hero-inner {
+  direction: rtl;
+}
+html[dir="rtl"] .hero-copy {
+  text-align: right;
+}
+html[dir="rtl"] .hero-tag,
+html[dir="rtl"] .hero-tag.p {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+html[dir="rtl"] #hero-title {
+  text-align: right;
+}
+html[dir="rtl"] #hero-subtitle {
+  text-align: right;
+}
+html[dir="rtl"] .hero-actions {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+/* Flip arrow icons on action buttons */
+html[dir="rtl"] .button .btn-icon,
+html[dir="rtl"] .button svg {
+  transform: scaleX(-1);
+}
+/* Hero search input */
+html[dir="rtl"] .hero-search {
+  direction: rtl;
+}
+html[dir="rtl"] .hero-search input {
+  text-align: right;
+  padding-right: 42px;
+  padding-left: 14px;
+}
+html[dir="rtl"] .hero-search > span:first-child {
+  left: auto;
+  right: 14px;
+}
+html[dir="rtl"] .hero-search > span:last-child {
+  right: auto;
+  left: 14px;
+}
+
+/* ── Stats bar ───────────────────────────────────────────────── */
+html[dir="rtl"] .stats-card {
+  direction: rtl;
+}
+html[dir="rtl"] .stat {
+  flex-direction: row-reverse;
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+html[dir="rtl"] .stat:last-child {
+  border-left: none;
+}
+
+/* ── Section headings ────────────────────────────────────────── */
+html[dir="rtl"] .section-heading {
+  text-align: right;
+}
+html[dir="rtl"] .section-heading.split-heading {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .kicker,
+html[dir="rtl"] .kicker::before {
+  text-align: right;
+}
+html[dir="rtl"] .kicker::before {
+  display: none; /* remove left decorative bar in RTL */
+}
+html[dir="rtl"] .kicker::after {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 3px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+/* ── Module cards ────────────────────────────────────────────── */
+html[dir="rtl"] .module-card {
+  text-align: right;
+}
+html[dir="rtl"] .module-card h3,
+html[dir="rtl"] .module-card p {
+  text-align: right;
+}
+html[dir="rtl"] .module-topics {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .module-footer {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .module-link {
+  flex-direction: row-reverse;
+}
+/* Flip → arrow to ← in RTL cards */
+html[dir="rtl"] .module-link::after {
+  content: ' ←';
+}
+html[dir="rtl"] .save-guide {
+  right: auto;
+  left: 14px;
+}
+/* Watermark in RTL: mirror to other corner */
+html[dir="rtl"] .module-card::before {
+  right: auto;
+  left: -4px;
+}
+
+/* ── State cards ─────────────────────────────────────────────── */
+html[dir="rtl"] .state-card {
+  text-align: right;
+}
+html[dir="rtl"] .state-info {
+  text-align: right;
+}
+html[dir="rtl"] .state-links {
+  direction: rtl;
+}
+html[dir="rtl"] .state-controls {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .compact-search input {
+  text-align: right;
+  direction: rtl;
+  padding-right: 32px;
+  padding-left: 10px;
+}
+html[dir="rtl"] .state-search-icon {
+  left: auto;
+  right: 10px;
+}
+
+/* ── Journey wizard ──────────────────────────────────────────── */
+html[dir="rtl"] .journey-steps {
+  direction: rtl;
+}
+html[dir="rtl"] .journey-step {
+  text-align: right;
+}
+html[dir="rtl"] .journey-connector {
+  transform: scaleX(-1);
+}
+
+/* ── Language section ────────────────────────────────────────── */
+html[dir="rtl"] .language-layout {
+  direction: rtl;
+}
+html[dir="rtl"] .language-pills {
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+}
+html[dir="rtl"] .language-copy {
+  text-align: right;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+html[dir="rtl"] footer,
+html[dir="rtl"] .footer-inner,
+html[dir="rtl"] .site-footer {
+  direction: rtl;
+  text-align: right;
+}
+html[dir="rtl"] .footer-cols {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .footer-col {
+  text-align: right;
+}
+html[dir="rtl"] .footer-links {
+  text-align: right;
+}
+
+/* ── Chatbot / AI assistant ──────────────────────────────────── */
+html[dir="rtl"] .ng-assistant-root {
+  right: auto;
+  left: 20px;
+}
+html[dir="rtl"] .ng-assistant-panel {
+  right: auto;
+  left: 0;
+  text-align: right;
+}
+html[dir="rtl"] .ng-assistant-panel header {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .ng-assistant-form > div {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .ng-assistant-form input {
+  text-align: right;
+}
+html[dir="rtl"] .ng-assistant-results a {
+  text-align: right;
+}
+html[dir="rtl"] .ng-assistant-examples {
+  flex-direction: row-reverse;
+}
+/* Chatbot button also moves left */
+html[dir="rtl"] .ngc-btn {
+  left: 22px !important;
+  right: auto !important;
+}
+html[dir="rtl"] .ngc-panel {
+  left: 16px !important;
+  right: auto !important;
+}
+/* Referral pill */
+html[dir="rtl"] .ng-rec-wrap {
+  right: auto !important;
+  left: 16px !important;
+}
+
+/* ── Breadcrumb ──────────────────────────────────────────────── */
+html[dir="rtl"] .ng-breadcrumb {
+  direction: rtl;
+  text-align: right;
+}
+html[dir="rtl"] .ng-breadcrumb .sep {
+  transform: scaleX(-1);
+  display: inline-block;
+}
+
+/* ── Search bar (internal shell) ─────────────────────────────── */
+html[dir="rtl"] .ng-search-wrap {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .ng-search-input {
+  text-align: right;
+}
+html[dir="rtl"] .ng-tools {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .ng-trust-pills {
+  flex-direction: row-reverse;
+}
+
+/* ── Trust grid / about section ──────────────────────────────── */
+html[dir="rtl"] .trust-grid {
+  direction: rtl;
+  text-align: right;
+}
+html[dir="rtl"] .trust-item {
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+/* ── "Open guide" button arrows ──────────────────────────────── */
+html[dir="rtl"] .text-link {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .text-link span:last-child {
+  transform: scaleX(-1);
+  display: inline-block;
+}
+
+/* ── RTL language notice banner ──────────────────────────────── */
+.rtl-notice {
+  display: none;
+}
+html[dir="rtl"] .rtl-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 204, 2, .06);
+  border: 1px solid rgba(255, 204, 2, .18);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 0 auto 24px;
+  max-width: min(1120px, calc(100% - 40px));
+  font-size: .78rem;
+  color: rgba(255, 255, 255, .6);
+  text-align: right;
+  direction: rtl;
+}
+html[dir="rtl"] .rtl-notice::before {
+  content: 'ℹ️';
+  flex-shrink: 0;
+}
+
+/* ── Mobile RTL ──────────────────────────────────────────────── */
+@media (max-width: 820px) {
+  html[dir="rtl"] .primary-nav {
+    align-items: flex-end;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  html[dir="rtl"] .primary-nav a {
+    text-align: right;
+  }
+  html[dir="rtl"] .hero-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  html[dir="rtl"] .stats-card {
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+  }
+  html[dir="rtl"] .stat {
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+  }
+  html[dir="rtl"] .language-layout {
+    grid-template-columns: 1fr;
+  }
+  html[dir="rtl"] .ng-assistant-root {
+    left: 12px;
+    right: auto;
+  }
+}
+@media (max-width: 640px) {
+  html[dir="rtl"] .modules-grid .module-card {
+    text-align: right;
+  }
+  html[dir="rtl"] .emergency-inner {
+    justify-content: flex-start;
+    padding-right: 8px;
+  }
+}
+
+/* ── No overflow guarantee ───────────────────────────────────── */
+html[dir="rtl"] .modules-grid,
+html[dir="rtl"] .states-grid,
+html[dir="rtl"] .trust-grid,
+html[dir="rtl"] .stats-card {
+  overflow: hidden;
+}
+html[dir="rtl"] * {
+  max-width: 100%;
+}
