@@ -38,53 +38,7 @@
   </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<style>
-:root{--bg:#0a0d14;--surface:#111520;--surface2:#1a1f2e;--border:rgba(255,255,255,.07);--accent:#FFCC02;--text:#f1f5f9;--muted:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
-nav{background:rgba(0,0,0,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;flex-wrap:wrap;}
-.nb{font-weight:800;font-size:.95rem;color:var(--text);text-decoration:none;}
-.nb span{color:var(--accent);}
-.bl{color:var(--muted);font-size:.82rem;text-decoration:none;}
-.ph{background:linear-gradient(135deg,#111520,#1a1f2e);border-bottom:1px solid var(--border);padding:28px 24px;}
-.ph h1{font-size:1.5rem;font-weight:800;margin-bottom:6px;}
-.ph p{font-size:.875rem;color:var(--muted);max-width:700px;}
-.con{max-width:1000px;margin:0 auto;padding:20px 16px;}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;}
-.card h2{font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--text);}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:600px){.grid2{grid-template-columns:1fr;}}
-.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
-label{font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
-input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:inherit;background:#0a0d14;color:var(--text);}
-input:focus,select:focus{outline:none;border-color:var(--accent);}
-.btn{padding:10px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.875rem;display:inline-flex;align-items:center;gap:5px;}
-.bg{background:var(--accent);color:#000;}.bo{background:transparent;border:1.5px solid var(--border);color:var(--text);}
-.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:.72rem;font-weight:700;}
-.bg-green{background:rgba(34,197,94,.12);color:#22c55e;}
-.bg-amber{background:rgba(245,158,11,.12);color:#f59e0b;}
-.bg-red{background:rgba(239,68,68,.12);color:#f87171;}
-.bg-blue{background:rgba(59,130,246,.12);color:#93c5fd;}
-.ib{background:#1e3a5f;border:1px solid #3b82f6;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#93c5fd;line-height:1.7;margin:8px 0;}
-.wb{background:#7f1d1d;border:1px solid #dc2626;border-radius:10px;padding:11px 14px;font-size:.82rem;color:#fca5a5;line-height:1.7;margin:8px 0;}
-table{width:100%;border-collapse:collapse;font-size:.85rem;}
-th{background:var(--surface2);padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;}
-td{padding:9px 12px;border-bottom:1px solid var(--border);}
-tr:last-child td{border-bottom:none;}
-.result-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:14px;display:none;}
-.result-ok{border-color:#22c55e;background:rgba(34,197,94,.06);}
-.result-warn{border-color:#f59e0b;background:rgba(245,158,11,.06);}
-.result-no{border-color:#ef4444;background:rgba(239,68,68,.06);}
-input[type=range]{accent-color:var(--accent);}
-
-.emg-num{font-size:2rem;font-weight:900;color:#f87171;display:block;}
-.emg-card{background:#7f1d1d;border:1px solid #dc2626;border-radius:14px;padding:20px;}
-.emg-card h2{color:#fca5a5;margin-bottom:10px;}
-.emg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:20px;}
-.emg-item{background:#fff1;border-radius:10px;padding:14px;text-align:center;}
-.urg-card{border-radius:0 12px 12px 0;padding:16px;margin-bottom:12px;border-left:4px solid;}
-.deadline-badge{background:#dc262640;color:#f87171;padding:3px 10px;border-radius:5px;font-size:.75rem;font-weight:700;display:inline-block;margin-top:4px;}
-</style>
+<link rel="stylesheet" href="modules-shared.css">
   <link rel="stylesheet" href="module-product.css">
 </head><body>
 <nav>
@@ -93,6 +47,10 @@ input[type=range]{accent-color:var(--accent);}
 </nav>
 <div class="ph"><h1>🚨 Emergency Guide — Germany</h1><p>Emergency numbers · Urgent legal deadlines · Crisis lines · Nearest help</p></div>
 <div class="con">
+<div class="module-back-bar">
+  <a href="../index.html">🏠 Home</a>
+  <a href="../index.html#guides" class="active">📚 All modules</a>
+</div>
 
 <div class="emg-card" style="margin-bottom:20px">
   <h2>🚨 Emergency Numbers</h2>
@@ -211,4 +169,12 @@ document.getElementById('urg-cards').innerHTML=URG.map(u=>
 </div>
   <script src="../referral.js" defer></script>
   <script src="module-product.js" defer></script>
+<div id="ng-toast"></div>
+<script>function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}</script>
+<div class="ref-bar">
+  <span>Our partners:</span>
+  <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA" target="_blank" rel="noopener sponsored" class="ref-cb">🏦 Commerzbank +€50</a>
+  <a href="https://refer.gebuhrenfrei.com/shaistas-45" target="_blank" rel="noopener sponsored" class="ref-av">💳 Free credit card</a>
+  <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
+</div>
 </body></html>
