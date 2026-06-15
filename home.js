@@ -1322,8 +1322,21 @@ async function setLanguage(code) {
   // ── ALL data-i18n elements ────────────────────────────────
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
-    if (t[key]) el.textContent = t[key];
+    if (!t[key]) return;
+    // Update text content
+    el.textContent = t[key];
+    // Update placeholder if input/textarea
+    if (el.placeholder !== undefined && t[key + "_placeholder"]) {
+      el.placeholder = t[key + "_placeholder"];
+    }
+    // Update aria-label if button
+    if (el.tagName === "BUTTON" && el.getAttribute("aria-label")) {
+      el.setAttribute("aria-label", t[key]);
+    }
   });
+  // Update assistant launcher aria-label
+  const launcher = document.querySelector(".ng-assistant-launcher");
+  if (launcher && t.ask_ai) launcher.setAttribute("aria-label", t.ask_ai);
 
   // ── Search placeholder ─────────────────────────────────────
   const siteSearch  = document.querySelector("#site-search");
