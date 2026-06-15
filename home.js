@@ -1470,7 +1470,7 @@ function observeReveals() {
       entry.target.classList.add("is-visible");
       revealObserver.unobserve(entry.target);
     });
-  }, { rootMargin: "200px 0px 0px", threshold: 0 });
+  }, { rootMargin: "0px 0px 200px 0px", threshold: 0 });
   elements.forEach((element) => {
     element.classList.add("reveal-ready");
     revealObserver.observe(element);
@@ -1487,6 +1487,13 @@ function init() {
   document.querySelector("#current-year").textContent = new Date().getFullYear();
   observeReveals();
   stabilizeHashPosition();
+  // Global fallback — make ALL .reveal visible after 600ms
+  // Covers static HTML cards (journey, wizard) that IntersectionObserver might miss
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach(el => {
+      el.classList.add("is-visible");
+    });
+  }, 600);
 }
 
 function restoreHashPosition() {
