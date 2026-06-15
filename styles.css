@@ -145,9 +145,8 @@ img { display: block; max-width: 100%; }
 .button-danger:hover { background: #b91c1c; transform: translateY(-2px); }
 
 .emergency-strip {
-  background: linear-gradient(90deg, #c8111b 0%, #e0191e 50%, #c8111b 100%);
+  background: linear-gradient(90deg, #dc2020 0%, #ef2323 40%, #dc2020 100%);
   color: #fff;
-  overflow: hidden;
 }
 .emergency-inner {
   width: min(1120px, calc(100% - 32px));
@@ -156,11 +155,11 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 3vw, 40px);
+  gap: clamp(16px, 3.5vw, 48px);
   flex-wrap: wrap;
-  padding: 8px 0;
+  padding: 7px 16px;
 }
-/* Label: "Emergency help" */
+/* Label */
 .emergency-inner strong {
   display: inline-flex;
   align-items: center;
@@ -168,69 +167,59 @@ img { display: block; max-width: 100%; }
   font-size: .68rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: .09em;
+  letter-spacing: .08em;
   white-space: nowrap;
-  opacity: .9;
-}
-.emergency-inner strong img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
   flex-shrink: 0;
 }
-/* Emergency number links — clean pill, NO circle bubble */
+/* Number links — flat, no bubbles */
 .emergency-inner a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   color: #fff;
-  font-size: .76rem;
+  font-size: .74rem;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
-  padding: 3px 10px 3px 8px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, .12);
-  border: 1px solid rgba(255,255,255,.12);
-  transition: background .15s;
 }
 .emergency-inner a:hover {
-  background: rgba(0, 0, 0, .25);
-  border-color: rgba(255,255,255,.25);
+  text-decoration: underline;
+  opacity: .9;
 }
 .emergency-inner a:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
+  border-radius: 3px;
 }
-/* Icon inside link — NO bubble, just a small emoji/text character */
-.emergency-inner a span {
-  font-size: .75rem;
-  line-height: 1;
-  flex-shrink: 0;
-  /* Remove ALL circle/bubble styles */
-  width: auto;
-  height: auto;
-  background: none;
-  border-radius: 0;
-  display: inline;
-}
-/* Number — bold, always LTR */
+/* Bold number */
 .emergency-inner a b {
   font-weight: 800;
-  font-size: .82rem;
+  font-size: .8rem;
   direction: ltr;
   unicode-bidi: isolate;
+  display: inline-block;
+}
+/* Separator dot between items */
+.emergency-inner a + a::before {
+  content: '·';
+  margin-right: clamp(8px, 2vw, 20px);
+  opacity: .45;
+  font-weight: 400;
+  pointer-events: none;
 }
 @media (max-width: 640px) {
   .emergency-inner {
-    gap: 8px;
-    padding: 6px 8px;
+    gap: 0;
+    padding: 6px 12px;
+    justify-content: flex-start;
   }
   .emergency-inner strong { display: none; }
   .emergency-inner a {
-    font-size: .72rem;
-    padding: 4px 8px;
+    font-size: .7rem;
+    padding: 2px 0;
+    margin-right: 10px;
   }
+  .emergency-inner a + a::before { display: none; }
 }
 
 .hero {
@@ -1426,12 +1415,6 @@ html[dir="rtl"] .rtl-notice::before {
 }
 
 /* ── No overflow guarantee ───────────────────────────────────── */
-html[dir="rtl"] .modules-grid,
-html[dir="rtl"] .states-grid,
-html[dir="rtl"] .trust-grid,
-html[dir="rtl"] .stats-card {
-  overflow: hidden;
-}
-html[dir="rtl"] * {
-  max-width: 100%;
+html[dir="rtl"] {
+  overflow-x: clip;
 }
