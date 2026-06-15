@@ -1,69 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Official doctor-search links and healthcare guidance for newcomers in Germany.">
-  <title>Find a Doctor in Germany | Navigate Germany</title>
-  <link rel="stylesheet" href="../content-page.css">
-  <link rel="stylesheet" href="module-product.css">
+  <title>Healthcare & Doctors — Navigate Germany</title>
+  <meta name="description" content="Find doctors in Germany, understand health insurance, use 116117, and navigate hospitals.">
+  <link rel="stylesheet" href="modules-shared.css">
 </head>
 <body>
 <nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html#guides">← All modules</a></nav>
-<div class="ph"><h1>🏥 Healthcare & Doctors</h1><p>Health insurance · Find doctors · 116117 · Hospitals</p></div>
-  <header class="topbar">
-    <a class="brand" href="../index.html">Navigate <span>Germany</span></a>
-    <a class="back" href="../index.html#guides">Back to guides</a>
-  </header>
-  <main>
-    <section class="hero">
-      <div>
-        <span class="eyebrow">Healthcare guide</span>
-        <h1>Find the right medical care</h1>
-        <p>Use official and established search services for current practices, languages, availability and contact details.</p>
-      </div>
-    </section>
-    <div class="shell">
-      <div class="notice warning"><strong>This website does not run a live doctor database.</strong> Any future in-site finder will be clearly labelled as a prototype until connected to verified, current data.</div>
-      <section class="grid">
-        <article class="card">
-          <h2>116117 doctor search</h2>
-          <p>Search the official German medical on-call service directory. For urgent but non-life-threatening care outside normal hours, call 116117.</p>
-          <a class="button" href="https://arztsuche.116117.de/" target="_blank" rel="noopener">Open official doctor search</a>
-          <a class="source" href="https://www.116117.de/" target="_blank" rel="noopener">Official source: 116117</a>
-        </article>
-        <article class="card">
-          <h2>Regional KV searches</h2>
-          <p>Kassenärztliche Vereinigungen maintain regional practice directories. Choose your region through the national overview.</p>
-          <a class="button" href="https://www.kbv.de/html/arztsuche.php" target="_blank" rel="noopener">Find your regional KV</a>
-          <a class="source" href="https://www.kbv.de/" target="_blank" rel="noopener">Official source: KBV</a>
-        </article>
-        <article class="card">
-          <h2>Appointment platforms</h2>
-          <p>Doctolib and Jameda are optional commercial directories. Verify insurance acceptance and fees directly with the practice.</p>
-          <p><a href="https://www.doctolib.de/" target="_blank" rel="noopener">Doctolib</a> · <a href="https://www.jameda.de/" target="_blank" rel="noopener">Jameda</a></p>
-        </article>
-      </section>
-      <section class="card">
-        <h2>Which number should I use?</h2>
-        <ul class="checklist">
-          <li><strong>112:</strong> life-threatening emergency, ambulance or fire.</li>
-          <li><strong>116117:</strong> urgent medical problem that cannot wait, but is not life-threatening.</li>
-          <li><strong>Your Hausarzt:</strong> routine care, referrals, prescriptions and ongoing treatment.</li>
-        </ul>
-      </section>
-      <p class="notice">Last checked: June 2026. Practice availability and language support change frequently; confirm directly before travelling.</p>
+
+<div class="ph">
+  <h1>🏥 Healthcare &amp; Doctors</h1>
+  <p>Health insurance · Find doctors · 116117 out-of-hours · Hospitals · Wellbeing</p>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+    <span class="badge bgreen">✓ Source: Bundesgesundheitsministerium</span>
+    <span class="badge bblue">116117 verified</span>
+    <span class="badge bamber">Last checked: June 2026</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('insurance',this)">🛡️ Insurance</button>
+  <button class="tab" onclick="showTab('doctors',this)">👨‍⚕️ Find a doctor</button>
+  <button class="tab" onclick="showTab('urgent',this)">🚨 Urgent care</button>
+  <button class="tab" onclick="showTab('mental',this)">🧠 Mental health</button>
+</div>
+
+<div class="con">
+<div class="module-back-bar">
+  <a href="../index.html">🏠 Home</a>
+  <a href="../index.html#guides" class="active">📚 All modules</a>
+</div>
+
+<!-- INSURANCE TAB -->
+<div id="tc-insurance" class="tc active">
+  <h2 class="sec-h">🛡️ Health insurance in Germany</h2>
+  <div class="ib">In Germany health insurance is <strong>mandatory</strong>. You must be insured from day one of living or working here.</div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <h2>Gesetzliche Krankenversicherung (GKV)</h2>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Public health insurance — approx. 14.6% of salary, split between you and employer.</p>
+      <ul style="font-size:.8rem;color:var(--muted);padding-left:16px;line-height:2">
+        <li>Covers doctor visits, hospital, prescriptions</li>
+        <li>Family members insured for free (no income)</li>
+        <li>No waiting periods for pre-existing conditions</li>
+        <li>Required for employees earning &lt; €69,300/yr</li>
+      </ul>
     </div>
-  </main>
-  <footer class="page-footer"><a href="../about.html">About</a> · <a href="../resources.html">Resources</a> · <a href="../privacy.html">Privacy</a></footer>
-  <script src="module-product.js" defer></script>
-<div id="ng-toast"></div>
-<script>function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}</script>
+    <div class="card">
+      <h2>Private Krankenversicherung (PKV)</h2>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Private insurance — available if you earn &gt; €69,300/yr or are self-employed.</p>
+      <ul style="font-size:.8rem;color:var(--muted);padding-left:16px;line-height:2">
+        <li>Faster appointments, private rooms</li>
+        <li>Cost depends on age and health at signup</li>
+        <li>Family members NOT automatically covered</li>
+        <li>Can be hard to switch back to GKV</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec-h" style="margin-top:20px">Major public insurers (Krankenkassen)</h2>
+  <div class="grid-auto">
+    <div class="portal-card"><h3>TK — Techniker Krankenkasse</h3><p>Largest GKV. English support. Popular with tech workers.</p><a href="https://www.tk.de" target="_blank">→ tk.de</a></div>
+    <div class="portal-card"><h3>AOK</h3><p>Regional insurers covering all 16 states. Good for families.</p><a href="https://www.aok.de" target="_blank">→ aok.de</a></div>
+    <div class="portal-card"><h3>Barmer</h3><p>Strong digital services and app support.</p><a href="https://www.barmer.de" target="_blank">→ barmer.de</a></div>
+    <div class="portal-card"><h3>DAK</h3><p>Good for freelancers and self-employed transitioning.</p><a href="https://www.dak.de" target="_blank">→ dak.de</a></div>
+    <div class="portal-card"><h3>IKK classic</h3><p>Strong in craft and trade sectors.</p><a href="https://www.ikk-classic.de" target="_blank">→ ikk-classic.de</a></div>
+    <div class="portal-card"><h3>hkk</h3><p>Low contribution rate. Good for healthy younger workers.</p><a href="https://www.hkk.de" target="_blank">→ hkk.de</a></div>
+  </div>
+</div>
+
+<!-- DOCTORS TAB -->
+<div id="tc-doctors" class="tc">
+  <h2 class="sec-h">👨‍⚕️ Finding a doctor</h2>
+  <div class="ab">First visit in Germany: register with a <strong>Hausarzt (GP)</strong> near you. They refer you to specialists.</div>
+
+  <div class="grid-auto" style="margin-top:14px">
+    <div class="portal-card"><h3>Jameda</h3><p>Germany's largest doctor search. Filter by specialty, language, and insurance type.</p><a href="https://www.jameda.de" target="_blank">→ jameda.de</a></div>
+    <div class="portal-card"><h3>Doctolib</h3><p>Online appointment booking. Many doctors list availability in real time.</p><a href="https://www.doctolib.de" target="_blank">→ doctolib.de</a></div>
+    <div class="portal-card"><h3>Kassenärztliche Vereinigung</h3><p>Official doctor search by your region. Accepts all GKV patients.</p><a href="https://www.kbv.de/html/arztsuche.php" target="_blank">→ kbv.de</a></div>
+    <div class="portal-card"><h3>Termin-Service (116117)</h3><p>Call or go online to get a guaranteed specialist appointment within 4 weeks.</p><a href="https://www.116117.de" target="_blank">→ 116117.de</a></div>
+  </div>
+
+  <h2 class="sec-h" style="margin-top:20px">Tips for your first appointment</h2>
+  <ul class="checklist">
+    <li>Bring your Krankenversicherungskarte (health insurance card)</li>
+    <li>Bring your passport or ID</li>
+    <li>Bring a list of current medications</li>
+    <li>Arrive 10–15 minutes early to fill in registration forms</li>
+    <li>Doctors speak English more often in cities — you can ask in advance</li>
+    <li>If you need an interpreter, ask your insurer — some cover it</li>
+  </ul>
+</div>
+
+<!-- URGENT TAB -->
+<div id="tc-urgent" class="tc">
+  <h2 class="sec-h">🚨 Urgent and emergency care</h2>
+
+  <div class="grid-2">
+    <div class="card" style="border-left:3px solid #ef4444">
+      <h2 style="color:#f87171">🚑 Emergency — call 112</h2>
+      <p style="font-size:.82rem;color:var(--muted)">Life-threatening emergency, serious accident, heart attack, stroke. Free call from any phone including mobile without credit.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--amber)">
+      <h2 style="color:#fcd34d">📞 Out-of-hours doctor — 116117</h2>
+      <p style="font-size:.82rem;color:var(--muted)">Not an emergency but can't wait until Monday. Call 116117 free — they send a doctor to you or direct you to a nearby clinic. Available nights, weekends, holidays.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue)">
+      <h2 style="color:#93c5fd">🏥 Notaufnahme (A&amp;E)</h2>
+      <p style="font-size:.82rem;color:var(--muted)">Walk-in emergency department at hospitals. For urgent but non-life-threatening issues. Expect 2–4 hour waits for non-critical cases.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green)">
+      <h2 style="color:#86efac">💊 Pharmacy (Apotheke)</h2>
+      <p style="font-size:.82rem;color:var(--muted)">Pharmacists can advise and provide OTC medications. Duty pharmacies (Notdienstapotheke) open 24/7 — find one at aponet.de</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENTAL HEALTH TAB -->
+<div id="tc-mental" class="tc">
+  <h2 class="sec-h">🧠 Mental health support</h2>
+  <div class="sb">Mental health treatment is covered by German public health insurance. You do not need to suffer in silence.</div>
+
+  <div class="grid-auto" style="margin-top:14px">
+    <div class="portal-card"><h3>Crisis line (free)</h3><p>0800 111 0 111 or 0800 111 0 222. Anonymous, 24/7, free.</p><a href="https://www.telefonseelsorge.de" target="_blank">→ telefonseelsorge.de</a></div>
+    <div class="portal-card"><h3>Psychotherapist search</h3><p>Search via your Krankenkasse or KBV. Waiting times can be long — ask for Akutversorgung (urgent care).</p><a href="https://www.kbv.de" target="_blank">→ kbv.de</a></div>
+    <div class="portal-card"><h3>MIND Deutschland</h3><p>Mental health advocacy and support resources in Germany.</p><a href="https://www.mind-deutschland.de" target="_blank">→ mind-deutschland.de</a></div>
+    <div class="portal-card"><h3>Online therapy</h3><p>HelloBetter and Selfapy offer insurer-approved online therapy programmes.</p><a href="https://www.hellobetter.de" target="_blank">→ hellobetter.de</a></div>
+  </div>
+</div>
+
+</div><!-- .con -->
+
 <div class="ref-bar">
   <span>Our partners:</span>
   <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA" target="_blank" rel="noopener sponsored" class="ref-cb">🏦 Commerzbank +€50</a>
-  <a href="https://refer.gebuhrenfrei.com/shaistas-45" target="_blank" rel="noopener sponsored" class="ref-av">💳 Free credit card</a>
   <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
 </div>
+
+<div id="ng-toast"></div>
+<script>
+function showTab(name,btn){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tc-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}
+</script>
 </body>
 </html>
