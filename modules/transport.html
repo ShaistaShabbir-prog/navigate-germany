@@ -1,11 +1,243 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Official-link guide to public transport, Deutschlandticket and driving in Germany."><title>Transport in Germany | Navigate Germany</title><link rel="stylesheet" href="../content-page.css">  <link rel="stylesheet" href="../internal-shell.css"><link rel="stylesheet" href="module-product.css">
-</head><body>
-<header class="topbar"><a class="brand" href="../index.html">Navigate <span>Germany</span></a><a class="back" href="../index.html#guides">Back to guides</a></header>
-<main><section class="hero"><div><span class="eyebrow">Life module</span><h1>Transport and mobility</h1><p>Plan public transport, regional travel, cycling and driving-licence steps without relying on unofficial claims.</p></div></section>
-<div class="shell"><section class="grid">
-<article class="card"><h2>Local and regional travel</h2><p>Use your local Verkehrsverbund for fares, zones, accessibility and disruption information.</p><a class="source" href="https://www.bahn.de/" target="_blank" rel="noopener">Official source: Deutsche Bahn</a></article>
-<article class="card"><h2>Deutschlandticket</h2><p>Check the current price, validity and cancellation terms before subscribing through an authorised provider.</p><a class="source" href="https://www.bahn.de/angebot/regio/deutschland-ticket" target="_blank" rel="noopener">Official source: Deutsche Bahn</a></article>
-<article class="card"><h2>Driving licence</h2><p>Recognition and exchange depend on the issuing country and your local Fahrerlaubnisbehörde.</p><a class="source" href="https://www.make-it-in-germany.com/en/living-in-germany/housing-mobility/driving-licence-car" target="_blank" rel="noopener">Official source: Make it in Germany</a></article>
-</section><p class="notice">Last checked: June 2026. Transport prices and licence rules can change.</p></div></main>
-<footer class="page-footer"><a href="../about.html">About</a> · <a href="../resources.html">Resources</a> · <a href="../privacy.html">Privacy</a></footer><script src="module-product.js" defer></script><script src="../internal-shell.js" defer></script>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Transport in Germany | Navigate Germany</title>
+  <meta name="description" content="Deutschlandticket, Deutsche Bahn, BVG, driving licence exchange and public transport guide for immigrants in Germany.">
+  <link rel="stylesheet" href="modules-shared.css">
+</head>
+<body>
+<nav>
+  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
+  <a class="bl" href="../index.html#guides">← All modules</a>
+</nav>
+
+<div class="ph">
+  <h1>🚆 Transport in Germany</h1>
+  <p>Deutschlandticket · Deutsche Bahn · Regional transit · Driving licence · Bikes</p>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+    <span class="badge bgreen">✓ Source: Deutsche Bahn</span>
+    <span class="badge bblue">✓ Deutschlandticket verified</span>
+    <span class="badge bamber">Last checked: June 2026</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('ticket',this)">🎫 Deutschlandticket</button>
+  <button class="tab" onclick="showTab('db',this)">🚄 Deutsche Bahn</button>
+  <button class="tab" onclick="showTab('regional',this)">🚇 Regional transit</button>
+  <button class="tab" onclick="showTab('driving',this)">🚗 Driving</button>
+  <button class="tab" onclick="showTab('bike',this)">🚲 Bike & scooter</button>
+</div>
+
+<div class="con">
+<div class="module-back-bar">
+  <a href="../index.html">🏠 Home</a>
+  <a href="../index.html#guides" class="active">📚 All modules</a>
+</div>
+
+<!-- DEUTSCHLANDTICKET -->
+<div id="tc-ticket" class="tc active">
+  <h2 class="sec-h">🎫 Deutschlandticket — €49/month</h2>
+  <div class="sb">The Deutschlandticket gives you unlimited travel on all local and regional public transport across Germany for a flat monthly fee.</div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <h2>What it covers</h2>
+      <ul style="font-size:.82rem;color:var(--muted);padding-left:16px;line-height:2.2">
+        <li>✅ All S-Bahn, U-Bahn, tram, bus (local)</li>
+        <li>✅ Regional trains (RE, RB, IRE)</li>
+        <li>✅ Valid across all 16 federal states</li>
+        <li>✅ No zone restrictions for local transport</li>
+        <li>❌ NOT valid on ICE, IC, EC trains</li>
+        <li>❌ NOT valid on long-distance buses</li>
+        <li>❌ No seat reservation included</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>How to get it</h2>
+      <div style="font-size:.82rem;color:var(--muted);line-height:2.2">
+        <div>📱 <b>DB App</b> — bahn.de or DB Navigator app</div>
+        <div>📱 <b>Local app</b> — MVV, BVG, HVV, KVB etc.</div>
+        <div>💳 <b>Monthly subscription</b> — cancel anytime</div>
+        <div>🎓 <b>Student version</b> — often included in Semesterticket</div>
+        <div>👨‍👩‍👧 <b>Children under 6</b> — free</div>
+        <div>🐕 <b>Dogs</b> — need separate ticket usually</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row2" style="margin-top:14px">
+    <div class="grid-auto">
+      <div class="portal-card"><h3>DB Deutschlandticket</h3><p>Buy directly from Deutsche Bahn — works immediately on DB Navigator app.</p><a href="https://www.bahn.de/info/deutschlandticket" target="_blank" rel="noopener">→ bahn.de</a></div>
+      <div class="portal-card"><h3>BVG (Berlin)</h3><p>Berlin's BVG sells the Deutschlandticket with optional BVG add-ons.</p><a href="https://www.bvg.de/de/produkte/oepnv-ticket/deutschlandticket" target="_blank" rel="noopener">→ bvg.de</a></div>
+      <div class="portal-card"><h3>MVV (Munich)</h3><p>Munich region — buy via MVV app or website.</p><a href="https://www.mvv-muenchen.de" target="_blank" rel="noopener">→ mvv-muenchen.de</a></div>
+      <div class="portal-card"><h3>HVV (Hamburg)</h3><p>Hamburg regional transport — includes S-Bahn and bus.</p><a href="https://www.hvv.de" target="_blank" rel="noopener">→ hvv.de</a></div>
+    </div>
+    <div>
+      <div class="card" style="border-left:3px solid var(--accent)">
+        <h2>💡 Tips for newcomers</h2>
+        <ul style="font-size:.82rem;color:var(--muted);padding-left:16px;line-height:2.2">
+          <li>Subscribe on day 1 in Germany — immediate coverage</li>
+          <li>Download the app before your first day</li>
+          <li>Screenshot your ticket in case of connectivity issues</li>
+          <li>Check if employer subsidises it (many do: Jobticket)</li>
+          <li>Cancel by 10th of month to avoid next month's charge</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEUTSCHE BAHN -->
+<div id="tc-db" class="tc">
+  <h2 class="sec-h">🚄 Deutsche Bahn — long-distance travel</h2>
+  <div class="ab">ICE and IC trains require a separate ticket. Book early for best prices.</div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <h2>BahnCard — worth it?</h2>
+      <div class="grid-2" style="margin-top:8px">
+        <div style="padding:10px;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid var(--border)">
+          <div style="font-size:.85rem;font-weight:800;color:var(--accent)">BahnCard 25</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:4px">25% discount on all DB tickets. €62.90/year (2nd class). Worth it if you travel ~4× per year.</div>
+        </div>
+        <div style="padding:10px;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid var(--border)">
+          <div style="font-size:.85rem;font-weight:800;color:var(--accent)">BahnCard 50</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:4px">50% discount. €255/year (2nd class). Worth it for frequent travellers (2+ trips/month).</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Booking tips</h2>
+      <ul style="font-size:.82rem;color:var(--muted);padding-left:16px;line-height:2.2">
+        <li><b>Book 6 weeks early</b> — Super Sparpreis from €17.90</li>
+        <li><b>Sparpreis</b> — fixed train, flexible date ±1 day</li>
+        <li><b>Flexpreis</b> — any train that day, most expensive</li>
+        <li><b>DB Navigator app</b> — also shows regional trains</li>
+        <li><b>Seat reservation</b> — optional but recommended for ICE (€4.90)</li>
+        <li><b>Delay compensation</b> — claim online if &gt;60 min delay</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-auto" style="margin-top:14px">
+    <div class="portal-card"><h3>DB Navigator App</h3><p>Official Deutsche Bahn app — buy tickets, check live departures, manage bookings.</p><a href="https://www.bahn.de/service/mobile/db-navigator" target="_blank" rel="noopener">→ bahn.de</a></div>
+    <div class="portal-card"><h3>Delay compensation</h3><p>Claim online if your train was ≥60 minutes late. 25% refund for 60 min, 50% for 120 min.</p><a href="https://www.bahn.de/service/fahrplanung/verzoegerungsfall" target="_blank" rel="noopener">→ Claim delay refund</a></div>
+    <div class="portal-card"><h3>FlixBus / FlixTrain</h3><p>Budget alternative for many routes. Not covered by Deutschlandticket.</p><a href="https://www.flixbus.de" target="_blank" rel="noopener">→ flixbus.de</a></div>
+  </div>
+</div>
+
+<!-- REGIONAL TRANSIT -->
+<div id="tc-regional" class="tc">
+  <h2 class="sec-h">🚇 Regional public transport</h2>
+  <div class="ib">All regional transit (S-Bahn, U-Bahn, tram, bus) is covered by your Deutschlandticket. No need to buy separate tickets.</div>
+
+  <div class="grid-auto" style="margin-top:14px">
+    <div class="portal-card"><h3>BVG — Berlin</h3><p>U-Bahn, S-Bahn, tram, bus. City of Berlin. App: BVG Fahrinfo.</p><a href="https://www.bvg.de" target="_blank" rel="noopener">→ bvg.de</a></div>
+    <div class="portal-card"><h3>MVV — Munich</h3><p>U-Bahn, S-Bahn, tram, bus. Greater Munich region. App: MVV.</p><a href="https://www.mvv-muenchen.de" target="_blank" rel="noopener">→ mvv-muenchen.de</a></div>
+    <div class="portal-card"><h3>HVV — Hamburg</h3><p>S-Bahn, U-Bahn, bus, AKN. Hamburg metro region.</p><a href="https://www.hvv.de" target="_blank" rel="noopener">→ hvv.de</a></div>
+    <div class="portal-card"><h3>KVB — Cologne</h3><p>Cologne tram and bus network.</p><a href="https://www.kvb.koeln" target="_blank" rel="noopener">→ kvb.koeln</a></div>
+    <div class="portal-card"><h3>RMV — Frankfurt</h3><p>Rhine-Main regional transport — covers Frankfurt, Wiesbaden, Darmstadt.</p><a href="https://www.rmv.de" target="_blank" rel="noopener">→ rmv.de</a></div>
+    <div class="portal-card"><h3>VVS — Stuttgart</h3><p>Stuttgart city and region — S-Bahn, U-Bahn, bus.</p><a href="https://www.vvs.de" target="_blank" rel="noopener">→ vvs.de</a></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>🗺 Useful apps</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+      <div style="font-size:.82rem;color:var(--muted);line-height:2">
+        <div>📱 <b>DB Navigator</b> — all trains and connections</div>
+        <div>📱 <b>Google Maps</b> — public transit directions</div>
+        <div>📱 <b>Citymapper</b> — Berlin, Hamburg, Munich</div>
+      </div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:2">
+        <div>📱 <b>Moovit</b> — real-time transit info</div>
+        <div>📱 <b>Local app</b> — BVG, MVV, HVV etc.</div>
+        <div>📱 <b>Komoot</b> — cycling routes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRIVING -->
+<div id="tc-driving" class="tc">
+  <h2 class="sec-h">🚗 Driving licence exchange</h2>
+  <div class="ab">Non-EU licences must be exchanged or converted within 6 months of registering in Germany. EU licences are valid without exchange.</div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <h2>Exchange timeline</h2>
+      <ul style="font-size:.82rem;color:var(--muted);padding-left:16px;line-height:2.2">
+        <li><b>EU/EEA licence</b> — valid indefinitely, no exchange needed</li>
+        <li><b>Some non-EU countries</b> — direct exchange (no test): USA, UK, Canada, Australia, Japan, Switzerland, and more</li>
+        <li><b>Other countries</b> — must take German driving test (theory + practical)</li>
+        <li><b>Apply at</b> — Führerscheinstelle (driver's licence office) in your city</li>
+        <li><b>Timeline</b> — allow 3–6 months including test waiting times</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Required documents</h2>
+      <ul class="checklist">
+        <li>Valid passport or EU ID</li>
+        <li>Current driving licence (original)</li>
+        <li>Certified German translation of licence (if not in Latin script)</li>
+        <li>Biometric passport photo (35×45mm)</li>
+        <li>Anmeldebescheinigung (registration confirmation)</li>
+        <li>Sehtest (eye test — from any optician, ~€10)</li>
+        <li>First aid course certificate (Erste Hilfe, 8 hours)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-auto" style="margin-top:14px">
+    <div class="portal-card"><h3>KBA — licence exchange checker</h3><p>Official checker to see if your country has a direct exchange agreement with Germany.</p><a href="https://www.kba.de/DE/ZentraleFahrerlaubnisRegister/Auslandsabkommen/auslandsabkommen_node.html" target="_blank" rel="noopener">→ kba.de</a></div>
+    <div class="portal-card"><h3>ADAC — driving in Germany</h3><p>Rules of the road, speed limits, motorway tips for newcomers.</p><a href="https://www.adac.de/verkehr/recht-strafen-strafzettel/deutschland" target="_blank" rel="noopener">→ adac.de</a></div>
+  </div>
+</div>
+
+<!-- BIKE & SCOOTER -->
+<div id="tc-bike" class="tc">
+  <h2 class="sec-h">🚲 Bike sharing & e-scooters</h2>
+  <div class="sb">Germany has excellent cycling infrastructure. Many immigrants use bikes as their primary transport, especially in flat cities like Berlin, Hamburg, and Cologne.</div>
+
+  <div class="grid-auto" style="margin-top:14px">
+    <div class="portal-card"><h3>Nextbike</h3><p>Germany-wide bike sharing. Docking stations in 100+ cities. From €1/30 min or monthly flat rate.</p><a href="https://www.nextbike.de" target="_blank" rel="noopener">→ nextbike.de</a></div>
+    <div class="portal-card"><h3>Deutsche Bahn Call a Bike</h3><p>DB's bike sharing service integrated into DB Navigator app. Available in major cities.</p><a href="https://www.callabike.de" target="_blank" rel="noopener">→ callabike.de</a></div>
+    <div class="portal-card"><h3>TIER e-scooters</h3><p>E-scooters in most German cities. Unlock via app. Not usable on footpaths.</p><a href="https://www.tier.app" target="_blank" rel="noopener">→ tier.app</a></div>
+    <div class="portal-card"><h3>Lime</h3><p>E-scooters and e-bikes. Available in Berlin, Munich, Hamburg, Cologne.</p><a href="https://www.li.me" target="_blank" rel="noopener">→ li.me</a></div>
+    <div class="portal-card"><h3>Buy a used bike</h3><p>eBay Kleinanzeigen is the best place. Budget €80–200 for a reliable city bike. Always use a good lock (Kryptonite or ABUS).</p><a href="https://www.kleinanzeigen.de" target="_blank" rel="noopener">→ kleinanzeigen.de</a></div>
+  </div>
+
+  <div class="card" style="margin-top:14px;border-left:3px solid var(--accent)">
+    <h2>⚠ E-scooter rules</h2>
+    <ul style="font-size:.82rem;color:var(--muted);padding-left:16px;line-height:2.2">
+      <li>Must use cycle lanes or road — NOT footpaths</li>
+      <li>No passengers allowed</li>
+      <li>Helmets not mandatory but strongly recommended</li>
+      <li>Not allowed on motorways or in pedestrian zones</li>
+      <li>Must have insurance (usually included in rental price)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .con -->
+
+<div class="ref-bar">
+  <span>Our partners:</span>
+  <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA" target="_blank" rel="noopener sponsored" class="ref-cb">🏦 Commerzbank +€50</a>
+  <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
+</div>
+
+<div id="ng-toast"></div>
+<script>
+function showTab(name,btn){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tc-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}
+</script>
+</body>
+</html>
