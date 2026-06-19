@@ -27,6 +27,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#FFCC02">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Navigate Germany">
+  <link rel="apple-touch-icon" href="./assets/icons/pwa-192.png">
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -523,5 +529,14 @@
 
 
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('[PWA] Service worker registered'))
+      .catch(err => console.log('[PWA] SW error:', err));
+  });
+}
+</script>
 </body>
 </html>
