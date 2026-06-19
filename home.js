@@ -2158,4 +2158,17 @@ document.addEventListener("click", (event) => {
   if (!event.target.closest(".hero-copy")) searchResults.innerHTML = "";
 });
 
-init();
+init()
+    emg_110: 'पुलिस — 110',
+    emg_112: 'एम्बुलेंस और अग्निशमन — 112',
+    emg_crisis: 'संकट हेल्पलाइन — 0800 111 0 111',
+    guides_title: 'जीवन मॉड्यूल',
+    journey_sub: 'अपनी यात्रा चुनें',
+    nav_about: 'के बारे में',
+    nav_guides: 'गाइड',
+    nav_resources: 'संसाधन',
+    nav_states: 'राज्य',
+    stat_emg: 'आपातकाल',
+    stat_langs: 'भाषाएँ',
+    stat_modules: 'मॉड्यूल',
+    states_title: 'राज्य चुनें',;
