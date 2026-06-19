@@ -1,0 +1,86 @@
+[
+  {
+    "module": "housing",
+    "city": "Berlin",
+    "tip": "Book Anmeldung at Bürgeramt 6 weeks in advance — walk-ins are nearly impossible in Berlin. Use the online booking system at service.berlin.de and keep refreshing for cancellations.",
+    "verified": true,
+    "date": "June 2026"
+  },
+  {
+    "module": "housing",
+    "city": "Munich",
+    "tip": "For apartment viewings in Munich, prepare a full Bewerbungsmappe (application folder): Schufa report, last 3 payslips, employer confirmation, and ID. Landlords expect it ready to hand over at the viewing.",
+    "verified": true,
+    "date": "May 2026"
+  },
+  {
+    "module": "banking",
+    "city": "All",
+    "tip": "TK (Techniker Krankenkasse) has the best English-speaking support. They have a dedicated international team reachable by phone and email in English.",
+    "verified": true,
+    "date": "June 2026"
+  },
+  {
+    "module": "jobs",
+    "city": "Berlin",
+    "tip": "The LinkedIn community in Berlin is very active. Message people directly — most are happy to do a 20-minute coffee chat. This is how many internships and junior roles are filled.",
+    "verified": true,
+    "date": "April 2026"
+  },
+  {
+    "module": "costs",
+    "city": "All",
+    "tip": "REWE is generally cheaper than EDEKA for everyday groceries. ALDI and LIDL are the cheapest for staples. Many immigrants are surprised to find that German supermarkets don't sell alcohol on Sundays in some states.",
+    "verified": true,
+    "date": "June 2026"
+  },
+  {
+    "module": "legal",
+    "city": "Hamburg",
+    "tip": "For Kündigung received from employer: you have exactly 3 weeks from receipt to file Kündigungsschutzklage at the Arbeitsgericht. Even if you plan to negotiate, file first — you can always withdraw. Filing is free for employees.",
+    "verified": true,
+    "date": "March 2026"
+  },
+  {
+    "module": "doctors",
+    "city": "Munich",
+    "tip": "If you can't find a Hausarzt accepting new patients (very common in Munich), try Ärztlicher Bereitschaftsdienst (116117) for advice. Also check Doctolib — some doctors list online-only slots that aren't advertised.",
+    "verified": true,
+    "date": "June 2026"
+  },
+  {
+    "module": "language",
+    "city": "All",
+    "tip": "The best free German practice: volunteer at your local Kleiderkammer (clothing donation centre) or food bank. You get to speak German daily and meet locals. Caritas and Diakonie coordinate these.",
+    "verified": true,
+    "date": "May 2026"
+  },
+  {
+    "module": "bureaucracy",
+    "city": "Berlin",
+    "tip": "The Bürgeramt online booking system releases new slots at midnight and around 8am. Use a browser tab-refresher or the Bürgeramt appointment bot on GitHub.",
+    "verified": true,
+    "date": "June 2026"
+  },
+  {
+    "module": "family",
+    "city": "All",
+    "tip": "Apply for Kindergeld immediately after Anmeldung — do not wait. Payments are backdated only 6 months maximum. The Familienkasse processes quickly if documents are complete (birth certificate + Anmeldung + bank account).",
+    "verified": true,
+    "date": "April 2026"
+  },
+  {
+    "module": "all",
+    "city": "All",
+    "tip": "Keep a folder (physical or digital) of every document you ever receive in Germany: Meldebescheinigung, insurance cards, contracts, Bescheide, Steuerbescheid. German bureaucracy references old documents constantly.",
+    "verified": true,
+    "date": "June 2026"
+  },
+  {
+    "module": "all",
+    "city": "All",
+    "tip": "The 'Nachsendeauftrag' service from Deutsche Post forwards your mail when you move. Set it up as soon as you have a new address — costs ~€30 for 12 months and prevents missing important official letters.",
+    "verified": true,
+    "date": "May 2026"
+  }
+]
