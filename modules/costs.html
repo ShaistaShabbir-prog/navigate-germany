@@ -240,4 +240,32 @@ calc();
   <a href="https://refer.gebuhrenfrei.com/shaistas-45" target="_blank" rel="noopener sponsored" class="ref-av">💳 Free credit card</a>
   <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
 </div>
+
+<!-- Community Tips -->
+<script>
+(function(){
+  var base=document.querySelector('[href*="index.html"]');
+  var prefix=base?base.href.replace(/index\.html.*/,''):'../';
+  fetch(prefix+'community-tips.json').then(function(r){return r.json();}).then(function(tips){
+    var page=location.pathname.split('/').pop().replace('.html','');
+    var relevant=tips.filter(function(t){return !t.module||t.module===page||t.module==='all';});
+    if(!relevant.length)return;
+    var sec=document.createElement('div');
+    sec.style.cssText='max-width:1040px;margin:16px auto 0;padding:0 16px 40px';
+    sec.innerHTML='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px">'
+      +'<div style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px">💬 Community tips</div>'
+      +'<p style="font-size:.75rem;color:rgba(255,255,255,.4);margin:0 0 12px">Real advice from immigrants in Germany. '
+      +'<a href="https://github.com/ShaistaShabbir-prog/navigate-germany/issues/new?title=Community+tip:+[city]&body=**City:**%0A**Tip:**" '
+      +'target="_blank" style="color:var(--accent)">Submit a tip →</a></p>'
+      +relevant.slice(0,4).map(function(t){
+        return '<div style="padding:10px 12px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);margin-bottom:8px">'
+          +'<div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:4px">'+t.tip+'</div>'
+          +'<div style="font-size:.7rem;color:rgba(255,255,255,.35)">'
+          +(t.city?'📍 '+t.city+' · ':'')+( t.verified?'✓ Verified · ':'')+( t.date?t.date:'')+'</div></div>';
+      }).join('')+'</div>';
+    var con=document.querySelector('.con');
+    if(con)con.parentNode.insertBefore(sec,con.nextSibling);
+  }).catch(function(){});
+})();
+</script>
 </body></html>
