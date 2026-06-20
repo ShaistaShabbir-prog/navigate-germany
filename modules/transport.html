@@ -239,5 +239,31 @@ function showTab(name,btn){
 }
 function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}
 </script>
+
+<script>
+(function(){
+  var base=document.querySelector('[href*="index.html"]');
+  var prefix=base?base.href.replace(/index\.html.*/,''):'../';
+  fetch(prefix+'community-tips.json').then(function(r){return r.json();}).then(function(tips){
+    var page=location.pathname.split('/').pop().replace('.html','');
+    var relevant=tips.filter(function(t){return !t.module||t.module===page||t.module==='all';});
+    if(!relevant.length)return;
+    var sec=document.createElement('div');
+    sec.style.cssText='max-width:1040px;margin:16px auto 0;padding:0 16px 40px';
+    sec.innerHTML='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px">'
+      +'<div style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px">💬 Community tips</div>'
+      +'<p style="font-size:.75rem;color:rgba(255,255,255,.4);margin:0 0 12px">Real advice from immigrants. '
+      +'<a href="https://github.com/ShaistaShabbir-prog/navigate-germany/issues/new?title=Community+tip:+[city]" '
+      +'target="_blank" style="color:var(--accent)">Submit a tip →</a></p>'
+      +relevant.slice(0,4).map(function(t){
+        return '<div style="padding:10px 12px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);margin-bottom:8px">'
+          +'<div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:4px">'+t.tip+'</div>'
+          +'<div style="font-size:.7rem;color:rgba(255,255,255,.35)">'+(t.city?'📍 '+t.city+' · ':'')+( t.verified?'✓ Verified · ':'')+( t.date||'')+'</div></div>';
+      }).join('')+'</div>';
+    var con=document.querySelector('.con');
+    if(con)con.parentNode.insertBefore(sec,con.nextSibling);
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
