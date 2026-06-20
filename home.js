@@ -1323,6 +1323,9 @@ const TRANSLATIONS = {
     language_guide: "जर्मन गाइड खोलें",
     saved: "सहेजा गया",
     more: "अधिक",
+  
+    module_doctors: "स्वास्थ्य देखभाल",
+    module_transport: "परिवहन",
   },
   fr: {
     dir: "ltr",
