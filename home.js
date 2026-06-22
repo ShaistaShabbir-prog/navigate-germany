@@ -1478,7 +1478,7 @@ const TRANSLATIONS = {
   },
 };
 
-Object.entries(PAGE_TEXT).forEach(([code, text]) => Object.assign(TRANSLATIONS[code], text));
+// PAGE_TEXT merged into TRANSLATIONS — see fix/issue-34-translations
 
 const MODULES = [
   { id: "housing", icon: "⌂", iconSrc: "./assets/icons/housing.png", title: "Housing", desc: "Find accommodation, understand rental contracts, deposits, and tenant rights.", topics: ["Renting", "Deposit", "Contracts", "Tenant rights"], resources: 12, url: "modules/housing.html", color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
