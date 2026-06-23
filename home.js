@@ -1656,6 +1656,7 @@ function renderModules(items = MODULES) {
   const grid = document.querySelector("#guides-grid");
   if (!grid) return;
   grid.innerHTML = items.map((item) => `
+    <a class="module-card-link" href="${item.url}">
     <article class="module-card" data-icon="${item.icon}" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border}">
       <button class="save-guide ${savedGuides.has(item.id) ? "saved" : ""}" type="button" data-save="${item.id}" aria-label="${savedGuides.has(item.id) ? t.remove : t.save} ${item.title}">♡</button>
       <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="30" height="30">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
@@ -1664,9 +1665,10 @@ function renderModules(items = MODULES) {
       <div class="module-topics" aria-label="${item.title} topics">${item.topics.map((topic) => `<span>${topic}</span>`).join("")}</div>
       <div class="module-footer">
         <span class="module-resource-count">${item.resources} resources</span>
-        <a class="module-link" href="${item.url}">${(item.linkLabel || t.open_guide).replace(/\s*[←→]\s*$/, "")}</a>
+        <span class="module-link">${(item.linkLabel || t.open_guide).replace(/\s*[←→]\s*$/, "")} →</span>
       </div>
     </article>
+    </a>
   `).join("");
   requestAnimationFrame(observeReveals);
   // Fallback: ensure items become visible even if observer misses them
