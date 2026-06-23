@@ -1656,8 +1656,7 @@ function renderModules(items = MODULES) {
   const grid = document.querySelector("#guides-grid");
   if (!grid) return;
   grid.innerHTML = items.map((item) => `
-    <a class="module-card-link" href="${item.url}">
-    <article class="module-card" data-icon="${item.icon}" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border}">
+    <article class="module-card" data-icon="${item.icon}" data-url="${item.url}" style="--module-color:${item.color};--module-bg:${item.bg};--module-border:${item.border}" role="link" tabindex="0" aria-label="Open ${item.title} guide">
       <button class="save-guide ${savedGuides.has(item.id) ? "saved" : ""}" type="button" data-save="${item.id}" aria-label="${savedGuides.has(item.id) ? t.remove : t.save} ${item.title}">♡</button>
       <span class="module-icon">${item.iconSrc ? `<img src="${item.iconSrc}" alt="" width="30" height="30">` : `<span aria-hidden="true">${item.icon}</span>`}</span>
       <h3>${item.title}</h3>
@@ -1668,7 +1667,6 @@ function renderModules(items = MODULES) {
         <span class="module-link">${(item.linkLabel || t.open_guide).replace(/\s*[←→]\s*$/, "")} →</span>
       </div>
     </article>
-    </a>
   `).join("");
   requestAnimationFrame(observeReveals);
   // Fallback: ensure items become visible even if observer misses them
@@ -2023,15 +2021,26 @@ languagePills.addEventListener("click", (event) => {
 });
 
 guidesGrid.addEventListener("click", (event) => {
+  // Navigate when card is clicked (but not the save button)
+  const card = event.target.closest(".module-card[data-url]");
   const saveButton = event.target.closest("[data-save]");
+  if (card && !saveButton) {
+    window.location.href = card.dataset.url;
+    return;
+  }
   if (!saveButton) return;
-  event.preventDefault();  // stop card <a> from navigating when saving
   const id = saveButton.dataset.save;
   savedGuides.has(id) ? savedGuides.delete(id) : savedGuides.add(id);
   localStorage.setItem("ng_saved_guides", JSON.stringify([...savedGuides]));
   const modules = localizedModules();
   renderModules(showingSavedOnly ? modules.filter((item) => savedGuides.has(item.id)) : modules);
   showToast(savedGuides.has(id) ? "Guide saved on this device." : "Guide removed from saved items.");
+});
+
+guidesGrid.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  const card = event.target.closest(".module-card[data-url]");
+  if (card) window.location.href = card.dataset.url;
 });
 
 stateDetail.addEventListener("click", (event) => {
