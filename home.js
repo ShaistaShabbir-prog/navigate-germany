@@ -2025,6 +2025,7 @@ languagePills.addEventListener("click", (event) => {
 guidesGrid.addEventListener("click", (event) => {
   const saveButton = event.target.closest("[data-save]");
   if (!saveButton) return;
+  event.preventDefault();  // stop card <a> from navigating when saving
   const id = saveButton.dataset.save;
   savedGuides.has(id) ? savedGuides.delete(id) : savedGuides.add(id);
   localStorage.setItem("ng_saved_guides", JSON.stringify([...savedGuides]));
