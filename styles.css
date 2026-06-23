@@ -1417,3 +1417,25 @@ html[dir="rtl"] .rtl-notice::before {
 html[dir="rtl"] {
   overflow-x: clip;
 }
+
+/* Full-card clickable link */
+.module-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.module-card-link:hover {
+  text-decoration: none;
+}
+.module-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--module-color, #2563eb);
+  transition: gap .15s;
+}
+.module-card-link:hover .module-link-arrow {
+  gap: 7px;
+}
