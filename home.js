@@ -1736,6 +1736,59 @@ function openState(id) {
 }
 
 let languageRequest = 0;
+
+// ── Client-side full-text search (Issue #54) ─────────────────────────────
+const SEARCH_INDEX = [];
+
+function buildSearchIndex() {
+  // Index modules
+  MODULES.forEach(m => {
+    SEARCH_INDEX.push({
+      title: m.title, url: m.url,
+      text: `${m.title} ${m.desc} ${m.topics.join(' ')}`,
+      type: 'module', icon: m.icon,
+    });
+  });
+  // Index journeys
+  const journeys = [
+    { title: 'Student Journey', url: 'journeys/student.html', text: 'student visa university housing insurance residence' },
+    { title: 'Skilled Worker Journey', url: 'journeys/skilled-worker.html', text: 'skilled worker Blue Card job employment visa' },
+    { title: 'Family Reunification', url: 'journeys/family.html', text: 'family spouse children reunification Kindergeld' },
+    { title: 'Refugee / Asylum', url: 'journeys/refugee.html', text: 'refugee asylum seeker protection safe routes' },
+    { title: 'Entrepreneur Journey', url: 'journeys/entrepreneur.html', text: 'entrepreneur freelancer Gewerbe self-employed' },
+    { title: 'Researcher / PhD', url: 'journeys/researcher.html', text: 'researcher PhD university hosting agreement DFG DAAD' },
+  ];
+  journeys.forEach(j => SEARCH_INDEX.push({ ...j, type: 'journey', icon: '🗺️' }));
+}
+
+function doSearch(query) {
+  if (!query || query.length < 2) return [];
+  const q = query.toLowerCase();
+  return SEARCH_INDEX
+    .filter(item => item.text.toLowerCase().includes(q) || item.title.toLowerCase().includes(q))
+    .map(item => ({ ...item, score: item.title.toLowerCase().includes(q) ? 2 : 1 }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+}
+
+function renderSearchResults(results, containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (!results.length) {
+    el.innerHTML = '<div style="padding:12px 16px;color:var(--muted);font-size:.82rem">No results found</div>';
+    return;
+  }
+  el.innerHTML = results.map(r => `
+    <a href="${r.url}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s"
+       onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background=''">
+      <span style="font-size:1.1rem;flex-shrink:0">${r.icon}</span>
+      <div>
+        <div style="font-size:.82rem;font-weight:700;color:#fff">${r.title}</div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.4);text-transform:capitalize">${r.type}</div>
+      </div>
+    </a>`).join('');
+}
+
 async function setLanguage(code) {
   const requestId = ++languageRequest;
   const selected = LANGUAGES.find((item) => item.code === code) || LANGUAGES[0];
@@ -1941,7 +1994,8 @@ function observeReveals() {
   });
 }
 
-function init() {
+function buildSearchIndex();
+init() {
   languagePills.innerHTML = LANGUAGES.map((item) => `<button type="button" data-lang="${item.code}">${item.flag} ${item.label}</button>`).join("");
   const params = new URLSearchParams(window.location.search);
   const initialStateQuery = params.get("city") || params.get("state") || "";
@@ -2085,4 +2139,5 @@ document.addEventListener("click", (event) => {
   if (!event.target.closest(".hero-copy")) searchResults.innerHTML = "";
 });
 
+buildSearchIndex();
 init()
