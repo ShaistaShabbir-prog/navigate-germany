@@ -1,1 +1,83 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=by.html"><link rel="canonical" href="https://shaistashabbir-prog.github.io/navigate-germany/states/by.html"><title>Bavaria Guide | Navigate Germany</title></head><body><main><h1>Bavaria guide</h1><p><a href="by.html">Open the state guide</a></p></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bavaria | Navigate Germany</title>
+  <link rel="stylesheet" href="../modules/modules-shared.css">
+</head>
+<body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html#states">← All states</a></nav>
+<div class="ph" style="background:linear-gradient(135deg,#0d1225,#131929)">
+  <h1 style="color:#e30613">🏛️ Bavaria</h1>
+  <p>Capital: Munich · Official resources and local contacts</p>
+</div>
+<div class="tabs">
+  <button class="tab active" onclick="showTab('reg',this)">📋 Registration</button>
+  <button class="tab" onclick="showTab('work',this)">💼 Work & Jobs</button>
+  <button class="tab" onclick="showTab('life',this)">🏠 Living</button>
+  <button class="tab" onclick="showTab('transport',this)">🚌 Transport</button>
+</div>
+<div class="con">
+  <div class="module-back-bar"><a href="../index.html">🏠 Home</a><a href="../index.html#states" class="active">🗺️ All states</a></div>
+
+  <div id="tc-reg" class="tc active">
+    <h2 class="sec-h">📋 Registration (Anmeldung)</h2>
+    <div class="card">
+      <h2>Step 1: Book Anmeldung appointment</h2>
+      <p>You must register at the local Bürgeramt within 2 weeks of arrival.</p>
+      <a href="https://www.muenchen.de/rathaus/Stadtverwaltung/Kreisverwaltungsreferat/Buergerangelegenheiten/An--und-Ummeldung.html" target="_blank" rel="noopener" class="btn bg" style="margin-top:12px;display:inline-flex">→ Book Bavaria Anmeldung</a>
+    </div>
+    <div class="card">
+      <h2>What you need</h2>
+      <ul class="checklist">
+        <li>Valid passport or national ID</li>
+        <li>Wohnungsgeberbestätigung (landlord confirmation)</li>
+        <li>Completed Anmeldeformular (download from city website)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="tc-work" class="tc">
+    <h2 class="sec-h">💼 Work & Employment</h2>
+    <div class="portal-card">
+      <h3>Jobcenter Munich</h3>
+      <p>Employment support, job seekers' allowance, skills recognition</p>
+      <a href="https://www.jobcenter-muenchen.de" target="_blank" rel="noopener">→ www.jobcenter-muenchen.de</a>
+    </div>
+    <div class="portal-card" style="margin-top:10px">
+      <h3>Arbeitsagentur — National Job Portal</h3>
+      <p>Search jobs, register as job seeker, access benefits</p>
+      <a href="https://www.arbeitsagentur.de" target="_blank" rel="noopener">→ arbeitsagentur.de</a>
+    </div>
+  </div>
+
+  <div id="tc-life" class="tc">
+    <h2 class="sec-h">🏠 Living in Bavaria</h2>
+    <div class="card">
+      <h2>Cost of living</h2>
+      <p>Average rent (1-bedroom): <strong>€1400/month</strong></p>
+      <ul class="checklist">
+        <li>Groceries: ~€200-300/month (ALDI, LIDL, REWE)</li>
+        <li>Health insurance (GKV): ~€200-400/month</li>
+        <li>Public transport monthly pass: ~€29 (Deutschlandticket)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="tc-transport" class="tc">
+    <h2 class="sec-h">🚌 Public Transport</h2>
+    <div class="ib">💡 Deutschlandticket: €29/month — use on all regional transport across Germany</div>
+    <div class="card" style="margin-top:12px">
+      <h2>MVV (Munich) + regional trains</h2>
+      <div class="portal-card" style="margin-top:10px">
+        <h3>Deutschlandticket</h3>
+        <a href="https://www.deutschlandticket.de" target="_blank" rel="noopener">→ deutschlandticket.de</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="ng-toast"></div>
+<script>
+function showTab(n,b){document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tc-'+n).classList.add('active');b.classList.add('active');}
+</script>
+</body></html>

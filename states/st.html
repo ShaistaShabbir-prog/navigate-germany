@@ -1,170 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Saxony-Anhalt — Navigate Germany</title>
-  <meta name="description" content="Living in Saxony-Anhalt, Germany. Capital: Magdeburg. Cities include Magdeburg, Halle (Saale), Dessau-Roßlau, Wittenberg. Key industries: Chemicals, renewables, agriculture, healthcare, research.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://shaistashabbir-prog.github.io/navigate-germany/states/st.html">
-  <meta property="og:title" content="Saxony-Anhalt — Navigate Germany">
-  <meta property="og:image" content="https://shaistashabbir-prog.github.io/navigate-germany/assets/images/states/heroes/saxony-anhalt.jpg">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Segoe UI',system-ui,sans-serif;background:#F1F5F9;color:#111827;min-height:100vh;}
-    .topnav{background:#0B1D3A;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.3);}
-    .brand{font-weight:900;font-size:1rem;color:#fff;text-decoration:none;}
-    .brand span{color:#FFCC02;}
-    .back-link{color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color .15s;}
-    .back-link:hover{color:#FFCC02;}
-    .accent-bar{height:4px;background:#7a6030;}
-    .hero{position:relative;height:420px;overflow:hidden;}
-    .hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:none;}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,15,35,.92) 0%,rgba(5,15,35,.65) 45%,rgba(5,15,35,.2) 100%);}
-    .hero-content{position:absolute;inset:0;display:flex;align-items:flex-end;padding:32px 40px;}
-    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,204,2,.18);border:1px solid rgba(255,204,2,.4);border-radius:100px;padding:4px 14px;font-size:.68rem;font-weight:800;color:#FFCC02;text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px;}
-    h1{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,.5);}
-    h1 span{color:#FFCC02;}
-    .hero-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.65);}
-    .hero-meta span{display:flex;align-items:center;gap:4px;}
-    .wrap{max-width:1060px;margin:0 auto;padding:24px 20px 80px;}
-    .layout{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start;}
-    @media(max-width:720px){.layout{grid-template-columns:1fr;}}
-    .card{background:#fff;border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 1px 8px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.05);}
-    .card-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-    .card-label::after{content:'';flex:1;height:1px;background:#F3F4F6;}
-    p.desc{font-size:.875rem;color:#4B5563;line-height:1.78;margin-bottom:16px;}
-    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-    @media(max-width:400px){.info-grid{grid-template-columns:1fr;}}
-    .ibox{background:#F9FAFB;border-radius:11px;padding:12px 14px;border:1px solid #F3F4F6;}
-    .ibox .lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#9CA3AF;margin-bottom:3px;}
-    .ibox .val{font-size:.85rem;font-weight:700;color:#111827;line-height:1.3;}
-    .cities-row{display:flex;flex-wrap:wrap;gap:6px;}
-    .city-chip{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#F3F4F6;border-radius:100px;font-size:.77rem;font-weight:600;color:#374151;text-decoration:none;border:1px solid transparent;transition:all .15s;}
-    .city-chip:hover{background:#EFF6FF;border-color:#93C5FD;color:#1D4ED8;transform:translateY(-1px);}
-    .city-chip .pin{font-size:.65rem;opacity:.5;}
-    .mods{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
-    @media(max-width:400px){.mods{grid-template-columns:1fr;}}
-    .mod{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#F9FAFB;border:1px solid #F3F4F6;border-radius:11px;text-decoration:none;color:#374151;font-size:.78rem;font-weight:600;transition:all .15s;}
-    .mod:hover{background:#EFF6FF;border-color:#93C5FD;color:#1D4ED8;transform:translateY(-1px);box-shadow:0 2px 8px rgba(59,130,246,.1);}
-    .links-col{display:flex;flex-direction:column;gap:7px;}
-    .ext{display:flex;align-items:center;gap:9px;padding:11px 14px;border:1.5px solid #E5E7EB;border-radius:12px;text-decoration:none;color:#111827;font-size:.81rem;font-weight:600;transition:all .15s;background:#fff;}
-    .ext:hover{border-color:#7a6030;background:#FAFBFF;transform:translateX(3px);}
-    .ext .arr{margin-left:auto;color:#9CA3AF;font-size:.75rem;transition:all .15s;}
-    .ext:hover .arr{color:#7a6030;}
-    .link-badge{font-size:.58rem;font-weight:800;padding:1px 6px;border-radius:8px;background:#EFF6FF;color:#3B82F6;margin-left:3px;flex-shrink:0;}
-    .emg{background:#FEF2F2;border:1px solid #FECACA;border-radius:16px;padding:16px;margin-bottom:12px;}
-    .emg h3{font-weight:800;font-size:.82rem;color:#991B1B;margin-bottom:10px;}
-    .emg-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(220,38,38,.08);font-size:.81rem;color:#7F1D1D;}
-    .emg-row:last-child{border:none;padding-bottom:0;}
-    .emg-num{font-weight:900;font-size:.9rem;color:#DC2626;min-width:52px;}
-    .emg-btn{display:block;margin-top:10px;text-align:center;padding:8px;background:#DC2626;color:#fff;border-radius:8px;font-size:.78rem;font-weight:800;text-decoration:none;}
-    .ref{background:linear-gradient(135deg,#0B1D3A,#1a2f52);border-radius:14px;padding:16px;color:#fff;}
-    .ref-lbl{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:7px;}
-    .ref-name{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:3px;}
-    .ref-sub{font-size:.73rem;color:rgba(255,255,255,.5);margin-bottom:10px;line-height:1.5;}
-    .ref-btn{display:block;text-align:center;padding:9px;background:#FFCC02;color:#0B1D3A;border-radius:9px;font-weight:800;font-size:.78rem;text-decoration:none;transition:all .15s;}
-    .ref-btn:hover{transform:scale(1.03);box-shadow:0 4px 14px rgba(255,204,2,.4);}
-    footer{background:#0B1D3A;padding:18px 24px;text-align:center;font-size:.76rem;color:rgba(255,255,255,.3);}
-    footer a{color:#FFCC02;text-decoration:none;}
-  </style>
-  <link rel="stylesheet" href="../internal-shell.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Saxony-Anhalt | Navigate Germany</title>
+  <link rel="stylesheet" href="../modules/modules-shared.css">
 </head>
 <body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html#states">← All states</a></nav>
+<div class="ph" style="background:linear-gradient(135deg,#0d1225,#131929)">
+  <h1 style="color:#e30613">🏛️ Saxony-Anhalt</h1>
+  <p>Capital: Magdeburg · Official resources and local contacts</p>
+</div>
+<div class="tabs">
+  <button class="tab active" onclick="showTab('reg',this)">📋 Registration</button>
+  <button class="tab" onclick="showTab('work',this)">💼 Work & Jobs</button>
+  <button class="tab" onclick="showTab('life',this)">🏠 Living</button>
+  <button class="tab" onclick="showTab('transport',this)">🚌 Transport</button>
+</div>
+<div class="con">
+  <div class="module-back-bar"><a href="../index.html">🏠 Home</a><a href="../index.html#states" class="active">🗺️ All states</a></div>
 
-<nav class="topnav">
-  <a class="brand" href="../index.html">🇩🇪 Navigate <span>Germany</span></a>
-  <a class="back-link" href="../index.html#states">← All 16 Bundesländer</a>
-</nav>
-<div class="accent-bar"></div>
+  <div id="tc-reg" class="tc active">
+    <h2 class="sec-h">📋 Registration (Anmeldung)</h2>
+    <div class="card">
+      <h2>Step 1: Book Anmeldung appointment</h2>
+      <p>You must register at the local Bürgeramt within 2 weeks of arrival.</p>
+      <a href="https://www.magdeburg.de/einwohnermeldeamt" target="_blank" rel="noopener" class="btn bg" style="margin-top:12px;display:inline-flex">→ Book Saxony-Anhalt Anmeldung</a>
+    </div>
+    <div class="card">
+      <h2>What you need</h2>
+      <ul class="checklist">
+        <li>Valid passport or national ID</li>
+        <li>Wohnungsgeberbestätigung (landlord confirmation)</li>
+        <li>Completed Anmeldeformular (download from city website)</li>
+      </ul>
+    </div>
+  </div>
 
-<div class="hero">
-  <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1400&q=95&auto=format&fit=crop" alt="Saxony-Anhalt" loading="eager" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block"> alt="Saxony-Anhalt" loading="eager">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div>
-      <div class="hero-badge">🌾 Bundesland · Germany</div>
-      <h1>Saxony-Anhalt</h1>
-      <div class="hero-meta">
-        <span>🏛️ Magdeburg</span>
-        <span>💶 €500–800/month (1BR)</span>
-        <span>💼 Chemicals, renewables, agriculture, heal…</span>
+  <div id="tc-work" class="tc">
+    <h2 class="sec-h">💼 Work & Employment</h2>
+    <div class="portal-card">
+      <h3>Jobcenter Magdeburg</h3>
+      <p>Employment support, job seekers' allowance, skills recognition</p>
+      <a href="https://www.jobcenter-magdeburg.de" target="_blank" rel="noopener">→ www.jobcenter-magdeburg.de</a>
+    </div>
+    <div class="portal-card" style="margin-top:10px">
+      <h3>Arbeitsagentur — National Job Portal</h3>
+      <p>Search jobs, register as job seeker, access benefits</p>
+      <a href="https://www.arbeitsagentur.de" target="_blank" rel="noopener">→ arbeitsagentur.de</a>
+    </div>
+  </div>
+
+  <div id="tc-life" class="tc">
+    <h2 class="sec-h">🏠 Living in Saxony-Anhalt</h2>
+    <div class="card">
+      <h2>Cost of living</h2>
+      <p>Average rent (1-bedroom): <strong>€600/month</strong></p>
+      <ul class="checklist">
+        <li>Groceries: ~€200-300/month (ALDI, LIDL, REWE)</li>
+        <li>Health insurance (GKV): ~€200-400/month</li>
+        <li>Public transport monthly pass: ~€29 (Deutschlandticket)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="tc-transport" class="tc">
+    <h2 class="sec-h">🚌 Public Transport</h2>
+    <div class="ib">💡 Deutschlandticket: €29/month — use on all regional transport across Germany</div>
+    <div class="card" style="margin-top:12px">
+      <h2>PNV regional network</h2>
+      <div class="portal-card" style="margin-top:10px">
+        <h3>Deutschlandticket</h3>
+        <a href="https://www.deutschlandticket.de" target="_blank" rel="noopener">→ deutschlandticket.de</a>
       </div>
     </div>
   </div>
 </div>
-
-<div class="wrap">
-<div class="layout">
-
-<div>
-  <div class="card">
-    <div class="card-label">📍 About Saxony-Anhalt</div>
-    <p class="desc">Central German state with rich industrial history. Magdeburg and Halle are university cities. Home to chemical industry and renewable energy research. Most affordable housing in Germany.</p>
-    <div class="info-grid">
-      <div class="ibox"><div class="lbl">Capital</div><div class="val">Magdeburg</div></div>
-      <div class="ibox"><div class="lbl">Avg rent (1BR)</div><div class="val">€500–800/month</div></div>
-      <div class="ibox"><div class="lbl">Key industries</div><div class="val" style="font-size:.75rem;line-height:1.4">Chemicals, renewables, agriculture, healthcare, research</div></div>
-      <div class="ibox"><div class="lbl">Cities below</div><div class="val">6 listed</div></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-label">🏙️ Cities in Saxony-Anhalt</div>
-    <div class="cities-row"><a class="city-chip" href="../index.html" title="Magdeburg"><span class="pin">📍</span>Magdeburg</a><a class="city-chip" href="../index.html" title="Halle (Saale)"><span class="pin">📍</span>Halle (Saale)</a><a class="city-chip" href="../index.html" title="Dessau-Roßlau"><span class="pin">📍</span>Dessau-Roßlau</a><a class="city-chip" href="../index.html" title="Wittenberg"><span class="pin">📍</span>Wittenberg</a><a class="city-chip" href="../index.html" title="Merseburg"><span class="pin">📍</span>Merseburg</a><a class="city-chip" href="../index.html" title="Halberstadt"><span class="pin">📍</span>Halberstadt</a></div>
-    <p style="font-size:.7rem;color:#9CA3AF;margin-top:10px">Hover to highlight · Click to go back and search</p>
-  </div>
-
-  <div class="card">
-    <div class="card-label">📚 Essential guides</div>
-    <div class="mods">
-      <a href="../modules/bureaucracy.html" class="mod">📋 Anmeldung</a>
-      <a href="../modules/housing.html" class="mod">🏠 Housing rights</a>
-      <a href="../modules/banking.html" class="mod">🏦 Bank account</a>
-      <a href="../modules/jobs.html" class="mod">💼 Jobs & Blue Card</a>
-      <a href="../modules/doctors.html" class="mod">🏥 Find a doctor</a>
-      <a href="../modules/costs.html" class="mod">💶 Cost of living</a>
-      <a href="../modules/legal.html" class="mod">⚖️ Legal help</a>
-      <a href="../modules/language.html" class="mod">🗣️ Learn German</a>
-      <a href="../modules/family.html" class="mod">👶 Family</a>
-      <a href="../modules/integration.html" class="mod">🤝 Integration</a>
-    </div>
-  </div>
-</div>
-
-<div>
-  <div class="card">
-    <div class="card-label">🔗 Official links</div>
-    <div class="links-col"><a href="https://www.sachsen-anhalt.de" target="_blank" rel="noopener" class="ext">🏛️ ST State Portal<span class="link-badge">Official</span><span class="arr">↗</span></a><a href="https://www.sachsen-anhalt.de/buerger-und-staat/buergerservice/" target="_blank" rel="noopener" class="ext">🌐 ST Service<span class="arr">↗</span></a><a href="https://www.magdeburg.de" target="_blank" rel="noopener" class="ext">🏙️ Magdeburg City Portal<span class="link-badge">Official</span><span class="arr">↗</span></a><a href="https://www.halle.de" target="_blank" rel="noopener" class="ext">🏙️ Halle City Portal<span class="link-badge">Official</span><span class="arr">↗</span></a><a href="https://www.arbeitsagentur.de/vor-ort/raa/regionaldirektion-san" target="_blank" rel="noopener" class="ext">💼 Arbeitsagentur ST<span class="arr">↗</span></a></div>
-  </div>
-
-  <div class="emg">
-    <h3>🚨 Emergency numbers</h3>
-    <div class="emg-row"><span class="emg-num">112</span>Ambulance &amp; Fire</div>
-    <div class="emg-row"><span class="emg-num">110</span>Police</div>
-    <div class="emg-row"><span class="emg-num">116 117</span>Out-of-hours doctor</div>
-    <div class="emg-row"><span class="emg-num">0800 111 0 111</span>Crisis line (free)</div>
-    <a href="../modules/emergency.html" class="emg-btn">Full emergency guide →</a>
-  </div>
-
-  <div class="ref">
-    <div class="ref-lbl">Our recommendation</div>
-    <div class="ref-name">🏦 Open a German bank account</div>
-    <div class="ref-sub">Commerzbank — free account + €50 starting credit with code <strong style="color:#FFCC02">PNGHRA</strong></div>
-    <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA"
-       target="_blank" rel="noopener sponsored" class="ref-btn">Get €50 bonus →</a>
-  </div>
-</div>
-
-</div>
-</div>
-
-<footer>
-  <a href="../index.html">Navigate Germany</a> &nbsp;·&nbsp;
-  <a href="../privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
-  Free guide for immigrants in Germany
-</footer>
-<script src="state-page.js"></script>
-<script src="../internal-shell.js" defer></script>
-</body>
-</html>
+<div id="ng-toast"></div>
+<script>
+function showTab(n,b){document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tc-'+n).classList.add('active');b.classList.add('active');}
+</script>
+</body></html>
