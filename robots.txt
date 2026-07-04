@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shaistashabbir-prog.github.io/navigate-germany/sitemap.xml
+
+# Disallow nothing — this is a public resource site

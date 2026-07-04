@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+  <title>Cost of Living Germany 2026 — Munich, Berlin, Hamburg, Dortmund, Leipzig Prices</title>
+  <meta name="description" content="Real monthly costs in Germany 2026. Munich €2,800–3,200, Berlin €2,000–2,400, Leipzig €1,400–1,700/month. Includes rent, food, transport, insurance. Blue Card salary calculator.">
+  <meta name="keywords" content="cost of living Germany 2026, Germany monthly expenses, rent Germany, Munich cost of living, Berlin cost of living, Leipzig cheap, Germany budget calculator">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="author" content="Navigate Germany">
+  <link rel="canonical" href="https://shaistashabbir-prog.github.io/navigate-germany/modules/costs.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cost of Living Germany 2026 — Munich, Berlin, Hamburg, Dortmund, Leipzig Prices">
+  <meta property="og:description" content="Real monthly costs in Germany 2026. Munich €2,800–3,200, Berlin €2,000–2,400, Leipzig €1,400–1,700/month. Includes rent, food, transport, insurance. Blue Card salary calculator.">
+  <meta property="og:url" content="https://shaistashabbir-prog.github.io/navigate-germany/modules/costs.html">
+  <meta property="og:image" content="https://shaistashabbir-prog.github.io/navigate-germany/assets/images/backgrounds/germany-hero-hd.jpg">
+  <meta property="og:site_name" content="Navigate Germany">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cost of Living Germany 2026 — Munich, Berlin, Hamburg, Dortmund, Leipzig Prices">
+  <meta name="twitter:description" content="Real monthly costs in Germany 2026. Munich €2,800–3,200, Berlin €2,000–2,400, Leipzig €1,400–1,700/month. Includes rent, food, transport, insurance. Blue Card salary calculator.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "Cost of living in Germany 2026 — city by city guide",
+    "url": "https://shaistashabbir-prog.github.io/navigate-germany/modules/costs.html",
+    "description": "Real monthly costs in Germany 2026. Munich €2,800–3,200, Berlin €2,000–2,400, Leipzig €1,400–1,700/month. Includes rent, food, transport, insurance. Blue Card salary calculator.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Navigate Germany",
+      "url": "https://shaistashabbir-prog.github.io/navigate-germany/"
+    },
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Navigate Germany",
+      "url": "https://shaistashabbir-prog.github.io/navigate-germany/"
+    }
+  }
+  </script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link rel="stylesheet" href="modules-shared.css">
+  <link rel="stylesheet" href="module-product.css">
+</head><body>
+<nav>
+  <a class="nb" href="../index.html">Navigate <span>Germany</span></a>
+  <a class="bl" href="../index.html">&#8592; All modules</a>
+</nav>
+<div class="ph"><h1>💶 Cost of Living Calculator</h1><p>Realistic monthly budget for Germany — 8 cities, 2026 prices, all German costs included</p></div>
+<div class="con">
+<div class="module-back-bar">
+  <a href="../index.html">🏠 Home</a>
+  <a href="../index.html#guides" class="active">📚 All modules</a>
+</div>
+<div style="display:grid;grid-template-columns:1fr 320px;gap:14px">
+  <div>
+    <div class="card">
+      <h2>📍 Where &amp; Who</h2>
+      <label>City</label>
+      <select id="city" onchange="calc()">
+        <option value="munich">Munich (most expensive)</option>
+        <option value="frankfurt">Frankfurt</option>
+        <option value="hamburg">Hamburg</option>
+        <option value="berlin" selected>Berlin</option>
+        <option value="cologne">Cologne / Düsseldorf</option>
+        <option value="stuttgart">Stuttgart</option>
+        <option value="dortmund">Dortmund / Ruhr Area</option>
+        <option value="leipzig">Leipzig / Dresden (cheapest)</option>
+      </select>
+      <label>Household</label>
+      <select id="hh" onchange="calc()">
+        <option value="single">Single person</option>
+        <option value="couple">Couple (no children)</option>
+        <option value="fam2">Family with 1-2 children</option>
+        <option value="fam3">Family with 3+ children</option>
+        <option value="wg">Shared flat (WG room only)</option>
+      </select>
+      <label>Apartment type</label>
+      <select id="apt" onchange="calc()">
+        <option value="wg">WG / Shared room</option>
+        <option value="1br" selected>1-bedroom</option>
+        <option value="2br">2-bedroom</option>
+        <option value="3br">3-bedroom</option>
+      </select>
+    </div>
+    <div class="card">
+      <h2>🍔 Food &amp; Lifestyle</h2>
+      <div class="range-row"><label>Cook at home (days/week)</label><input type="range" id="cook" min="1" max="7" value="5" oninput="calc();document.getElementById('cook-v').textContent=this.value"><span class="rv" id="cook-v">5</span></div>
+      <div class="range-row"><label>Restaurant meals/week</label><input type="range" id="resto" min="0" max="14" value="3" oninput="calc();document.getElementById('resto-v').textContent=this.value"><span class="rv" id="resto-v">3</span></div>
+      <div class="range-row"><label>Lifestyle level</label><input type="range" id="fun" min="0" max="3" step="1" value="1" oninput="calc();document.getElementById('fun-v').textContent=['Minimal','Moderate','Active','Very active'][+this.value]"><span class="rv" id="fun-v">Moderate</span></div>
+      <div class="range-row"><label>Savings target (€/month)</label><input type="range" id="sav" min="0" max="1000" step="50" value="200" oninput="calc();document.getElementById('sav-v').textContent='€'+this.value"><span class="rv" id="sav-v">€200</span></div>
+    </div>
+    <div class="card">
+      <h2>📱 Bills &amp; Insurance</h2>
+      <div class="tgl"><span>Health insurance GKV (employee contribution)</span><label class="sw"><input type="checkbox" id="gkv" checked onchange="calc()"><span class="sl"></span></label></div>
+      <div class="tgl"><span>Mobile phone plan (~€20/month)</span><label class="sw"><input type="checkbox" id="mobile" checked onchange="calc()"><span class="sl"></span></label></div>
+      <div class="tgl"><span>Haftpflichtversicherung (~€10/month, essential)</span><label class="sw"><input type="checkbox" id="haft" checked onchange="calc()"><span class="sl"></span></label></div>
+      <div class="tgl"><span>Internet at home (~€35/month)</span><label class="sw"><input type="checkbox" id="inet" checked onchange="calc()"><span class="sl"></span></label></div>
+      <div class="tgl"><span>Rundfunkbeitrag / GEZ (€18.36/month)</span><label class="sw"><input type="checkbox" id="gez" checked onchange="calc()"><span class="sl"></span></label></div>
+      <div class="tgl"><span>Halal / specialty groceries (+€70/month)</span><label class="sw"><input type="checkbox" id="halal" onchange="calc()"><span class="sl"></span></label></div>
+      <div class="tgl"><span>Transport: Deutschlandticket (€29/month)</span><label class="sw"><input type="checkbox" id="dtkt" checked onchange="calc()"><span class="sl"></span></label></div>
+    </div>
+  </div>
+  <div>
+    <div class="total-box" id="total-box">
+      <div class="total-num">€<span id="total-num">0</span></div>
+      <div style="font-size:.85rem;opacity:.8;margin-top:4px">Estimated monthly budget</div>
+      <div style="font-size:.75rem;opacity:.65;margin-top:2px" id="city-lbl"></div>
+    </div>
+    <div class="card">
+      <h2>📊 Breakdown</h2>
+      <div id="breakdown"></div>
+    </div>
+    <div class="card">
+      <h2>🏙️ City comparison (1BR)</h2>
+      <div id="city-compare"></div>
+    </div>
+    <div class="card" id="salary-card">
+      <h2>💼 Salary needed</h2>
+      <div id="salary-out" style="font-size:.85rem;line-height:1.8"></div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+const CD={munich:{rent:{wg:900,"1br":1800,"2br":2600,"3br":3400},m:1.0},frankfurt:{rent:{wg:750,"1br":1500,"2br":2200,"3br":2900},m:.95},hamburg:{rent:{wg:700,"1br":1400,"2br":2100,"3br":2800},m:.92},berlin:{rent:{wg:650,"1br":1250,"2br":1900,"3br":2500},m:.88},cologne:{rent:{wg:620,"1br":1200,"2br":1800,"3br":2400},m:.87},stuttgart:{rent:{wg:700,"1br":1450,"2br":2100,"3br":2800},m:.93},dortmund:{rent:{wg:480,"1br":850,"2br":1300,"3br":1800},m:.80},leipzig:{rent:{wg:420,"1br":750,"2br":1100,"3br":1500},m:.75}};
+const CCOMP={munich:1800,frankfurt:1500,hamburg:1400,berlin:1250,cologne:1200,stuttgart:1450,dortmund:850,leipzig:750};
+const HH={single:1,couple:1.7,fam2:2.1,fam3:2.8,wg:.6};
+function calc(){
+  const city=document.getElementById('city').value;
+  const apt=document.getElementById('apt').value;
+  const hh=document.getElementById('hh').value;
+  const cd=CD[city]; const hm=HH[hh]||1;
+  const rent=Math.round((cd.rent[apt]||cd.rent['1br']));
+  const nebenk=200;
+  const cook=+document.getElementById('cook').value;
+  const resto=+document.getElementById('resto').value;
+  const fun=[0,80,180,350][+document.getElementById('fun').value];
+  const sav=+document.getElementById('sav').value;
+  const grocery=Math.round((250+(7-cook)*20+(document.getElementById('halal').checked?70:0))*hm*cd.m);
+  const eating=Math.round(resto*15*cd.m*hm*4);
+  const gkv=document.getElementById('gkv').checked?0:0;
+  const mobile=document.getElementById('mobile').checked?20:0;
+  const haft=document.getElementById('haft').checked?10:0;
+  const inet=document.getElementById('inet').checked?35:0;
+  const gez=document.getElementById('gez').checked?19:0;
+  const dtkt=document.getElementById('dtkt').checked?29:0;
+  const items=[
+    ["🏠 Rent + Nebenkosten",rent+nebenk],
+    ["🛒 Groceries",grocery],
+    ["🍽️ Eating out",eating],
+    ["🚆 Transport",dtkt],
+    ["📱 Phone + Internet",mobile+inet],
+    ["🔒 Insurance",haft],
+    ["📺 GEZ",gez],
+    ["🎉 Lifestyle",Math.round(fun*cd.m)],
+    ["💰 Savings",sav],
+  ];
+  const total=items.reduce((a,[,v])=>a+v,0);
+  document.getElementById('total-num').textContent=total.toLocaleString();
+  document.getElementById('city-lbl').textContent=city+' · '+hh;
+  const max=Math.max(...items.map(([,v])=>v));
+  document.getElementById('breakdown').innerHTML=items.filter(([,v])=>v>0).map(([l,v])=>
+    '<div class="bitem"><div><div>'+l+'</div><div class="bar" style="width:'+Math.round(v/max*180)+'px"></div></div><strong>€'+v.toLocaleString()+'</strong></div>'
+  ).join('');
+  const cur=city;
+  document.getElementById('city-compare').innerHTML=Object.entries(CCOMP).map(([k,v])=>
+    '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:.82rem">'+
+    '<span style="color:'+(k===cur?'var(--accent)':'var(--text)')+';font-weight:'+(k===cur?700:400)+'">'+k+'</span>'+
+    '<span style="color:'+(k===cur?'var(--accent)':'var(--muted)')+'">€'+v.toLocaleString()+'</span></div>'
+  ).join('');
+  const gross=Math.round(total*1.8);
+  const bcOk=gross*12>=45934;
+  document.getElementById('salary-out').innerHTML=
+    'Monthly budget: <strong>€'+total.toLocaleString()+'</strong><br>'+
+    'Gross salary needed: <strong style="color:var(--accent)">€'+gross.toLocaleString()+'/month</strong><br>'+
+    'Annual: <strong>€'+(gross*12).toLocaleString()+'</strong><br>'+
+    '<div class="'+(bcOk?'sb':'wb')+'" style="margin-top:8px">'+(bcOk?'✅ Qualifies for EU Blue Card shortage threshold (€45,934/year)':'⚠️ Below Blue Card threshold — negotiate higher salary or check shortage occupation')+'</div>';
+}
+calc();
+</script>
+<!-- Partner recommendation — compact -->
+<div style="max-width:1000px;margin:24px auto 0;padding:0 16px 28px">
+  <div style="background:linear-gradient(135deg,#0a0d14,#111520);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px 18px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FFCC02,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:.72rem;flex-shrink:0">S</div>
+      <div style="font-size:.72rem;font-weight:700;color:#f1f5f9">Partner / affiliate recommendations</div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:4px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:2px 8px;white-space:nowrap">
+        <span style="width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block"></span>
+        <span style="font-size:.6rem;color:#86efac;font-weight:700">Optional</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+
+      <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(255,215,0,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">🏦</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#FFD700">Commerzbank</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Free account + €50 bonus with code PNGHRA</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+      <a href="https://refer.gebuhrenfrei.com/shaistas-45"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(248,113,113,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">💳</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#f87171">Advanzia Mastercard</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Free credit card — no annual fee ever</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+      <a href="https://wise.com/invite/shaistashabbir"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(52,211,153,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">💸</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#34d399">Wise</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Send money home — save up to 8× on fees</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+  <script src="../referral.js" defer></script>
+  <script src="module-product.js" defer></script>
+<div id="ng-toast"></div>
+<script>function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}</script>
+<div class="ref-bar">
+  <span>Our partners:</span>
+  <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA" target="_blank" rel="noopener sponsored" class="ref-cb">🏦 Commerzbank +€50</a>
+  <a href="https://refer.gebuhrenfrei.com/shaistas-45" target="_blank" rel="noopener sponsored" class="ref-av">💳 Free credit card</a>
+  <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
+</div>
+
+<!-- Community Tips -->
+<script>
+(function(){
+  var base=document.querySelector('[href*="index.html"]');
+  var prefix=base?base.href.replace(/index\.html.*/,''):'../';
+  fetch(prefix+'community-tips.json').then(function(r){return r.json();}).then(function(tips){
+    var page=location.pathname.split('/').pop().replace('.html','');
+    var relevant=tips.filter(function(t){return !t.module||t.module===page||t.module==='all';});
+    if(!relevant.length)return;
+    var sec=document.createElement('div');
+    sec.style.cssText='max-width:1040px;margin:16px auto 0;padding:0 16px 40px';
+    sec.innerHTML='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px">'
+      +'<div style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px">💬 Community tips</div>'
+      +'<p style="font-size:.75rem;color:rgba(255,255,255,.4);margin:0 0 12px">Real advice from immigrants in Germany. '
+      +'<a href="https://github.com/ShaistaShabbir-prog/navigate-germany/issues/new?title=Community+tip:+[city]&body=**City:**%0A**Tip:**" '
+      +'target="_blank" style="color:var(--accent)">Submit a tip →</a></p>'
+      +relevant.slice(0,4).map(function(t){
+        return '<div style="padding:10px 12px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);margin-bottom:8px">'
+          +'<div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:4px">'+t.tip+'</div>'
+          +'<div style="font-size:.7rem;color:rgba(255,255,255,.35)">'
+          +(t.city?'📍 '+t.city+' · ':'')+( t.verified?'✓ Verified · ':'')+( t.date?t.date:'')+'</div></div>';
+      }).join('')+'</div>';
+    var con=document.querySelector('.con');
+    if(con)con.parentNode.insertBefore(sec,con.nextSibling);
+  }).catch(function(){});
+})();
+</script>
+<div id="ng-ai-btn" style="position:fixed;bottom:24px;right:24px;z-index:999">
+  <a href="../modules/legal.html#chat" style="display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:50px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;box-shadow:0 4px 20px rgba(124,58,237,.4);white-space:nowrap">
+    ✦ Ask Germany AI
+  </a>
+</div>
+
+</body></html>

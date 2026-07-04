@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Legal Navigator — Navigate Germany</title>
+<link rel="stylesheet" href="modules-shared.css">
+  <link rel="stylesheet" href="module-product.css">
+</head>
+<body>
+<nav>
+  <a class="nb" href="../index.html"><span>Navigate Germany</span></a>
+  <a class="bl" href="../index.html">← Back to all modules</a>
+</nav>
+<div class="ph">
+  <h1>⚖️ Legal Navigator</h1>
+  <p>German letter analyser &middot; Rights database &middot; Law lookup &middot; Letter templates</p>
+  <div class="badge-row">
+    <span class="badge bgreen">✓ BAMF</span>
+    <span class="badge bblue">✓ Local authority</span>
+    <span class="badge bamber">June 2026</span>
+    <span class="badge bred">Not legal advice</span>
+  </div>
+</div>
+<div class="tabs">
+  <button class="tab active" onclick="showTab('guide',this)">📋 Process Guide</button>
+  <button class="tab" onclick="showTab('letter',this)">✉️ Read My Letter</button>
+  <button class="tab" onclick="showTab('chat',this)">💬 Legal FAQ Search</button>
+  <button class="tab" onclick="showTab('laws',this)">📚 Laws</button>
+  <button class="tab" onclick="showTab('rights',this)">🛡️ Rights</button>
+  <button class="tab" onclick="showTab('templates',this)">📝 Templates</button>
+</div>
+
+<div class="con">
+<div class="module-back-bar">
+  <a href="../index.html">🏠 Home</a>
+  <a href="../index.html#guides" class="active">📚 All modules</a>
+</div>
+
+<div id="tc-guide" class="tc active">
+  <div class="row2">
+    <div>
+      <div id="proc-btns" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px"></div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <div id="proc-head" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);padding:14px 18px;color:#fff">
+          <div style="font-size:.95rem;font-weight:700" id="proc-title">Select a process above</div>
+          <div style="font-size:.75rem;opacity:.75" id="proc-dead"></div>
+        </div>
+        <div id="proc-steps"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" id="proc-docs-card"><h2>📄 Documents needed</h2><div id="proc-docs" style="font-size:.82rem;color:var(--muted)">Select a process above.</div></div>
+      <div class="card"><h2>🗣️ Phrases</h2>
+        <div style="font-size:.82rem">
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><div style="font-weight:700;color:var(--accent)">Ich spreche kein Deutsch.</div><div style="color:var(--muted)">I don't speak German.</div></div>
+          <div style="padding:6px 0;border-bottom:1px solid var(--border)"><div style="font-weight:700;color:var(--accent)">Haben Sie einen Dolmetscher?</div><div style="color:var(--muted)">Do you have an interpreter?</div></div>
+          <div style="padding:6px 0"><div style="font-weight:700;color:var(--accent)">Bis wann muss ich das einreichen?</div><div style="color:var(--muted)">By when do I need to submit this?</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tc-letter" class="tc">
+<div class="row2">
+<div>
+<div class="module-tool-header">
+  <div>
+    <h2>German letter analyser</h2>
+    <p>Preview files in your browser, then use the configured online analysis service for explanation and translation.</p>
+  </div>
+  <span class="module-status-badge">Online analysis preview</span>
+</div>
+<div class="module-alert module-alert--info" style="margin-bottom:12px"><strong>Privacy:</strong> file preview and camera capture begin in your browser. Selecting Analyse sends the letter text or image to the configured analysis service.</div>
+<div class="module-alert module-alert--caution" style="margin-bottom:12px"><strong>Not legal advice:</strong> confirm every deadline in the original letter or with a qualified lawyer.</div>
+
+<div class="card" style="padding:0;overflow:visible">
+
+  <!-- Mode tabs -->
+  <div style="display:flex;border-bottom:1px solid rgba(255,255,255,.08)">
+    <button id="ltab-paste"
+      style="flex:1;padding:12px 8px;border:none;border-bottom:2px solid #FFCC02;background:rgba(255,204,2,.08);color:#FFCC02;font-size:.78rem;font-weight:700;cursor:pointer"
+      onclick="(function(){
+        document.getElementById('lmode-paste').style.display='block';
+        document.getElementById('lmode-upload').style.display='none';
+        document.getElementById('lmode-camera').style.display='none';
+        document.getElementById('ltab-paste').style.borderBottomColor='#FFCC02';
+        document.getElementById('ltab-paste').style.background='rgba(255,204,2,.08)';
+        document.getElementById('ltab-paste').style.color='#FFCC02';
+        document.getElementById('ltab-upload').style.borderBottomColor='transparent';
+        document.getElementById('ltab-upload').style.background='transparent';
+        document.getElementById('ltab-upload').style.color='#94a3b8';
+        document.getElementById('ltab-camera').style.borderBottomColor='transparent';
+        document.getElementById('ltab-camera').style.background='transparent';
+        document.getElementById('ltab-camera').style.color='#94a3b8';
+      })()">📝 Paste text</button>
+    <button id="ltab-upload"
+      style="flex:1;padding:12px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:#94a3b8;font-size:.78rem;font-weight:700;cursor:pointer"
+      onclick="(function(){
+        document.getElementById('lmode-paste').style.display='none';
+        document.getElementById('lmode-upload').style.display='block';
+        document.getElementById('lmode-camera').style.display='none';
+        document.getElementById('ltab-upload').style.borderBottomColor='#FFCC02';
+        document.getElementById('ltab-upload').style.background='rgba(255,204,2,.08)';
+        document.getElementById('ltab-upload').style.color='#FFCC02';
+        document.getElementById('ltab-paste').style.borderBottomColor='transparent';
+        document.getElementById('ltab-paste').style.background='transparent';
+        document.getElementById('ltab-paste').style.color='#94a3b8';
+        document.getElementById('ltab-camera').style.borderBottomColor='transparent';
+        document.getElementById('ltab-camera').style.background='transparent';
+        document.getElementById('ltab-camera').style.color='#94a3b8';
+      })()">📎 Upload file</button>
+    <button id="ltab-camera"
+      style="flex:1;padding:12px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:#94a3b8;font-size:.78rem;font-weight:700;cursor:pointer"
+      onclick="(function(){
+        document.getElementById('lmode-paste').style.display='none';
+        document.getElementById('lmode-upload').style.display='none';
+        document.getElementById('lmode-camera').style.display='block';
+        document.getElementById('ltab-camera').style.borderBottomColor='#FFCC02';
+        document.getElementById('ltab-camera').style.background='rgba(255,204,2,.08)';
+        document.getElementById('ltab-camera').style.color='#FFCC02';
+        document.getElementById('ltab-paste').style.borderBottomColor='transparent';
+        document.getElementById('ltab-paste').style.background='transparent';
+        document.getElementById('ltab-paste').style.color='#94a3b8';
+        document.getElementById('ltab-upload').style.borderBottomColor='transparent';
+        document.getElementById('ltab-upload').style.background='transparent';
+        document.getElementById('ltab-upload').style.color='#94a3b8';
+        window._lStopCamera && window._lStopCamera();
+      })()">📷 Camera</button>
+  </div>
+
+  <!-- PASTE -->
+  <div id="lmode-paste" style="padding:16px">
+    <textarea id="ltxt" rows="9" placeholder="Paste any German official letter here…&#10;&#10;Works with: Bescheid, Kündigung, Mahnung, Steuerbescheid, Jobcenter, BAMF, Mietrecht…"></textarea>
+  </div>
+
+  <!-- UPLOAD -->
+  <div id="lmode-upload" style="display:none;padding:16px">
+    <div class="module-alert module-alert--info" style="margin-bottom:12px"><strong>Browser preview:</strong> review the selected file before choosing Analyse.</div>
+    <div onclick="document.getElementById('l-file-inp').click()"
+         ondragover="event.preventDefault();this.style.borderColor='#FFCC02'"
+         ondragleave="this.style.borderColor='rgba(255,255,255,.15)'"
+         ondrop="event.preventDefault();this.style.borderColor='rgba(255,255,255,.15)';window._lHandleFiles(event.dataTransfer.files)"
+         style="border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:36px 16px;text-align:center;cursor:pointer;transition:border-color .2s">
+      <div style="font-size:2.4rem;margin-bottom:10px">📄</div>
+      <div style="font-weight:700;font-size:.88rem;margin-bottom:4px">Click to choose file or drag &amp; drop</div>
+      <div style="font-size:.72rem;color:#64748b">PDF · JPG · PNG · HEIC · max 10 MB</div>
+    </div>
+    <input type="file" id="l-file-inp" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp,image/*"
+           style="display:none" onchange="window._lHandleFiles(this.files)">
+    <div id="l-file-info" style="display:none;margin-top:12px">
+      <div id="l-file-name" style="font-size:.78rem;color:#FFCC02;margin-bottom:8px"></div>
+      <img id="l-img-preview" alt="preview" style="max-width:100%;max-height:260px;border-radius:8px;display:none;object-fit:contain">
+      <canvas id="l-pdf-canvas" style="max-width:100%;border-radius:8px;display:none"></canvas>
+    </div>
+  </div>
+
+  <!-- CAMERA -->
+  <div id="lmode-camera" style="display:none;padding:16px">
+    <div class="module-alert module-alert--info" style="margin-bottom:12px"><strong>Camera preview:</strong> capture and review the image before choosing Analyse.</div>
+    <div id="l-cam-off" style="text-align:center">
+      <div style="font-size:.82rem;color:#64748b;margin-bottom:12px">Hold your letter in good light and take a clear photo</div>
+      <button class="btn bg" style="width:100%;margin-bottom:8px"
+              onclick="window._lStartCamera()">📷 Open camera</button>
+      <button class="btn bo" style="width:100%;font-size:.78rem"
+              onclick="document.getElementById('l-gallery-inp').click()">🖼️ Choose from gallery</button>
+      <input type="file" id="l-gallery-inp" accept="image/*" style="display:none"
+             onchange="window._lHandleFiles(this.files)">
+    </div>
+    <div id="l-cam-on" style="display:none">
+      <video id="l-cam-video" autoplay playsinline muted
+             style="width:100%;border-radius:10px;max-height:280px;background:#000;display:block"></video>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn bg" style="flex:1" onclick="window._lCapture()">📸 Capture</button>
+        <button class="btn bo" onclick="window._lStopCamera()">✕ Cancel</button>
+      </div>
+    </div>
+    <canvas id="l-cam-canvas" style="display:none"></canvas>
+    <div id="l-cam-preview" style="display:none;margin-top:10px">
+      <img id="l-cam-img" alt="captured" style="width:100%;border-radius:10px;max-height:260px;object-fit:contain;display:block">
+      <button class="btn bo" style="width:100%;margin-top:8px;font-size:.78rem"
+              onclick="document.getElementById('l-cam-preview').style.display='none';window._lCapturedImage=null;window._lStartCamera()">🔄 Retake</button>
+    </div>
+  </div>
+
+  <!-- Processing indicator -->
+  <div id="l-processing" style="display:none;text-align:center;padding:14px;font-size:.82rem;color:#94a3b8">
+    ⏳ <span id="l-proc-msg">Processing…</span>
+  </div>
+
+  <!-- Controls -->
+  <div style="padding:12px 16px;border-top:1px solid rgba(255,255,255,.07)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      <select id="l-type">
+        <option value="">Auto-detect letter type</option>
+        <option>Kündigung (dismissal)</option>
+        <option>Mietrecht (tenancy)</option>
+        <option>Immigration / Aufenthaltstitel</option>
+        <option>Jobcenter / Bürgergeld</option>
+        <option>Finanzamt / Tax</option>
+        <option>Krankenkasse</option>
+      </select>
+      <select id="l-lang">
+        <option value="English">🌍 Explain in English</option>
+        <option value="Urdu">اردو میں سمجھائیں</option>
+        <option value="Arabic">شرح بالعربية</option>
+        <option value="Turkish">Türkçe açıkla</option>
+        <option value="Russian">На русском</option>
+        <option value="Farsi">به فارسی</option>
+        <option value="French">En français</option>
+        <option value="Italian">In italiano</option>
+        <option value="Ukrainian">Українською</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn bg" id="l-analyse-btn" style="flex:1"
+              onclick="window._lAnalyse()">🔍 Analyse &amp; explain</button>
+      <button class="btn bo" style="font-size:.78rem"
+              onclick="document.getElementById('ltxt').value='';document.getElementById('lres').innerHTML='';document.getElementById('l-file-info').style.display='none';document.getElementById('l-cam-preview').style.display='none';window._lCapturedImage=null">🗑️</button>
+    </div>
+  </div>
+</div>
+
+<!-- Processing + result -->
+<div id="lres" style="margin-top:12px"></div>
+
+</div>
+
+</div>
+
+<!-- RIGHT COLUMN - QUICK HELP -->
+<div>
+  <div class="card">
+    <h2>⚡ Quick help</h2>
+    <div class="module-alert module-alert--urgent" style="margin-bottom:10px"><strong>Kündigung received?</strong> A dismissal challenge can have a strict <strong>3-week deadline</strong>. Contact the Arbeitsgericht, a union, or a lawyer immediately.</div>
+    <div class="module-alert module-alert--caution"><strong>Official refusal (Bescheid)?</strong> Read the Rechtsbehelfsbelehrung for the exact remedy and deadline; one month is common but not universal.</div>
+  </div>
+  <div class="card">
+    <h2>🛡️ Your rights</h2>
+    <div style="font-size:.82rem;line-height:1.8">
+      <div>📋 Every official letter must state the <strong>authority</strong> and the <strong>legal basis</strong></div>
+      <div>⏰ You always have a right to <strong>sufficient time to respond</strong></div>
+      <div>🗣️ You have a right to an <strong>interpreter</strong> in legal proceedings</div>
+      <div>📁 You can request a copy of your <strong>file (Akteneinsicht)</strong></div>
+      <div>🆓 Low-income residents can get a <strong>Beratungshilfeschein</strong> (€15 legal advice)</div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>📞 Free help</h2>
+    <div style="font-size:.82rem;line-height:2">
+      <div>🏛️ <b>Caritas</b> — free migration counselling</div>
+      <div>🏛️ <b>Diakonie</b> — social & legal advice</div>
+      <div>🏛️ <b>AWO</b> — welfare & integration help</div>
+      <div>📞 <b>Mieterverein</b> — tenant law (~€80/yr)</div>
+      <div>📞 <b>ADS</b> — anti-discrimination: 030 18555-1855</div>
+      <div>🌐 <b>BAMF MBE</b> — migration advice (free)</div>
+    </div>
+    <div class="module-source-row">
+      <a class="module-source-badge" href="https://www.bamf.de/EN/Themen/Integration/ZugewanderteTeilnehmende/BeratungErwachsene/beratung-erwachsene-node.html" target="_blank" rel="noopener">Official source: BAMF</a>
+      <span class="module-status-badge">Last checked: June 2026</span>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div id="tc-chat" class="tc">
+  <div class="row2">
+    <div>
+      <div class="module-alert module-alert--verified" style="font-size:.82rem;margin-bottom:10px"><strong>Local FAQ search</strong> — common questions are matched from the guide in your browser.</div>
+      <div class="chat-box" id="chat-msgs">
+        <div class="m ai"><div class="mb">Hello! This local legal guide can match common questions about:
+• German laws and your rights  
+• Official letters and what to do
+• Visa and residence permits
+• Employment rights (KSchG, BGB)
+• Tenant rights and housing
+• Benefits and social services
+
+What do you need help with?</div></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <textarea id="cin" style="height:52px;flex:1;resize:none" placeholder="Ask about German law..."></textarea>
+        <button class="btn bg" onclick="doChat()" id="sbtn" style="flex-shrink:0">Send</button>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:8px">
+        <button class="btn bo" style="font-size:.72rem;padding:4px 9px" onclick="qa('Landlord is raising my rent. What are my rights under BGB?')">Rent increase</button>
+        <button class="btn bo" style="font-size:.72rem;padding:4px 9px" onclick="qa('I received a Kündigung. What must I do within 3 weeks?')">Fight dismissal</button>
+        <button class="btn bo" style="font-size:.72rem;padding:4px 9px" onclick="qa('My visa was rejected. What can I do legally?')">Visa rejected</button>
+        <button class="btn bo" style="font-size:.72rem;padding:4px 9px" onclick="qa('How do I apply for Bürgergeld step by step?')">Bürgergeld</button>
+        <button class="btn bo" style="font-size:.72rem;padding:4px 9px" onclick="qa('Explain Anmeldung process and documents needed')">Anmeldung</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="card"><h2>Quick topics</h2>
+        <div id="quick-topics"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tc-laws" class="tc">
+  <input type="text" id="law-srch" placeholder="Search laws by name or topic..." oninput="filterLaws(this.value)" style="margin-bottom:12px">
+  <div id="laws-list"></div>
+</div>
+
+<div id="tc-rights" class="tc"><div id="rights-list"></div></div>
+
+<div id="tc-templates" class="tc">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:14px" id="tpl-grid"></div>
+  <div id="tpl-preview"></div>
+</div>
+
+</div>
+
+<script>
+const CLAUDE = "claude-sonnet-4-20250514";
+async function callClaude(sys, msgs, max) {
+  const r = await fetch("https://api.anthropic.com/v1/messages", {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({model:CLAUDE, max_tokens:max||800, system:sys, messages:msgs})
+  });
+  const d = await r.json();
+  return d.content?.[0]?.text || "API error — check ANTHROPIC_API_KEY";
+}
+
+const PROCS = [
+  {id:"anmeldung",name:"🏠 Anmeldung",deadline:"Within 2 weeks of moving",
+   docs:["Passport/ID card","Wohnungsgeberbestätigung (from landlord)","Anmeldeformular"],
+   steps:[
+    {n:1,t:"Get WGB from landlord",d:"Landlord must provide Wohnungsgeberbestätigung. Legal right under §19 BMG. Refusal = fine up to €1,000.",law:"§19 BMG"},
+    {n:2,t:"Book Bürgeramt appointment",d:"Book online early morning. If no slot in time, email Bürgeramt with WGB scan as proof.",law:"§17 BMG"},
+    {n:3,t:"Attend appointment",d:"Bring passport + WGB + Anmeldeformular. 15-20 min. Receive Meldebescheinigung same day.",law:"§23 BMG"},
+    {n:4,t:"Use Meldebescheinigung",d:"Unlocks: bank account, Krankenkasse, tax ID, residence permit, school/Kita registration.",law:"§23 BMG"},
+  ]},
+  {id:"krankenkasse",name:"🏥 Krankenkasse",deadline:"Immediately on employment",
+   docs:["Passport","Meldebescheinigung","Employment contract"],
+   steps:[
+    {n:1,t:"GKV vs PKV",d:"GKV mandatory for employees earning under €69,300/year. TK, DAK, Barmer have English support. TK best for expats.",law:"SGB V §5"},
+    {n:2,t:"Apply online",d:"Apply at insurer website. Free choice of insurer per §175 SGB V. Card arrives in 2 weeks.",law:"SGB V §175"},
+    {n:3,t:"Use your card",d:"Show Krankenkassenkarte at every doctor visit. Emergency: call 116 117.",law:"SGB V §291"},
+  ]},
+  {id:"steuer",name:"💰 Steuer-ID",deadline:"Arrives automatically",
+   docs:["Meldebescheinigung only"],
+   steps:[
+    {n:1,t:"Wait for post",d:"Steuer-ID sent automatically to your registered address within 2-4 weeks. No application needed.",law:"§139b AO"},
+    {n:2,t:"Give to employer",d:"HR needs it for payroll. Without it you pay highest tax rate Steuerklasse 6.",law:"§39 EStG"},
+    {n:3,t:"File Steuererklärung",d:"Annual tax return optional for employees but usually gives €500-1,500 refund. Use ELSTER (free), Wundertax or Taxfix.",law:"§25 EStG"},
+  ]},
+  {id:"residence",name:"🪪 Residence Permit",deadline:"BEFORE visa expires",
+   docs:["Passport","Biometric photos","Meldebescheinigung","Job contract","Insurance proof","Application fee €100-110"],
+   steps:[
+    {n:1,t:"Identify permit type",d:"Blue Card §19a (salary threshold), Fachkräftevisum §18a (vocational), Chancenkarte §20a (opportunity card, 1 year job search). Apply before expiry!",law:"AufenthG §4"},
+    {n:2,t:"Book Ausländerbehörde",d:"Apply before expiry — §81 AufenthG gives Fiktionsbescheinigung letting you work during processing.",law:"AufenthG §81"},
+    {n:3,t:"Submit and wait",d:"Processing 4-12 weeks. If rejected: file Widerspruch within 1 month. Seek legal advice immediately.",law:"AufenthG §81"},
+  ]},
+  {id:"arbeit",name:"💼 Employment Rights",deadline:"3 weeks if dismissed",
+   docs:["Employment contract","Payslips","Kündigung letter (if received)"],
+   steps:[
+    {n:1,t:"Know your rights",d:"Minimum wage €12.82/hr (MiLoG). 6 months probation max. 20+ days paid holiday. 6 weeks sick pay from employer.",law:"MiLoG §1"},
+    {n:2,t:"If dismissed — ACT FAST",d:"You have EXACTLY 3 WEEKS to file Kündigungsschutzklage at Arbeitsgericht. Missing this = claim LOST permanently. Go in person. Filing is FREE.",law:"KSchG §4"},
+    {n:3,t:"Request Arbeitszeugnis",d:"You have a legal right to a written job reference. Request in writing. Employer must provide within reasonable time.",law:"§109 GewO"},
+  ]},
+];
+
+const LAWS = [
+  {abbr:"AufenthG",name:"Aufenthaltsgesetz",cat:"Residence",desc:"Primary law for non-EU foreigners — all permit types, rights, obligations.",
+   articles:[{n:"§4",t:"Permit requirement",d:"Third-country nationals require valid residence title."},{n:"§19a",t:"EU Blue Card",d:"Qualified workers with degree + salary ≥€50,700 (standard) or €45,934 (shortage)."},{n:"§81",t:"Fiktionsbescheinigung",d:"Apply before expiry → Fiktionsbescheinigung → legal to stay and work during processing."}]},
+  {abbr:"BMG",name:"Bundesmeldegesetz",cat:"Administration",desc:"Mandatory address registration within 2 weeks.",
+   articles:[{n:"§17",t:"Anmeldepflicht",d:"Register within 2 weeks of moving."},{n:"§19",t:"WGB obligation",d:"Landlords must provide WGB. Refusal is a fine up to €1,000."}]},
+  {abbr:"KSchG",name:"Kündigungsschutzgesetz",cat:"Employment",desc:"Protects against unfair dismissal after 6 months.",
+   articles:[{n:"§1",t:"Social justification",d:"Dismissal only valid if socially justified: personal, behavioural, or operational reasons."},{n:"§4",t:"3-WEEK DEADLINE",d:"CRITICAL: File Kündigungsschutzklage at Arbeitsgericht within 3 WEEKS. Missing = claim lost."}]},
+  {abbr:"BGB §535-580",name:"Mietrecht",cat:"Tenancy",desc:"Strong tenant protections — deposit limit, rent cap, eviction rules.",
+   articles:[{n:"§551",t:"Kaution max",d:"Security deposit max 3 months net cold rent."},{n:"§558",t:"Rent cap",d:"Max 20% increase over 3 years (15% in Milieuschutz areas)."},{n:"§573",t:"Eviction rules",d:"Landlord needs valid justification: rent arrears, material breach, or Eigenbedarf."}]},
+  {abbr:"SGB V",name:"Sozialgesetzbuch V",cat:"Healthcare",desc:"Public health insurance law — GKV rights and contributions.",
+   articles:[{n:"§5",t:"Mandatory insurance",d:"Employees ≤€69,300/year must have GKV."},{n:"§10",t:"Family co-insurance",d:"Spouse and children co-insured for free if income ≤€505/month."}]},
+  {abbr:"AGG",name:"Allgemeines Gleichbehandlungsgesetz",cat:"Civil Rights",desc:"Prohibits discrimination based on race, religion, gender, age, disability.",
+   articles:[{n:"§7",t:"Discrimination ban",d:"No disadvantage based on race, ethnicity, gender, religion, disability, age."},{n:"§15",t:"Compensation",d:"Victims can claim compensation within 2 months of becoming aware."}]},
+  {abbr:"MiLoG",name:"Mindestlohngesetz",cat:"Employment",desc:"Statutory minimum wage law.",
+   articles:[{n:"§1",t:"Minimum wage",d:"Every employee: €12.82/hour gross (2025). Report violations to Zollbehörde."}]},
+  {abbr:"VwVfG",name:"Verwaltungsverfahrensgesetz",cat:"Administration",desc:"Your rights when dealing with German authorities.",
+   articles:[{n:"§29",t:"File access",d:"Right to see your own administrative files held by any authority."},{n:"§23",t:"Language assistance",d:"Authorities must accommodate interpreter needs."}]},
+];
+
+const RIGHTS = [
+  {color:"#3b82f6",t:"Free legal advice (Beratungshilfe)",law:"BerHG",d:"€15 legal advice with any Rechtsanwalt. Get Beratungshilfeschein from Amtsgericht first."},
+  {color:"#7c3aed",t:"GDPR data access",law:"DSGVO Art.15",d:"Request all data held about you by any authority within 30 days, free of charge."},
+  {color:"#22c55e",t:"Interpreter at hearings",law:"VwVfG §23",d:"Right to interpreter for any official administrative procedure. Cannot be denied."},
+  {color:"#ef4444",t:"Challenge any Bescheid",law:"VwGO §68",d:"Every official decision can be challenged. File Widerspruch within 1 month."},
+  {color:"#f59e0b",t:"Work during permit processing",law:"AufenthG §81",d:"Apply before expiry → Fiktionsbescheinigung → legally allowed to work while waiting."},
+  {color:"#06b6d4",t:"Anti-discrimination protection",law:"AGG §1",d:"Protected from discrimination in work or housing. Contact ADS: 030 18555-1855. Claim within 2 months."},
+  {color:"#ec4899",t:"Free social counselling",law:"SGB XII §11",d:"Free advice at Caritas, AWO, Diakonie, DRK in many languages. Nationwide."},
+  {color:"#84cc16",t:"Employment file access",law:"§83 BetrVG",d:"Right to see your Personalakte at any time. Can add written objections."},
+];
+
+const TEMPLATES = [
+  {n:"Widerspruch (Appeal any Bescheid)",d:"Challenge official decision within 1 month",
+   txt:"[Your Name]
+[Address]
+[City, Date]
+
+[Authority Name]
+[Authority Address]
+
+Betreff: Widerspruch gegen Bescheid vom [DATE]
+Aktenzeichen: [REF]
+
+Sehr geehrte Damen und Herren,
+
+hiermit lege ich fristgerecht Widerspruch gegen den Bescheid vom [DATE] ein.
+
+Begründung:
+[Explain why the decision is wrong]
+
+Ich beantrage den Bescheid aufzuheben.
+
+Mit freundlichen Grüßen,
+[Signature]
+[Name]
+
+Anlagen: Kopie des Bescheides"},
+  {n:"Mieterhöhung Objection",d:"Challenge unlawful rent increase",
+   txt:"[Your Name]
+[Address]
+[City, Date]
+
+[Landlord / Management]
+
+Betreff: Widerspruch gegen Mieterhöhungsverlangen vom [DATE]
+
+Sehr geehrte Damen und Herren,
+
+Ich widerspreche dem Mieterhöhungsverlangen vom [DATE].
+
+Die geforderte Miete übersteigt die ortsübliche Vergleichsmiete gemäß §558 BGB.
+Die 20%-Kappungsgrenze (§558 Abs. 3 BGB) wird überschritten.
+
+Ich zahle weiterhin die bisherige Miete von €[CURRENT RENT].
+
+Mit freundlichen Grüßen,
+[Name]"},
+  {n:"Akteneinsicht Request",d:"See your own files held by authorities",
+   txt:"[Your Name]
+[Address]
+[City, Date]
+
+[Authority]
+
+Betreff: Antrag auf Akteneinsicht gemäß §29 VwVfG
+
+Sehr geehrte Damen und Herren,
+
+Ich beantrage Einsicht in meine vollständige Akte bei Ihrer Behörde betreffend [MATTER].
+
+Rechtsgrundlage: §29 Abs. 1 VwVfG
+
+Mit freundlichen Grüßen,
+[Name]"},
+  {n:"⚠️ Kündigungsschutzklage — 3 WEEKS",d:"URGENT: Fight dismissal — deadline is absolute",
+   txt:"URGENT: Go to Arbeitsgericht IN PERSON — do not post.
+
+Klageschrift must include:
+1. Your name and employer name/address
+2. Date of Kündigung notice
+3. 'Die Kündigung vom [DATE] ist sozial ungerechtfertigt gemäß §1 KSchG.'
+4. 'Ich beantrage festzustellen, dass das Arbeitsverhältnis nicht aufgelöst wurde.'
+
+Filing is FREE for employees.
+Contact DGB or a Rechtsanwalt immediately.
+Missing the 3-week deadline = claim LOST PERMANENTLY."},
+];
+
+let chatHistory = [];
+
+function showTab(name, btn) {
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tc-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='laws') renderLaws('');
+  if(name==='rights') renderRights();
+  if(name==='templates') renderTpls();
+  if(name==='guide') renderProcBtns();
+  if(name==='chat') renderQuickTopics();
+}
+
+let curProc = null;
+function renderProcBtns() {
+  document.getElementById('proc-btns').innerHTML = PROCS.map(p =>
+    '<button onclick="selProc(''+p.id+'')" style="padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:'+(curProc===p.id?'rgba(255,204,2,.12)':'var(--surface2)')+';color:'+(curProc===p.id?'var(--accent)':'var(--muted)')+';font-size:.78rem;font-weight:600;cursor:pointer">'+p.name+'</button>'
+  ).join('');
+}
+function selProc(id) {
+  curProc=id;
+  const p=PROCS.find(x=>x.id===id);
+  document.getElementById('proc-title').textContent=p.name;
+  document.getElementById('proc-dead').textContent='Deadline: '+p.deadline;
+  document.getElementById('proc-steps').innerHTML=p.steps.map(s=>
+    '<div class="step"><div class="sn">'+s.n+'</div><div><div class="st">'+s.t+'</div><div class="sd">'+s.d+'</div><span class="sl">'+s.law+'</span></div></div>'
+  ).join('');
+  document.getElementById('proc-docs').innerHTML=p.docs.map(d=>'<div style="padding:5px 0;border-bottom:1px solid var(--border);font-size:.82rem">📄 '+d+'</div>').join('');
+  renderProcBtns();
+}
+
+
+
+async function doChat() {
+  const inp=document.getElementById('cin');
+  const txt=inp.value.trim();
+  if(!txt) return;
+  inp.value='';
+  addMsg('user',txt);
+  chatHistory.push({role:'user',content:txt});
+  addTyping();
+  document.getElementById('sbtn').disabled=true;
+  const sys='You are an expert German legal and bureaucracy assistant. Know: AufenthG, BGB, KSchG, SGB, BMG, AGG, VwVfG, MiLoG, BUrlG. Cite exact § paragraphs. Give concrete deadlines. Mention free help: Beratungshilfe €15 via Amtsgericht, DGB, Caritas, Mieterverein, ADS 030 18555-1855.';
+  try {
+    const r=await callClaude(sys,chatHistory.slice(-10),700);
+    remTyping();
+    chatHistory.push({role:'assistant',content:r});
+    addMsg('ai',r);
+  } catch(e) { remTyping(); addMsg('ai','Error: '+e.message); }
+  finally { document.getElementById('sbtn').disabled=false; }
+}
+function qa(t){document.getElementById('cin').value=t;doChat();}
+function addMsg(role,txt) {
+  const m=document.getElementById('chat-msgs');
+  const d=document.createElement('div'); d.className='m '+role;
+  d.innerHTML='<div class="mb">'+txt.replace(/</g,'&lt;').replace(/
+/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';
+  m.appendChild(d); m.scrollTop=m.scrollHeight;
+}
+function addTyping() {
+  const m=document.getElementById('chat-msgs');
+  const d=document.createElement('div'); d.className='m ai'; d.id='ty';
+  d.innerHTML='<div class="mb"><span class="td"></span><span class="td"></span><span class="td"></span></div>';
+  m.appendChild(d); m.scrollTop=m.scrollHeight;
+}
+function remTyping(){document.getElementById('ty')?.remove();}
+
+function renderQuickTopics() {
+  const topics=['Kündigung rights','Rent increase BGB §558','Visa permit §81','Bürgergeld SGB II','Kündigungsschutzklage','Discrimination AGG'];
+  document.getElementById('quick-topics').innerHTML=topics.map(t=>
+    '<button onclick="qa('Explain: '+t+'')" style="display:block;width:100%;text-align:left;padding:7px 10px;margin-bottom:4px;border:1px solid var(--border);border-radius:8px;font-size:.8rem;cursor:pointer;background:var(--surface2);color:var(--text)">🔍 '+t+'</button>'
+  ).join('');
+}
+
+function renderLaws(filter) {
+  document.getElementById('laws-list').innerHTML=LAWS
+    .filter(l=>!filter||l.name.toLowerCase().includes(filter)||l.abbr.toLowerCase().includes(filter)||l.desc.toLowerCase().includes(filter))
+    .map(l=>'<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px;margin-bottom:10px;cursor:pointer" onclick="this.querySelector('.ld').style.display=this.querySelector('.ld').style.display==='block'?'none':'block'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start">'+
+      '<div><div style="font-weight:700;color:#a78bfa;font-size:.9rem">'+l.name+'</div>'+
+      '<span style="background:rgba(124,58,237,.12);color:#a78bfa;padding:2px 7px;border-radius:5px;font-size:.72rem;font-weight:700;display:inline-block;margin:4px 0">'+l.abbr+'</span>'+
+      '<div style="font-size:.8rem;color:var(--muted)">'+l.desc+'</div></div></div>'+
+      '<div class="ld" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">'+
+      l.articles.map(a=>'<div style="background:var(--surface2);border-radius:8px;padding:9px;margin-bottom:6px"><div style="font-weight:700;font-size:.78rem;color:#a78bfa;margin-bottom:3px">'+a.n+' — '+a.t+'</div><div style="font-size:.82rem;color:var(--muted)">'+a.d+'</div></div>').join('')+
+      '<button onclick="event.stopPropagation();qa('Explain '+l.abbr+' ('+l.name+') for immigrants in plain English — practical implications and rights');document.querySelectorAll('.tab')[2].click();showTab('chat',document.querySelectorAll('.tab')[2])" class="btn bo" style="margin-top:6px;font-size:.75rem;padding:5px 12px">Ask AI about '+l.abbr+'</button>'+
+      '</div></div>'
+    ).join('');
+}
+function filterLaws(v){renderLaws(v.toLowerCase());}
+
+function renderRights() {
+  document.getElementById('rights-list').innerHTML=RIGHTS.map(r=>
+    '<div class="lc" style="border-left-color:'+r.color+';background:'+r.color+'11">'+
+    '<h3 style="color:'+r.color+'">'+r.t+' <span style="font-size:.68rem;background:rgba(255,255,255,.08);padding:2px 7px;border-radius:4px;margin-left:4px">'+r.law+'</span></h3>'+
+    '<p>'+r.d+'</p>'+
+    '<button onclick="qa('How do I exercise the right to: '+r.t+'? Give exact practical steps.')" style="margin-top:8px;padding:4px 12px;border-radius:7px;border:1px solid '+r.color+'30;background:transparent;color:'+r.color+';font-size:.75rem;cursor:pointer">How to use this right →</button>'+
+    '</div>'
+  ).join('');
+}
+
+function renderTpls() {
+  document.getElementById('tpl-grid').innerHTML=TEMPLATES.map((t,i)=>
+    '<div class="tplc" onclick="showTpl('+i+')"><div class="tpln">'+t.n+'</div><div class="tpld">'+t.d+'</div></div>'
+  ).join('');
+}
+function showTpl(i) {
+  const t=TEMPLATES[i];
+  document.getElementById('tpl-preview').innerHTML='<div class="card"><h2>'+t.n+'</h2><textarea id="tval" style="height:300px;font-family:Georgia,serif;line-height:1.9">'+t.txt+'</textarea><div style="display:flex;gap:8px;margin-top:10px"><button class="btn bg" onclick="navigator.clipboard.writeText(document.getElementById('tval').value).then(()=>alert('Copied!'))">Copy</button><button class="btn bo" onclick="qa('Personalise this German letter template for my situation: '+t.n+'. Ask me one question first.')">Personalise with AI</button></div></div>';
+}
+
+renderProcBtns();
+if(location.hash==='#letter') { document.querySelectorAll('.tab')[1].click(); showTab('letter',document.querySelectorAll('.tab')[1]); }
+</script>
+<script src="../legal.js"></script>
+
+<!-- Partner recommendation — compact -->
+<div style="max-width:1000px;margin:24px auto 0;padding:0 16px 28px">
+  <div style="background:linear-gradient(135deg,#0a0d14,#111520);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px 18px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FFCC02,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:.72rem;flex-shrink:0">S</div>
+      <div style="font-size:.72rem;font-weight:700;color:#f1f5f9">Partner / affiliate recommendations</div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:4px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:2px 8px;white-space:nowrap">
+        <span style="width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block"></span>
+        <span style="font-size:.6rem;color:#86efac;font-weight:700">Optional</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+
+      <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(255,215,0,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">🏦</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#FFD700">Commerzbank</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Free account + €50 bonus with code PNGHRA</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+      <a href="https://refer.gebuhrenfrei.com/shaistas-45"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(248,113,113,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">💳</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#f87171">Advanzia Mastercard</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Free credit card — no annual fee ever</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+      <a href="https://wise.com/invite/shaistashabbir"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(52,211,153,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">💸</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#34d399">Wise</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Send money home — save up to 8× on fees</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+<script src="../referral.js" defer></script>
+
+<script>
+// ── Letter Reader — fully self-contained ──────────────────
+window._lCapturedImage = null;
+window._lStream = null;
+
+window._lHandleFiles = function(files) {
+  if (!files || !files[0]) return;
+  var file = files[0];
+  if (file.size > 10*1024*1024) { alert('File too large — max 10 MB'); return; }
+  document.getElementById('l-file-name').textContent = '📄 ' + file.name;
+  document.getElementById('l-file-info').style.display = 'block';
+  document.getElementById('l-img-preview').style.display = 'none';
+  document.getElementById('l-pdf-canvas').style.display = 'none';
+  if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+    window._lReadPDF(file);
+  } else {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('l-img-preview').src = e.target.result;
+      document.getElementById('l-img-preview').style.display = 'block';
+      window._lCapturedImage = { base64: e.target.result.split(',')[1], type: file.type || 'image/jpeg' };
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+window._lReadPDF = async function(file) {
+  document.getElementById('l-proc-msg').textContent = 'Reading PDF…';
+  document.getElementById('l-processing').style.display = 'block';
+  try {
+    if (!window.pdfjsLib) {
+      await new Promise(function(res,rej){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+    var pdf = await window.pdfjsLib.getDocument({data: await file.arrayBuffer()}).promise;
+    var text = '';
+    for (var i=1; i<=Math.min(pdf.numPages,5); i++) {
+      var page = await pdf.getPage(i);
+      var tc = await page.getTextContent();
+      text += tc.items.map(function(x){return x.str;}).join(' ') + '
+';
+    }
+    document.getElementById('l-processing').style.display = 'none';
+    if (text.trim().length > 30) {
+      document.getElementById('ltxt').value = text.trim();
+      document.getElementById('ltab-paste').click();
+      alert('✅ PDF text extracted — review then click Analyse');
+    } else {
+      document.getElementById('l-proc-msg').textContent = 'Rendering scanned PDF…';
+      var page = await pdf.getPage(1);
+      var vp = page.getViewport({scale:2});
+      var cv = document.getElementById('l-pdf-canvas');
+      cv.width=vp.width; cv.height=vp.height; cv.style.display='block';
+      await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+      var data = cv.toDataURL('image/jpeg',0.92);
+      window._lCapturedImage = {base64:data.split(',')[1], type:'image/jpeg'};
+      document.getElementById('l-processing').style.display = 'none';
+      alert('📷 PDF rendered as image — click Analyse');
+    }
+  } catch(e) {
+    document.getElementById('l-processing').style.display = 'none';
+    alert('Could not read PDF. Try taking a photo instead.');
+  }
+};
+
+window._lStartCamera = async function() {
+  try {
+    window._lStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});
+    document.getElementById('l-cam-video').srcObject = window._lStream;
+    document.getElementById('l-cam-off').style.display = 'none';
+    document.getElementById('l-cam-on').style.display = 'block';
+    document.getElementById('l-cam-preview').style.display = 'none';
+  } catch(e) {
+    alert(e.name==='NotAllowedError'
+      ? 'Camera permission denied. Allow camera access in browser settings.'
+      : 'Camera not available. Use Upload file or Gallery instead.');
+  }
+};
+
+window._lCapture = function() {
+  var v = document.getElementById('l-cam-video');
+  var c = document.getElementById('l-cam-canvas');
+  c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  var data = c.toDataURL('image/jpeg',0.92);
+  window._lCapturedImage = {base64:data.split(',')[1], type:'image/jpeg'};
+  document.getElementById('l-cam-img').src = data;
+  document.getElementById('l-cam-on').style.display = 'none';
+  document.getElementById('l-cam-preview').style.display = 'block';
+  window._lStopCamera();
+};
+
+window._lStopCamera = function() {
+  if (window._lStream) { window._lStream.getTracks().forEach(function(t){t.stop();}); window._lStream=null; }
+  document.getElementById('l-cam-on').style.display = 'none';
+  document.getElementById('l-cam-off').style.display = 'block';
+};
+
+window._lAnalyse = async function() {
+  var lang  = document.getElementById('l-lang').value || 'English';
+  var ltype = document.getElementById('l-type').value || '';
+  var btn   = document.getElementById('l-analyse-btn');
+  var sys = 'You are an expert German legal document analyst. Analyse the letter and respond in '+lang+'.
+
+'
+    + 'Structure your response:
+'
+    + '**📋 Letter type:** what kind of document
+'
+    + '**📝 What it says:** plain-language summary
+'
+    + '**⏰ Deadlines:** any deadlines (🔴 if under 4 weeks, 🟡 if 1-2 months)
+'
+    + '**✅ What you must do:** 3-5 action steps
+'
+    + '**🛡️ Your rights:** relevant legal rights
+'
+    + '**🚦 Urgency:** 🔴 Urgent / 🟡 Within a month / 🟢 No rush
+
+'
+    + 'Also translate 2-3 key sentences into '+lang+'.'
+    + (ltype ? ' Letter type hint: '+ltype : '');
+  var messages;
+  if (window._lCapturedImage) {
+    messages = [{role:'user',content:[
+      {type:'image',source:{type:'base64',media_type:window._lCapturedImage.type,data:window._lCapturedImage.base64}},
+      {type:'text',text:'Read this German letter image and explain in '+lang+'.'}
+    ]}];
+  } else {
+    var txt = document.getElementById('ltxt').value.trim();
+    if (txt.length < 20) { alert('Please paste letter text, upload a file, or take a photo first.'); return; }
+    messages = [{role:'user',content:'German official letter — explain in '+lang+':
+
+'+txt}];
+  }
+  btn.disabled=true; btn.textContent='⏳ Analysing…';
+  document.getElementById('lres').innerHTML='';
+  document.getElementById('l-proc-msg').textContent='AI is reading your letter…';
+  document.getElementById('l-processing').style.display='block';
+  try {
+    var result = await callClaude(sys, messages, 1400);
+    document.getElementById('l-processing').style.display='none';
+    document.getElementById('lres').innerHTML =
+      '<div class="card" style="border-left:3px solid var(--accent)">'
+      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">'
+      +'<span style="font-weight:800;font-size:.85rem;color:var(--accent)">📋 Analysis result</span>'
+      +'<div style="display:flex;gap:6px;align-items:center">'
+      +'<button class="btn bo" style="font-size:.7rem;padding:5px 9px" onclick="navigator.clipboard?.writeText(document.getElementById('lres-text').innerText).then(()=>showToast('Copied!'))">📋 Copy</button>'
+      +'<select style="font-size:.72rem;padding:4px 8px;border-radius:7px;background:var(--surface2);color:var(--text);border:1px solid rgba(255,255,255,.1)" onchange="window._lRetranslate(this.value);this.value=''">'
+      +'<option value="">🌍 Translate…</option>'
+      +'<option value="Urdu">اردو</option><option value="Arabic">العربية</option>'
+      +'<option value="Turkish">Türkçe</option><option value="Russian">Русский</option>'
+      +'<option value="Farsi">فارسی</option><option value="French">Français</option>'
+      +'<option value="Italian">Italiano</option><option value="English">English</option>'
+      +'</select></div></div>'
+      +'<div id="lres-text" style="font-size:.84rem;line-height:1.85;white-space:pre-wrap;word-break:break-word">'
+      + result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/
+/g,'<br>')
+      +'</div></div>';
+  } catch(e) {
+    document.getElementById('l-processing').style.display='none';
+    document.getElementById('lres').innerHTML='<div class="wb">⚠️ Analysis failed. Check connection and try again.</div>';
+  } finally {
+    btn.disabled=false; btn.textContent='🔍 Analyse & explain';
+  }
+};
+
+window._lRetranslate = async function(toLang) {
+  if (!toLang) return;
+  var existing = document.getElementById('lres-text')?.innerText;
+  if (!existing || existing.length < 20) return;
+  var btn = document.getElementById('l-analyse-btn');
+  btn.disabled=true; btn.textContent='⏳ Translating…';
+  try {
+    var result = await callClaude(
+      'Translate this letter analysis into '+toLang+'. Keep all structure, headings and urgency markers.',
+      [{role:'user',content:existing}], 1000
+    );
+    document.getElementById('lres-text').innerHTML =
+      result.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/
+/g,'<br>');
+    showToast('✅ Translated to '+toLang);
+  } catch(e) { showToast('Translation failed. Try again.'); }
+  finally { btn.disabled=false; btn.textContent='🔍 Analyse & explain'; }
+};
+</script>
+<script src="module-product.js" defer></script>
+
+<!-- Community Tips -->
+<script>
+(function(){
+  var base=document.querySelector('[href*="index.html"]');
+  var prefix=base?base.href.replace(/index\.html.*/,''):'../';
+  fetch(prefix+'community-tips.json').then(function(r){return r.json();}).then(function(tips){
+    var page=location.pathname.split('/').pop().replace('.html','');
+    var relevant=tips.filter(function(t){return !t.module||t.module===page||t.module==='all';});
+    if(!relevant.length)return;
+    var sec=document.createElement('div');
+    sec.style.cssText='max-width:1040px;margin:16px auto 0;padding:0 16px 40px';
+    sec.innerHTML='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px">'
+      +'<div style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px">💬 Community tips</div>'
+      +'<p style="font-size:.75rem;color:rgba(255,255,255,.4);margin:0 0 12px">Real advice from immigrants in Germany. '
+      +'<a href="https://github.com/ShaistaShabbir-prog/navigate-germany/issues/new?title=Community+tip:+[city]&body=**City:**%0A**Tip:**" '
+      +'target="_blank" style="color:var(--accent)">Submit a tip →</a></p>'
+      +relevant.slice(0,4).map(function(t){
+        return '<div style="padding:10px 12px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);margin-bottom:8px">'
+          +'<div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:4px">'+t.tip+'</div>'
+          +'<div style="font-size:.7rem;color:rgba(255,255,255,.35)">'
+          +(t.city?'📍 '+t.city+' · ':'')+( t.verified?'✓ Verified · ':'')+( t.date?t.date:'')+'</div></div>';
+      }).join('')+'</div>';
+    var con=document.querySelector('.con');
+    if(con)con.parentNode.insertBefore(sec,con.nextSibling);
+  }).catch(function(){});
+})();
+</script>
+<div class="ref-bar">
+  <span>Our partners:</span>
+  <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA" target="_blank" rel="noopener sponsored" class="ref-cb">🏦 Commerzbank +€50</a>
+  <a href="https://refer.gebuhrenfrei.com/shaistas-45" target="_blank" rel="noopener sponsored" class="ref-av">💳 Free credit card</a>
+  <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
+</div>
+
+<div id="ng-toast"></div>
+<div id="ng-ai-btn" style="position:fixed;bottom:24px;right:24px;z-index:999">
+  <a href="../modules/legal.html#chat" style="display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:50px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;box-shadow:0 4px 20px rgba(124,58,237,.4);white-space:nowrap">
+    ✦ Ask Germany AI
+  </a>
+</div>
+
+</body>
+</html>

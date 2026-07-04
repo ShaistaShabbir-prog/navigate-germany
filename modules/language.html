@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>German Language — Navigate Germany</title>
+<link rel="stylesheet" href="modules-shared.css">
+  <link rel="stylesheet" href="module-product.css">
+</head><body>
+<nav><a class="nb" href="../index.html">Navigate <span>Germany</span></a><a class="bl" href="../index.html">&#8592; All modules</a></nav>
+<div class="ph"><h1>🇩🇪 German for Daily Life</h1><p>Real phrases for Amt visits · doctor appointments · workplace · transport · emergencies · with pronunciation &amp; TTS</p></div>
+<div style="display:flex;gap:0;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--surface)">
+  <button class="tab active" onclick="showTab('basics',this)">🏠 Basics</button>
+  <button class="tab" onclick="showTab('amt',this)">🏛️ At the Amt</button>
+  <button class="tab" onclick="showTab('doctor',this)">🏥 Doctor</button>
+  <button class="tab" onclick="showTab('apartment',this)">🏠 Apartment</button>
+  <button class="tab" onclick="showTab('school',this)">🎒 School/Kita</button>
+  <button class="tab" onclick="showTab('work',this)">💼 Work</button>
+  <button class="tab" onclick="showTab('shop',this)">🛒 Shopping</button>
+  <button class="tab" onclick="showTab('transport',this)">🚆 Transport</button>
+  <button class="tab" onclick="showTab('emg',this)">🚨 Emergency</button>
+  <button class="tab" onclick="showTab('quiz',this)">🧠 Quiz</button>
+  <button class="tab" onclick="showTab('alpha',this)">🔤 Alphabet</button>
+</div>
+<div style="background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;gap:14px;align-items:center">
+  <div style="font-size:.82rem;color:var(--muted)">⭐ <span id="xp-total">0</span> XP &nbsp;|&nbsp; 🔥 <span id="streak">3</span> day streak</div>
+</div>
+<div class="con" id="content"></div>
+<script>
+const CATS={
+  basics:[
+    {de:"Guten Morgen!",en:"Good morning!",p:"goo-ten MOR-gen",ctx:"Morning greeting"},
+    {de:"Guten Tag!",en:"Good day / Hello!",p:"goo-ten TAHK",ctx:"General greeting"},
+    {de:"Auf Wiedersehen!",en:"Goodbye!",p:"owf VEE-der-zayn",ctx:"Formal farewell"},
+    {de:"Bitte.",en:"Please / You're welcome.",p:"BIT-teh",ctx:"Essential politeness"},
+    {de:"Danke schön!",en:"Thank you very much!",p:"DAN-keh shurn",ctx:"Gratitude"},
+    {de:"Es tut mir leid.",en:"I'm sorry.",p:"es toot meer lied",ctx:"Apology"},
+    {de:"Ich verstehe nicht.",en:"I don't understand.",p:"ikh fer-SHTAY-eh nikht",ctx:"Very useful!"},
+    {de:"Sprechen Sie Englisch?",en:"Do you speak English?",p:"SHPREH-khen zee ENG-lish",ctx:"Ask for help"},
+    {de:"Wie viel kostet das?",en:"How much does this cost?",p:"vee feel KOS-tet das",ctx:"Shopping"},
+    {de:"Wo ist die Toilette?",en:"Where is the toilet?",p:"vo ist dee toy-LET-teh",ctx:"Essential!"},
+    {de:"Können Sie das wiederholen?",en:"Can you repeat that?",p:"KUR-nen zee das VEE-der-ho-len",ctx:"Didn't understand"},
+    {de:"Ich brauche Hilfe.",en:"I need help.",p:"ikh BROW-kheh HIL-feh",ctx:"General help"},
+  ],
+  amt:[
+    {de:"Ich habe einen Termin.",en:"I have an appointment.",p:"ikh HAH-beh EYE-nen ter-MEEN",ctx:"At Bürgeramt"},
+    {de:"Ich möchte mich anmelden.",en:"I want to register my address.",p:"ikh MUKH-teh mikh AN-mel-den",ctx:"Anmeldung"},
+    {de:"Welche Dokumente brauche ich?",en:"Which documents do I need?",p:"VEL-kheh do-koo-MEN-teh BROW-kheh ikh",ctx:"Before Amt visit"},
+    {de:"Ich brauche eine Meldebestätigung.",en:"I need a registration certificate.",p:"ikh BROW-kheh EYE-neh MEL-deh-beh-SHTAY-ti-gung",ctx:"Meldebescheinigung"},
+    {de:"Bis wann muss ich das einreichen?",en:"By when do I need to submit this?",p:"bis van mus ikh das EYN-ry-khen",ctx:"Deadlines"},
+    {de:"Haben Sie einen Dolmetscher?",en:"Do you have an interpreter?",p:"HAH-ben zee EYE-nen DOL-met-sher",ctx:"Ask for interpreter"},
+    {de:"Können Sie das bitte aufschreiben?",en:"Can you please write that down?",p:"KUR-nen zee das BIT-teh OWF-shry-ben",ctx:"Important info"},
+    {de:"Kann ich das online erledigen?",en:"Can I do this online?",p:"kan ikh das on-LEE-neh er-LEH-di-gen",ctx:"Digital option"},
+  ],
+  doctor:[
+    {de:"Ich bin krank.",en:"I am sick.",p:"ikh bin krank",ctx:"Tell doctor"},
+    {de:"Ich habe Schmerzen.",en:"I have pain.",p:"ikh HAH-beh SHMER-tsen",ctx:"Report pain"},
+    {de:"Seit wann haben Sie diese Beschwerden?",en:"How long have you had these symptoms?",p:"zeyt van HAH-ben zee dee-zeh beh-SHVER-den",ctx:"Doctor asks"},
+    {de:"Ich brauche ein Rezept.",en:"I need a prescription.",p:"ikh BROW-kheh eyn reh-TSEPT",ctx:"At doctor"},
+    {de:"Ich bin allergisch gegen...",en:"I am allergic to...",p:"ikh bin al-ER-gish GAY-gen",ctx:"Important info"},
+    {de:"Ich habe eine gesetzliche Krankenversicherung.",en:"I have public health insurance.",p:"ikh HAH-beh EYE-neh geh-ZETS-li-kheh KRAN-ken-fer-zi-kheh-rung",ctx:"At reception"},
+    {de:"Können Sie mich überweisen?",en:"Can you give me a referral?",p:"KUR-nen zee mikh Ü-ber-vy-zen",ctx:"Get referral"},
+    {de:"Wo tut es weh?",en:"Where does it hurt?",p:"vo toot es VAY",ctx:"Doctor asks you"},
+  ],
+  apartment:[
+    {de:"Ich interessiere mich für die Wohnung.",en:"I am interested in the apartment.",p:"ikh in-teh-ree-reh mikh für dee VOH-nung",ctx:"Apartment viewing"},
+    {de:"Wie hoch ist die Warmmiete?",en:"How much is the total rent including service costs?",p:"vee hoh ist dee VARM-mee-teh",ctx:"Rent"},
+    {de:"Wann kann ich einziehen?",en:"When can I move in?",p:"van kan ikh EYN-tsee-en",ctx:"Move-in"},
+    {de:"Bekomme ich eine Wohnungsgeberbestätigung?",en:"Will I receive the landlord confirmation?",p:"beh-KOM-meh ikh eye-neh VOH-nungs-gay-ber-beh-shtay-ti-gung",ctx:"Anmeldung"}
+  ],
+  school:[
+    {de:"Ich möchte mein Kind anmelden.",en:"I would like to register my child.",p:"ikh MUKH-teh mine kint AN-mel-den",ctx:"School/Kita"},
+    {de:"Gibt es einen freien Kita-Platz?",en:"Is there a childcare place available?",p:"gipt es eye-nen FRY-en KEE-ta plats",ctx:"Kita"},
+    {de:"Welche Unterlagen brauchen Sie?",en:"Which documents do you need?",p:"VEL-kheh OON-ter-lah-gen brow-khen zee",ctx:"Documents"},
+    {de:"Gibt es Sprachförderung?",en:"Is language support available?",p:"gipt es SHPRAKH-fur-der-oong",ctx:"Language support"}
+  ],
+  work:[
+    {de:"Vielen Dank für die Einladung zum Vorstellungsgespräch.",en:"Thank you for the job interview invitation.",p:"FEE-len dank für dee EYN-lah-doong tsoom FOR-shtel-oongs-geh-shprehkh",ctx:"Job interview"},
+    {de:"Ich bin im Homeoffice.",en:"I'm working from home.",p:"ikh bin im HOME-o-fis",ctx:"Remote work"},
+    {de:"Ich habe eine Frage.",en:"I have a question.",p:"ikh HAH-beh EYE-neh FRAH-geh",ctx:"In meetings"},
+    {de:"Können wir das Meeting verschieben?",en:"Can we reschedule the meeting?",p:"KUR-nen veer das MEE-ting fer-SHE-ben",ctx:"Professional"},
+    {de:"Bis wann brauchen Sie das?",en:"By when do you need it?",p:"bis van BROW-khen zee das",ctx:"Clarify deadlines"},
+    {de:"Ich bin im Urlaub vom … bis …",en:"I'm on holiday from … to …",p:"ikh bin im OOR-lowp fom … bis",ctx:"Out of office"},
+    {de:"Könnten Sie das bitte schriftlich schicken?",en:"Could you please send that in writing?",p:"KUR-nten zee das BIT-teh SHRIFT-likh SHIK-ken",ctx:"Important requests"},
+    {de:"Ich beantrage Überstunden.",en:"I am claiming overtime.",p:"ikh beh-AN-trah-geh Ü-ber-shtun-den",ctx:"HR matters"},
+  ],
+  shop:[
+    {de:"Wo finde ich...?",en:"Where can I find...?",p:"vo FIN-deh ikh",ctx:"Supermarket"},
+    {de:"Haben Sie das in einer anderen Größe?",en:"Do you have this in a different size?",p:"HAH-ben zee das in EYE-ner AN-de-ren GRUR-seh",ctx:"Clothes"},
+    {de:"Kann ich das umtauschen?",en:"Can I exchange this?",p:"kan ikh das UM-tow-shen",ctx:"Returns"},
+    {de:"Ich zahle mit Karte.",en:"I'll pay by card.",p:"ikh TSAH-leh mit KAR-teh",ctx:"Payment"},
+    {de:"Haben Sie eine Tüte?",en:"Do you have a bag?",p:"HAH-ben zee EYE-neh TÜ-teh",ctx:"Checkout"},
+    {de:"Das ist zu teuer.",en:"That's too expensive.",p:"das ist tsoo TOY-er",ctx:"Price"},
+    {de:"Gibt es einen Rabatt?",en:"Is there a discount?",p:"gipt es EYE-nen rah-BAT",ctx:"Sale"},
+  ],
+  transport:[
+    {de:"Eine Fahrkarte nach ... bitte.",en:"One ticket to ... please.",p:"EYE-neh FAR-kar-teh nach … BIT-teh",ctx:"Train/bus"},
+    {de:"Wann fährt der nächste Zug?",en:"When does the next train leave?",p:"van fert der NEKH-steh tsoog",ctx:"Train station"},
+    {de:"Ist dieser Sitz frei?",en:"Is this seat free?",p:"ist DEE-zer zits fry",ctx:"Train/bus"},
+    {de:"Wo muss ich umsteigen?",en:"Where do I need to change?",p:"vo mus ikh UM-shty-gen",ctx:"Connections"},
+    {de:"Der Zug hat Verspätung.",en:"The train is delayed.",p:"der tsoog hat fer-SHPAY-tung",ctx:"Delays"},
+    {de:"Bitte halten Sie hier an.",en:"Please stop here.",p:"BIT-teh HAL-ten zee heer an",ctx:"Taxi"},
+  ],
+  emg:[
+    {de:"Hilfe!",en:"Help!",p:"HIL-feh",ctx:"EMERGENCY"},
+    {de:"Rufen Sie die Polizei!",en:"Call the police!",p:"ROO-fen zee dee po-li-TSAY",ctx:"Police needed"},
+    {de:"Rufen Sie einen Krankenwagen!",en:"Call an ambulance!",p:"ROO-fen zee EYE-nen KRAN-ken-VAH-gen",ctx:"Medical emergency"},
+    {de:"Ich brauche sofort einen Arzt.",en:"I need a doctor immediately.",p:"ikh BROW-kheh zo-FORT EYE-nen artst",ctx:"Medical urgent"},
+    {de:"Es brennt!",en:"It's on fire!",p:"es brent",ctx:"Fire"},
+    {de:"Ich wurde bestohlen.",en:"I was robbed.",p:"ikh VOOR-deh beh-SHTOH-len",ctx:"Theft"},
+    {de:"Notruf: 112",en:"Emergency: 112",p:"noot-roof eyn-eyn-tsvay",ctx:"Most important!"},
+  ],
+};
+
+const ALPHA=[
+  {l:"A",s:"ah",ex:"Auto"},{l:"B",s:"beh",ex:"Buch"},{l:"C",s:"tseh",ex:"Computer"},
+  {l:"D",s:"deh",ex:"Deutsch"},{l:"E",s:"eh",ex:"Essen"},{l:"F",s:"ef",ex:"Frau"},
+  {l:"G",s:"geh",ex:"Gut"},{l:"H",s:"hah",ex:"Haus"},{l:"I",s:"ee",ex:"Ich"},
+  {l:"J",s:"yot",ex:"Jahr"},{l:"K",s:"kah",ex:"Karte"},{l:"L",s:"el",ex:"Leben"},
+  {l:"M",s:"em",ex:"Mann"},{l:"N",s:"en",ex:"Nein"},{l:"O",s:"oh",ex:"Ort"},
+  {l:"P",s:"peh",ex:"Pass"},{l:"Q",s:"koo",ex:"Quelle"},{l:"R",s:"er",ex:"Rezept"},
+  {l:"S",s:"es",ex:"Schule"},{l:"T",s:"teh",ex:"Termin"},{l:"U",s:"oo",ex:"Uhr"},
+  {l:"V",s:"fow",ex:"Visum"},{l:"W",s:"veh",ex:"Wohnung"},{l:"X",s:"iks",ex:"extra"},
+  {l:"Y",s:"üpsilon",ex:"System"},{l:"Z",s:"tset",ex:"Zeit"},
+  {l:"Ä",s:"eh (air)",ex:"Ärzte"},{l:"Ö",s:"ur (rounded)",ex:"öffentlich"},
+  {l:"Ü",s:"ü (pursed)",ex:"über"},{l:"ß",s:"ss",ex:"Straße"},
+];
+
+let xp=parseInt(localStorage.getItem('ng_xp')||'0');
+function addXP(n){xp+=n;localStorage.setItem('ng_xp',xp);document.getElementById('xp-total').textContent=xp;}
+function speak(t){const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u);}
+
+function showTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderTab(name);
+}
+
+function renderTab(tab){
+  const el=document.getElementById('content');
+  if(tab==='quiz'){renderQuiz(el);return;}
+  if(tab==='alpha'){renderAlpha(el);return;}
+  const phrases=CATS[tab]||[];
+  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔊 Tap "Say" to hear native pronunciation. Clicking the card earns +5 XP!</div><div id="phrase-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px"></div>';
+  const grid=document.getElementById('phrase-grid');
+  phrases.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='phrase-card';
+    card.innerHTML='<button class="say-btn">🔊 Say</button><div class="phrase-de"></div><div class="phrase-en"></div><div class="phrase-pron"></div><span class="ctx-tag"></span>';
+    card.querySelector('.phrase-de').textContent=p.de;
+    card.querySelector('.phrase-en').textContent=p.en;
+    card.querySelector('.phrase-pron').textContent='📢 '+p.p;
+    card.querySelector('.ctx-tag').textContent=p.ctx;
+    card.addEventListener('click',()=>addXP(5));
+    card.querySelector('.say-btn').addEventListener('click',event=>{event.stopPropagation();speak(p.de);});
+    grid.appendChild(card);
+  });
+}
+
+function renderAlpha(el){
+  el.innerHTML='<div class="ib" style="margin-bottom:14px">🔤 German special letters: <strong>Ä (ah-umlaut)</strong>, <strong>Ö (oh-umlaut)</strong>, <strong>Ü (oo-umlaut)</strong>, <strong>ß (ss)</strong>. Click any letter to hear it!</div><div id="alpha-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px"></div>';
+  const grid=document.getElementById('alpha-grid');
+  ALPHA.forEach(a=>{
+    const card=document.createElement('div');
+    card.className='letter-card';
+    card.innerHTML='<div style="font-size:2rem;font-weight:800;color:var(--accent)"></div><div style="font-size:.72rem;color:var(--muted);margin-top:2px"></div><div style="font-size:.65rem;color:#475569;margin-top:2px"></div>';
+    card.children[0].textContent=a.l;
+    card.children[1].textContent=a.s;
+    card.children[2].textContent=a.ex;
+    card.addEventListener('click',()=>{speak(a.l);addXP(2);});
+    grid.appendChild(card);
+  });
+}
+
+const QS=[
+  {q:"How do you say 'I don't understand'?",a:"Ich verstehe nicht.",w:["Ich spreche nicht.","Ich bin krank.","Ich habe keine Zeit."]},
+  {q:"What does 'Bitte' mean?",a:"Please / You're welcome",w:["Thank you","Goodbye","Sorry"]},
+  {q:"You need a doctor urgently. What do you say?",a:"Ich brauche sofort einen Arzt.",w:["Hilfe!","Wo ist die Toilette?","Ich habe Schmerzen."]},
+  {q:"What does 'Anmeldung' mean?",a:"Address registration",w:["Health insurance","Tax office","Bank account"]},
+  {q:"How do you ask 'Do you speak English?'",a:"Sprechen Sie Englisch?",w:["Haben Sie Englisch?","Können Sie Englisch?","Wissen Sie Englisch?"]},
+  {q:"Emergency number in Germany?",a:"112",w:["110","999","118"]},
+  {q:"How do you say 'I have an appointment'?",a:"Ich habe einen Termin.",w:["Ich brauche Hilfe.","Ich bin krank.","Ich zahle mit Karte."]},
+  {q:"What does 'Krankenversicherung' mean?",a:"Health insurance",w:["Health card","Doctor's office","Prescription"]},
+  {q:"'Auf Wiedersehen' means:",a:"Goodbye (formal)",w:["Good morning","Good evening","See you tomorrow"]},
+  {q:"How do you say 'Where do I need to change trains?'",a:"Wo muss ich umsteigen?",w:["Wo ist der Bahnhof?","Wann fährt der Zug?","Welches Gleis?"]},
+];
+let qi=0,qs=0;
+function renderQuiz(el){
+  if(qi>=QS.length){
+    el.innerHTML='<div class="card" style="text-align:center;padding:32px"><div style="font-size:3rem;margin-bottom:10px">🎉</div><h2 style="font-size:1.3rem;margin-bottom:8px">Quiz Complete!</h2><p>Score: <strong id="final-score" style="color:var(--accent);font-size:1.3rem"></strong></p><button id="play-again" class="btn bg" style="margin-top:16px">Play again</button></div>';
+    document.getElementById('final-score').textContent=qs+'/'+QS.length;
+    document.getElementById('play-again').addEventListener('click',()=>{qi=0;qs=0;renderQuiz(document.getElementById('content'));});
+    return;
+  }
+  const q=QS[qi];
+  const opts=[q.a,...q.w].sort(()=>Math.random()-.5);
+  el.innerHTML='<div class="card"><div id="qmeta" style="font-size:.78rem;color:var(--muted);margin-bottom:10px"></div><div id="qtext" style="font-size:1.1rem;font-weight:700;margin-bottom:18px"></div><div id="qopts" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div><div id="qfb" style="min-height:28px;margin-top:14px;font-size:1rem;text-align:center"></div></div>';
+  document.getElementById('qmeta').textContent='Question '+(qi+1)+' of '+QS.length+' · Score: '+qs;
+  document.getElementById('qtext').textContent=q.q;
+  const options=document.getElementById('qopts');
+  opts.forEach(option=>{
+    const button=document.createElement('button');
+    button.className='qopt';
+    button.textContent=option;
+    button.addEventListener('click',()=>checkQ(button,option,q.a));
+    options.appendChild(button);
+  });
+}
+function checkQ(btn,c,a){
+  document.querySelectorAll('.qopt').forEach(b=>b.onclick=null);
+  if(c===a){btn.classList.add('correct');document.getElementById('qfb').innerHTML='✅ Correct! +15 XP';qs++;addXP(15);}
+  else{btn.classList.add('wrong');document.querySelectorAll('.qopt').forEach(b=>{if(b.textContent.trim()===a)b.classList.add('correct');});document.getElementById('qfb').innerHTML='❌ Answer: <strong>'+a+'</strong>';}
+  setTimeout(()=>{qi++;renderQuiz(document.getElementById('content'));},1500);
+}
+
+document.getElementById('xp-total').textContent=xp;
+renderTab('basics');
+</script>
+<div class="con" style="padding-top:0">
+  <div class="ib"><strong>Urdu and Farsi support roadmap:</strong> phrase translations are being prepared. The current cards show German with English meaning so no empty language tabs are presented.</div>
+</div>
+<!-- Partner recommendation — compact -->
+<div style="max-width:1000px;margin:24px auto 0;padding:0 16px 28px">
+  <div style="background:linear-gradient(135deg,#0a0d14,#111520);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px 18px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FFCC02,#f59e0b);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:.72rem;flex-shrink:0">S</div>
+      <div style="font-size:.72rem;font-weight:700;color:#f1f5f9">Partner / affiliate recommendations</div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:4px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:2px 8px;white-space:nowrap">
+        <span style="width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block"></span>
+        <span style="font-size:.6rem;color:#86efac;font-weight:700">Optional</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+
+      <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(255,215,0,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">🏦</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#FFD700">Commerzbank</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Free account + €50 bonus with code PNGHRA</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+      <a href="https://refer.gebuhrenfrei.com/shaistas-45"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(248,113,113,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">💳</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#f87171">Advanzia Mastercard</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Free credit card — no annual fee ever</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+      <a href="https://wise.com/invite/shaistashabbir"
+         target="_blank" rel="noopener sponsored"
+         style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:12px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(52,211,153,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:1.4rem;flex-shrink:0">💸</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:800;font-size:.82rem;color:#34d399">Wise</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.45)">Send money home — save up to 8× on fees</div>
+        </div>
+        <span style="color:rgba(255,255,255,.3);font-size:.75rem;flex-shrink:0">↗</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+  <script src="../referral.js" defer></script>
+  <script src="module-product.js" defer></script>
+<div id="ng-toast"></div>
+<script>function showToast(msg,ms=2200){const t=document.getElementById('ng-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ms);}</script>
+<div class="ref-bar">
+  <span>Our partners:</span>
+  <a href="https://www.commerzbank.de/girokonto-antrag?path=/pk/de/Abschluss/GD51_Girokonto_DD_MCD_TGK_50Start_KwK&x-werbecode=PNGHRA" target="_blank" rel="noopener sponsored" class="ref-cb">🏦 Commerzbank +€50</a>
+  <a href="https://refer.gebuhrenfrei.com/shaistas-45" target="_blank" rel="noopener sponsored" class="ref-av">💳 Free credit card</a>
+  <a href="https://wise.com/invite/shaistashabbir" target="_blank" rel="noopener sponsored" class="ref-ws">💸 Wise — send money</a>
+</div>
+
+<!-- Community Tips -->
+<script>
+(function(){
+  var base=document.querySelector('[href*="index.html"]');
+  var prefix=base?base.href.replace(/index\.html.*/,''):'../';
+  fetch(prefix+'community-tips.json').then(function(r){return r.json();}).then(function(tips){
+    var page=location.pathname.split('/').pop().replace('.html','');
+    var relevant=tips.filter(function(t){return !t.module||t.module===page||t.module==='all';});
+    if(!relevant.length)return;
+    var sec=document.createElement('div');
+    sec.style.cssText='max-width:1040px;margin:16px auto 0;padding:0 16px 40px';
+    sec.innerHTML='<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px">'
+      +'<div style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:4px">💬 Community tips</div>'
+      +'<p style="font-size:.75rem;color:rgba(255,255,255,.4);margin:0 0 12px">Real advice from immigrants in Germany. '
+      +'<a href="https://github.com/ShaistaShabbir-prog/navigate-germany/issues/new?title=Community+tip:+[city]&body=**City:**%0A**Tip:**" '
+      +'target="_blank" style="color:var(--accent)">Submit a tip →</a></p>'
+      +relevant.slice(0,4).map(function(t){
+        return '<div style="padding:10px 12px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);margin-bottom:8px">'
+          +'<div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:4px">'+t.tip+'</div>'
+          +'<div style="font-size:.7rem;color:rgba(255,255,255,.35)">'
+          +(t.city?'📍 '+t.city+' · ':'')+( t.verified?'✓ Verified · ':'')+( t.date?t.date:'')+'</div></div>';
+      }).join('')+'</div>';
+    var con=document.querySelector('.con');
+    if(con)con.parentNode.insertBefore(sec,con.nextSibling);
+  }).catch(function(){});
+})();
+</script>
+<div id="ng-ai-btn" style="position:fixed;bottom:24px;right:24px;z-index:999">
+  <a href="../modules/legal.html#chat" style="display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:50px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;box-shadow:0 4px 20px rgba(124,58,237,.4);white-space:nowrap">
+    ✦ Ask Germany AI
+  </a>
+</div>
+
+</body></html>

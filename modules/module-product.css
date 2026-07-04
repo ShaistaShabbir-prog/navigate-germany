@@ -1,0 +1,91 @@
+/* Navigate Germany — module-product.css
+   Provides JS-injected feature tags / source badges only.
+   All layout, typography, and spacing is handled by modules-shared.css.
+   ──────────────────────────────────────────────────────────────────── */
+
+:root {
+  --module-yellow: #FFCC02;
+  --module-green:  #22c55e;
+  --module-amber:  #f59e0b;
+}
+
+/* Feature tags injected by module-product.js into .ph */
+.module-feature-tags,
+.module-source-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.module-feature-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: #dbeafe;
+}
+
+.module-source-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  border: 1px solid rgba(34,197,94,.3);
+  background: rgba(34,197,94,.1);
+  color: #86efac;
+}
+
+.module-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  border: 1px solid rgba(245,158,11,.3);
+  background: rgba(245,158,11,.1);
+  color: #fde68a;
+}
+
+/* Alert types added by module-product.js class injection */
+.module-alert {
+  padding: 12px 15px;
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: .845rem;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+.module-alert--urgent  { border-color: rgba(239,68,68,.4);   background: rgba(239,68,68,.09);  color: #fca5a5; }
+.module-alert--caution { border-color: rgba(245,158,11,.4);  background: rgba(245,158,11,.09); color: #fcd34d; }
+.module-alert--info    { border-color: rgba(59,130,246,.4);  background: rgba(59,130,246,.09); color: #93c5fd; }
+.module-alert--verified{ border-color: rgba(34,197,94,.4);   background: rgba(34,197,94,.09);  color: #86efac; }
+
+/* Tool header pattern used in letter-analyser */
+.module-tool-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.module-tool-header h2 { margin: 0 0 4px; font-size: .95rem; }
+.module-tool-header p  { margin: 0; font-size: .82rem; color: #7c8fa8; }
+
+/* Focus ring */
+.module-product :is(a,button,input,select,textarea):focus-visible {
+  outline: 2px solid rgba(255,204,2,.6);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

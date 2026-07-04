@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrated Bavarian castle and alpine landscape</title>
+  <desc id="desc">A soft blue and green illustration inspired by Neuschwanstein Castle and the Bavarian Alps.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcefff"/>
+      <stop offset=".58" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#d4e4cf"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8aa9be"/>
+      <stop offset="1" stop-color="#496c7a"/>
+    </linearGradient>
+    <linearGradient id="forest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#54784e"/>
+      <stop offset="1" stop-color="#213f35"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#16324a" flood-opacity=".2"/>
+    </filter>
+  </defs>
+  <rect width="760" height="560" fill="url(#sky)"/>
+  <circle cx="610" cy="100" r="44" fill="#fff" opacity=".72"/>
+  <g opacity=".22" fill="none" stroke="#6e9abc" stroke-width="2">
+    <path d="M120 85l42-22 38 18 30-16 37 17 42-20 36 24 40-9 38 28 44-8 31 25 48-2"/>
+    <path d="M152 57l7 23 21 7-9 18 8 23-25 4-12 22-17-18-25 3 2-26-18-15 20-17 1-25 25 6z"/>
+  </g>
+  <path d="M90 352L235 142l96 118 86-141 151 194 84-119 108 171v195H0V430z" fill="url(#mountain)"/>
+  <path d="M235 142l96 118-43-22-28 8-25-29-31 22-38 3zM417 119l151 194-57-35-35 4-32-39-29 27-41-7zM652 194l108 171-54-35-31 5-31-42-34 17z" fill="#f4f8fa" opacity=".9"/>
+  <path d="M0 397c92-45 160-28 239-2 100 33 183-25 274-17 91 8 155 54 247 38v144H0z" fill="#6e8e5f"/>
+  <path d="M0 457c104-34 190 9 274-7 104-20 171-17 259 17 83 32 152-5 227-12v105H0z" fill="url(#forest)"/>
+  <g fill="#2f5440" opacity=".92">
+    <path d="M72 449l20-58 20 58h-12l19 43H65l19-43z"/>
+    <path d="M132 437l18-53 18 53h-10l17 39h-49l16-39z"/>
+    <path d="M610 444l19-57 20 57h-11l18 42h-53l18-42z"/>
+    <path d="M679 430l17-51 18 51h-10l16 37h-48l16-37z"/>
+    <path d="M24 474l16-47 16 47h-9l15 34H18l14-34z"/>
+  </g>
+  <g transform="translate(345 205)" filter="url(#shadow)">
+    <path d="M30 225h240v72H30z" fill="#e7e0d5"/>
+    <path d="M46 134h82v163H46zM160 107h81v190h-81z" fill="#f5f1e9"/>
+    <path d="M57 89h59v45H57zM174 66h53v41h-53z" fill="#ece6dc"/>
+    <path d="M67 49h39v40H67zM184 25h33v41h-33z" fill="#f8f4ed"/>
+    <path d="M86 0l22 49H64zM201-24l20 49h-40z" fill="#263e50"/>
+    <path d="M112 159h48v138h-48z" fill="#ede7de"/>
+    <path d="M136 113l28 46h-56z" fill="#314b5c"/>
+    <path d="M139 85h9v39h-9z" fill="#2c4657"/>
+    <g fill="#638099">
+      <path d="M68 157h13v22H68zM94 157h13v22H94zM68 200h13v22H68zM94 200h13v22H94z"/>
+      <path d="M181 138h13v24h-13zM207 138h13v24h-13zM181 183h13v24h-13zM207 183h13v24h-13z"/>
+      <path d="M126 188h18v27h-18zM126 233h18v28h-18z"/>
+    </g>
+    <path d="M18 225h266l-18 20H35z" fill="#d6cbbd"/>
+    <path d="M14 297h274v18H14z" fill="#c7b8a8"/>
+  </g>
+  <path d="M0 530c130-44 248 9 368-4 119-13 219-26 392 1v33H0z" fill="#1c3b32"/>
+</svg>
