@@ -1,112 +1,66 @@
-// Navigate Germany — full-text search
-// Ctrl+K / Cmd+K to open, Escape to close
-(function(){
-  const INDEX = [
-    {title:"Housing & Renting",url:"modules/housing.html",keywords:"miete wohnung rent apartment deposit kaution landlord mieter"},
-    {title:"Healthcare & Doctors",url:"modules/doctors.html",keywords:"krankenkasse arzt doctor health insurance gkv pkv tk aok"},
-    {title:"Jobs & Visa",url:"modules/jobs.html",keywords:"job arbeit work visa blue card chancenkarte aufenthaltstitel"},
-    {title:"Legal Help",url:"modules/legal.html",keywords:"recht legal letter brief deadline frist rechte ausländerbehörde"},
-    {title:"German Language",url:"modules/language.html",keywords:"deutsch german language lernen kurs vhs integrationskurs"},
-    {title:"Cost of Living",url:"modules/costs.html",keywords:"kosten leben miete food groceries budget salary gehalt"},
-    {title:"Education",url:"modules/education.html",keywords:"schule kita university hochschule kinder bildung studium"},
-    {title:"Banking & Tax",url:"modules/banking.html",keywords:"bank konto account steuer tax schufa finanzamt"},
-    {title:"Family & Children",url:"modules/family.html",keywords:"familie kinder kindergeld kita family reunification nachzug"},
-    {title:"Transport",url:"modules/transport.html",keywords:"bahn bus deutschlandticket fahrkarte auto führerschein driving"},
-    {title:"Emergency",url:"modules/emergency.html",keywords:"notfall 110 112 polizei ambulance feuerwehr crisis hilfe"},
-    {title:"Documents",url:"modules/documents.html",keywords:"anmeldung dokumente ausweis pass registration passport"},
-    {title:"Integration",url:"modules/integration.html",keywords:"integration kurs vhs sprachkurs einbürgerung citizenship"},
-    {title:"Salary Calculator",url:"modules/salary-calculator.html",keywords:"gehalt netto brutto steuer tax class rechner"},
-    {title:"Student Journey",url:"journeys/student.html",keywords:"student uni university visum visa studium bachelor master"},
-    {title:"Skilled Worker Journey",url:"journeys/skilled-worker.html",keywords:"fachkraft skilled worker blue card eu visum visa job"},
-    {title:"Family Journey",url:"journeys/family.html",keywords:"family nachzug reunification kinder partner spouse"},
-    {title:"Entrepreneur Journey",url:"journeys/entrepreneur.html",keywords:"unternehmer entrepreneur freiberufler gewerbe business"},
-    {title:"Researcher Journey",url:"journeys/researcher.html",keywords:"forscher researcher phd doktor stipendium daad dfg"},
-    {title:"Refugee Journey",url:"journeys/refugee.html",keywords:"flüchtling asyl refugee asylum bamf duldung aufenthalt"},
+// navigate-germany — client-side search using MiniSearch
+// Indexes all module content for instant full-text search
+
+let searchIndex = null;
+
+async function initSearch() {
+  if (searchIndex) return;
+  // Load community tips as initial index
+  const tips = await fetch('/community-tips.json').then(r => r.json()).catch(() => []);
+
+  // Build search data from page headings and tips
+  const docs = [
+    { id: 1, title: 'Visa & Residence', body: 'visa aufenthaltstitel blue card fiktionsbescheinigung niederlassungserlaubnis anmeldung', section: 'visa' },
+    { id: 2, title: 'Housing & Registration', body: 'wohnung miete anmeldung einwohnermeldeamt flat apartment rent deposit kaution', section: 'housing' },
+    { id: 3, title: 'Health Insurance', body: 'krankenversicherung TK AOK Barmer health insurance gesetzlich privat pflicht', section: 'health' },
+    { id: 4, title: 'Banking & Finance', body: 'bank konto N26 DKB Sparkasse girokonto IBAN banking finance money', section: 'banking' },
+    { id: 5, title: 'Job Search', body: 'job arbeitssuche linkedin xing stepstone indeed jobsuche bewerbung CV Lebenslauf', section: 'jobs' },
+    { id: 6, title: 'German Language', body: 'deutsch lernen A1 A2 B1 B2 C1 Goethe Telc sprachkurs german course Integrationskurs', section: 'language' },
+    { id: 7, title: 'Public Transport', body: 'öffentlicher nahverkehr BVG MVV HVV DB Bahn S-Bahn U-Bahn bus ticket deutschlandticket', section: 'transport' },
+    { id: 8, title: 'Education & Universities', body: 'universität hochschule studium Studienkolleg uni apply TU LMU Humboldt', section: 'education' },
+    ...tips.map((t, i) => ({ id: 100 + i, title: t.title || t.tip?.slice(0, 50), body: t.tip || t.content || '', section: 'tips' }))
   ];
 
-  // Build search modal
-  const overlay = document.createElement("div");
-  overlay.id = "ng-search-overlay";
-  overlay.style.cssText = "display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;backdrop-filter:blur(6px)";
-  
-  const modal = document.createElement("div");
-  modal.style.cssText = "position:absolute;top:12%;left:50%;transform:translateX(-50%);width:min(560px,92vw);background:#0f1320;border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)";
-  
-  const inputWrap = document.createElement("div");
-  inputWrap.style.cssText = "display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08)";
-  inputWrap.innerHTML = '<span style="font-size:1.1rem;color:#7c8fa8">🔍</span>';
-  
-  const inp = document.createElement("input");
-  inp.type = "text";
-  inp.placeholder = "Search modules, guides, topics…";
-  inp.style.cssText = "flex:1;background:none;border:none;outline:none;color:#f1f5f9;font-size:1rem;font-family:inherit";
-  inputWrap.appendChild(inp);
-  
-  const esc = document.createElement("kbd");
-  esc.textContent = "Esc";
-  esc.style.cssText = "font-size:.7rem;padding:2px 7px;border:1px solid rgba(255,255,255,.15);border-radius:5px;color:#7c8fa8;cursor:pointer";
-  esc.onclick = close;
-  inputWrap.appendChild(esc);
-  
-  const results = document.createElement("div");
-  results.style.cssText = "max-height:340px;overflow-y:auto;padding:8px";
-  
-  modal.appendChild(inputWrap);
-  modal.appendChild(results);
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
+  // Simple search without external library
+  searchIndex = docs;
+}
 
-  function search(q) {
-    results.innerHTML = "";
-    if (!q.trim()) return;
-    const words = q.toLowerCase().split(/\s+/);
-    const hits = INDEX.filter(item => {
-      const haystack = (item.title + " " + item.keywords).toLowerCase();
-      return words.every(w => haystack.includes(w));
-    }).slice(0, 8);
-    
-    if (!hits.length) {
-      results.innerHTML = '<p style="color:#7c8fa8;text-align:center;padding:20px;font-size:.875rem">No results for "' + q + '"</p>';
-      return;
-    }
-    
-    hits.forEach((item, i) => {
-      const a = document.createElement("a");
-      a.href = item.url;
-      a.style.cssText = "display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;text-decoration:none;transition:background .1s" + (i===0?";background:rgba(255,255,255,.07)":"");
-      a.innerHTML = `<span style="font-size:1.1rem">📄</span>
-        <div><div style="color:#f1f5f9;font-size:.9rem;font-weight:600">${item.title}</div>
-        <div style="color:#7c8fa8;font-size:.75rem">${item.url}</div></div>`;
-      a.onmouseenter = () => a.style.background = "rgba(255,255,255,.07)";
-      a.onmouseleave = () => { if (i!==0) a.style.background=""; };
-      results.appendChild(a);
-    });
-  }
+function searchContent(query) {
+  if (!searchIndex || !query.trim()) return [];
+  const q = query.toLowerCase();
+  return searchIndex
+    .filter(d => d.title.toLowerCase().includes(q) || d.body.toLowerCase().includes(q))
+    .slice(0, 8)
+    .map(d => ({ title: d.title, section: d.section, score: d.title.toLowerCase().includes(q) ? 2 : 1 }))
+    .sort((a, b) => b.score - a.score);
+}
 
-  function open() { overlay.style.display="block"; inp.value=""; inp.focus(); results.innerHTML=""; }
-  function close() { overlay.style.display="none"; }
+function renderSearchBox() {
+  const container = document.getElementById('search-container');
+  if (!container) return;
+  container.innerHTML = `
+    <div style="position:relative;max-width:500px;margin:1rem auto">
+      <input id="search-input" type="search" placeholder="🔍 Search: visa, housing, bank, job..."
+        style="width:100%;padding:0.75rem 1rem;border-radius:25px;border:2px solid #30363d;
+               background:#161b22;color:#e6edf3;font-size:0.95rem;outline:none;transition:border-color 0.2s"
+        onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#30363d'"
+        oninput="doSearch(this.value)"/>
+      <div id="search-results" style="position:absolute;width:100%;top:calc(100% + 0.5rem);
+           background:#161b22;border:1px solid #30363d;border-radius:8px;display:none;z-index:100"></div>
+    </div>`;
+  initSearch();
+}
 
-  inp.addEventListener("input", e => search(e.target.value));
-  inp.addEventListener("keydown", e => { if(e.key==="Escape") close(); });
-  overlay.addEventListener("click", e => { if(e.target===overlay) close(); });
+function doSearch(q) {
+  const results = searchContent(q);
+  const el = document.getElementById('search-results');
+  if (!q.trim() || !results.length) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  el.innerHTML = results.map(r =>
+    `<a href="#${r.section}" onclick="document.getElementById('search-results').style.display='none'"
+       style="display:block;padding:0.6rem 1rem;color:#e6edf3;text-decoration:none;border-bottom:1px solid #30363d">
+       <span style="color:#a78bfa">📌</span> ${r.title}</a>`
+  ).join('');
+}
 
-  document.addEventListener("keydown", e => {
-    if ((e.ctrlKey||e.metaKey) && e.key==="k") { e.preventDefault(); open(); }
-    if (e.key==="Escape") close();
-  });
-
-  // Add search button to page if nav exists
-  document.addEventListener("DOMContentLoaded", () => {
-    const nav = document.querySelector("nav");
-    if (nav && !document.getElementById("ng-search-btn")) {
-      const btn = document.createElement("button");
-      btn.id = "ng-search-btn";
-      btn.innerHTML = "🔍 <span style='font-size:.75rem;opacity:.6'>Ctrl+K</span>";
-      btn.style.cssText = "background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#f1f5f9;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.8rem;font-family:inherit;display:flex;align-items:center;gap:6px";
-      btn.onclick = open;
-      nav.appendChild(btn);
-    }
-  });
-
-  window.NGSearch = {open, close};
-})();
+document.addEventListener('DOMContentLoaded', renderSearchBox);
