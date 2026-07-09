@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Appointment Booking — Navigate Germany</title>
+  <style>
+    :root{--primary:#7c3aed;--accent:#a78bfa;--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;line-height:1.6}
+    .hero{background:linear-gradient(135deg,#0d1117,#1a0a2e);padding:3rem 1.5rem;text-align:center;border-bottom:1px solid var(--border)}
+    .hero h1{font-size:2rem;background:linear-gradient(135deg,var(--accent),#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{color:var(--muted);margin-top:.5rem}
+    .container{max-width:900px;margin:0 auto;padding:2rem 1rem}
+    .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .filter-btn{padding:.35rem .9rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.82rem;transition:all .2s}
+    .filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .state-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:.75rem;transition:border-color .2s}
+    .state-card:hover{border-color:var(--primary)}
+    .state-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+    .state-flag{font-size:1.8rem}
+    .state-name{font-weight:700;font-size:1rem}
+    .state-capital{color:var(--muted);font-size:.8rem}
+    .links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem}
+    .appt-link{display:flex;align-items:center;gap:.4rem;padding:.5rem .75rem;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:600;border:1px solid var(--border);color:var(--text);transition:all .2s;background:rgba(255,255,255,.03)}
+    .appt-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(124,58,237,.1)}
+    .appt-link .icon{font-size:1rem}
+    .tag{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.7rem;font-weight:600;margin-left:.4rem}
+    .tag-online{background:#1a3a1a;color:#4ade80}
+    .tag-phone{background:#1a2a3a;color:#60a5fa}
+    .search-box{width:100%;padding:.75rem 1rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.95rem;margin-bottom:1.5rem;outline:none}
+    .search-box:focus{border-color:var(--primary)}
+    nav{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 1.5rem;display:flex;gap:1.5rem;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
+    nav a:hover{color:var(--accent)}
+    nav .logo{color:var(--text);font-weight:700;margin-right:auto}
+  </style>
+</head>
+<body>
+<nav>
+  <span class="logo">🇩🇪 Navigate Germany</span>
+  <a href="index.html">Home</a>
+  <a href="appointments.html" style="color:var(--accent)">Appointments</a>
+  <a href="emergency.html">Emergency</a>
+</nav>
+<div class="hero">
+  <h1>📅 Appointment Booking Directory</h1>
+  <p>Direct booking links for all 16 Bundesländer — Anmeldung, Ausländerbehörde, Bürgeramt</p>
+</div>
+<div class="container">
+  <input class="search-box" placeholder="🔍 Search by city or state…" oninput="filterCards(this.value)"/>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterType('all',this)">All</button>
+    <button class="filter-btn" onclick="filterType('anmeldung',this)">Anmeldung</button>
+    <button class="filter-btn" onclick="filterType('auslaender',this)">Ausländerbehörde</button>
+    <button class="filter-btn" onclick="filterType('buergeramt',this)">Bürgeramt</button>
+  </div>
+  <div id="cards"></div>
+</div>
+<script>
+const STATES = [
+  {name:'Baden-Württemberg',capital:'Stuttgart',flag:'🦁',
+   links:[
+    {label:'Stuttgart Bürgeramt',url:'https://www.stuttgart.de/buergerbuero',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde BW',url:'https://www.stuttgart.de/auslaenderbehoerde',type:'auslaender',tag:'online'},
+    {label:'KFZ Zulassung',url:'https://www.stuttgart.de/kfz',type:'kfz',tag:'online'},
+  ]},
+  {name:'Bayern',capital:'München',flag:'🍺',
+   links:[
+    {label:'München Bürgerbüro',url:'https://www.muenchen.de/buergerbuero',type:'buergeramt anmeldung',tag:'online'},
+    {label:'KVR Ausländerbehörde',url:'https://www.muenchen.de/kvr',type:'auslaender',tag:'online'},
+    {label:'Nürnberg Bürgeramt',url:'https://www.nuernberg.de/buergeramt',type:'buergeramt',tag:'online'},
+  ]},
+  {name:'Berlin',capital:'Berlin',flag:'🐻',
+   links:[
+    {label:'Bürgeramt Berlin',url:'https://service.berlin.de/buergerberatung-aemter/',type:'buergeramt anmeldung',tag:'online'},
+    {label:'LEA Ausländerbehörde',url:'https://www.berlin.de/labo/',type:'auslaender',tag:'online'},
+    {label:'Anmeldung Online',url:'https://service.berlin.de/dienstleistung/120686/',type:'anmeldung',tag:'online'},
+  ]},
+  {name:'Brandenburg',capital:'Potsdam',flag:'🦅',
+   links:[
+    {label:'Potsdam Bürgerservice',url:'https://www.potsdam.de/buergerservice',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Potsdam',url:'https://www.potsdam.de/auslaenderbehoerde',type:'auslaender',tag:'phone'},
+  ]},
+  {name:'Bremen',capital:'Bremen',flag:'⚓',
+   links:[
+    {label:'Bremen Bürgerservice',url:'https://www.service.bremen.de',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Bremen',url:'https://www.bremen.de/auslaenderbehoerde',type:'auslaender',tag:'online'},
+  ]},
+  {name:'Hamburg',capital:'Hamburg',flag:'🚢',
+   links:[
+    {label:'Hamburg Kundenzentrum',url:'https://www.hamburg.de/kundenzentrum',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Hamburg',url:'https://www.hamburg.de/auslaenderbehoerde',type:'auslaender',tag:'online'},
+    {label:'Einwohnermeldeamt',url:'https://www.hamburg.de/bkm',type:'anmeldung',tag:'online'},
+  ]},
+  {name:'Hessen',capital:'Wiesbaden',flag:'🦁',
+   links:[
+    {label:'Frankfurt Bürgeramt',url:'https://frankfurt.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Frankfurt',url:'https://frankfurt.de/auslaenderbehoerde',type:'auslaender',tag:'online'},
+    {label:'Wiesbaden Bürgeramt',url:'https://www.wiesbaden.de/buergeramt',type:'buergeramt',tag:'online'},
+  ]},
+  {name:'Mecklenburg-Vorpommern',capital:'Schwerin',flag:'🦬',
+   links:[
+    {label:'Schwerin Bürgeramt',url:'https://www.schwerin.de/buergeramt',type:'buergeramt anmeldung',tag:'phone'},
+    {label:'Ausländerbehörde MV',url:'https://www.schwerin.de/auslaenderbehoerde',type:'auslaender',tag:'phone'},
+  ]},
+  {name:'Niedersachsen',capital:'Hannover',flag:'🐴',
+   links:[
+    {label:'Hannover Bürgeramt',url:'https://www.hannover.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Hannover',url:'https://www.hannover.de/auslaenderbehoerde',type:'auslaender',tag:'online'},
+  ]},
+  {name:'Nordrhein-Westfalen',capital:'Düsseldorf',flag:'🏭',
+   links:[
+    {label:'Düsseldorf Bürgeramt',url:'https://www.duesseldorf.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Köln Ausländeramt',url:'https://www.stadt-koeln.de/auslaenderamt',type:'auslaender',tag:'online'},
+    {label:'Dortmund Bürgerservice',url:'https://www.dortmund.de/buergerservice',type:'buergeramt',tag:'online'},
+  ]},
+  {name:'Rheinland-Pfalz',capital:'Mainz',flag:'🍇',
+   links:[
+    {label:'Mainz Bürgeramt',url:'https://www.mainz.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Mainz',url:'https://www.mainz.de/auslaenderbehoerde',type:'auslaender',tag:'phone'},
+  ]},
+  {name:'Saarland',capital:'Saarbrücken',flag:'⛏️',
+   links:[
+    {label:'Saarbrücken Bürgeramt',url:'https://www.saarbruecken.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Saarland',url:'https://www.saarbruecken.de/auslaender',type:'auslaender',tag:'phone'},
+  ]},
+  {name:'Sachsen',capital:'Dresden',flag:'🎻',
+   links:[
+    {label:'Dresden Bürgeramt',url:'https://www.dresden.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Leipzig Bürgeramt',url:'https://www.leipzig.de/buergeramt',type:'buergeramt',tag:'online'},
+    {label:'Ausländerbehörde Dresden',url:'https://www.dresden.de/auslaenderbehoerde',type:'auslaender',tag:'online'},
+  ]},
+  {name:'Sachsen-Anhalt',capital:'Magdeburg',flag:'🦅',
+   links:[
+    {label:'Magdeburg Bürgeramt',url:'https://www.magdeburg.de/buergeramt',type:'buergeramt anmeldung',tag:'phone'},
+    {label:'Ausländerbehörde Magdeburg',url:'https://www.magdeburg.de/auslaender',type:'auslaender',tag:'phone'},
+  ]},
+  {name:'Schleswig-Holstein',capital:'Kiel',flag:'🌊',
+   links:[
+    {label:'Kiel Bürgeramt',url:'https://www.kiel.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Kiel',url:'https://www.kiel.de/auslaenderbehoerde',type:'auslaender',tag:'phone'},
+  ]},
+  {name:'Thüringen',capital:'Erfurt',flag:'🌿',
+   links:[
+    {label:'Erfurt Bürgeramt',url:'https://www.erfurt.de/buergeramt',type:'buergeramt anmeldung',tag:'online'},
+    {label:'Ausländerbehörde Erfurt',url:'https://www.erfurt.de/auslaenderbehoerde',type:'auslaender',tag:'phone'},
+  ]},
+];
+
+let activeType = 'all';
+
+function renderCards(states) {
+  const container = document.getElementById('cards');
+  if (!states.length) {
+    container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">No results found</p>';
+    return;
+  }
+  container.innerHTML = states.map(s => `
+    <div class="state-card" data-state="${s.name.toLowerCase()}">
+      <div class="state-header">
+        <span class="state-flag">${s.flag}</span>
+        <div>
+          <div class="state-name">${s.name}</div>
+          <div class="state-capital">📍 ${s.capital}</div>
+        </div>
+      </div>
+      <div class="links-grid">
+        ${s.links.filter(l => activeType==='all' || l.type.includes(activeType)).map(l => `
+          <a href="${l.url}" target="_blank" rel="noopener noreferrer" class="appt-link"
+             data-type="${l.type}">
+            <span class="icon">${l.tag==='online'?'🌐':'📞'}</span>
+            ${l.label}
+            <span class="tag ${l.tag==='online'?'tag-online':'tag-phone'}">${l.tag==='online'?'Online':'Phone'}</span>
+          </a>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function filterType(type, btn) {
+  activeType = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const q = document.querySelector('.search-box').value;
+  filterCards(q);
+}
+
+function filterCards(q) {
+  const filtered = STATES.filter(s =>
+    s.name.toLowerCase().includes(q.toLowerCase()) ||
+    s.capital.toLowerCase().includes(q.toLowerCase())
+  );
+  renderCards(filtered);
+}
+
+renderCards(STATES);
+</script>
+</body>
+</html>
