@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Cost of Living Calculator — Navigate Germany</title>
+  <style>
+    :root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#a78bfa}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;padding:1.5rem}
+    nav{display:flex;gap:1rem;margin-bottom:2rem;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:.88rem}
+    nav a:hover{color:var(--accent)}
+    nav .logo{color:var(--text);font-weight:700;margin-right:auto}
+    h1{font-size:1.8rem;font-weight:800;margin-bottom:.5rem}
+    .sub{color:var(--muted);margin-bottom:2rem}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem}
+    .card h3{font-size:1rem;font-weight:700;margin-bottom:1.2rem;color:var(--accent)}
+    label{display:block;color:var(--muted);font-size:.8rem;margin-bottom:.3rem;margin-top:.8rem}
+    select,input{width:100%;padding:9px 12px;border-radius:8px;border:1px solid var(--border);
+      background:#0d1117;color:var(--text);font-size:.9rem;outline:none}
+    select:focus,input:focus{border-color:var(--accent)}
+    .result-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.88rem}
+    .result-row:last-child{border:none}
+    .result-row .label{color:var(--muted)}
+    .result-row .value{font-weight:600}
+    .total{background:rgba(167,139,250,.1);border:1px solid var(--accent);border-radius:10px;padding:1rem;margin-top:1rem;text-align:center}
+    .total .amount{font-size:2rem;font-weight:900;color:var(--accent)}
+    .total .sub{font-size:.8rem;color:var(--muted);margin:0}
+    .tip{background:#1a1f2e;border:1px solid #30363d;border-radius:8px;padding:.75rem;margin-top:.75rem;font-size:.8rem;color:var(--muted)}
+    .tip strong{color:var(--text)}
+    @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav>
+  <span class="logo">🇩🇪 Navigate Germany</span>
+  <a href="index.html">Home</a>
+  <a href="appointments.html">Appointments</a>
+  <a href="calculator.html" style="color:var(--accent)">Calculator</a>
+</nav>
+
+<div style="max-width:900px;margin:0 auto">
+  <h1>💶 Cost of Living Calculator</h1>
+  <p class="sub">Estimate your monthly expenses in Germany — based on city, lifestyle and family size</p>
+
+  <div class="grid">
+    <!-- Inputs -->
+    <div class="card">
+      <h3>⚙️ Your Situation</h3>
+
+      <label>City / Region</label>
+      <select id="city" onchange="calc()">
+        <option value="munich">Munich (most expensive)</option>
+        <option value="frankfurt">Frankfurt</option>
+        <option value="hamburg">Hamburg</option>
+        <option value="berlin" selected>Berlin</option>
+        <option value="cologne">Cologne / Düsseldorf</option>
+        <option value="stuttgart">Stuttgart</option>
+        <option value="dortmund">Dortmund / Essen / Ruhr</option>
+        <option value="small">Small city / Town</option>
+      </select>
+
+      <label>Household size</label>
+      <select id="household" onchange="calc()">
+        <option value="single">Single person</option>
+        <option value="couple">Couple (2 adults)</option>
+        <option value="family3" selected>Family (2 adults + 1 child)</option>
+        <option value="family4">Family (2 adults + 2 children)</option>
+        <option value="family5">Family (2 adults + 3+ children)</option>
+      </select>
+
+      <label>Flat type</label>
+      <select id="flat" onchange="calc()">
+        <option value="shared">Shared flat / WG room</option>
+        <option value="1bed">1-bedroom flat</option>
+        <option value="2bed" selected>2-bedroom flat</option>
+        <option value="3bed">3-bedroom flat</option>
+        <option value="4bed">4+ bedroom flat/house</option>
+      </select>
+
+      <label>Lifestyle</label>
+      <select id="lifestyle" onchange="calc()">
+        <option value="frugal">Frugal (budget conscious)</option>
+        <option value="moderate" selected>Moderate (average)</option>
+        <option value="comfortable">Comfortable (no restrictions)</option>
+      </select>
+
+      <label>Transport</label>
+      <select id="transport" onchange="calc()">
+        <option value="public">Public transport (monthly ticket)</option>
+        <option value="bike">Bicycle only</option>
+        <option value="car" selected>Public transport + car</option>
+        <option value="car_only">Car only</option>
+      </select>
+    </div>
+
+    <!-- Results -->
+    <div class="card">
+      <h3>📊 Monthly Estimate</h3>
+      <div id="breakdown"><!-- filled by JS --></div>
+      <div class="total">
+        <div class="amount" id="total-amount">€0</div>
+        <p class="sub">Estimated monthly total</p>
+      </div>
+      <div class="tip">
+        <strong>💡 Tip:</strong> Germany has <strong>child benefits (Kindergeld)</strong> of €250/month per child.
+        Also check <strong>Wohngeld</strong> (housing benefit) if your income is lower.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CITY_MULT = {munich:1.35,frankfurt:1.2,hamburg:1.18,berlin:1.0,cologne:1.05,stuttgart:1.15,dortmund:0.88,small:0.78};
+const RENT_BASE = {
+  berlin:   {shared:650,  '1bed':1100,'2bed':1600,'3bed':2100,'4bed':2800},
+  munich:   {shared:900,  '1bed':1500,'2bed':2200,'3bed':2900,'4bed':3800},
+  frankfurt:{shared:750,  '1bed':1250,'2bed':1800,'3bed':2400,'4bed':3200},
+  hamburg:  {shared:700,  '1bed':1200,'2bed':1750,'3bed':2300,'4bed':3000},
+  cologne:  {shared:650,  '1bed':1100,'2bed':1600,'3bed':2100,'4bed':2800},
+  stuttgart:{shared:700,  '1bed':1200,'2bed':1700,'3bed':2250,'4bed':3000},
+  dortmund: {shared:500,  '1bed':850, '2bed':1200,'3bed':1600,'4bed':2100},
+  small:    {shared:420,  '1bed':700, '2bed':1000,'3bed':1350,'4bed':1800},
+};
+const FOOD = {single:{frugal:200,moderate:320,comfortable:480},couple:{frugal:380,moderate:560,comfortable:800},
+  family3:{frugal:520,moderate:750,comfortable:1050},family4:{frugal:680,moderate:960,comfortable:1300},
+  family5:{frugal:850,moderate:1200,comfortable:1600}};
+const TRANSPORT_COST = {public:86,bike:20,car:200,car_only:350};
+const UTILS = {single:120,couple:160,family3:200,family4:240,family5:280};
+const HEALTH = {single:220,couple:440,family3:600,family4:800,family5:950};
+const OTHER = {single:{frugal:80,moderate:150,comfortable:300},
+  couple:{frugal:120,moderate:250,comfortable:450},
+  family3:{frugal:160,moderate:320,comfortable:550},
+  family4:{frugal:200,moderate:400,comfortable:700},
+  family5:{frugal:240,moderate:500,comfortable:900}};
+
+function calc() {
+  const city = document.getElementById('city').value;
+  const household = document.getElementById('household').value;
+  const flat = document.getElementById('flat').value;
+  const lifestyle = document.getElementById('lifestyle').value;
+  const transport = document.getElementById('transport').value;
+
+  const rent = RENT_BASE[city]?.[flat] || RENT_BASE.berlin[flat];
+  const food = FOOD[household]?.[lifestyle] || 320;
+  const trans = TRANSPORT_COST[transport];
+  const utils = UTILS[household] || 120;
+  const health = HEALTH[household] || 220;
+  const other = OTHER[household]?.[lifestyle] || 150;
+  const total = rent + food + trans + utils + health + other;
+
+  const rows = [
+    {label:'🏠 Rent (incl. utilities estimate)', value: rent},
+    {label:'🛒 Groceries & food', value: food},
+    {label:'🚌 Transport', value: trans},
+    {label:'💡 Utilities (electricity, internet, etc.)', value: utils},
+    {label:'🏥 Health insurance (Krankenversicherung)', value: health},
+    {label:'👗 Clothing, personal, leisure', value: other},
+  ];
+
+  document.getElementById('breakdown').innerHTML = rows.map(r =>
+    `<div class="result-row">
+      <span class="label">${r.label}</span>
+      <span class="value">€${r.value.toLocaleString()}</span>
+    </div>`
+  ).join('');
+  document.getElementById('total-amount').textContent = '€' + total.toLocaleString();
+}
+
+calc();
+</script>
+</body>
+</html>
