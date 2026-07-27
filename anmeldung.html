@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Anmeldung Step-by-Step — Navigate Germany</title>
+  <style>
+    :root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--green:#22c55e;--accent:#a78bfa}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;padding:1.5rem}
+    nav{display:flex;gap:1rem;margin-bottom:2rem;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:.88rem}
+    nav .logo{color:var(--text);font-weight:700;margin-right:auto}
+    h1{font-size:1.8rem;font-weight:800;margin-bottom:.5rem}
+    .sub{color:var(--muted);margin-bottom:2rem}
+    .steps{max-width:700px;margin:0 auto}
+    .step{background:var(--surface);border:1px solid var(--border);border-radius:14px;
+      padding:1.2rem 1.5rem;margin-bottom:.75rem;cursor:pointer;transition:all .2s}
+    .step:hover{border-color:var(--accent)}
+    .step.done{border-color:var(--green)!important;background:rgba(34,197,94,.05)}
+    .step-header{display:flex;align-items:center;gap:1rem}
+    .step-num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;
+      font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+    .step.done .step-num{background:var(--green)}
+    .step-title{font-weight:700;font-size:.95rem;flex:1}
+    .step-badge{font-size:.72rem;padding:2px 8px;border-radius:10px;font-weight:600}
+    .badge-must{background:rgba(239,68,68,.15);color:#f87171}
+    .badge-opt{background:rgba(34,197,94,.12);color:#86efac}
+    .step-body{display:none;padding-top:1rem;border-top:1px solid var(--border);margin-top:.9rem}
+    .step.open .step-body{display:block}
+    .step-body p{color:var(--muted);font-size:.85rem;line-height:1.7;margin-bottom:.75rem}
+    .step-body ul{padding-left:1.2rem;color:var(--muted);font-size:.85rem;line-height:1.9}
+    .step-body a{color:var(--accent);font-size:.82rem}
+    .step-body .check-btn{background:var(--green);color:#fff;border:none;padding:8px 16px;
+      border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:700;margin-top:.5rem}
+    .progress{max-width:700px;margin:0 auto 1.5rem}
+    .progress-bar{background:#1e293b;border-radius:20px;height:10px;overflow:hidden;margin-bottom:.4rem}
+    .progress-fill{background:linear-gradient(90deg,var(--accent),var(--green));height:100%;transition:width .5s;border-radius:20px}
+    .progress-label{color:var(--muted);font-size:.8rem}
+    .info-box{background:#1a1f2e;border:1px solid #30363d;border-radius:10px;padding:.9rem;
+      font-size:.82rem;color:var(--muted);margin-top:.6rem}
+    .info-box strong{color:var(--text)}
+    .done-banner{background:rgba(34,197,94,.1);border:1px solid var(--green);border-radius:12px;
+      padding:1.2rem;text-align:center;display:none;max-width:700px;margin:1rem auto}
+  </style>
+</head>
+<body>
+<nav>
+  <span class="logo">🇩🇪 Navigate Germany</span>
+  <a href="index.html">Home</a>
+  <a href="calculator.html">Cost Calculator</a>
+  <a href="anmeldung.html" style="color:var(--accent)">Anmeldung</a>
+</nav>
+
+<div style="max-width:700px;margin:0 auto">
+  <h1>📋 Anmeldung Step-by-Step</h1>
+  <p class="sub">Register your address in Germany — required within 14 days of moving in</p>
+
+  <div class="progress">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-label" id="progress-label">0 of 7 steps completed</div>
+  </div>
+
+  <div class="steps" id="steps-container"></div>
+  <div class="done-banner" id="done-banner">
+    🎉 <strong>Anmeldung checklist complete!</strong> Now visit your local Bürgeramt.
+    <br><a href="appointments.html" style="color:var(--green)">Book an appointment →</a>
+  </div>
+</div>
+
+<script>
+const STEPS = [
+  {
+    title:'Find your local Bürgeramt',
+    badge:'must',
+    body:`<p>Every city and district has its own Bürgeramt (citizens' office). You must register at the Bürgeramt
+    for the district where you live — not just any office.</p>
+    <ul>
+      <li>Berlin: service.berlin.de — book online (slots fill quickly, book 2–3 weeks ahead)</li>
+      <li>Munich: muenchen.de/buergerbuero</li>
+      <li>Hamburg: hamburg.de/kundenzentrum</li>
+      <li>Other cities: search "[your city] Bürgeramt Termin"</li>
+    </ul>
+    <a href="appointments.html" target="_blank">📅 Find your state appointment link →</a>`
+  },
+  {
+    title:'Get the Wohnungsgeberbestätigung from your landlord',
+    badge:'must',
+    body:`<p>This is a <strong>landlord confirmation form</strong> — without it, you cannot register. 
+    Your landlord is legally required to provide it.</p>
+    <ul>
+      <li>Officially called: <strong>Wohnungsgeberbestätigung</strong> (Wgb)</li>
+      <li>Must include: landlord's name, address, date of move-in, your name</li>
+      <li>Landlord has 2 weeks to provide it after you move in</li>
+      <li>Download a template and ask your landlord to fill and sign it</li>
+    </ul>
+    <div class="info-box"><strong>⚠️ Important:</strong> If your landlord refuses, report them to the Bürgeramt — it is a legal obligation.</div>`
+  },
+  {
+    title:'Prepare your documents',
+    badge:'must',
+    body:`<p>Bring these to your appointment:</p>
+    <ul>
+      <li>✅ <strong>Valid passport</strong> (all family members if registering together)</li>
+      <li>✅ <strong>Wohnungsgeberbestätigung</strong> (landlord form — see step 2)</li>
+      <li>✅ <strong>Anmeldung form</strong> (Anmeldeformular — available at Bürgeramt or online for your city)</li>
+      <li>✅ Marriage certificate (if married, especially for different surnames)</li>
+      <li>✅ Birth certificates for children</li>
+      <li>📎 Copies of all documents (some offices require them)</li>
+    </ul>`
+  },
+  {
+    title:'Fill in the Anmeldung form',
+    badge:'must',
+    body:`<p>The registration form (Anmeldeformular) asks for:</p>
+    <ul>
+      <li>Your full name, date of birth, nationality</li>
+      <li>Your new address (complete address with flat number)</li>
+      <li>Previous address (in Germany or abroad)</li>
+      <li>Marital status</li>
+      <li>Religion (optional — affects church tax; you can write "keine" / none)</li>
+    </ul>
+    <div class="info-box"><strong>💡 Religion field:</strong> If you write a religion registered for church tax (e.g. Roman Catholic, Protestant), Germany will automatically deduct ~8-9% church tax from your salary. Write <strong>"keine" or leave blank</strong> if you don't want this.</div>`
+  },
+  {
+    title:'Attend your Bürgeramt appointment',
+    badge:'must',
+    body:`<p>The appointment itself is usually <strong>5–15 minutes</strong> if you have all documents.</p>
+    <ul>
+      <li>Arrive 5–10 minutes early</li>
+      <li>Bring all original documents (not just copies)</li>
+      <li>The officer will check your documents and process the registration</li>
+      <li>You will receive your <strong>Meldebestätigung</strong> (registration confirmation) — keep this safe!</li>
+    </ul>
+    <div class="info-box"><strong>📄 Meldebestätigung:</strong> This document proves your German address. You will need it for: opening a bank account, getting health insurance, applying for permits, enrolling children in school.</div>`
+  },
+  {
+    title:'Receive your Meldebestätigung',
+    badge:'must',
+    body:`<p>The <strong>Meldebestätigung</strong> is your official address registration document.</p>
+    <ul>
+      <li>Make several copies — you will need it often</li>
+      <li>It is usually given on the same day</li>
+      <li>Contains: your name, registered address, date of registration</li>
+    </ul>
+    <p>Next steps after Anmeldung:</p>
+    <ul>
+      <li>🏦 Open a German bank account (Sparkasse, N26, DKB)</li>
+      <li>🏥 Register for health insurance (Techniker Krankenkasse, AOK, Barmer)</li>
+      <li>💼 Update your work / employer with your new address</li>
+      <li>📫 Redirect post from old address (Deutsche Post Nachsendeantrag)</li>
+    </ul>`
+  },
+  {
+    title:'Optional: Register your children at school',
+    badge:'opt',
+    body:`<p>If you have school-age children (6+), school attendance is <strong>compulsory (Schulpflicht)</strong> in Germany.</p>
+    <ul>
+      <li>Contact your local Schulamt (school authority) or directly approach a Grundschule (primary school)</li>
+      <li>Bring: Meldebestätigung, child's passport, vaccination record (Impfausweis)</li>
+      <li>International schools available in larger cities (fees apply)</li>
+      <li>German state schools are free — including for non-EU citizens</li>
+    </ul>`
+  },
+];
+
+let completed = new Set();
+try {
+  const saved = JSON.parse(localStorage.getItem('ng_anmeldung_done') || '[]');
+  completed = new Set(saved);
+} catch(e) {}
+
+function saveCompleted() {
+  try { localStorage.setItem('ng_anmeldung_done', JSON.stringify([...completed])); } catch(e) {}
+}
+
+function updateProgress() {
+  const must = STEPS.filter(s => s.badge === 'must').length;
+  const doneCount = [...completed].filter(i => STEPS[i]?.badge === 'must').length;
+  const pct = Math.round((doneCount / must) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = doneCount + ' of ' + must + ' required steps completed';
+  document.getElementById('done-banner').style.display = doneCount >= must ? 'block' : 'none';
+}
+
+function render() {
+  const container = document.getElementById('steps-container');
+  container.innerHTML = STEPS.map((step, i) => `
+    <div class="step ${completed.has(i)?'done':''}" id="step-${i}">
+      <div class="step-header" onclick="toggle(${i})">
+        <div class="step-num">${completed.has(i)?'✓':(i+1)}</div>
+        <div class="step-title">${step.title}</div>
+        <span class="step-badge ${step.badge==='must'?'badge-must':'badge-opt'}">
+          ${step.badge==='must'?'Required':'Optional'}
+        </span>
+        <span style="color:var(--muted);font-size:.9rem;margin-left:.5rem">▾</span>
+      </div>
+      <div class="step-body">${step.body}
+        <button class="check-btn" onclick="event.stopPropagation();markDone(${i})">
+          ${completed.has(i)?'✓ Done':'Mark as done ✓'}
+        </button>
+      </div>
+    </div>`).join('');
+  updateProgress();
+}
+
+function toggle(i) {
+  document.querySelectorAll('.step').forEach((el,j) => {
+    if (j !== i) el.classList.remove('open');
+  });
+  document.getElementById('step-' + i).classList.toggle('open');
+}
+
+function markDone(i) {
+  completed.has(i) ? completed.delete(i) : completed.add(i);
+  saveCompleted();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
